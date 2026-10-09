@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>VRB 2026 — Warmup</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --card: #1a1a1a;
+    --card2: #222;
+    --border: #2e2e2e;
+    --text: #f0f0f0;
+    --muted: #888;
+    --accent: #c8f135;
+    --accent-dark: #8aab1a;
+    --warn: #f5a623;
+    --danger: #e74c3c;
+    --success: #2ecc71;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    padding-bottom: 40px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .top-bar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .app-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .wod-pills {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  .wod-pills::-webkit-scrollbar { display: none; }
+  .pill {
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--card2);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .pill.on {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  .page { padding: 16px; }
+
+  .wod-header {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .wod-header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  .wod-name { font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-warn { background: rgba(245,166,35,0.15); color: var(--warn); }
+  .badge-accent { background: rgba(200,241,53,0.15); color: var(--accent); }
+  .wod-meta { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  .timer-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 16px 16px;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .step-label {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    min-height: 18px;
+  }
+  .timer-num {
+    font-size: 72px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -3px;
+    line-height: 1;
+    color: var(--text);
+    transition: color 0.5s;
+  }
+  .timer-num.go { color: var(--success); }
+  .timer-num.mid { color: var(--warn); }
+  .timer-num.end { color: var(--danger); }
+  .step-current-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 10px;
+    min-height: 20px;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 14px 0 16px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.9s linear;
+  }
+  .btn-row { display: flex; gap: 10px; justify-content: center; }
+  .btn {
+    padding: 14px 22px;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn:active { transform: scale(0.96); opacity: 0.85; }
+  .btn-start { background: var(--accent); color: #000; flex: 1; justify-content: center; }
+  .btn-pause { background: rgba(231,76,60,0.2); color: var(--danger); border: 1px solid rgba(231,76,60,0.3); flex: 1; justify-content: center; }
+  .btn-next { background: var(--card2); color: var(--text); border: 1px solid var(--border); flex: 1; justify-content: center; }
+  .btn-reset { background: var(--card2); color: var(--muted); border: 1px solid var(--border); width: 52px; padding: 14px; justify-content: center; flex-shrink: 0; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 18px 0 10px;
+  }
+
+  .steps-list { display: flex; flex-direction: column; gap: 8px; }
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 13px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .step.cur { border-color: var(--accent); background: rgba(200,241,53,0.06); }
+  .step.done { opacity: 0.38; }
+  .step-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step.cur .step-circle { background: var(--accent); color: #000; border-color: var(--accent); }
+  .step.done .step-circle { background: var(--success); color: #000; border-color: var(--success); }
+  .step-body { flex: 1; min-width: 0; }
+  .step-tag {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--warn);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+  }
+  .step-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .step-desc { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+  .step-dur {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    flex-shrink: 0;
+    padding-left: 6px;
+    margin-top: 2px;
+  }
+
+  .notes {
+    background: rgba(245,166,35,0.08);
+    border: 1px solid rgba(245,166,35,0.25);
+    border-radius: var(--radius);
+    padding: 13px 14px;
+    margin-top: 18px;
+  }
+  .notes-title { font-size: 11px; font-weight: 700; color: var(--warn); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .notes-item { font-size: 13px; color: #d4a84b; line-height: 1.6; padding: 2px 0; }
+
+  .done-screen {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .done-icon { font-size: 64px; margin-bottom: 16px; }
+  .done-title { font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .done-sub { font-size: 15px; color: var(--muted); margin-bottom: 28px; }
+
+  svg.icon { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="app-title">VRB 2026 — Warmup</div>
+  <div class="wod-pills" id="pills"></div>
+</div>
+
+<div class="page" id="main"></div>
+
+<script>
+var WS=[
+  {
+    id:0,lbl:"WOD 1",title:"Thruster + Burpees OTB + Rope Climb",
+    meta:"Beginner Men \u00b7 Time cap 5\u2019 \u00b7 Bilanciere 33 kg \u00b7 Start 09:48",
+    badge:"For time",bc:"warn",
+    steps:[
+      {n:"Check-in e briefing",d:"Presentarsi all\u2019ingresso, registrarsi. Briefing obbligatorio \u2014 chi manca perde il diritto di ricorso!",t:8,m:true},
+      {n:"Mobilit\u00e0 generale",d:"Rotazioni spalle, squat profondi, caviglie, arm swing",t:3},
+      {n:"Attivazione aerobica",d:"Saltellio o jumping jack leggeri per alzare la frequenza cardiaca",t:3},
+      {n:"Push press + squat",d:"10 push press bilanciere vuoto \u2014 10 squat a corpo libero",t:3},
+      {n:"Thruster progressivo",d:"5 reps vuoto \u2192 3 a 20 kg \u2192 3 a 33 kg (carico gara). Testa il clean e il lockout overhead.",t:4},
+      {n:"Burpees OTB lenti",d:"3 burpees laterali lenti. Viso a destra (verso il giudice), saltare chiaramente oltre la sbarra",t:2},
+      {n:"Rope climb",d:"1 salita controllata \u2014 tocco netto e visibile al target (4 mt). Il giudice \u00e8 a terra: sii inequivocabile.",t:2},
+      {n:"Pre-staging",d:"Lascia la warm up 7 min prima. Porta tutto con te (non puoi tornare indietro). Ricevi la scorecard.",t:5},
+      {n:"Ingresso campo",d:"Verifica carico 33 kg, scavalca il bilanciere, consegna scorecard al giudice. Applicazione magnesite subito.",t:3},
+      {n:"Posizione di start",d:"Shake out, respira. Il bilanciere va SCAVALCATO tra i round e alla fine. Stop al tempo: attraversa la linea di start.",t:5},
+    ],
+    notes:["Bilanciere da SCAVALCARE, mai aggirare \u2014 penalita\u0300 immediata","Rope climb: tocco netto a 4 mt, ben visibile dal giudice a terra","Non droppare la sbarra dietro la testa \u2014 penalita\u0300 e ripetizione","Il tempo si ferma attraversando completamente la linea di start"]
+  },
+  {
+    id:1,lbl:"WOD 2",title:"5K Run",
+    meta:"Tutti \u00b7 No time cap \u00b7 Chip caviglia obbligatorio \u00b7 Start 10:48",
+    badge:"For time",bc:"warn",
+    steps:[
+      {n:"Check-in + chip alla caviglia",d:"Indossa il chip ADESSO \u2014 scrivi il numero sul braccio con il pennarello. Senza chip gara annullata.",t:3,m:true},
+      {n:"Briefing obbligatorio",d:"Ascolta le istruzioni sul percorso e la segnaletica \u2014 OBBLIGATORIO",t:5,m:true},
+      {n:"Mobilit\u00e0 gambe",d:"Mobilita\u0300 caviglie e polpacci, allungamento dinamico quadricipiti e ischio",t:4},
+      {n:"Jogging progressivo",d:"Jogging leggero con accelerazione graduale nei 7 minuti",t:7},
+      {n:"3 x 100m a ritmo gara",d:"Tre ripetizioni a ritmo gara con recupero camminata tra ognuna",t:6},
+      {n:"2 x 50m sprint",d:"Accelerazioni brevi, ritorno tranquillo, respira",t:3},
+      {n:"Pre-staging run",d:"Attendere vicino alle vele UISP rosa. NON avvicinarti alla linea di partenza!",t:7},
+      {n:"Idratazione e start",d:"Bevi, scuoti le gambe. Il cronometro parte solo quando attraversi la linea al via.",t:5},
+    ],
+    notes:["NON passare vicino alla linea prima del via \u2014 il chip si attiva!","Riconsegna il chip entro 30 min dalla fine \u2014 altrimenti gara annullata","Segui solo il percorso segnalato \u2014 nessuna scorciatoia"]
+  },
+  {
+    id:2,lbl:"WOD 3",title:"3 RFT: GTOH + Knee Raise",
+    meta:"Beginner Men \u00b7 Time cap 3\u2019 \u00b7 Bilanciere 38 kg \u00b7 Start 12:46",
+    badge:"For time",bc:"warn",
+    steps:[
+      {n:"Check-in e briefing",d:"Registrazione e briefing obbligatorio \u2014 focus sul flow: il bilanciere avanza di sezione ad ogni round",t:8,m:true},
+      {n:"Mobilit\u00e0 overhead",d:"Band pull-apart, dislocate, shoulder circles, squat profondi",t:3},
+      {n:"Attivazione core",d:"Hollow hold 20s, arch 20s, dead hang alla sbarra 15s",t:3},
+      {n:"Knee raise",d:"10 reps lente \u2014 braccia completamente distese, ginocchia sopra cresta iliaca",t:2},
+      {n:"GTOH progressivo",d:"3 vuoto \u2192 3 a 25 kg \u2192 3 a 38 kg. Snatch o clean and jerk: scegli il pi\u00f9 veloce per te.",t:5},
+      {n:"Simulazione round",d:"1 round completo a ritmo: 6 GTOH + 12 knee raise + sposta il bilanciere di sezione",t:4},
+      {n:"Pre-staging",d:"Lascia la warm up, porta tutto il materiale personale con te",t:5},
+      {n:"Ingresso campo",d:"Verifica carico 38 kg, scavalca il bilanciere, consegna scorecard al giudice",t:3},
+      {n:"Posizione di start",d:"Shake out spalle, respira. 3 MINUTI SONO POCHISSIMI \u2014 pianifica di non fermarti mai",t:7},
+    ],
+    notes:["3 min time cap: unbroken se puoi, non fermarti mai tra le stazioni","Bilanciere avanza di sezione e va SCAVALCATO dopo ogni round","Non droppare la sbarra dietro la testa \u2014 penalita\u0300!","Stop al tempo: attraversa la linea di start dopo il round 3"]
+  },
+  {
+    id:3,lbl:"WOD 4",title:"AMRAP: Single Under + Wall Walk + Pull Up",
+    meta:"Beginner Men \u00b7 AMRAP 8\u2019 \u00b7 Start 15:56",
+    badge:"AMRAP",bc:"accent",
+    steps:[
+      {n:"Check-in e briefing",d:"Registrazione \u2014 porta la jump rope! Briefing obbligatorio: focus sul flow e sul conetto",t:8,m:true},
+      {n:"Mobilit\u00e0 polsi e spalle",d:"Rotazioni polsi e spalle, attivazione scapolare, dead hang alla sbarra",t:3},
+      {n:"Single under",d:"30 SU leggeri per sciogliersi \u2192 30 SU veloci a ritmo gara, corda in avanti",t:3},
+      {n:"Wall walk",d:"2 reps lente \u2014 in cima: entrambe le mani sulla linea (76 cm dalla parete), piedi a contatto con il muro",t:3},
+      {n:"Pull up",d:"5\u20138 reps kipping o butterfly. Braccia distese in partenza, mento chiaramente oltre la barra.",t:3},
+      {n:"Round simulato",d:"1 giro completo a ritmo: 50 SU \u2192 3 wall walk \u2192 10 pull up \u2192 sposta il conetto",t:5},
+      {n:"Pre-staging",d:"Lascia la warm up \u2014 jump rope gi\u00e0 con te, non puoi recuperarla",t:5},
+      {n:"Ingresso campo",d:"Scorecard al giudice, verifica posizione conetto e sbarra per i pull up",t:3},
+      {n:"Posizione di start",d:"Shake out braccia e polsi, respira. Ordine fisso: SU \u2192 wall walk \u2192 pull up \u2192 SPOSTA IL CONETTO",t:7},
+    ],
+    notes:["Ordine obbligatorio: SU \u2192 Wall Walk \u2192 Pull Up \u2192 sposta il conetto \u2014 sempre!","Wall Walk top: entrambe le mani sulla linea (76 cm) contemporaneamente","Pull Up: braccia completamente distese in partenza, mento oltre la barra","Score = ripetizioni totali completate nei 8 minuti"]
+  }
+];
+
+var wod=0,si=0,se=0,elapsed=0,running=false,iv=null;
+
+function fmt(s){
+  var m=Math.floor(s/60),sec=s%60;
+  return (m<10?'0':'')+m+':'+(sec<10?'0':'')+sec;
+}
+function tot(){return WS[wod].steps.reduce(function(a,s){return a+s.t*60;},0);}
+function sdur(i){return WS[wod].steps[i].t*60;}
+function srem(){return Math.max(0,sdur(si)-se);}
+function pct(){return Math.min(100,Math.round(elapsed/tot()*100));}
+function tcls(){
+  var r=srem(),d=sdur(si);
+  if(d===0) return '';
+  if(r/d>0.4) return 'go';
+  if(r/d>0.15) return 'mid';
+  return 'end';
+}
+
+function iconPlay(){return '<svg class="icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>';}
+function iconPause(){return '<svg class="icon" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';}
+function iconNext(){return '<svg class="icon" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>';}
+function iconReset(){return '<svg class="icon" viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.26"/></svg>';}
+function iconCheck(){return '<svg class="icon" style="width:14px;height:14px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>';}
+
+function renderPills(){
+  var h='';
+  WS.forEach(function(w,i){
+    h+='<div class="pill'+(i===wod?' on':'')+'" onclick="sw('+i+')">'+w.lbl+'</div>';
+  });
+  document.getElementById('pills').innerHTML=h;
+}
+
+function render(){
+  var W=WS[wod];
+  var done=si>=W.steps.length;
+  var h='';
+
+  h+='<div class="wod-header">'
+    +'<div class="wod-header-top">'
+    +'<span class="wod-name">'+W.title+'</span>'
+    +'<span class="badge badge-'+W.bc+'">'+W.badge+'</span>'
+    +'</div>'
+    +'<div class="wod-meta">'+W.meta+'</div>'
+    +'</div>';
+
+  if(done){
+    h+='<div class="done-screen">'
+      +'<div class="done-icon">&#x2705;</div>'
+      +'<div class="done-title">Riscaldamento completato!</div>'
+      +'<div class="done-sub">Vai al pre-staging e buona gara!</div>'
+      +'<button class="btn btn-start" onclick="rst()" style="margin:0 auto;">'+iconReset()+' Ricomincia</button>'
+      +'</div>';
+  } else {
+    var cur=W.steps[si];
+    h+='<div class="timer-card">'
+      +'<div class="step-label">'+(running?'Step corrente':'Premi avvia per iniziare')+'</div>'
+      +'<div class="timer-num '+(running?tcls():'')+'">'+( running?fmt(srem()):fmt(tot()) )+'</div>'
+      +'<div class="step-current-name">'+(running?cur.n:'')+'</div>'
+      +'<div class="progress-bar"><div class="progress-fill" id="pf" style="width:'+pct()+'%"></div></div>'
+      +'<div class="btn-row">';
+
+    if(!running){
+      h+='<button class="btn btn-start" onclick="start()">'+iconPlay()+' Avvia</button>';
+    } else {
+      h+='<button class="btn btn-pause" onclick="pause()">'+iconPause()+' Pausa</button>'
+        +'<button class="btn btn-next" onclick="skip()">'+iconNext()+' Prossimo</button>';
+    }
+    h+='<button class="btn btn-reset" onclick="rst()">'+iconReset()+'</button>';
+    h+='</div></div>';
+
+    h+='<div class="section-title">Steps — tocca per saltare</div>';
+    h+='<div class="steps-list">';
+    W.steps.forEach(function(s,i){
+      var cls=i===si&&running?'cur':i<si?'done':'';
+      h+='<div class="step '+cls+'" onclick="jump('+i+')">'
+        +'<div class="step-circle">'+(i<si?iconCheck():i+1)+'</div>'
+        +'<div class="step-body">'
+        +(s.m?'<div class="step-tag">Obbligatorio</div>':'')
+        +'<div class="step-name">'+s.n+'</div>'
+        +'<div class="step-desc">'+s.d+'</div>'
+        +'</div>'
+        +'<div class="step-dur">'+fmt(s.t*60)+'</div>'
+        +'</div>';
+    });
+    h+='</div>';
+
+    h+='<div class="notes"><div class="notes-title">Regole chiave</div>';
+    W.notes.forEach(function(n){
+      h+='<div class="notes-item">&#9888;&#xFE0E; '+n+'</div>';
+    });
+    h+='</div>';
+  }
+
+  document.getElementById('main').innerHTML=h;
+}
+
+function tick(){
+  elapsed++;se++;
+  if(se>=sdur(si)){
+    si++;se=0;
+    if(si>=WS[wod].steps.length){
+      clearInterval(iv);iv=null;running=false;render();return;
+    }
+  }
+  upd();
+}
+
+function upd(){
+  var td=document.querySelector('.timer-num');
+  var pf=document.getElementById('pf');
+  var sn=document.querySelector('.step-current-name');
+  if(td){td.textContent=running?fmt(srem()):fmt(tot());td.className='timer-num '+(running?tcls():'');}
+  if(pf) pf.style.width=pct()+'%';
+  if(sn&&running) sn.textContent=WS[wod].steps[si]?WS[wod].steps[si].n:'';
+  var steps=document.querySelectorAll('.step');
+  steps.forEach(function(el,i){
+    el.className='step'+(i===si&&running?' cur':i<si?' done':'');
+  });
+}
+
+function start(){
+  if(running) return;
+  running=true;
+  iv=setInterval(tick,1000);
+  render();
+}
+function pause(){
+  clearInterval(iv);iv=null;running=false;render();
+}
+function rst(){
+  clearInterval(iv);iv=null;running=false;si=0;se=0;elapsed=0;render();
+}
+function skip(){
+  var W=WS[wod];
+  elapsed+=sdur(si)-se;
+  si++;se=0;
+  if(si>=W.steps.length){clearInterval(iv);iv=null;running=false;render();return;}
+  render();
+  if(running){clearInterval(iv);iv=setInterval(tick,1000);}
+}
+function jump(i){
+  var W=WS[wod];
+  elapsed=W.steps.slice(0,i).reduce(function(a,s){return a+s.t*60;},0);
+  si=i;se=0;render();
+}
+function sw(i){
+  clearInterval(iv);iv=null;running=false;si=0;se=0;elapsed=0;wod=i;
+  renderPills();render();
+}
+
+renderPills();
+render();
+</script>
+</body>
+</html>
