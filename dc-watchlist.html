@@ -176,6 +176,29 @@
   .empty { padding: 40px 0; text-align: center; color: var(--muted); }
   footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
   footer p { margin: 6px 0; }
+  .item { border-bottom: 1px solid var(--line); }
+  .item > .row { border-bottom: 0; }
+  .eps-btn {
+    font: inherit; font-size: 12.5px; color: var(--ink);
+    background: transparent; border: 1px solid var(--line); border-radius: 6px;
+    padding: 0 8px; cursor: pointer;
+  }
+  .eps-btn.part { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .eps-btn[aria-expanded="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .eps { padding: 0 4px 14px 44px; }
+  .season { margin-top: 10px; }
+  .season.cross { border-left: 3px solid var(--accent); padding-left: 8px; }
+  .season-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .season-h .btn { padding: 2px 10px; font-size: 12.5px; white-space: nowrap; }
+  .ep-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ep {
+    min-width: 40px; height: 36px; padding: 0 6px;
+    font: inherit; font-size: 14px; font-variant-numeric: tabular-nums;
+    border: 1.5px solid var(--line); border-radius: 8px;
+    background: var(--surface); color: var(--ink); cursor: pointer;
+  }
+  .ep[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .selmode .eps-btn, .selmode .eps { display: none; }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
@@ -205,8 +228,9 @@
 
   <footer>
     <p id="saveStatus"></p>
+    <p>Per le serie con episodi tocca «Episodi» sotto il titolo e spunta quelli che hai visto: il titolo risulta visto quando li hai spuntati tutti, e le ore viste contano in proporzione agli episodi.</p>
     <p>Con «Ignora» togli un titolo dalla lista e dal conteggio: non lo vedrai più, ma puoi ripristinarlo in qualsiasi momento. Spunte e titoli ignorati vengono salvati in automatico.</p>
-    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni seriali è la durata complessiva stimata della stagione (o dell'intera serie, per quelle concluse). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 22 ottobre 2026: <i>Clayface</i> esce il 23 ottobre 2026, <i>Man of Tomorrow</i> il 9 luglio 2027 e <i>The Batman Part II</i> il 18 febbraio 2028. Puoi filtrare per tipo o per universo. Non sono inclusi cortometraggi, speciali minori e le serie animate per bambini.</p>
+    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni seriali è la durata complessiva stimata della stagione (o dell'intera serie, per quelle concluse). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 22 ottobre 2026: <i>Clayface</i> esce il 23 ottobre 2026, <i>Man of Tomorrow</i> il 9 luglio 2027 e <i>The Batman Part II</i> il 18 febbraio 2028. Puoi filtrare per tipo o per universo. L'Arrowverse è un unico titolo con le serie intrecciate nell'ordine di visione consigliato: ogni serie viene interrotta solo dove c'è un crossover (le fette con ★), che trovi nell'ordine giusto. Non sono inclusi cortometraggi, speciali minori e le serie animate per bambini.</p>
     <p>
       <button class="btn quiet" id="ignVisible">Ignora i titoli filtrati</button>
       <button class="btn quiet" id="unIgnAll">Ripristina gli ignorati</button>
@@ -312,13 +336,8 @@ const RAW = [
   ["2027-12-31","Creature Commandos – Stagione 2","anim","dcu","Animazione. Data da confermare","tbd"],
 
   // Arrowverse
-  ["2012-10-10","Arrow","serie","arw","8 stagioni, 2012–2020"],
-  ["2014-10-07","The Flash (serie TV)","serie","arw","9 stagioni, 2014–2023"],
-  ["2015-10-26","Supergirl (serie TV)","serie","arw","6 stagioni, 2015–2021"],
-  ["2016-01-21","Legends of Tomorrow","serie","arw","7 stagioni, 2016–2022"],
-  ["2018-01-16","Black Lightning","serie","arw","4 stagioni, 2018–2021"],
-  ["2019-10-06","Batwoman","serie","arw","3 stagioni, 2019–2022"],
-  ["2021-02-23","Superman & Lois","serie","arw","4 stagioni, 2021–2024"],
+  ["2012-10-10","Arrowverse (ordine di visione)","serie","arw","Arrow, The Flash, Supergirl, Legends of Tomorrow, Black Lightning, Batwoman e Constantine: 712 episodi con i crossover al posto giusto"],
+  ["2021-02-23","Superman & Lois","serie","arw","4 stagioni, 2021–2024. Serie a sé: si può vedere in qualsiasi momento"],
 
   // Altre serie TV
   ["2001-10-16","Smallville","serie","tv","10 stagioni, 2001–2011"],
@@ -391,17 +410,12 @@ const MINUTES = {
  "Joker: Folie à Deux": 138,
  "Creature Commandos – Stagione 1": 210,
  "Superman (2025)": 129,
- "Peacemaker – Stagione 2": 380,
+ "Peacemaker – Stagione 2": 330,
  "Supergirl (2026)": 108,
  "Lanterns – Stagione 1": 440,
  "Clayface": 108,
- "Arrow": 7140,
- "The Flash (serie TV)": 7730,
- "Supergirl (serie TV)": 5290,
- "Legends of Tomorrow": 4620,
- "Black Lightning": 2440,
- "Batwoman": 2020,
- "Superman & Lois": 2270,
+ "Superman & Lois": 2230,
+ "Arrowverse (ordine di visione)": 29900,
  "Smallville": 9100,
  "Gotham": 4300,
  "Titans": 2450,
@@ -428,17 +442,28 @@ const MINUTES = {
 };
 const isSeries = note => /stagion|episod/i.test(note);   // durata complessiva stimata
 
+// Episodi: per ogni serie un elenco di fette {h: intestazione, k: prefisso chiave, from, to, x: crossover}
+const EPS = {"Peacemaker – Stagione 1":[8],"Peacemaker – Stagione 2":[8],"The Penguin":[8],"Creature Commandos – Stagione 1":[7],"Lanterns – Stagione 1":[8],"Superman & Lois":[15,15,13,10],"Smallville":[21,23,22,22,22,22,20,22,21,22],"Gotham":[22,22,22,22,12],"Titans":[11,13,13,12],"Doom Patrol":[15,9,12,12],"Swamp Thing (serie TV)":[10],"Pennyworth":[10,10,10],"Stargirl":[13,13,10],"Batman: The Animated Series":[85],"Superman: The Animated Series":[54],"Batman of the Future":[13,26,13],"Justice League e Justice League Unlimited":[52,39],"Teen Titans":[13,13,13,13,13],"Young Justice":[26,26,26,26],"Arrowverse (ordine di visione)":[{"h":"Arrow · Stagione 1 · ep. 1–23","k":"arrow1","from":1,"to":23},{"h":"Arrow · Stagione 2 · ep. 1–23","k":"arrow2","from":1,"to":23},{"h":"Arrow · Stagione 3 · ep. 1–7","k":"arrow3","from":1,"to":7},{"h":"The Flash · Stagione 1 · ep. 1–7","k":"flash1","from":1,"to":7},{"h":"★ Flash vs. Arrow · The Flash S1E8 «Flash vs. Arrow»","k":"flash1","from":8,"to":8,"x":1},{"h":"★ Flash vs. Arrow · Arrow S3E8 «The Brave and the Bold»","k":"arrow3","from":8,"to":8,"x":1},{"h":"The Flash · Stagione 1 · ep. 9–23","k":"flash1","from":9,"to":23},{"h":"The Flash · Stagione 2 · ep. 1–7","k":"flash2","from":1,"to":7},{"h":"Arrow · Stagione 3 · ep. 9–23","k":"arrow3","from":9,"to":23},{"h":"Constantine (NBC) · Stagione 1 · ep. 1–13 (Matt Ryan compare poi in Arrow S4E5)","k":"constantine1","from":1,"to":13},{"h":"Arrow · Stagione 4 · ep. 1–7","k":"arrow4","from":1,"to":7},{"h":"Supergirl · Stagione 1 · ep. 1–6","k":"supergirl1","from":1,"to":6},{"h":"★ Heroes Join Forces · The Flash S2E8 «Legends of Today»","k":"flash2","from":8,"to":8,"x":1},{"h":"★ Heroes Join Forces · Arrow S4E8 «Legends of Yesterday»","k":"arrow4","from":8,"to":8,"x":1},{"h":"Supergirl · Stagione 1 · ep. 7–17","k":"supergirl1","from":7,"to":17},{"h":"The Flash · Stagione 2 · ep. 9–16","k":"flash2","from":9,"to":16},{"h":"Arrow · Stagione 4 · ep. 9–16","k":"arrow4","from":9,"to":16},{"h":"Legends of Tomorrow · Stagione 1 · ep. 1–8","k":"legends1","from":1,"to":8},{"h":"★ Worlds Finest · Supergirl S1E18 «Worlds Finest»","k":"supergirl1","from":18,"to":18,"x":1},{"h":"The Flash · Stagione 2 · ep. 17–23","k":"flash2","from":17,"to":23},{"h":"The Flash · Stagione 3 · ep. 1–7","k":"flash3","from":1,"to":7},{"h":"Arrow · Stagione 4 · ep. 17–23","k":"arrow4","from":17,"to":23},{"h":"Arrow · Stagione 5 · ep. 1–7","k":"arrow5","from":1,"to":7},{"h":"Legends of Tomorrow · Stagione 1 · ep. 9–16","k":"legends1","from":9,"to":16},{"h":"Legends of Tomorrow · Stagione 2 · ep. 1–6","k":"legends2","from":1,"to":6},{"h":"Supergirl · Stagione 1 · ep. 19–20","k":"supergirl1","from":19,"to":20},{"h":"Supergirl · Stagione 2 · ep. 1–7","k":"supergirl2","from":1,"to":7},{"h":"★ Invasion! · Supergirl S2E8 «Medusa»","k":"supergirl2","from":8,"to":8,"x":1},{"h":"★ Invasion! · The Flash S3E8 «Invasion!»","k":"flash3","from":8,"to":8,"x":1},{"h":"★ Invasion! · Arrow S5E8 «Invasion!»","k":"arrow5","from":8,"to":8,"x":1},{"h":"★ Invasion! · Legends of Tomorrow S2E7 «Invasion!»","k":"legends2","from":7,"to":7,"x":1},{"h":"The Flash · Stagione 3 · ep. 9–16","k":"flash3","from":9,"to":16},{"h":"Arrow · Stagione 5 · ep. 9–16","k":"arrow5","from":9,"to":16},{"h":"Legends of Tomorrow · Stagione 2 · ep. 8–14","k":"legends2","from":8,"to":14},{"h":"Supergirl · Stagione 2 · ep. 9–15","k":"supergirl2","from":9,"to":15},{"h":"★ Duet (episodi musicali) · Supergirl S2E16 «Star-Crossed»","k":"supergirl2","from":16,"to":16,"x":1},{"h":"★ Duet (episodi musicali) · The Flash S3E17 «Duet»","k":"flash3","from":17,"to":17,"x":1},{"h":"Legends of Tomorrow · Stagione 2 · ep. 15–17","k":"legends2","from":15,"to":17},{"h":"Legends of Tomorrow · Stagione 3 · ep. 1–7","k":"legends3","from":1,"to":7},{"h":"Arrow · Stagione 5 · ep. 17–23","k":"arrow5","from":17,"to":23},{"h":"Arrow · Stagione 6 · ep. 1–7","k":"arrow6","from":1,"to":7},{"h":"Supergirl · Stagione 2 · ep. 17–22","k":"supergirl2","from":17,"to":22},{"h":"Supergirl · Stagione 3 · ep. 1–7","k":"supergirl3","from":1,"to":7},{"h":"The Flash · Stagione 3 · ep. 18–23","k":"flash3","from":18,"to":23},{"h":"The Flash · Stagione 4 · ep. 1–7","k":"flash4","from":1,"to":7},{"h":"★ Crisis on Earth-X · Supergirl S3E8 «Crisis on Earth-X, Part 1»","k":"supergirl3","from":8,"to":8,"x":1},{"h":"★ Crisis on Earth-X · Arrow S6E8 «Crisis on Earth-X, Part 2»","k":"arrow6","from":8,"to":8,"x":1},{"h":"★ Crisis on Earth-X · The Flash S4E8 «Crisis on Earth-X, Part 3»","k":"flash4","from":8,"to":8,"x":1},{"h":"★ Crisis on Earth-X · Legends of Tomorrow S3E8 «Crisis on Earth-X, Part 4»","k":"legends3","from":8,"to":8,"x":1},{"h":"Supergirl · Stagione 3 · ep. 9–23","k":"supergirl3","from":9,"to":23},{"h":"Supergirl · Stagione 4 · ep. 1–8","k":"supergirl4","from":1,"to":8},{"h":"The Flash · Stagione 4 · ep. 9–23","k":"flash4","from":9,"to":23},{"h":"The Flash · Stagione 5 · ep. 1–8","k":"flash5","from":1,"to":8},{"h":"Legends of Tomorrow · Stagione 3 · ep. 9–18","k":"legends3","from":9,"to":18},{"h":"Legends of Tomorrow · Stagione 4 · ep. 1–7","k":"legends4","from":1,"to":7},{"h":"Arrow · Stagione 6 · ep. 9–23","k":"arrow6","from":9,"to":23},{"h":"Arrow · Stagione 7 · ep. 1–8","k":"arrow7","from":1,"to":8},{"h":"Black Lightning · Stagione 1 · ep. 1–13","k":"bl1","from":1,"to":13},{"h":"Black Lightning · Stagione 2 · ep. 1–8","k":"bl2","from":1,"to":8},{"h":"★ Elseworlds · The Flash S5E9 «Elseworlds, Part 1»","k":"flash5","from":9,"to":9,"x":1},{"h":"★ Elseworlds · Arrow S7E9 «Elseworlds, Part 2»","k":"arrow7","from":9,"to":9,"x":1},{"h":"★ Elseworlds · Supergirl S4E9 «Elseworlds, Part 3»","k":"supergirl4","from":9,"to":9,"x":1},{"h":"Legends of Tomorrow · Stagione 4 · ep. 8–16","k":"legends4","from":8,"to":16},{"h":"Black Lightning · Stagione 2 · ep. 9–16","k":"bl2","from":9,"to":16},{"h":"Black Lightning · Stagione 3 · ep. 1–8","k":"bl3","from":1,"to":8},{"h":"The Flash · Stagione 5 · ep. 10–22","k":"flash5","from":10,"to":22},{"h":"The Flash · Stagione 6 · ep. 1–8","k":"flash6","from":1,"to":8},{"h":"Supergirl · Stagione 4 · ep. 10–22","k":"supergirl4","from":10,"to":22},{"h":"Supergirl · Stagione 5 · ep. 1–8","k":"supergirl5","from":1,"to":8},{"h":"Arrow · Stagione 7 · ep. 10–22","k":"arrow7","from":10,"to":22},{"h":"Arrow · Stagione 8 · ep. 1–7","k":"arrow8","from":1,"to":7},{"h":"Batwoman · Stagione 1 · ep. 1–8","k":"batwoman1","from":1,"to":8},{"h":"★ Crisis on Infinite Earths · Supergirl S5E9 «Crisis on Infinite Earths: Part One»","k":"supergirl5","from":9,"to":9,"x":1},{"h":"★ Crisis on Infinite Earths · Batwoman S1E9 «Crisis on Infinite Earths: Part Two»","k":"batwoman1","from":9,"to":9,"x":1},{"h":"★ Crisis on Infinite Earths · The Flash S6E9 «Crisis on Infinite Earths: Part Three»","k":"flash6","from":9,"to":9,"x":1},{"h":"★ Crisis on Infinite Earths · Arrow S8E8 «Crisis on Infinite Earths: Part Four»","k":"arrow8","from":8,"to":8,"x":1},{"h":"★ Crisis on Infinite Earths · Legends of Tomorrow S5E1 «Crisis on Infinite Earths: Part Five»","k":"legends5","from":1,"to":1,"x":1},{"h":"Black Lightning · Stagione 3 · ep. 9–16","k":"bl3","from":9,"to":16},{"h":"Black Lightning · Stagione 4 · ep. 1–13","k":"bl4","from":1,"to":13},{"h":"Batwoman · Stagione 1 · ep. 10–20","k":"batwoman1","from":10,"to":20},{"h":"Batwoman · Stagione 2 · ep. 1–18","k":"batwoman2","from":1,"to":18},{"h":"Batwoman · Stagione 3 · ep. 1–5","k":"batwoman3","from":1,"to":5},{"h":"Supergirl · Stagione 5 · ep. 10–19","k":"supergirl5","from":10,"to":19},{"h":"Supergirl · Stagione 6 · ep. 1–20","k":"supergirl6","from":1,"to":20},{"h":"Arrow · Stagione 8 · ep. 9–10","k":"arrow8","from":9,"to":10},{"h":"Legends of Tomorrow · Stagione 5 · ep. 2–15","k":"legends5","from":2,"to":15},{"h":"Legends of Tomorrow · Stagione 6 · ep. 1–15","k":"legends6","from":1,"to":15},{"h":"Legends of Tomorrow · Stagione 7 · ep. 1–5","k":"legends7","from":1,"to":5},{"h":"The Flash · Stagione 6 · ep. 10–19","k":"flash6","from":10,"to":19},{"h":"The Flash · Stagione 7 · ep. 1–18","k":"flash7","from":1,"to":18},{"h":"★ Armageddon · The Flash S8 ep. 1–5","k":"flash8","from":1,"to":5,"x":1},{"h":"Legends of Tomorrow · Stagione 7 · ep. 6–13","k":"legends7","from":6,"to":13},{"h":"Batwoman · Stagione 3 · ep. 6–13","k":"batwoman3","from":6,"to":13},{"h":"The Flash · Stagione 8 · ep. 6–20","k":"flash8","from":6,"to":20},{"h":"The Flash · Stagione 9 · ep. 1–13","k":"flash9","from":1,"to":13}]};
+const mkSlices = e => !e ? null : typeof e[0] === "number"
+  ? e.map((n, s) => ({ h: e.length > 1 ? `Stagione ${s + 1}` : "", k: String(s + 1), from: 1, to: n }))
+  : e;
+
 const slug = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const ITEMS = [...RAW].sort((a, b) => a[0].localeCompare(b[0])).map(([date,title,type,uni,note,state]) => ({
   id: date + "-" + slug(title), date, title, type, note: note || "", soon: state === "soon" || state === "tbd",
   year: date.slice(0,4), tbd: state === "tbd", uni: UNIVERSES[uni],
-  min: MINUTES[title] || 0, approx: isSeries(note || "")
+  min: MINUTES[title] || 0, slices: mkSlices(EPS[title]), epsTotal: (mkSlices(EPS[title]) || []).reduce((a, x) => a + x.to - x.from + 1, 0), approx: isSeries(note || "")
 }));
+
+const BYID = new Map(ITEMS.map(i => [i.id, i]));
 
 const KEY = "dc-watched-v1";
 const KEY_IGN = "dc-ignored-v1";
+const KEY_EPS = "dc-eps-v1";
 let watched = new Set();
 let ignored = new Set();
+let epsDone = new Set();          // episodi visti, chiave "<id titolo>#<prefisso>-<episodio>"
+const openEps = new Set();        // titoli con la sottolista aperta
 let activeTypes = new Set(Object.keys(TYPES));
 let activeUnis = new Set(Object.values(UNIVERSES));
 let hideDone = false, showIgn = false, query = "";
@@ -486,12 +511,32 @@ async function loadKey(key) {
   } catch (e) { /* dati assenti o illeggibili */ }
   return new Set();
 }
-async function load() { watched = await loadKey(KEY); ignored = await loadKey(KEY_IGN); }
+// Episodi
+const sliceKeys = (i, x) => Array.from({ length: x.to - x.from + 1 }, (_, e) => `${i.id}#${x.k}-${x.from + e}`);
+const epKeys = i => i.slices ? i.slices.flatMap(x => sliceKeys(i, x)) : [];
+const epsSeen = i => i.slices ? epKeys(i).filter(k => epsDone.has(k)).length : 0;
+const watchedMin = i => watched.has(i.id) ? i.min : (i.slices ? Math.round(i.min * epsSeen(i) / i.epsTotal) : 0);
+function setItemWatched(i, on) {
+  on ? watched.add(i.id) : watched.delete(i.id);
+  epKeys(i).forEach(k => on ? epsDone.add(k) : epsDone.delete(k));
+}
+function normalizeEps() {         // coerenza tra titolo visto ed episodi visti (anche per le spunte salvate prima degli episodi)
+  ITEMS.forEach(i => {
+    if (!i.slices) return;
+    if (watched.has(i.id)) epKeys(i).forEach(k => epsDone.add(k));
+    else if (epsSeen(i) === i.epsTotal) watched.add(i.id);
+  });
+}
+async function load() {
+  watched = await loadKey(KEY); ignored = await loadKey(KEY_IGN); epsDone = await loadKey(KEY_EPS);
+  normalizeEps();
+}
 async function save() {
   try {
     await Promise.all([
       store.set(KEY, JSON.stringify([...watched])),
-      store.set(KEY_IGN, JSON.stringify([...ignored]))
+      store.set(KEY_IGN, JSON.stringify([...ignored])),
+      store.set(KEY_EPS, JSON.stringify([...epsDone]))
     ]);
     setStatus("Salvato automaticamente.");
   } catch (e) {
@@ -500,7 +545,7 @@ async function save() {
 }
 
 function exportBackup() {
-  const data = JSON.stringify({ app: "dc-watchlist", watched: [...watched], ignored: [...ignored] }, null, 1);
+  const data = JSON.stringify({ app: "dc-watchlist", watched: [...watched], ignored: [...ignored], eps: [...epsDone] }, null, 1);
   const a = document.createElement("a");
   a.href = URL.createObjectURL(new Blob([data], { type: "application/json" }));
   a.download = "dc-watchlist-backup.json";
@@ -516,6 +561,9 @@ function importBackup(file) {
       const known = new Set(ITEMS.map(i => i.id));
       watched = new Set(d.watched.filter(id => known.has(id)));
       ignored = new Set(d.ignored.filter(id => known.has(id)));
+      const knownEp = new Set(ITEMS.flatMap(epKeys));
+      epsDone = new Set((Array.isArray(d.eps) ? d.eps : []).filter(k => knownEp.has(k)));
+      normalizeEps();
       refresh();
       await save();                       // save() scrive il proprio messaggio di stato: il nostro va dopo
       setStatus("Backup importato e salvato.");
@@ -558,7 +606,7 @@ function updateCount() {
   document.getElementById("done").textContent = n;
   document.getElementById("total").textContent = real.length;
   document.getElementById("pct").textContent = (real.length ? Math.round(n / real.length * 100) : 0) + "% visto";
-  const totMin = sumMin(real), doneMin = sumMin(real.filter(i => watched.has(i.id)));
+  const totMin = sumMin(real), doneMin = real.reduce((a, i) => a + watchedMin(i), 0);
   const vis = visibleItems().filter(i => !i.soon && !ignored.has(i.id));
   document.getElementById("hours").innerHTML =
     `<span>Totale <b>${fmtHours(totMin)}</b></span>` +
@@ -606,7 +654,9 @@ function renderList() {
       const t = TYPES[i.type];
       const checked = selectMode ? selected.has(i.id) : on;
       const disabled = selectMode ? false : (i.soon || ign);
-      return `<label class="row ${on ? "done" : ""} ${i.soon ? "soon" : ""} ${ign ? "ign" : ""}">
+      const hasEps = i.slices && !i.soon && !ign && !selectMode;
+      const open = hasEps && openEps.has(i.id);
+      return `<div class="item" data-item="${i.id}"><label class="row ${on ? "done" : ""} ${i.soon ? "soon" : ""} ${ign ? "ign" : ""}">
         <input type="checkbox" data-id="${i.id}" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""}>
         <span class="box" aria-hidden="true">${CHECK}</span>
         <span>
@@ -616,6 +666,7 @@ function renderList() {
             <span class="uni-name">${i.uni}</span>
             <span>${fmt(i.date, i.tbd)}</span>
             <span>${fmtDur(i.min, i.approx)}</span>
+            ${hasEps ? epsBtn(i, open) : ""}
             ${i.note ? `<span>${i.note}</span>` : ""}
             ${i.soon ? '<span class="badge">In arrivo</span>' : ""}
             ${ign ? '<span class="badge">Ignorato</span>' : ""}
@@ -623,9 +674,46 @@ function renderList() {
           </span>
         </span>
         <button type="button" class="ign-btn" data-ign="${i.id}" title="${ign ? "Rimetti questo titolo nella lista" : "Non mi interessa: toglilo dalla lista e dal conteggio"}">${ign ? "Ripristina" : "Ignora"}</button>
-      </label>`;
+      </label>${open ? epsPanel(i) : ""}</div>`;
     }).join("") + "</section>";
   }).join("");
+}
+
+const epsBtn = (i, open) => {
+  const seen = epsSeen(i);
+  return `<button type="button" class="eps-btn ${seen && seen < i.epsTotal ? "part" : ""}" data-eps="${i.id}" aria-expanded="${open}">Episodi ${seen}/${i.epsTotal}</button>`;
+};
+function epsPanel(i) {
+  return `<div class="eps">` + i.slices.map((x, s) => {
+    const keys = sliceKeys(i, x), seen = keys.filter(k => epsDone.has(k)).length;
+    return `<div class="season${x.x ? " cross" : ""}"><div class="season-h"><span>${x.h ? x.h + " · " : ""}${seen}/${keys.length}</span>` +
+      `<button type="button" class="btn" data-season="${i.id}" data-s="${s}">${seen === keys.length ? "Azzera" : "Segna tutta"}</button></div>` +
+      `<div class="ep-grid">` + keys.map((k, e) =>
+        `<button type="button" class="ep" data-ep="${k}" aria-pressed="${epsDone.has(k)}" aria-label="Episodio ${x.from + e}">${x.from + e}</button>`).join("") + `</div></div>`;
+  }).join("") + `</div>`;
+}
+function updateYear(sec) {
+  const real = [...sec.querySelectorAll("input:not(:disabled)")];
+  const tot = sumMin(real.map(c => BYID.get(c.dataset.id)));
+  sec.querySelector("h2 span").textContent = `${real.filter(c => c.checked).length} di ${real.length} · ${fmtHours(tot)}`;
+}
+function syncItem(i) {            // aggiorna solo la riga toccata, senza ridisegnare la lista
+  const el = document.querySelector(`.item[data-item="${i.id}"]`);
+  if (!el) return;
+  const on = watched.has(i.id);
+  el.querySelector(".row").classList.toggle("done", on);
+  el.querySelector("input").checked = on;
+  const b = el.querySelector(".eps-btn");
+  if (b) { const seen = epsSeen(i); b.textContent = `Episodi ${seen}/${i.epsTotal}`; b.classList.toggle("part", seen > 0 && seen < i.epsTotal); }
+  const p = el.querySelector(".eps");
+  if (p) p.outerHTML = epsPanel(i);
+  updateYear(el.closest("section"));
+  updateStrip(i.id); updateCount();
+}
+function afterEpChange(i) {
+  epsSeen(i) === i.epsTotal ? watched.add(i.id) : watched.delete(i.id);
+  save();
+  hideDone && watched.has(i.id) ? refresh() : syncItem(i);
 }
 
 const selVisible = () => visibleItems().filter(i => selected.has(i.id));
@@ -656,6 +744,30 @@ function applySel(fn) {
 function refresh() { renderStrip(); renderList(); updateStrip(); updateCount(); }
 
 document.getElementById("list").addEventListener("click", e => {
+  const eb = e.target.closest(".eps-btn");
+  if (eb) {
+    e.preventDefault();
+    const i = BYID.get(eb.dataset.eps), el = eb.closest(".item");
+    if (openEps.has(i.id)) { openEps.delete(i.id); el.querySelector(".eps")?.remove(); }
+    else { openEps.add(i.id); el.querySelector(".row").insertAdjacentHTML("afterend", epsPanel(i)); }
+    eb.setAttribute("aria-expanded", openEps.has(i.id));
+    return;
+  }
+  const ep = e.target.closest(".ep");
+  if (ep) {
+    const k = ep.dataset.ep;
+    epsDone.has(k) ? epsDone.delete(k) : epsDone.add(k);
+    afterEpChange(BYID.get(k.split("#")[0]));
+    return;
+  }
+  const sb = e.target.closest("[data-season]");
+  if (sb) {
+    const i = BYID.get(sb.dataset.season), keys = sliceKeys(i, i.slices[+sb.dataset.s]);
+    const all = keys.every(k => epsDone.has(k));
+    keys.forEach(k => all ? epsDone.delete(k) : epsDone.add(k));
+    afterEpChange(i);
+    return;
+  }
   const b = e.target.closest(".ign-btn"); if (!b) return;
   e.preventDefault();
   const id = b.dataset.ign;
@@ -670,17 +782,9 @@ document.getElementById("list").addEventListener("change", e => {
     updateBar();
     return;
   }
-  e.target.checked ? watched.add(id) : watched.delete(id);
+  setItemWatched(BYID.get(id), e.target.checked);
   save();
-  if (hideDone) { refresh(); } else {
-    const row = e.target.closest(".row");
-    row.classList.toggle("done", e.target.checked);
-    const sec = row.closest("section");
-    const real = [...sec.querySelectorAll("input:not(:disabled)")];
-    const yearTot = sumMin(real.map(c => ITEMS.find(x => x.id === c.dataset.id)));
-    sec.querySelector("h2 span").textContent = `${real.filter(c => c.checked).length} di ${real.length} · ${fmtHours(yearTot)}`;
-    updateStrip(id); updateCount();
-  }
+  if (hideDone) { refresh(); } else syncItem(BYID.get(id));
 });
 document.getElementById("chips").addEventListener("click", e => {
   const b = e.target.closest(".chip"); if (!b) return;
@@ -711,8 +815,8 @@ document.getElementById("selAll").addEventListener("click", () => {
 });
 document.getElementById("selNone").addEventListener("click", () => { selected.clear(); renderList(); });
 document.getElementById("selWatch").addEventListener("click", () =>
-  applySel(t => t.filter(i => !i.soon && !ignored.has(i.id)).forEach(i => watched.add(i.id))));
-document.getElementById("selUnwatch").addEventListener("click", () => applySel(t => t.forEach(i => watched.delete(i.id))));
+  applySel(t => t.filter(i => !i.soon && !ignored.has(i.id)).forEach(i => setItemWatched(i, true))));
+document.getElementById("selUnwatch").addEventListener("click", () => applySel(t => t.forEach(i => setItemWatched(i, false))));
 document.getElementById("selIgn").addEventListener("click", () => applySel(t => t.forEach(i => ignored.add(i.id))));
 document.getElementById("selRestore").addEventListener("click", () => applySel(t => t.forEach(i => ignored.delete(i.id))));
 document.getElementById("q").addEventListener("input", e => { query = e.target.value; renderList(); });
@@ -741,11 +845,11 @@ document.getElementById("importFile").addEventListener("change", e => {
 });
 document.getElementById("markAll").addEventListener("click", () => {
   if (!confirm("Segnare come visti tutti i titoli già usciti (esclusi gli ignorati)?")) return;
-  counted().forEach(i => watched.add(i.id)); save(); refresh();
+  counted().forEach(i => setItemWatched(i, true)); save(); refresh();
 });
 document.getElementById("reset").addEventListener("click", () => {
   if (!confirm("Vuoi cancellare tutti i segni di spunta? Gli ignorati restano tali.")) return;
-  watched.clear(); save(); refresh();
+  watched.clear(); epsDone.clear(); save(); refresh();
 });
 
 (async function init() {

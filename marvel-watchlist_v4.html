@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marvel: cosa ho visto</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f6f5f2;
+    --surface: #ffffff;
+    --ink: #17181c;
+    --muted: #5e6270;
+    --line: #dcdad3;
+    --accent: #c4161c;
+    --accent-ink: #ffffff;
+    --film: #c4161c;
+    --serie: #1f5fbf;
+    --anim: #0e8a73;
+    --special: #b36b00;
+    --tv: #6b4ab5;
+    --sony: #b3237a;
+    --head: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --bg: #121317;
+      --surface: #1b1d23;
+      --ink: #f1f0ec;
+      --muted: #a2a6b3;
+      --line: #2c2f38;
+      --accent: #ec3a40;
+      --accent-ink: #ffffff;
+      --film: #ec3a40;
+      --serie: #5b9bff;
+      --anim: #2dc9a8;
+      --special: #f0a234;
+      --tv: #a58aee;
+      --sony: #f06bb5;
+    }
+  }
+  * { box-sizing: border-box;  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 80px; }
+
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0 12px;
+  }
+  .titlebar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  h1 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: .01em;
+    margin: 0;
+    line-height: 1;
+  }
+  .count { font-family: var(--head); font-size: 22px; font-weight: 700; white-space: nowrap; }
+  .count small { font-size: 15px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+
+  /* La striscia: un segmento per titolo, in ordine di uscita */
+  .strip { display: flex; gap: 2px; height: 22px; margin: 12px 0 4px; }
+  .strip i {
+    flex: 1; min-width: 2px; border-radius: 1px;
+    background: var(--line);
+    transition: background .15s, transform .15s;
+  }
+  .strip i.on { background: var(--c); }
+  .strip i.flash { transform: scaleY(1.35); }
+  .hours { font-size: 14px; margin: 6px 0 2px; display: flex; flex-wrap: wrap; gap: 2px 14px; }
+  .hours b { font-family: var(--head); font-size: 17px; }
+  .hours .sub { color: var(--muted); }
+  .strip-axis { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+
+  .tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
+  .search {
+    flex: 1 1 180px; min-width: 0;
+    font: inherit; padding: 8px 12px;
+    border: 1px solid var(--line); border-radius: 8px;
+    background: var(--surface); color: var(--ink);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+  .chip {
+    font: inherit; font-size: 13px;
+    border: 1.5px solid var(--c, var(--line));
+    background: transparent; color: var(--ink);
+    padding: 4px 10px; border-radius: 999px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+  .chip[aria-pressed="false"] { opacity: .45; border-style: dashed; }
+  .chip[aria-pressed="false"]::before { background: transparent; border: 1.5px solid var(--c); }
+  .btn {
+    font: inherit; font-size: 14px; padding: 8px 12px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    border-radius: 8px; cursor: pointer;
+  }
+  .btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn.quiet { border-color: transparent; background: transparent; color: var(--muted); text-decoration: underline; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  h2.year {
+    font-family: var(--head);
+    font-size: 26px; font-weight: 800;
+    margin: 28px 0 6px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 4px;
+  }
+  h2.year span { font-size: 14px; font-weight: 500; color: var(--muted); font-family: var(--body); }
+
+  .row {
+    display: grid; grid-template-columns: 28px 1fr auto; gap: 12px;
+    align-items: start;
+    padding: 11px 4px;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    position: relative;
+  }
+  .row input { position: absolute; opacity: 0; pointer-events: none; }
+  .box {
+    width: 26px; height: 26px; border-radius: 6px;
+    border: 2px solid var(--muted);
+    display: grid; place-items: center;
+    margin-top: 1px;
+    transition: background .12s, border-color .12s;
+  }
+  .box svg { width: 16px; height: 16px; stroke: var(--accent-ink); stroke-width: 3; fill: none; opacity: 0; }
+  .row input:checked + .box { background: var(--accent); border-color: var(--accent); }
+  .row input:checked + .box svg { opacity: 1; }
+  .row input:focus-visible + .box { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .row:hover .box { border-color: var(--ink); }
+  .name { font-weight: 600; font-size: 17px; }
+  .row.done .name { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .meta { font-size: 13.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 2px; }
+  .tag { color: var(--c); font-weight: 600; }
+  .studio-name { color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; font-size: 12.5px; }
+  .chip.studio { border-radius: 6px; }
+  .chip.studio::before { display: none; }
+  .row.soon { cursor: default; opacity: .7; }
+  .row.soon .box { border-style: dashed; }
+  .badge {
+    font-size: 12px; font-weight: 600;
+    background: var(--ink); color: var(--bg);
+    padding: 1px 7px; border-radius: 4px;
+  }
+  .ign-btn {
+    font: inherit; font-size: 13px; color: var(--muted);
+    background: transparent; border: 1px solid var(--line); border-radius: 6px;
+    padding: 3px 9px; cursor: pointer; align-self: start; white-space: nowrap;
+  }
+  .ign-btn:hover { color: var(--ink); border-color: var(--ink); }
+  .row.ign { opacity: .55; cursor: default; }
+  .row.ign .box { border-style: dashed; }
+  .row.ign .name { text-decoration: none; }
+  .selbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    background: var(--surface); border-top: 2px solid var(--ink);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    display: none;
+  }
+  .selmode .selbar { display: block; }
+  .selbar-in { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .selbar .n { font-family: var(--head); font-weight: 700; font-size: 18px; margin-right: auto; }
+  .selbar .btn { padding: 6px 10px; font-size: 14px; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .selmode .ign-btn { display: none; }
+  .selmode .row, .selmode .row.ign, .selmode .row.soon { cursor: pointer; }
+  .selmode .wrap { padding-bottom: 170px; }
+  .empty { padding: 40px 0; text-align: center; color: var(--muted); }
+  footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
+  footer p { margin: 6px 0; }
+  .sr { position: absolute; left: -9999px; }
+  .item { border-bottom: 1px solid var(--line); }
+  .item > .row { border-bottom: 0; }
+  .eps-btn {
+    font: inherit; font-size: 12.5px; color: var(--ink);
+    background: transparent; border: 1px solid var(--line); border-radius: 6px;
+    padding: 0 8px; cursor: pointer;
+  }
+  .eps-btn.part { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .eps-btn[aria-expanded="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .eps { padding: 0 4px 14px 44px; }
+  .season { margin-top: 10px; }
+  .season.cross { border-left: 3px solid var(--accent); padding-left: 8px; }
+  .season-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
+  .season-h .btn { padding: 2px 10px; font-size: 12.5px; white-space: nowrap; }
+  .ep-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ep {
+    min-width: 40px; height: 36px; padding: 0 6px;
+    font: inherit; font-size: 14px; font-variant-numeric: tabular-nums;
+    border: 1.5px solid var(--line); border-radius: 8px;
+    background: var(--surface); color: var(--ink); cursor: pointer;
+  }
+  .ep[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .selmode .eps-btn, .selmode .eps { display: none; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="titlebar">
+      <h1>Marvel: cosa ho visto</h1>
+      <div class="count" aria-live="polite"><span id="done">0</span> / <span id="total">0</span><small id="pct">0%</small></div>
+    </div>
+    <div class="strip" id="strip" aria-hidden="true"></div>
+    <div class="hours" id="hours" aria-live="polite"></div>
+    <div class="strip-axis"><span>2002</span><span>oggi</span></div>
+  </header>
+
+  <div class="tools">
+      <input class="search" id="q" type="search" placeholder="Cerca un titolo" aria-label="Cerca un titolo">
+      <button class="btn" id="hideDone" aria-pressed="false">Nascondi i visti</button>
+      <button class="btn" id="showIgn" aria-pressed="false">Mostra ignorati (0)</button>
+      <button class="btn" id="selMode" aria-pressed="false">Seleziona più titoli</button>
+      <button class="btn primary" id="selAllTop">Seleziona tutto</button>
+      <div class="chips" id="chips" role="group" aria-label="Filtra per tipo"></div>
+      <div class="chips" id="studios" role="group" aria-label="Filtra per casa di produzione"></div>
+  </div>
+
+  <main id="list"></main>
+
+  <footer>
+    <p id="saveStatus"></p>
+    <p>Per le serie con episodi tocca «Episodi» sotto il titolo e spunta quelli che hai visto: il titolo risulta visto quando li hai spuntati tutti, e le ore viste contano in proporzione agli episodi.</p>
+    <p>Con «Ignora» togli un titolo dalla lista e dal conteggio: non lo vedrai più, ma puoi ripristinarlo in qualsiasi momento. Spunte e titoli ignorati vengono salvati in automatico.</p>
+    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni è la durata complessiva stimata della stagione (o dell'intera serie, per quelle di Marvel Television). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 18 ottobre 2026: <i>VisionQuest</i> è in corso (finale l'11 novembre), <i>Avengers: Doomsday</i> esce il 18 dicembre 2026 e <i>Beyond the Spider-Verse</i> il 25 giugno 2027. Puoi filtrare per tipo o per casa di produzione.</p>
+    <p>
+      <button class="btn quiet" id="ignVisible">Ignora i titoli filtrati</button>
+      <button class="btn quiet" id="unIgnAll">Ripristina gli ignorati</button>
+      <button class="btn quiet" id="exportBk">Esporta backup</button>
+      <button class="btn quiet" id="importBk">Importa backup</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <button class="btn quiet" id="markAll">Segna tutto come visto</button>
+      <button class="btn quiet" id="reset">Azzera tutto</button>
+    </p>
+  </footer>
+</div>
+
+<div class="selbar" id="selbar" role="region" aria-label="Azioni sulla selezione">
+  <div class="selbar-in">
+    <span class="n" id="selN" aria-live="polite">0 selezionati</span>
+    <button class="btn" id="selAll">Seleziona tutto</button>
+    <button class="btn" id="selNone">Deseleziona</button>
+    <button class="btn primary" id="selWatch">Segna come visto</button>
+    <button class="btn" id="selUnwatch">Non visto</button>
+    <button class="btn" id="selIgn">Ignora</button>
+    <button class="btn" id="selRestore">Ripristina</button>
+    <button class="btn" id="selDone">Fine</button>
+  </div>
+</div>
+
+<script>
+const TYPES = {
+  film:    { label: "Film",                  color: "var(--film)" },
+  serie:   { label: "Serie Disney+",         color: "var(--serie)" },
+  anim:    { label: "Animazione",            color: "var(--anim)" },
+  special: { label: "Speciali",              color: "var(--special)" },
+  tv:      { label: "Marvel Television (Netflix, ABC…)", color: "var(--tv)" },
+  sony:    { label: "Film Sony (Spider-Man, Venom…)", color: "var(--sony)" }
+};
+
+// [data, titolo, tipo, nota, stato]
+const RAW = [
+  ["2002-05-03","Spider-Man","sony","Sam Raimi"],
+  ["2004-06-30","Spider-Man 2","sony","Sam Raimi"],
+  ["2007-02-16","Ghost Rider","sony"],
+  ["2007-05-04","Spider-Man 3","sony","Sam Raimi"],
+  ["2012-02-17","Ghost Rider: Spirito di vendetta","sony"],
+  ["2012-07-03","The Amazing Spider-Man","sony","Andrew Garfield"],
+  ["2014-05-02","The Amazing Spider-Man 2","sony","Andrew Garfield"],
+  ["2018-10-05","Venom","sony","Sony's Spider-Man Universe"],
+  ["2018-12-14","Spider-Man: Un nuovo universo","sony","Animazione, Miles Morales"],
+  ["2021-10-01","Venom: La furia di Carnage","sony"],
+  ["2022-04-01","Morbius","sony"],
+  ["2023-06-02","Spider-Man: Across the Spider-Verse","sony","Animazione, Miles Morales"],
+  ["2024-02-14","Madame Web","sony"],
+  ["2024-10-25","Venom: The Last Dance","sony"],
+  ["2024-12-13","Kraven il cacciatore","sony"],
+  ["2027-06-25","Spider-Man: Beyond the Spider-Verse","sony","In arrivo","soon"],
+  ["2008-05-02","Iron Man","film"],
+  ["2008-06-13","L'incredibile Hulk","film"],
+  ["2010-05-07","Iron Man 2","film"],
+  ["2011-05-06","Thor","film"],
+  ["2011-07-22","Captain America: Il primo Vendicatore","film"],
+  ["2012-05-04","The Avengers","film"],
+  ["2013-05-03","Iron Man 3","film"],
+  ["2013-09-24","Agents of S.H.I.E.L.D.","tv","7 stagioni, 2013–2020"],
+  ["2013-11-08","Thor: The Dark World","film"],
+  ["2014-04-04","Captain America: The Winter Soldier","film"],
+  ["2014-08-01","Guardiani della Galassia","film"],
+  ["2015-01-06","Agent Carter","tv","2 stagioni, 2015–2016"],
+  ["2015-04-10","Daredevil (Netflix)","tv","3 stagioni, 2015–2018"],
+  ["2015-05-01","Avengers: Age of Ultron","film"],
+  ["2015-07-17","Ant-Man","film"],
+  ["2015-11-20","Jessica Jones","tv","3 stagioni, 2015–2019"],
+  ["2016-05-06","Captain America: Civil War","film"],
+  ["2016-09-30","Luke Cage","tv","2 stagioni, 2016–2018"],
+  ["2016-11-04","Doctor Strange","film"],
+  ["2017-03-17","Iron Fist","tv","2 stagioni, 2017–2018"],
+  ["2017-05-05","Guardiani della Galassia Vol. 2","film"],
+  ["2017-07-07","Spider-Man: Homecoming","film"],
+  ["2017-08-18","The Defenders","tv","1 stagione"],
+  ["2017-09-29","Inhumans","tv","1 stagione"],
+  ["2017-11-03","Thor: Ragnarok","film"],
+  ["2017-11-17","The Punisher (Netflix)","tv","2 stagioni, 2017–2019"],
+  ["2017-11-21","Runaways","tv","3 stagioni, 2017–2019"],
+  ["2018-02-16","Black Panther","film"],
+  ["2018-04-27","Avengers: Infinity War","film"],
+  ["2018-06-07","Cloak & Dagger","tv","2 stagioni, 2018–2019"],
+  ["2018-07-06","Ant-Man and the Wasp","film"],
+  ["2019-03-08","Captain Marvel","film"],
+  ["2019-04-26","Avengers: Endgame","film"],
+  ["2019-07-02","Spider-Man: Far From Home","film"],
+  ["2020-10-16","Helstrom","tv","1 stagione"],
+  ["2021-01-15","WandaVision","serie"],
+  ["2021-03-19","The Falcon and the Winter Soldier","serie"],
+  ["2021-05-21","M.O.D.O.K.","tv","1 stagione (animazione, Hulu)"],
+  ["2021-06-09","Loki – Stagione 1","serie"],
+  ["2021-07-09","Black Widow","film"],
+  ["2021-08-11","What If…? – Stagione 1","anim"],
+  ["2021-09-03","Shang-Chi e la leggenda dei Dieci Anelli","film"],
+  ["2021-11-05","Eternals","film"],
+  ["2021-11-17","Hit-Monkey","tv","2 stagioni, 2021–2024 (animazione, Hulu)"],
+  ["2021-11-24","Hawkeye","serie"],
+  ["2021-12-17","Spider-Man: No Way Home","film"],
+  ["2022-03-30","Moon Knight","serie"],
+  ["2022-05-06","Doctor Strange nel Multiverso della Follia","film"],
+  ["2022-06-08","Ms. Marvel","serie"],
+  ["2022-07-08","Thor: Love and Thunder","film"],
+  ["2022-08-10","I Am Groot","anim","Cortometraggi, 2 stagioni (2022–2023)"],
+  ["2022-08-18","She-Hulk: Attorney at Law","serie"],
+  ["2022-10-07","Werewolf by Night","special"],
+  ["2022-11-11","Black Panther: Wakanda Forever","film"],
+  ["2022-11-25","Guardiani della Galassia: Holiday Special","special"],
+  ["2023-02-17","Ant-Man and the Wasp: Quantumania","film"],
+  ["2023-05-05","Guardiani della Galassia Vol. 3","film"],
+  ["2023-06-21","Secret Invasion","serie"],
+  ["2023-10-05","Loki – Stagione 2","serie"],
+  ["2023-11-10","The Marvels","film"],
+  ["2023-12-22","What If…? – Stagione 2","anim"],
+  ["2024-01-09","Echo","serie"],
+  ["2024-03-20","X-Men '97 – Stagione 1","anim"],
+  ["2024-07-26","Deadpool & Wolverine","film"],
+  ["2024-09-18","Agatha All Along","serie"],
+  ["2024-12-22","What If…? – Stagione 3","anim"],
+  ["2025-01-29","Your Friendly Neighborhood Spider-Man – Stagione 1","anim"],
+  ["2025-02-14","Captain America: Brave New World","film"],
+  ["2025-03-04","Daredevil: Born Again – Stagione 1","serie"],
+  ["2025-05-02","Thunderbolts*","film"],
+  ["2025-06-24","Ironheart","serie"],
+  ["2025-07-25","I Fantastici Quattro: Gli inizi","film"],
+  ["2025-08-01","Eyes of Wakanda","anim"],
+  ["2025-09-24","Marvel Zombies","anim"],
+  ["2026-01-27","Wonder Man","serie"],
+  ["2026-03-24","Daredevil: Born Again – Stagione 2","serie"],
+  ["2026-05-12","The Punisher: One Last Kill","special"],
+  ["2026-07-31","Spider-Man: Brand New Day","film"],
+  ["2026-09-25","Avengers: Endgame Encore","film","Riedizione al cinema con scene nuove. Facoltativo."],
+  ["2026-10-13","VisionQuest","serie","In corso, finale l'11 novembre"],
+  ["2026-12-18","Avengers: Doomsday","film","In arrivo","soon"],
+  ["2026-12-31","X-Men '97 – Stagione 2","anim","Data da confermare","soon"],
+  ["2026-12-31","Your Friendly Neighborhood Spider-Man – Stagione 2","anim","Data da confermare","soon"]
+];
+
+const STUDIOS = ["Marvel Studios", "Sony / Marvel Studios", "Sony Pictures", "Marvel Television"];
+const CO_PRODUCED = ["Spider-Man: Homecoming","Spider-Man: Far From Home","Spider-Man: No Way Home","Spider-Man: Brand New Day"];
+const studioOf = (title, type) =>
+  CO_PRODUCED.includes(title) ? "Sony / Marvel Studios" :
+  type === "sony" ? "Sony Pictures" :
+  type === "tv" ? "Marvel Television" : "Marvel Studios";
+
+const MINUTES = {
+ "Iron Man": 126,
+ "L'incredibile Hulk": 112,
+ "Iron Man 2": 124,
+ "Thor": 115,
+ "Captain America: Il primo Vendicatore": 124,
+ "The Avengers": 143,
+ "Iron Man 3": 130,
+ "Thor: The Dark World": 112,
+ "Captain America: The Winter Soldier": 136,
+ "Guardiani della Galassia": 121,
+ "Avengers: Age of Ultron": 141,
+ "Ant-Man": 117,
+ "Captain America: Civil War": 147,
+ "Doctor Strange": 115,
+ "Guardiani della Galassia Vol. 2": 136,
+ "Spider-Man: Homecoming": 133,
+ "Thor: Ragnarok": 130,
+ "Black Panther": 134,
+ "Avengers: Infinity War": 149,
+ "Ant-Man and the Wasp": 118,
+ "Captain Marvel": 123,
+ "Avengers: Endgame": 181,
+ "Spider-Man: Far From Home": 129,
+ "Black Widow": 134,
+ "Shang-Chi e la leggenda dei Dieci Anelli": 132,
+ "Eternals": 156,
+ "Spider-Man: No Way Home": 148,
+ "Doctor Strange nel Multiverso della Follia": 126,
+ "Thor: Love and Thunder": 119,
+ "Black Panther: Wakanda Forever": 161,
+ "Ant-Man and the Wasp: Quantumania": 125,
+ "Guardiani della Galassia Vol. 3": 150,
+ "The Marvels": 105,
+ "Deadpool & Wolverine": 128,
+ "Captain America: Brave New World": 118,
+ "Thunderbolts*": 127,
+ "I Fantastici Quattro: Gli inizi": 115,
+ "Spider-Man: Brand New Day": 132,
+ "Avengers: Endgame Encore": 186,
+ "Avengers: Doomsday": 150,
+ "Spider-Man": 121,
+ "Spider-Man 2": 127,
+ "Spider-Man 3": 139,
+ "Ghost Rider": 110,
+ "Ghost Rider: Spirito di vendetta": 96,
+ "The Amazing Spider-Man": 136,
+ "The Amazing Spider-Man 2": 142,
+ "Venom": 112,
+ "Spider-Man: Un nuovo universo": 117,
+ "Venom: La furia di Carnage": 97,
+ "Morbius": 104,
+ "Spider-Man: Across the Spider-Verse": 140,
+ "Madame Web": 116,
+ "Venom: The Last Dance": 109,
+ "Kraven il cacciatore": 127,
+ "WandaVision": 380,
+ "The Falcon and the Winter Soldier": 330,
+ "Loki – Stagione 1": 290,
+ "What If…? – Stagione 1": 290,
+ "Hawkeye": 285,
+ "Moon Knight": 270,
+ "Ms. Marvel": 240,
+ "She-Hulk: Attorney at Law": 270,
+ "I Am Groot": 50,
+ "Werewolf by Night": 53,
+ "Guardiani della Galassia: Holiday Special": 44,
+ "Secret Invasion": 270,
+ "Loki – Stagione 2": 300,
+ "What If…? – Stagione 2": 240,
+ "Echo": 225,
+ "X-Men '97 – Stagione 1": 270,
+ "Agatha All Along": 380,
+ "What If…? – Stagione 3": 190,
+ "Your Friendly Neighborhood Spider-Man – Stagione 1": 250,
+ "Daredevil: Born Again – Stagione 1": 450,
+ "Ironheart": 300,
+ "Eyes of Wakanda": 120,
+ "Marvel Zombies": 110,
+ "Wonder Man": 360,
+ "Daredevil: Born Again – Stagione 2": 360,
+ "The Punisher: One Last Kill": 60,
+ "VisionQuest": 360,
+ "X-Men '97 – Stagione 2": 270,
+ "Your Friendly Neighborhood Spider-Man – Stagione 2": 250,
+ "Agents of S.H.I.E.L.D.": 5850,
+ "Agent Carter": 770,
+ "Daredevil (Netflix)": 2030,
+ "Jessica Jones": 1950,
+ "Luke Cage": 1430,
+ "Iron Fist": 1200,
+ "The Defenders": 400,
+ "Inhumans": 345,
+ "The Punisher (Netflix)": 1430,
+ "Runaways": 1480,
+ "Cloak & Dagger": 900,
+ "Helstrom": 450,
+ "M.O.D.O.K.": 220,
+ "Hit-Monkey": 500
+};
+const SERIES_TYPES = ["serie", "anim", "tv"];   // durata complessiva stimata
+
+// Episodi: per ogni serie un elenco di fette {h: intestazione, k: prefisso chiave, from, to, x: crossover}
+const EPS = {"Agents of S.H.I.E.L.D.":[22,22,22,22,22,13,13],"Agent Carter":[8,10],"Daredevil (Netflix)":[13,13,13],"Jessica Jones":[13,13,13],"Luke Cage":[13,13],"Iron Fist":[13,10],"The Defenders":[8],"Inhumans":[8],"The Punisher (Netflix)":[13,13],"Runaways":[10,13,10],"Cloak & Dagger":[10,10],"Helstrom":[10],"M.O.D.O.K.":[10],"Hit-Monkey":[10,10],"WandaVision":[9],"The Falcon and the Winter Soldier":[6],"Loki – Stagione 1":[6],"What If…? – Stagione 1":[9],"Hawkeye":[6],"Moon Knight":[6],"Ms. Marvel":[6],"She-Hulk: Attorney at Law":[9],"I Am Groot":[5,5],"Secret Invasion":[6],"Loki – Stagione 2":[6],"What If…? – Stagione 2":[9],"Echo":[5],"X-Men '97 – Stagione 1":[10],"Agatha All Along":[9],"What If…? – Stagione 3":[8],"Your Friendly Neighborhood Spider-Man – Stagione 1":[10],"Daredevil: Born Again – Stagione 1":[9],"Ironheart":[6],"Eyes of Wakanda":[4],"Marvel Zombies":[4],"Wonder Man":[8],"Daredevil: Born Again – Stagione 2":[8],"VisionQuest":[8]};
+const mkSlices = e => !e ? null : typeof e[0] === "number"
+  ? e.map((n, s) => ({ h: e.length > 1 ? `Stagione ${s + 1}` : "", k: String(s + 1), from: 1, to: n }))
+  : e;
+
+const slug = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const ITEMS = [...RAW].sort((a, b) => a[0].localeCompare(b[0])).map(([date,title,type,note,state]) => ({
+  id: date + "-" + slug(title), date, title, type, note: note || "", soon: state === "soon",
+  year: date.slice(0,4), tbd: date === "2026-12-31", studio: studioOf(title, type),
+  min: MINUTES[title] || 0, slices: mkSlices(EPS[title]), epsTotal: (mkSlices(EPS[title]) || []).reduce((a, x) => a + x.to - x.from + 1, 0), approx: SERIES_TYPES.includes(type)
+}));
+
+const BYID = new Map(ITEMS.map(i => [i.id, i]));
+
+const KEY = "marvel-watched-v1";
+const KEY_IGN = "marvel-ignored-v1";
+const KEY_EPS = "marvel-eps-v1";
+let watched = new Set();
+let ignored = new Set();
+let epsDone = new Set();          // episodi visti, chiave "<id titolo>#<prefisso>-<episodio>"
+const openEps = new Set();        // titoli con la sottolista aperta
+let activeTypes = new Set(Object.keys(TYPES));
+let activeStudios = new Set(STUDIOS);
+let hideDone = false, showIgn = false, query = "";
+let selectMode = false;
+const selected = new Set();
+
+// Archiviazione: prima localStorage, in modo sincrono (come nelle checklist semplici che funzionano anche
+// aprendo il file da WhatsApp); in più window.storage quando la pagina gira dentro Claude; poi la memoria.
+const mem = {};
+const store = {
+  readLocal(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+  writeLocal(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } },
+  async get(k) {
+    const local = this.readLocal(k);
+    if (local) return local;
+    try {
+      if (window.storage && typeof window.storage.get === "function") {
+        const r = await window.storage.get(k, false);
+        if (r && r.value) return r.value;
+      }
+    } catch (e) { /* chiave assente o storage non disponibile */ }
+    return mem[k] === undefined ? null : mem[k];
+  },
+  async set(k, v) {
+    mem[k] = v;
+    let ok = this.writeLocal(k, v);          // scrittura immediata, prima di qualsiasi attesa
+    try {
+      if (window.storage && typeof window.storage.set === "function") {
+        const r = await window.storage.set(k, v, false);
+        if (r) ok = true;
+      }
+    } catch (e) { /* si resta sull'altro livello */ }
+    if (!ok) throw new Error("nessuno storage disponibile");
+  }
+};
+
+function setStatus(msg, bad) {
+  const el = document.getElementById("saveStatus");
+  el.textContent = msg;
+  el.style.color = bad ? "var(--accent)" : "";
+}
+// ID cambiati dopo una correzione di data: le spunte già salvate restano valide
+const LEGACY_IDS = { "2018-06-04-cloak-dagger": "2018-06-07-cloak-dagger" };
+const migrateId = id => LEGACY_IDS[id] || id;
+async function loadKey(key) {
+  try {
+    const v = await store.get(key);
+    if (v) return new Set(JSON.parse(v).map(migrateId));
+  } catch (e) { /* dati assenti o illeggibili */ }
+  return new Set();
+}
+// Episodi
+const sliceKeys = (i, x) => Array.from({ length: x.to - x.from + 1 }, (_, e) => `${i.id}#${x.k}-${x.from + e}`);
+const epKeys = i => i.slices ? i.slices.flatMap(x => sliceKeys(i, x)) : [];
+const epsSeen = i => i.slices ? epKeys(i).filter(k => epsDone.has(k)).length : 0;
+const watchedMin = i => watched.has(i.id) ? i.min : (i.slices ? Math.round(i.min * epsSeen(i) / i.epsTotal) : 0);
+function setItemWatched(i, on) {
+  on ? watched.add(i.id) : watched.delete(i.id);
+  epKeys(i).forEach(k => on ? epsDone.add(k) : epsDone.delete(k));
+}
+function normalizeEps() {         // coerenza tra titolo visto ed episodi visti (anche per le spunte salvate prima degli episodi)
+  ITEMS.forEach(i => {
+    if (!i.slices) return;
+    if (watched.has(i.id)) epKeys(i).forEach(k => epsDone.add(k));
+    else if (epsSeen(i) === i.epsTotal) watched.add(i.id);
+  });
+}
+async function load() {
+  watched = await loadKey(KEY); ignored = await loadKey(KEY_IGN); epsDone = await loadKey(KEY_EPS);
+  normalizeEps();
+}
+async function save() {
+  try {
+    await Promise.all([
+      store.set(KEY, JSON.stringify([...watched])),
+      store.set(KEY_IGN, JSON.stringify([...ignored])),
+      store.set(KEY_EPS, JSON.stringify([...epsDone]))
+    ]);
+    setStatus("Salvato automaticamente.");
+  } catch (e) {
+    setStatus("Salvataggio non riuscito: usa «Esporta backup» per non perdere i dati.", true);
+  }
+}
+
+function exportBackup() {
+  const data = JSON.stringify({ app: "marvel-watchlist", watched: [...watched], ignored: [...ignored], eps: [...epsDone] }, null, 1);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([data], { type: "application/json" }));
+  a.download = "marvel-watchlist-backup.json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function importBackup(file) {
+  const r = new FileReader();
+  r.onload = async () => {
+    try {
+      const d = JSON.parse(r.result);
+      if (!Array.isArray(d.watched) || !Array.isArray(d.ignored)) throw new Error("formato");
+      const known = new Set(ITEMS.map(i => i.id));
+      watched = new Set(d.watched.map(migrateId).filter(id => known.has(id)));
+      ignored = new Set(d.ignored.map(migrateId).filter(id => known.has(id)));
+      const knownEp = new Set(ITEMS.flatMap(epKeys));
+      epsDone = new Set((Array.isArray(d.eps) ? d.eps : []).filter(k => knownEp.has(k)));
+      normalizeEps();
+      refresh();
+      await save();                       // save() scrive il proprio messaggio di stato: il nostro va dopo
+      setStatus("Backup importato e salvato.");
+    } catch (e) { setStatus("File di backup non valido.", true); }
+  };
+  r.readAsText(file);
+}
+
+const fmt = (d, tbd) => tbd ? "2026" : new Date(d + "T12:00:00").toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
+const fmtDur = (m, approx) => {
+  if (!m) return "durata da definire";
+  const t = m < 60 ? `${m} min` : (m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`);
+  return (approx ? "circa " : "") + t;
+};
+const fmtHours = m => {
+  const h = m / 60;
+  return (h >= 100 ? Math.round(h).toLocaleString("it-IT") : h.toLocaleString("it-IT", { maximumFractionDigits: 1 })) + " h";
+};
+const sumMin = arr => arr.reduce((a, i) => a + i.min, 0);
+const CHECK = '<svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+// Titoli che contano: già usciti e non ignorati
+const counted = () => ITEMS.filter(i => !i.soon && !ignored.has(i.id));
+
+function renderStrip() {
+  document.getElementById("strip").innerHTML = counted().map(i =>
+    `<i data-id="${i.id}" title="${i.title.replace(/"/g,"&quot;")}" style="--c:${TYPES[i.type].color}"></i>`).join("");
+}
+function updateStrip(flashId) {
+  document.querySelectorAll("#strip i").forEach(el => {
+    el.classList.toggle("on", watched.has(el.dataset.id));
+    if (flashId && el.dataset.id === flashId) {
+      el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 250);
+    }
+  });
+}
+function updateCount() {
+  const real = counted();
+  const n = real.filter(i => watched.has(i.id)).length;
+  document.getElementById("done").textContent = n;
+  document.getElementById("total").textContent = real.length;
+  document.getElementById("pct").textContent = (real.length ? Math.round(n / real.length * 100) : 0) + "% visto";
+  const totMin = sumMin(real), doneMin = real.reduce((a, i) => a + watchedMin(i), 0);
+  const vis = visibleItems().filter(i => !i.soon && !ignored.has(i.id));
+  document.getElementById("hours").innerHTML =
+    `<span>Totale <b>${fmtHours(totMin)}</b></span>` +
+    `<span>Viste <b>${fmtHours(doneMin)}</b></span>` +
+    `<span>Da vedere <b>${fmtHours(totMin - doneMin)}</b></span>` +
+    `<span class="sub">Titoli filtrati: ${vis.length}, ${fmtHours(sumMin(vis))}</span>`;
+  document.getElementById("showIgn").textContent = `Mostra ignorati (${ignored.size})`;
+}
+
+function renderChips() {
+  document.getElementById("chips").innerHTML = Object.entries(TYPES).map(([k, t]) =>
+    `<button class="chip" data-t="${k}" aria-pressed="${activeTypes.has(k)}" style="--c:${t.color}">${t.label}</button>`).join("");
+}
+function renderStudios() {
+  document.getElementById("studios").innerHTML = STUDIOS.map(n =>
+    `<button class="chip studio" data-s="${n}" aria-pressed="${activeStudios.has(n)}" style="--c:var(--ink)">${n}</button>`).join("");
+}
+
+function visibleItems() {
+  const q = query.trim().toLowerCase();
+  return ITEMS.filter(i =>
+    activeTypes.has(i.type) && activeStudios.has(i.studio) &&
+    (showIgn || !ignored.has(i.id)) &&
+    (!hideDone || !watched.has(i.id)) &&
+    (!q || i.title.toLowerCase().includes(q)));
+}
+
+function renderList() {
+  updateCount();
+  updateBar();
+  const vis = visibleItems();
+  const list = document.getElementById("list");
+  if (!vis.length) { list.innerHTML = '<div class="empty">Nessun titolo con questi filtri.</div>'; return; }
+
+  const byYear = {};
+  vis.forEach(i => (byYear[i.year] = byYear[i.year] || []).push(i));
+  list.innerHTML = Object.keys(byYear).sort().map(y => {
+    const arr = byYear[y];
+    const real = arr.filter(i => !i.soon && !ignored.has(i.id));
+    const n = real.filter(i => watched.has(i.id)).length;
+    const counter = real.length ? `${n} di ${real.length} · ${fmtHours(sumMin(real))}` : (arr.some(i => !ignored.has(i.id)) ? "in arrivo" : "ignorati");
+    return `<section><h2 class="year">${y}<span>${counter}</span></h2>` + arr.map(i => {
+      const ign = ignored.has(i.id);
+      const on = watched.has(i.id) && !ign;
+      const t = TYPES[i.type];
+      const checked = selectMode ? selected.has(i.id) : on;
+      const disabled = selectMode ? false : (i.soon || ign);
+      const hasEps = i.slices && !i.soon && !ign && !selectMode;
+      const open = hasEps && openEps.has(i.id);
+      return `<div class="item" data-item="${i.id}"><label class="row ${on ? "done" : ""} ${i.soon ? "soon" : ""} ${ign ? "ign" : ""}">
+        <input type="checkbox" data-id="${i.id}" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""}>
+        <span class="box" aria-hidden="true">${CHECK}</span>
+        <span>
+          <span class="name">${i.title}</span>
+          <span class="meta">
+            <span class="tag" style="--c:${t.color}">${t.label.split(" (")[0]}</span>
+            <span class="studio-name">${i.studio}</span>
+            <span>${fmt(i.date, i.tbd)}</span>
+            <span>${fmtDur(i.min, i.approx)}</span>
+            ${hasEps ? epsBtn(i, open) : ""}
+            ${i.note ? `<span>${i.note}</span>` : ""}
+            ${i.soon ? '<span class="badge">In arrivo</span>' : ""}
+            ${ign ? '<span class="badge">Ignorato</span>' : ""}
+            ${selectMode && watched.has(i.id) && !ign ? '<span class="badge">Visto</span>' : ""}
+          </span>
+        </span>
+        <button type="button" class="ign-btn" data-ign="${i.id}" title="${ign ? "Rimetti questo titolo nella lista" : "Non mi interessa: toglilo dalla lista e dal conteggio"}">${ign ? "Ripristina" : "Ignora"}</button>
+      </label>${open ? epsPanel(i) : ""}</div>`;
+    }).join("") + "</section>";
+  }).join("");
+}
+
+const epsBtn = (i, open) => {
+  const seen = epsSeen(i);
+  return `<button type="button" class="eps-btn ${seen && seen < i.epsTotal ? "part" : ""}" data-eps="${i.id}" aria-expanded="${open}">Episodi ${seen}/${i.epsTotal}</button>`;
+};
+function epsPanel(i) {
+  return `<div class="eps">` + i.slices.map((x, s) => {
+    const keys = sliceKeys(i, x), seen = keys.filter(k => epsDone.has(k)).length;
+    return `<div class="season${x.x ? " cross" : ""}"><div class="season-h"><span>${x.h ? x.h + " · " : ""}${seen}/${keys.length}</span>` +
+      `<button type="button" class="btn" data-season="${i.id}" data-s="${s}">${seen === keys.length ? "Azzera" : "Segna tutta"}</button></div>` +
+      `<div class="ep-grid">` + keys.map((k, e) =>
+        `<button type="button" class="ep" data-ep="${k}" aria-pressed="${epsDone.has(k)}" aria-label="Episodio ${x.from + e}">${x.from + e}</button>`).join("") + `</div></div>`;
+  }).join("") + `</div>`;
+}
+function updateYear(sec) {
+  const real = [...sec.querySelectorAll("input:not(:disabled)")];
+  const tot = sumMin(real.map(c => BYID.get(c.dataset.id)));
+  sec.querySelector("h2 span").textContent = `${real.filter(c => c.checked).length} di ${real.length} · ${fmtHours(tot)}`;
+}
+function syncItem(i) {            // aggiorna solo la riga toccata, senza ridisegnare la lista
+  const el = document.querySelector(`.item[data-item="${i.id}"]`);
+  if (!el) return;
+  const on = watched.has(i.id);
+  el.querySelector(".row").classList.toggle("done", on);
+  el.querySelector("input").checked = on;
+  const b = el.querySelector(".eps-btn");
+  if (b) { const seen = epsSeen(i); b.textContent = `Episodi ${seen}/${i.epsTotal}`; b.classList.toggle("part", seen > 0 && seen < i.epsTotal); }
+  const p = el.querySelector(".eps");
+  if (p) p.outerHTML = epsPanel(i);
+  updateYear(el.closest("section"));
+  updateStrip(i.id); updateCount();
+}
+function afterEpChange(i) {
+  epsSeen(i) === i.epsTotal ? watched.add(i.id) : watched.delete(i.id);
+  save();
+  hideDone && watched.has(i.id) ? refresh() : syncItem(i);
+}
+
+const selVisible = () => visibleItems().filter(i => selected.has(i.id));
+function updateBar() {
+  const vis = visibleItems();
+  const allSel = vis.length > 0 && vis.every(i => selected.has(i.id));
+  document.getElementById("selAllTop").textContent = selectMode && allSel ? "Deseleziona tutto" : "Seleziona tutto";
+  if (!selectMode) return;
+  const n = selVisible().length;
+  document.getElementById("selN").textContent = n === 1 ? "1 selezionato" : `${n} selezionati`;
+  ["selWatch", "selUnwatch", "selIgn", "selRestore"].forEach(id => document.getElementById(id).disabled = !n);
+}
+function setSelectMode(on) {
+  selectMode = on;
+  selected.clear();
+  document.body.classList.toggle("selmode", on);
+  document.getElementById("selMode").setAttribute("aria-pressed", on);
+  renderList();
+}
+function applySel(fn) {
+  const t = selVisible();
+  if (!t.length) return;
+  fn(t);
+  selected.clear();
+  save(); refresh();
+}
+
+function refresh() { renderStrip(); renderList(); updateStrip(); updateCount(); }
+
+document.getElementById("list").addEventListener("click", e => {
+  const eb = e.target.closest(".eps-btn");
+  if (eb) {
+    e.preventDefault();
+    const i = BYID.get(eb.dataset.eps), el = eb.closest(".item");
+    if (openEps.has(i.id)) { openEps.delete(i.id); el.querySelector(".eps")?.remove(); }
+    else { openEps.add(i.id); el.querySelector(".row").insertAdjacentHTML("afterend", epsPanel(i)); }
+    eb.setAttribute("aria-expanded", openEps.has(i.id));
+    return;
+  }
+  const ep = e.target.closest(".ep");
+  if (ep) {
+    const k = ep.dataset.ep;
+    epsDone.has(k) ? epsDone.delete(k) : epsDone.add(k);
+    afterEpChange(BYID.get(k.split("#")[0]));
+    return;
+  }
+  const sb = e.target.closest("[data-season]");
+  if (sb) {
+    const i = BYID.get(sb.dataset.season), keys = sliceKeys(i, i.slices[+sb.dataset.s]);
+    const all = keys.every(k => epsDone.has(k));
+    keys.forEach(k => all ? epsDone.delete(k) : epsDone.add(k));
+    afterEpChange(i);
+    return;
+  }
+  const b = e.target.closest(".ign-btn"); if (!b) return;
+  e.preventDefault();
+  const id = b.dataset.ign;
+  ignored.has(id) ? ignored.delete(id) : ignored.add(id);
+  save(); refresh();
+});
+document.getElementById("list").addEventListener("change", e => {
+  const id = e.target.dataset.id;
+  if (!id) return;
+  if (selectMode) {
+    e.target.checked ? selected.add(id) : selected.delete(id);
+    updateBar();
+    return;
+  }
+  setItemWatched(BYID.get(id), e.target.checked);
+  save();
+  if (hideDone) { refresh(); } else syncItem(BYID.get(id));
+});
+document.getElementById("chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  const t = b.dataset.t;
+  activeTypes.has(t) ? activeTypes.delete(t) : activeTypes.add(t);
+  b.setAttribute("aria-pressed", activeTypes.has(t));
+  renderList();
+});
+document.getElementById("studios").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  const n = b.dataset.s;
+  activeStudios.has(n) ? activeStudios.delete(n) : activeStudios.add(n);
+  b.setAttribute("aria-pressed", activeStudios.has(n));
+  renderList();
+});
+document.getElementById("selMode").addEventListener("click", () => setSelectMode(!selectMode));
+document.getElementById("selDone").addEventListener("click", () => setSelectMode(false));
+document.getElementById("selAllTop").addEventListener("click", () => {
+  if (!selectMode) { selectMode = true; selected.clear(); document.body.classList.add("selmode");
+    document.getElementById("selMode").setAttribute("aria-pressed", true); }
+  const vis = visibleItems();
+  const allSel = vis.length > 0 && vis.every(i => selected.has(i.id));
+  vis.forEach(i => allSel ? selected.delete(i.id) : selected.add(i.id));
+  renderList();
+});
+document.getElementById("selAll").addEventListener("click", () => {
+  visibleItems().forEach(i => selected.add(i.id)); renderList();
+});
+document.getElementById("selNone").addEventListener("click", () => { selected.clear(); renderList(); });
+document.getElementById("selWatch").addEventListener("click", () =>
+  applySel(t => t.filter(i => !i.soon && !ignored.has(i.id)).forEach(i => setItemWatched(i, true))));
+document.getElementById("selUnwatch").addEventListener("click", () => applySel(t => t.forEach(i => setItemWatched(i, false))));
+document.getElementById("selIgn").addEventListener("click", () => applySel(t => t.forEach(i => ignored.add(i.id))));
+document.getElementById("selRestore").addEventListener("click", () => applySel(t => t.forEach(i => ignored.delete(i.id))));
+document.getElementById("q").addEventListener("input", e => { query = e.target.value; renderList(); });
+document.getElementById("hideDone").addEventListener("click", e => {
+  hideDone = !hideDone; e.target.setAttribute("aria-pressed", hideDone); renderList();
+});
+document.getElementById("showIgn").addEventListener("click", e => {
+  showIgn = !showIgn; e.target.setAttribute("aria-pressed", showIgn); renderList();
+});
+document.getElementById("ignVisible").addEventListener("click", () => {
+  const targets = visibleItems().filter(i => !ignored.has(i.id));
+  if (!targets.length) return;
+  if (!confirm(`Ignorare i ${targets.length} titoli attualmente filtrati? Potrai ripristinarli.`)) return;
+  targets.forEach(i => ignored.add(i.id)); save(); refresh();
+});
+document.getElementById("unIgnAll").addEventListener("click", () => {
+  if (!ignored.size) return;
+  if (!confirm("Rimettere nella lista tutti i titoli ignorati?")) return;
+  ignored.clear(); save(); refresh();
+});
+document.getElementById("exportBk").addEventListener("click", exportBackup);
+document.getElementById("importBk").addEventListener("click", () => document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change", e => {
+  if (e.target.files[0]) importBackup(e.target.files[0]);
+  e.target.value = "";
+});
+document.getElementById("markAll").addEventListener("click", () => {
+  if (!confirm("Segnare come visti tutti i titoli già usciti (esclusi gli ignorati)?")) return;
+  counted().forEach(i => setItemWatched(i, true)); save(); refresh();
+});
+document.getElementById("reset").addEventListener("click", () => {
+  if (!confirm("Vuoi cancellare tutti i segni di spunta? Gli ignorati restano tali.")) return;
+  watched.clear(); epsDone.clear(); save(); refresh();
+});
+
+(async function init() {
+  renderChips(); renderStudios();
+  await load();
+  refresh();
+  try { await store.set("marvel-test", "1"); setStatus("Salvataggio automatico attivo."); }
+  catch (e) { setStatus("Attenzione: qui il salvataggio automatico non è disponibile. Usa «Esporta backup» prima di chiudere.", true); }
+})();
+</script>
+</body>
+</html>
