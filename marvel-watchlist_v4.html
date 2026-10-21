@@ -2,251 +2,320 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eceef3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0f19" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Marvel">
+<link rel="apple-touch-icon" id="touchIcon" href="">
 <title>Marvel: cosa ho visto</title>
 <style>
   :root {
     color-scheme: light;
-    --bg: #f6f5f2;
+    --bg: #eceef3;
     --surface: #ffffff;
-    --ink: #17181c;
-    --muted: #5e6270;
-    --line: #dcdad3;
-    --accent: #c4161c;
+    --ink: #10131c;
+    --muted: #586074;
+    --line: #d3d7e0;
+    --accent: #cf1f26;
     --accent-ink: #ffffff;
-    --film: #c4161c;
-    --serie: #1f5fbf;
-    --anim: #0e8a73;
-    --special: #b36b00;
-    --tv: #6b4ab5;
-    --sony: #b3237a;
+    --film: #cf1f26;
+    --serie: #2457c5;
+    --anim: #0b8a72;
+    --special: #a86400;
+    --tv: #6b45b8;
+    --sony: #b01f78;
+    --reel: #14171f;
+    --frame: #4a5268;
+    --hole: #7d869b;
     --head: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", sans-serif;
     --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --hh: 150px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
-      --bg: #121317;
-      --surface: #1b1d23;
-      --ink: #f1f0ec;
-      --muted: #a2a6b3;
-      --line: #2c2f38;
-      --accent: #ec3a40;
-      --accent-ink: #ffffff;
-      --film: #ec3a40;
-      --serie: #5b9bff;
-      --anim: #2dc9a8;
-      --special: #f0a234;
-      --tv: #a58aee;
-      --sony: #f06bb5;
+      --bg: #0c0f19;
+      --surface: #151a28;
+      --ink: #eef0f6;
+      --muted: #9aa2b6;
+      --line: #262d40;
+      --accent: #f2444b;
+      --accent-ink: #0c0f19;
+      --film: #f2444b;
+      --serie: #6aa0ff;
+      --anim: #32cfae;
+      --special: #f3a93b;
+      --tv: #ab92f0;
+      --sony: #f574bd;
+      --reel: #07090f;
+      --frame: #3a4258;
+      --hole: #5a627a;
     }
   }
-  * { box-sizing: border-box;  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-padding-top: calc(var(--hh) + 56px); }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--body);
-    font-size: 16px;
-    line-height: 1.45;
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 16px; line-height: 1.45;
+    -webkit-text-size-adjust: 100%;
   }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 80px; }
+  body.noscroll { overflow: hidden; }
+  button { font: inherit; color: inherit; touch-action: manipulation; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 96px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
+  /* Testata fissa: titolo, avanzamento e pellicola */
   header.top {
     position: sticky; top: 0; z-index: 10;
     background: var(--bg);
+    padding: calc(10px + env(safe-area-inset-top)) 0 10px;
     border-bottom: 1px solid var(--line);
-    padding: 14px 0 12px;
   }
   .titlebar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
   h1 {
-    font-family: var(--head);
-    font-weight: 800;
-    font-size: 30px;
-    letter-spacing: .01em;
-    margin: 0;
-    line-height: 1;
+    font-family: var(--head); font-weight: 800; font-size: clamp(23px, 7.2vw, 30px); white-space: nowrap;
+    letter-spacing: -.005em; margin: 0; line-height: 1;
   }
-  .count { font-family: var(--head); font-size: 22px; font-weight: 700; white-space: nowrap; }
+  .count { font-family: var(--head); font-size: 24px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .count small { font-size: 15px; color: var(--muted); font-weight: 500; margin-left: 6px; }
 
-  /* La striscia: un segmento per titolo, in ordine di uscita */
-  .strip { display: flex; gap: 2px; height: 22px; margin: 12px 0 4px; }
-  .strip i {
-    flex: 1; min-width: 2px; border-radius: 1px;
-    background: var(--line);
-    transition: background .15s, transform .15s;
+  /* La pellicola: un fotogramma per titolo, in ordine di uscita. Si trascina per scorrere la lista. */
+  .reel {
+    position: relative; display: flex; gap: 2px; height: 34px; margin: 10px 0 6px;
+    padding: 7px 0; background: var(--reel); border-radius: 4px;
+    touch-action: none; cursor: pointer; user-select: none; -webkit-user-select: none;
   }
-  .strip i.on { background: var(--c); }
-  .strip i.flash { transform: scaleY(1.35); }
-  .hours { font-size: 14px; margin: 6px 0 2px; display: flex; flex-wrap: wrap; gap: 2px 14px; }
-  .hours b { font-family: var(--head); font-size: 17px; }
-  .hours .sub { color: var(--muted); }
-  .strip-axis { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .reel::before, .reel::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 3px;
+    background: repeating-linear-gradient(90deg, var(--hole) 0 5px, transparent 5px 10px);
+  }
+  .reel::before { top: 2px; }
+  .reel::after { bottom: 2px; }
+  .reel i {
+    flex: 1; min-width: 2px;
+    background: linear-gradient(to top, var(--c) var(--p, 0%), var(--frame) var(--p, 0%));
+    transition: background .15s;
+  }
+  .reel i.on { --p: 100%; }
+  .reel i.next { background: var(--ink); }
+  .reel-tip {
+    position: absolute; top: -2px; transform: translate(-50%, -100%);
+    background: var(--ink); color: var(--bg); font-size: 13px; font-weight: 600;
+    padding: 3px 8px; border-radius: 6px; white-space: nowrap; max-width: 88vw; overflow: hidden; text-overflow: ellipsis;
+    pointer-events: none; opacity: 0; transition: opacity .12s;
+  }
+  .reel-tip.show { opacity: 1; }
+  .hours { display: flex; flex-wrap: wrap; gap: 0 16px; font-size: 14px; color: var(--muted); }
+  .hours b { font-family: var(--head); font-size: 17px; color: var(--ink); font-variant-numeric: tabular-nums; }
 
-  .tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
-  .search {
-    flex: 1 1 180px; min-width: 0;
-    font: inherit; padding: 8px 12px;
-    border: 1px solid var(--line); border-radius: 8px;
-    background: var(--surface); color: var(--ink);
+  /* Da vedere ora */
+  .next { margin-top: 14px; }
+  .next-in {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px 14px; border: 1.5px solid var(--ink); border-radius: 10px; background: var(--surface);
   }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
-  .chip {
-    font: inherit; font-size: 13px;
-    border: 1.5px solid var(--c, var(--line));
-    background: transparent; color: var(--ink);
-    padding: 4px 10px; border-radius: 999px; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
-  .chip[aria-pressed="false"] { opacity: .45; border-style: dashed; }
-  .chip[aria-pressed="false"]::before { background: transparent; border: 1.5px solid var(--c); }
+  .next-txt { display: flex; flex-direction: column; min-width: 0; }
+  .next-k { font-size: 13px; color: var(--muted); }
+  .next-t { font-family: var(--head); font-size: 21px; line-height: 1.15; overflow-wrap: anywhere; }
+  .next-s { font-size: 14px; color: var(--muted); }
+  .next-act { display: flex; gap: 8px; flex-shrink: 0; }
+
   .btn {
-    font: inherit; font-size: 14px; padding: 8px 12px;
-    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-    border-radius: 8px; cursor: pointer;
+    min-height: 40px; padding: 8px 14px; border: 1px solid var(--line); background: var(--surface);
+    color: var(--ink); border-radius: 10px; cursor: pointer; font-size: 15px;
   }
-  .btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  .btn.quiet { border-color: transparent; background: transparent; color: var(--muted); text-decoration: underline; }
-  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .btn.quiet { border-color: transparent; background: transparent; color: var(--muted); text-decoration: underline; min-height: 36px; padding: 6px 8px; font-size: 14px; }
+  .btn[disabled] { opacity: .45; cursor: default; }
+
+  .bar { display: flex; gap: 8px; margin-top: 14px; align-items: center; }
+  .search {
+    flex: 1 1 auto; min-width: 0; font: inherit; font-size: 16px; min-height: 44px; padding: 8px 12px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink);
+  }
+  .bar .btn { min-height: 44px; white-space: nowrap; }
+  .badge-n {
+    display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 6px; border-radius: 10px;
+    background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 700; text-align: center;
+  }
+  .badge-n[hidden] { display: none; }
+  .fsum { margin: 8px 2px 0; font-size: 13.5px; color: var(--muted); min-height: 0; }
 
   h2.year {
-    font-family: var(--head);
-    font-size: 26px; font-weight: 800;
-    margin: 28px 0 6px;
+    position: sticky; top: var(--hh); z-index: 5; background: var(--bg);
+    font-family: var(--head); font-size: 26px; font-weight: 800; letter-spacing: -.005em;
+    margin: 22px 0 0; padding: 6px 0 4px;
     display: flex; align-items: baseline; justify-content: space-between;
     border-bottom: 2px solid var(--ink);
-    padding-bottom: 4px;
   }
-  h2.year span { font-size: 14px; font-weight: 500; color: var(--muted); font-family: var(--body); }
+  h2.year span { font-size: 14px; font-weight: 500; color: var(--muted); font-family: var(--body); font-variant-numeric: tabular-nums; }
 
+  .item { border-bottom: 1px solid var(--line); border-left: 4px solid var(--c, transparent); scroll-margin-top: calc(var(--hh) + 56px); }
+  .item.hl { animation: hl 1.2s ease-out; }
+  @keyframes hl { from { background: color-mix(in srgb, var(--c) 28%, transparent); } to { background: transparent; } }
   .row {
-    display: grid; grid-template-columns: 28px 1fr auto; gap: 12px;
-    align-items: start;
-    padding: 11px 4px;
-    border-bottom: 1px solid var(--line);
-    cursor: pointer;
-    position: relative;
+    display: grid; grid-template-columns: 30px 1fr auto; gap: 12px; align-items: start;
+    padding: 12px 6px 12px 10px; cursor: pointer; position: relative; min-height: 56px;
   }
   .row input { position: absolute; opacity: 0; pointer-events: none; }
   .box {
-    width: 26px; height: 26px; border-radius: 6px;
-    border: 2px solid var(--muted);
-    display: grid; place-items: center;
-    margin-top: 1px;
-    transition: background .12s, border-color .12s;
+    width: 28px; height: 28px; border-radius: 7px; border: 2px solid var(--muted);
+    display: grid; place-items: center; margin-top: 1px; transition: background .12s, border-color .12s;
   }
-  .box svg { width: 16px; height: 16px; stroke: var(--accent-ink); stroke-width: 3; fill: none; opacity: 0; }
+  .box svg { width: 17px; height: 17px; stroke: var(--accent-ink); stroke-width: 3; fill: none; opacity: 0; transform: scale(.6); transition: opacity .12s, transform .12s; }
   .row input:checked + .box { background: var(--accent); border-color: var(--accent); }
-  .row input:checked + .box svg { opacity: 1; }
+  .row input:checked + .box svg { opacity: 1; transform: none; }
   .row input:focus-visible + .box { outline: 3px solid var(--accent); outline-offset: 2px; }
-  .row:hover .box { border-color: var(--ink); }
-  .name { font-weight: 600; font-size: 17px; }
+  .name { font-weight: 600; font-size: 17px; line-height: 1.25; overflow-wrap: anywhere; }
   .row.done .name { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
-  .meta { font-size: 13.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 2px; }
-  .tag { color: var(--c); font-weight: 600; }
-  .studio-name { color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; font-size: 12.5px; }
-  .chip.studio { border-radius: 6px; }
-  .chip.studio::before { display: none; }
+  .meta { font-size: 13.5px; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 3px; }
+  .meta.chips2 { margin-top: 5px; }
+  .tag { color: var(--c); font-weight: 700; }
+  .grp { color: var(--ink); border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; font-size: 12.5px; }
   .row.soon { cursor: default; opacity: .7; }
   .row.soon .box { border-style: dashed; }
-  .badge {
-    font-size: 12px; font-weight: 600;
-    background: var(--ink); color: var(--bg);
-    padding: 1px 7px; border-radius: 4px;
-  }
+  .badge { font-size: 12px; font-weight: 600; background: var(--ink); color: var(--bg); padding: 1px 7px; border-radius: 5px; }
+  .prog { display: block; height: 4px; margin-top: 8px; border-radius: 2px; background: var(--line); overflow: hidden; }
+  .prog[hidden] { display: none; }
+  .prog i { display: block; height: 100%; background: var(--c); }
   .ign-btn {
-    font: inherit; font-size: 13px; color: var(--muted);
-    background: transparent; border: 1px solid var(--line); border-radius: 6px;
-    padding: 3px 9px; cursor: pointer; align-self: start; white-space: nowrap;
+    font-size: 13px; color: var(--muted); background: transparent; border: 1px solid transparent; border-radius: 8px;
+    padding: 6px 8px; cursor: pointer; align-self: start; white-space: nowrap; min-height: 36px;
   }
-  .ign-btn:hover { color: var(--ink); border-color: var(--ink); }
+  .ign-btn:hover { color: var(--ink); border-color: var(--line); }
   .row.ign { opacity: .55; cursor: default; }
   .row.ign .box { border-style: dashed; }
   .row.ign .name { text-decoration: none; }
+
+  .eps-btn {
+    font-size: 13px; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 7px;
+    padding: 2px 9px; cursor: pointer; min-height: 28px; font-variant-numeric: tabular-nums;
+  }
+  .eps-btn.part { border-color: var(--c); color: var(--c); font-weight: 700; }
+  .eps-btn[aria-expanded="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .eps { padding: 0 8px 16px 52px; }
+  .eps-hint { font-size: 13px; color: var(--muted); margin: 2px 0 4px; }
+  .season { margin-top: 12px; }
+  .season.cross { border-left: 3px solid var(--accent); padding-left: 9px; }
+  .season-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+  .season-h .btn { min-height: 34px; padding: 4px 12px; font-size: 13.5px; white-space: nowrap; }
+  .ep-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ep {
+    min-width: 42px; height: 40px; padding: 0 6px; font-size: 15px; font-variant-numeric: tabular-nums;
+    border: 1.5px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink); cursor: pointer;
+    -webkit-touch-callout: none; user-select: none; -webkit-user-select: none;
+  }
+  .ep[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .ep.next { border-color: var(--ink); border-width: 2.5px; font-weight: 700; }
+
+  .empty { padding: 40px 0; text-align: center; color: var(--muted); }
+  .empty .btn { margin-top: 12px; }
+
+  footer { margin-top: 36px; font-size: 13.5px; color: var(--muted); }
+  footer p { margin: 8px 0; max-width: 62ch; }
+  footer h3 { font-family: var(--head); font-size: 18px; color: var(--ink); margin: 22px 0 4px; }
+  .data-actions { display: flex; flex-wrap: wrap; gap: 2px 4px; margin: 0 -8px; }
+
+  /* Selezione multipla */
   .selbar {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
-    background: var(--surface); border-top: 2px solid var(--ink);
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-    display: none;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 2px solid var(--ink);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: none;
   }
   .selmode .selbar { display: block; }
   .selbar-in { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
   .selbar .n { font-family: var(--head); font-weight: 700; font-size: 18px; margin-right: auto; }
-  .selbar .btn { padding: 6px 10px; font-size: 14px; }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-  .selmode .ign-btn { display: none; }
+  .selbar .btn { min-height: 40px; padding: 6px 11px; font-size: 14.5px; }
+  .selmode .ign-btn, .selmode .eps-btn, .selmode .eps { display: none; }
   .selmode .row, .selmode .row.ign, .selmode .row.soon { cursor: pointer; }
-  .selmode .wrap { padding-bottom: 170px; }
-  .empty { padding: 40px 0; text-align: center; color: var(--muted); }
-  footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
-  footer p { margin: 6px 0; }
-  .sr { position: absolute; left: -9999px; }
-  .item { border-bottom: 1px solid var(--line); }
-  .item > .row { border-bottom: 0; }
-  .eps-btn {
-    font: inherit; font-size: 12.5px; color: var(--ink);
-    background: transparent; border: 1px solid var(--line); border-radius: 6px;
-    padding: 0 8px; cursor: pointer;
+  .selmode .wrap { padding-bottom: 190px; }
+
+  /* Pannello a scomparsa (filtri e conferme) */
+  .sheet-back { position: fixed; inset: 0; z-index: 40; background: rgba(8, 10, 18, .5); display: flex; align-items: flex-end; justify-content: center; }
+  .sheet-back[hidden] { display: none; }
+  .sheet {
+    width: 100%; max-width: 640px; max-height: 86vh; overflow: auto; background: var(--surface); color: var(--ink);
+    border-radius: 18px 18px 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom));
+    animation: up .18s ease-out;
   }
-  .eps-btn.part { border-color: var(--accent); color: var(--accent); font-weight: 600; }
-  .eps-btn[aria-expanded="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-  .eps { padding: 0 4px 14px 44px; }
-  .season { margin-top: 10px; }
-  .season.cross { border-left: 3px solid var(--accent); padding-left: 8px; }
-  .season-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13.5px; font-weight: 600; margin-bottom: 6px; }
-  .season-h .btn { padding: 2px 10px; font-size: 12.5px; white-space: nowrap; }
-  .ep-grid { display: flex; flex-wrap: wrap; gap: 6px; }
-  .ep {
-    min-width: 40px; height: 36px; padding: 0 6px;
-    font: inherit; font-size: 14px; font-variant-numeric: tabular-nums;
-    border: 1.5px solid var(--line); border-radius: 8px;
-    background: var(--surface); color: var(--ink); cursor: pointer;
+  @keyframes up { from { transform: translateY(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+  .sheet h2 { font-family: var(--head); font-size: 24px; margin: 0 0 6px; }
+  .sheet h3 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: var(--muted); }
+  .sheet .ask { font-size: 17px; margin: 4px 0 8px; }
+  .sheet-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 14.5px; border: 1.5px solid var(--c, var(--ink)); background: transparent; color: var(--ink);
+    padding: 7px 12px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; min-height: 40px;
   }
-  .ep[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-  .selmode .eps-btn, .selmode .eps { display: none; }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  .chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--ink)); }
+  .chip small { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  .chip[aria-pressed="false"] { opacity: .5; border-style: dashed; }
+  .chip[aria-pressed="false"]::before { background: transparent; border: 1.5px solid var(--c, var(--ink)); }
+  .chip.grp-chip { border-radius: 9px; }
+  .chip.grp-chip::before { display: none; }
+  .switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 16px; cursor: pointer; }
+  .switch:first-of-type { margin-top: 16px; }
+  .switch input { width: 22px; height: 22px; accent-color: var(--accent); }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); transform: translate(-50%, 24px);
+    z-index: 50; display: flex; align-items: center; gap: 14px; max-width: min(92vw, 520px);
+    background: var(--ink); color: var(--bg); padding: 11px 16px; border-radius: 12px; font-size: 15px;
+    opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+  .selmode .toast { bottom: calc(110px + env(safe-area-inset-bottom)); }
+  .toast button { background: transparent; border: 0; color: var(--bg); font-weight: 700; text-decoration: underline; cursor: pointer; padding: 4px; min-height: 32px; }
+
+  @media (max-width: 420px) {
+    .next-in { flex-direction: column; align-items: stretch; }
+    .next-act .btn { flex: 1; }
+    .eps { padding-left: 46px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="top">
+  <header class="top" id="top">
     <div class="titlebar">
       <h1>Marvel: cosa ho visto</h1>
       <div class="count" aria-live="polite"><span id="done">0</span> / <span id="total">0</span><small id="pct">0%</small></div>
     </div>
-    <div class="strip" id="strip" aria-hidden="true"></div>
+    <div class="reel" id="reel" role="img" aria-label="Avanzamento: un fotogramma per titolo, in ordine di uscita. Trascina per scorrere la lista.">
+      <span class="reel-tip" id="reelTip"></span>
+    </div>
     <div class="hours" id="hours" aria-live="polite"></div>
-    <div class="strip-axis"><span>2002</span><span>oggi</span></div>
   </header>
 
-  <div class="tools">
-      <input class="search" id="q" type="search" placeholder="Cerca un titolo" aria-label="Cerca un titolo">
-      <button class="btn" id="hideDone" aria-pressed="false">Nascondi i visti</button>
-      <button class="btn" id="showIgn" aria-pressed="false">Mostra ignorati (0)</button>
-      <button class="btn" id="selMode" aria-pressed="false">Seleziona più titoli</button>
-      <button class="btn primary" id="selAllTop">Seleziona tutto</button>
-      <div class="chips" id="chips" role="group" aria-label="Filtra per tipo"></div>
-      <div class="chips" id="studios" role="group" aria-label="Filtra per casa di produzione"></div>
+  <section class="next" id="next" aria-label="Prossimo da vedere"></section>
+
+  <div class="bar">
+    <input class="search" id="q" type="search" placeholder="Cerca un titolo" aria-label="Cerca un titolo" enterkeyhint="search">
+    <button class="btn" id="filterBtn" aria-haspopup="dialog">Filtri<span class="badge-n" id="fcount" hidden>0</span></button>
+    <button class="btn" id="selMode" aria-pressed="false">Seleziona</button>
   </div>
+  <p class="fsum" id="fsum" hidden></p>
 
   <main id="list"></main>
 
   <footer>
     <p id="saveStatus"></p>
-    <p>Per le serie con episodi tocca «Episodi» sotto il titolo e spunta quelli che hai visto: il titolo risulta visto quando li hai spuntati tutti, e le ore viste contano in proporzione agli episodi.</p>
-    <p>Con «Ignora» togli un titolo dalla lista e dal conteggio: non lo vedrai più, ma puoi ripristinarlo in qualsiasi momento. Spunte e titoli ignorati vengono salvati in automatico.</p>
-    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni è la durata complessiva stimata della stagione (o dell'intera serie, per quelle di Marvel Television). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 18 ottobre 2026: <i>VisionQuest</i> è in corso (finale l'11 novembre), <i>Avengers: Doomsday</i> esce il 18 dicembre 2026 e <i>Beyond the Spider-Verse</i> il 25 giugno 2027. Puoi filtrare per tipo o per casa di produzione.</p>
-    <p>
-      <button class="btn quiet" id="ignVisible">Ignora i titoli filtrati</button>
-      <button class="btn quiet" id="unIgnAll">Ripristina gli ignorati</button>
+    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni è la durata complessiva stimata della stagione (o dell'intera serie, per quelle di Marvel Television). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 22 ottobre 2026: <i>VisionQuest</i> è in corso (finale l'11 novembre), <i>Avengers: Doomsday</i> esce il 18 dicembre 2026 e <i>Beyond the Spider-Verse</i> il 25 giugno 2027.</p>
+    <p>Con «Ignora» togli un titolo dalla lista e dal conteggio: non lo vedrai più, ma puoi ripristinarlo quando vuoi. Spunte, episodi e filtri vengono salvati in automatico su questo dispositivo.</p>
+    <p>Per le serie con episodi tocca «Episodi» sotto il titolo e spunta quelli che hai visto. Tieni premuto un episodio per segnare anche tutti quelli che lo precedono. Il titolo risulta visto quando hai spuntato tutti gli episodi e le ore viste contano in proporzione.</p>
+    <h3>Dati</h3>
+    <div class="data-actions">
       <button class="btn quiet" id="exportBk">Esporta backup</button>
       <button class="btn quiet" id="importBk">Importa backup</button>
       <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <button class="btn quiet" id="ignVisible">Ignora i titoli mostrati</button>
+      <button class="btn quiet" id="unIgnAll">Ripristina gli ignorati</button>
       <button class="btn quiet" id="markAll">Segna tutto come visto</button>
-      <button class="btn quiet" id="reset">Azzera tutto</button>
-    </p>
+      <button class="btn quiet" id="reset">Azzera le spunte</button>
+    </div>
   </footer>
 </div>
 
@@ -262,6 +331,11 @@
     <button class="btn" id="selDone">Fine</button>
   </div>
 </div>
+
+<div class="sheet-back" id="sheetBack" hidden>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" tabindex="-1"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 const TYPES = {
@@ -491,30 +565,43 @@ const mkSlices = e => !e ? null : typeof e[0] === "number"
   ? e.map((n, s) => ({ h: e.length > 1 ? `Stagione ${s + 1}` : "", k: String(s + 1), from: 1, to: n }))
   : e;
 
-const slug = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
-const ITEMS = [...RAW].sort((a, b) => a[0].localeCompare(b[0])).map(([date,title,type,note,state]) => ({
-  id: date + "-" + slug(title), date, title, type, note: note || "", soon: state === "soon",
-  year: date.slice(0,4), tbd: date === "2026-12-31", studio: studioOf(title, type),
-  min: MINUTES[title] || 0, slices: mkSlices(EPS[title]), epsTotal: (mkSlices(EPS[title]) || []).reduce((a, x) => a + x.to - x.from + 1, 0), approx: SERIES_TYPES.includes(type)
-}));
 
+const GROUP_LABELS = STUDIOS;
+const ROWS = RAW.map(([date, title, type, note, state]) => ({
+  date, title, type, group: studioOf(title, type), note: note || "",
+  state: date === "2026-12-31" ? "tbd" : state, approx: SERIES_TYPES.includes(type)
+}));
+const CFG = { prefix: "marvel", appName: "marvel-watchlist", groupLabel: "Casa di produzione",
+  legacyIds: { "2018-06-04-cloak-dagger": "2018-06-07-cloak-dagger" }, icon: { bg: "#cf1f26", letter: "M" } };
+
+
+/* ===== Motore comune ===== */
+const $ = id => document.getElementById(id);
+const slug = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const sliceLen = x => x.to - x.from + 1;
+const ITEMS = [...ROWS].sort((a, b) => a.date.localeCompare(b.date)).map(r => {
+  const slices = mkSlices(EPS[r.title]);
+  return {
+    id: r.date + "-" + slug(r.title), date: r.date, title: r.title, type: r.type, note: r.note,
+    soon: r.state === "soon" || r.state === "tbd", tbd: r.state === "tbd",
+    year: r.date.slice(0, 4), group: r.group, min: MINUTES[r.title] || 0, approx: r.approx,
+    slices, epsTotal: slices ? slices.reduce((a, x) => a + sliceLen(x), 0) : 0
+  };
+});
 const BYID = new Map(ITEMS.map(i => [i.id, i]));
 
-const KEY = "marvel-watched-v1";
-const KEY_IGN = "marvel-ignored-v1";
-const KEY_EPS = "marvel-eps-v1";
-let watched = new Set();
-let ignored = new Set();
-let epsDone = new Set();          // episodi visti, chiave "<id titolo>#<prefisso>-<episodio>"
-const openEps = new Set();        // titoli con la sottolista aperta
-let activeTypes = new Set(Object.keys(TYPES));
-let activeStudios = new Set(STUDIOS);
-let hideDone = false, showIgn = false, query = "";
+const KEY = CFG.prefix + "-watched-v1", KEY_IGN = CFG.prefix + "-ignored-v1";
+const KEY_EPS = CFG.prefix + "-eps-v1", KEY_UI = CFG.prefix + "-ui-v1";
+const ALL_TYPES = Object.keys(TYPES);
+let watched = new Set(), ignored = new Set();
+let epsDone = new Set();                 // episodi visti: "<id titolo>#<prefisso>-<episodio>"
+const openEps = new Set();               // titoli con la sottolista aperta
+let activeTypes = new Set(ALL_TYPES), activeGroups = new Set(GROUP_LABELS);
+let hideDone = false, showIgn = false, query = "", last = null;
 let selectMode = false;
 const selected = new Set();
 
-// Archiviazione: prima localStorage, in modo sincrono (come nelle checklist semplici che funzionano anche
-// aprendo il file da WhatsApp); in più window.storage quando la pagina gira dentro Claude; poi la memoria.
+/* --- archiviazione: localStorage in modo sincrono; in più window.storage dentro Claude; poi la memoria --- */
 const mem = {};
 const store = {
   readLocal(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
@@ -532,7 +619,7 @@ const store = {
   },
   async set(k, v) {
     mem[k] = v;
-    let ok = this.writeLocal(k, v);          // scrittura immediata, prima di qualsiasi attesa
+    let ok = this.writeLocal(k, v);
     try {
       if (window.storage && typeof window.storage.set === "function") {
         const r = await window.storage.set(k, v, false);
@@ -542,41 +629,18 @@ const store = {
     if (!ok) throw new Error("nessuno storage disponibile");
   }
 };
-
 function setStatus(msg, bad) {
-  const el = document.getElementById("saveStatus");
+  const el = $("saveStatus");
   el.textContent = msg;
   el.style.color = bad ? "var(--accent)" : "";
 }
-// ID cambiati dopo una correzione di data: le spunte già salvate restano valide
-const LEGACY_IDS = { "2018-06-04-cloak-dagger": "2018-06-07-cloak-dagger" };
-const migrateId = id => LEGACY_IDS[id] || id;
+const migrateId = id => (CFG.legacyIds || {})[id] || id;
 async function loadKey(key) {
   try {
     const v = await store.get(key);
     if (v) return new Set(JSON.parse(v).map(migrateId));
   } catch (e) { /* dati assenti o illeggibili */ }
   return new Set();
-}
-// Episodi
-const sliceKeys = (i, x) => Array.from({ length: x.to - x.from + 1 }, (_, e) => `${i.id}#${x.k}-${x.from + e}`);
-const epKeys = i => i.slices ? i.slices.flatMap(x => sliceKeys(i, x)) : [];
-const epsSeen = i => i.slices ? epKeys(i).filter(k => epsDone.has(k)).length : 0;
-const watchedMin = i => watched.has(i.id) ? i.min : (i.slices ? Math.round(i.min * epsSeen(i) / i.epsTotal) : 0);
-function setItemWatched(i, on) {
-  on ? watched.add(i.id) : watched.delete(i.id);
-  epKeys(i).forEach(k => on ? epsDone.add(k) : epsDone.delete(k));
-}
-function normalizeEps() {         // coerenza tra titolo visto ed episodi visti (anche per le spunte salvate prima degli episodi)
-  ITEMS.forEach(i => {
-    if (!i.slices) return;
-    if (watched.has(i.id)) epKeys(i).forEach(k => epsDone.add(k));
-    else if (epsSeen(i) === i.epsTotal) watched.add(i.id);
-  });
-}
-async function load() {
-  watched = await loadKey(KEY); ignored = await loadKey(KEY_IGN); epsDone = await loadKey(KEY_EPS);
-  normalizeEps();
 }
 async function save() {
   try {
@@ -590,36 +654,56 @@ async function save() {
     setStatus("Salvataggio non riuscito: usa «Esporta backup» per non perdere i dati.", true);
   }
 }
-
-function exportBackup() {
-  const data = JSON.stringify({ app: "marvel-watchlist", watched: [...watched], ignored: [...ignored], eps: [...epsDone] }, null, 1);
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([data], { type: "application/json" }));
-  a.download = "marvel-watchlist-backup.json";
-  document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+function savePrefs() {
+  store.set(KEY_UI, JSON.stringify({ types: [...activeTypes], groups: [...activeGroups], hideDone, showIgn, last })).catch(() => {});
 }
-function importBackup(file) {
-  const r = new FileReader();
-  r.onload = async () => {
-    try {
-      const d = JSON.parse(r.result);
-      if (!Array.isArray(d.watched) || !Array.isArray(d.ignored)) throw new Error("formato");
-      const known = new Set(ITEMS.map(i => i.id));
-      watched = new Set(d.watched.map(migrateId).filter(id => known.has(id)));
-      ignored = new Set(d.ignored.map(migrateId).filter(id => known.has(id)));
-      const knownEp = new Set(ITEMS.flatMap(epKeys));
-      epsDone = new Set((Array.isArray(d.eps) ? d.eps : []).filter(k => knownEp.has(k)));
-      normalizeEps();
-      refresh();
-      await save();                       // save() scrive il proprio messaggio di stato: il nostro va dopo
-      setStatus("Backup importato e salvato.");
-    } catch (e) { setStatus("File di backup non valido.", true); }
-  };
-  r.readAsText(file);
+async function loadPrefs() {
+  try {
+    const v = await store.get(KEY_UI);
+    if (!v) return;
+    const p = JSON.parse(v);
+    const t = Array.isArray(p.types) ? p.types.filter(x => TYPES[x]) : [];
+    const g = Array.isArray(p.groups) ? p.groups.filter(x => GROUP_LABELS.includes(x)) : [];
+    if (t.length) activeTypes = new Set(t);
+    if (g.length) activeGroups = new Set(g);
+    hideDone = !!p.hideDone; showIgn = !!p.showIgn; last = p.last && BYID.has(p.last) ? p.last : null;
+  } catch (e) { /* preferenze assenti */ }
 }
 
-const fmt = (d, tbd) => tbd ? "2026" : new Date(d + "T12:00:00").toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
+/* --- episodi --- */
+const sliceKeys = (i, x) => Array.from({ length: sliceLen(x) }, (_, e) => `${i.id}#${x.k}-${x.from + e}`);
+const epKeys = i => i.slices ? i.slices.flatMap(x => sliceKeys(i, x)) : [];
+const epsSeen = i => i.slices ? epKeys(i).filter(k => epsDone.has(k)).length : 0;
+const isPart = i => i.slices && !watched.has(i.id) && epsSeen(i) > 0;
+const watchedMin = i => watched.has(i.id) ? i.min : (i.slices ? Math.round(i.min * epsSeen(i) / i.epsTotal) : 0);
+function setItemWatched(i, on) {
+  on ? watched.add(i.id) : watched.delete(i.id);
+  epKeys(i).forEach(k => on ? epsDone.add(k) : epsDone.delete(k));
+}
+function normalizeEps() {                // coerenza tra titolo visto ed episodi visti (anche per spunte salvate prima degli episodi)
+  ITEMS.forEach(i => {
+    if (!i.slices) return;
+    if (watched.has(i.id)) epKeys(i).forEach(k => epsDone.add(k));
+    else if (epsSeen(i) === i.epsTotal) watched.add(i.id);
+  });
+}
+function afterEpChange(i) {
+  epsSeen(i) === i.epsTotal ? watched.add(i.id) : watched.delete(i.id);
+}
+function firstUnseen(i) {
+  for (const x of i.slices) {
+    for (let n = x.from; n <= x.to; n++) {
+      const k = `${i.id}#${x.k}-${n}`;
+      if (!epsDone.has(k)) return { k, n, x };
+    }
+  }
+  return null;
+}
+const sliceBase = x => x.x ? x.h : (x.h || "").replace(/ · ep\..*$/, "");
+const epLabel = (x, n) => x.x ? x.h : (sliceBase(x) ? sliceBase(x) + ", " : "") + "episodio " + n;
+
+/* --- formati --- */
+const fmt = (d, tbd) => tbd ? d.slice(0, 4) : new Date(d + "T12:00:00").toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
 const fmtDur = (m, approx) => {
   if (!m) return "durata da definire";
   const t = m < 60 ? `${m} min` : (m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`);
@@ -630,181 +714,337 @@ const fmtHours = m => {
   return (h >= 100 ? Math.round(h).toLocaleString("it-IT") : h.toLocaleString("it-IT", { maximumFractionDigits: 1 })) + " h";
 };
 const sumMin = arr => arr.reduce((a, i) => a + i.min, 0);
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 const CHECK = '<svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-// Titoli che contano: già usciti e non ignorati
-const counted = () => ITEMS.filter(i => !i.soon && !ignored.has(i.id));
-
-function renderStrip() {
-  document.getElementById("strip").innerHTML = counted().map(i =>
-    `<i data-id="${i.id}" title="${i.title.replace(/"/g,"&quot;")}" style="--c:${TYPES[i.type].color}"></i>`).join("");
+/* --- interfaccia di servizio: avvisi, pannelli, conferme --- */
+let toastTimer;
+function hideToast() { $("toast").classList.remove("show"); }
+function toast(msg, undo) {
+  const t = $("toast");
+  t.textContent = "";
+  const s = document.createElement("span"); s.textContent = msg; t.append(s);
+  if (undo) {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = "Annulla";
+    b.onclick = () => { undo(); hideToast(); };
+    t.append(b);
+  }
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, undo ? 5500 : 2400);
 }
-function updateStrip(flashId) {
-  document.querySelectorAll("#strip i").forEach(el => {
-    el.classList.toggle("on", watched.has(el.dataset.id));
-    if (flashId && el.dataset.id === flashId) {
-      el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 250);
-    }
+const snapshot = () => ({ w: [...watched], i: [...ignored], e: [...epsDone] });
+function restore(s) { watched = new Set(s.w); ignored = new Set(s.i); epsDone = new Set(s.e); save(); refresh(); }
+function withUndo(msg, fn) {
+  const s = snapshot();
+  fn(); save(); refresh();
+  toast(msg, () => restore(s));
+}
+
+const sheetBack = $("sheetBack"), sheet = $("sheet");
+let sheetClose = null, lastFocus = null;
+function openSheet(html, onClose) {
+  lastFocus = document.activeElement;
+  sheet.innerHTML = html; sheetBack.hidden = false; document.body.classList.add("noscroll");
+  sheetClose = onClose || null;
+  (sheet.querySelector("button, input") || sheet).focus();
+}
+function closeSheet() {
+  sheetBack.hidden = true; document.body.classList.remove("noscroll");
+  const c = sheetClose; sheetClose = null;
+  if (c) c();
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+sheetBack.addEventListener("click", e => { if (e.target === sheetBack) closeSheet(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !sheetBack.hidden) closeSheet(); });
+function askConfirm(text, okLabel) {
+  return new Promise(res => {
+    openSheet(`<p class="ask">${text}</p><div class="sheet-actions"><button type="button" class="btn" data-a="no">Annulla</button><button type="button" class="btn primary" data-a="yes">${okLabel}</button></div>`, () => res(false));
+    sheet.querySelector('[data-a="yes"]').onclick = () => { sheetClose = null; closeSheet(); res(true); };
+    sheet.querySelector('[data-a="no"]').onclick = closeSheet;
   });
 }
-function updateCount() {
-  const real = counted();
-  const n = real.filter(i => watched.has(i.id)).length;
-  document.getElementById("done").textContent = n;
-  document.getElementById("total").textContent = real.length;
-  document.getElementById("pct").textContent = (real.length ? Math.round(n / real.length * 100) : 0) + "% visto";
-  const totMin = sumMin(real), doneMin = real.reduce((a, i) => a + watchedMin(i), 0);
-  const vis = visibleItems().filter(i => !i.soon && !ignored.has(i.id));
-  document.getElementById("hours").innerHTML =
-    `<span>Totale <b>${fmtHours(totMin)}</b></span>` +
-    `<span>Viste <b>${fmtHours(doneMin)}</b></span>` +
-    `<span>Da vedere <b>${fmtHours(totMin - doneMin)}</b></span>` +
-    `<span class="sub">Titoli filtrati: ${vis.length}, ${fmtHours(sumMin(vis))}</span>`;
-  document.getElementById("showIgn").textContent = `Mostra ignorati (${ignored.size})`;
-}
 
-function renderChips() {
-  document.getElementById("chips").innerHTML = Object.entries(TYPES).map(([k, t]) =>
-    `<button class="chip" data-t="${k}" aria-pressed="${activeTypes.has(k)}" style="--c:${t.color}">${t.label}</button>`).join("");
-}
-function renderStudios() {
-  document.getElementById("studios").innerHTML = STUDIOS.map(n =>
-    `<button class="chip studio" data-s="${n}" aria-pressed="${activeStudios.has(n)}" style="--c:var(--ink)">${n}</button>`).join("");
-}
-
+/* --- conteggi e viste --- */
+const counted = () => ITEMS.filter(i => !i.soon && !ignored.has(i.id));
+const typeOk = i => activeTypes.has(i.type) && activeGroups.has(i.group);
 function visibleItems() {
   const q = query.trim().toLowerCase();
   return ITEMS.filter(i =>
-    activeTypes.has(i.type) && activeStudios.has(i.studio) &&
-    (showIgn || !ignored.has(i.id)) &&
-    (!hideDone || !watched.has(i.id)) &&
+    typeOk(i) && (showIgn || !ignored.has(i.id)) && (!hideDone || !watched.has(i.id)) &&
     (!q || i.title.toLowerCase().includes(q)));
 }
+const filtersActive = () => (activeTypes.size < ALL_TYPES.length) + (activeGroups.size < GROUP_LABELS.length) + hideDone + showIgn;
 
+function updateCount() {
+  const real = counted();
+  const n = real.filter(i => watched.has(i.id)).length;
+  $("done").textContent = n;
+  $("total").textContent = real.length;
+  $("pct").textContent = (real.length ? Math.round(n / real.length * 100) : 0) + "% visto";
+  const totMin = sumMin(real), doneMin = real.reduce((a, i) => a + watchedMin(i), 0);
+  $("hours").innerHTML =
+    `<span><b>${fmtHours(totMin)}</b> in tutto</span><span><b>${fmtHours(doneMin)}</b> viste</span><span><b>${fmtHours(totMin - doneMin)}</b> da vedere</span>`;
+  const fc = filtersActive();
+  const b = $("fcount"); b.hidden = !fc; b.textContent = fc;
+  const vis = visibleItems().filter(i => !i.soon && !ignored.has(i.id));
+  const sum = $("fsum");
+  if (fc || query.trim()) { sum.hidden = false; sum.textContent = `${vis.length} titoli mostrati, ${fmtHours(sumMin(vis))}`; }
+  else sum.hidden = true;
+}
+
+/* --- pellicola --- */
+function nextUp() {
+  const pool = ITEMS.filter(i => !i.soon && !ignored.has(i.id) && typeOk(i));
+  const lastItem = last && BYID.get(last);
+  const part = (lastItem && pool.includes(lastItem) && isPart(lastItem)) ? lastItem : pool.find(isPart);
+  const item = part || pool.find(i => !watched.has(i.id));
+  if (!item) return null;
+  return { item, ep: item.slices ? firstUnseen(item) : null, part: !!part };
+}
+function renderReel() {
+  const nx = nextUp();
+  $("reel").querySelectorAll("i").forEach(el => el.remove());
+  $("reel").insertAdjacentHTML("beforeend", counted().map(i => {
+    const p = i.slices && !watched.has(i.id) && epsSeen(i) ? Math.round(epsSeen(i) / i.epsTotal * 100) : 0;
+    return `<i data-id="${i.id}" style="--c:${TYPES[i.type].color}${p ? `;--p:${p}%` : ""}" class="${watched.has(i.id) ? "on" : ""}${nx && nx.item === i ? " next" : ""}"></i>`;
+  }).join(""));
+}
+function updateReel(flashId) {
+  const nx = nextUp();
+  $("reel").querySelectorAll("i").forEach(el => {
+    const i = BYID.get(el.dataset.id);
+    el.classList.toggle("on", watched.has(i.id));
+    el.classList.toggle("next", !!nx && nx.item === i);
+    const p = i.slices && !watched.has(i.id) && epsSeen(i) ? Math.round(epsSeen(i) / i.epsTotal * 100) : 0;
+    p ? el.style.setProperty("--p", p + "%") : el.style.removeProperty("--p");
+    if (flashId && el.dataset.id === flashId) { el.animate([{ transform: "scaleY(1.5)" }, { transform: "none" }], { duration: 260 }); }
+  });
+}
+function jumpTo(id, instant) {
+  const el = document.querySelector(`.item[data-item="${id}"]`);
+  if (!el) return false;
+  el.scrollIntoView({ block: "start", behavior: instant ? "auto" : "smooth" });
+  el.classList.remove("hl"); void el.offsetWidth; el.classList.add("hl");
+  return true;
+}
+(function setupReel() {
+  const reel = $("reel"), tip = $("reelTip");
+  let down = false, hideT, lastId = null;
+  function scrub(e) {
+    const segs = reel.querySelectorAll("i");
+    if (!segs.length) return;
+    const r = reel.getBoundingClientRect();
+    const idx = Math.max(0, Math.min(segs.length - 1, Math.floor((e.clientX - r.left) / r.width * segs.length)));
+    const id = segs[idx].dataset.id;
+    if (id === lastId) return;
+    lastId = id;
+    const i = BYID.get(id), shown = !!document.querySelector(`.item[data-item="${id}"]`);
+    tip.textContent = i.title + ", " + i.year + (shown ? "" : " (nascosto dai filtri)");
+    const x = Math.max(70, Math.min(r.width - 70, e.clientX - r.left));
+    tip.style.left = x + "px"; tip.classList.add("show");
+    if (shown) jumpTo(id, true);
+  }
+  reel.addEventListener("pointerdown", e => { down = true; lastId = null; reel.setPointerCapture(e.pointerId); clearTimeout(hideT); scrub(e); });
+  reel.addEventListener("pointermove", e => { if (down) scrub(e); });
+  const end = () => { down = false; hideT = setTimeout(() => tip.classList.remove("show"), 700); };
+  reel.addEventListener("pointerup", end);
+  reel.addEventListener("pointercancel", end);
+})();
+
+/* --- da vedere ora --- */
+function renderNext() {
+  const el = $("next"), nx = nextUp();
+  if (!nx) { el.innerHTML = counted().length ? '<div class="next-in"><div class="next-txt"><span class="next-t">Hai visto tutto quello che è uscito.</span></div></div>' : ""; return; }
+  const { item, ep, part } = nx;
+  const sub = ep ? epLabel(ep.x, ep.n) : (item.slices ? "" : fmtDur(item.min, item.approx));
+  el.innerHTML = `<div class="next-in"><div class="next-txt"><span class="next-k">${part ? "Continua da qui" : "Il prossimo"}</span>` +
+    `<strong class="next-t">${esc(item.title)}</strong>${sub ? `<span class="next-s">${esc(sub)}</span>` : ""}</div>` +
+    `<div class="next-act"><button type="button" class="btn primary" id="nextSeen">Visto</button><button type="button" class="btn" id="nextOpen">Apri</button></div></div>`;
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("#nextSeen")) {
+    const nx = nextUp(); if (!nx) return;
+    const { item, ep } = nx;
+    last = item.id; savePrefs();
+    if (ep) withUndo("Segnato: " + item.title + ", " + epLabel(ep.x, ep.n), () => { epsDone.add(ep.k); afterEpChange(item); });
+    else withUndo("Segnato: " + item.title, () => setItemWatched(item, true));
+  } else if (e.target.closest("#nextOpen")) {
+    const nx = nextUp(); if (!nx) return;
+    if (!document.querySelector(`.item[data-item="${nx.item.id}"]`)) { toast("Il titolo è nascosto dai filtri"); return; }
+    if (nx.item.slices) { openEps.add(nx.item.id); replaceItem(nx.item); }
+    jumpTo(nx.item.id);
+  }
+});
+
+/* --- lista --- */
+const epsBtn = (i, open) => {
+  const seen = epsSeen(i);
+  return `<button type="button" class="eps-btn${seen && seen < i.epsTotal ? " part" : ""}" data-eps="${i.id}" aria-expanded="${open}">Episodi ${seen}/${i.epsTotal}</button>`;
+};
+function epsPanel(i) {
+  const nx = firstUnseen(i);
+  return `<div class="eps"><p class="eps-hint">Tieni premuto un episodio per segnare anche quelli prima.</p>` + i.slices.map((x, s) => {
+    const keys = sliceKeys(i, x), seen = keys.filter(k => epsDone.has(k)).length;
+    return `<div class="season${x.x ? " cross" : ""}"><div class="season-h"><span>${x.h ? esc(x.h) + ", " : ""}${seen} di ${keys.length}</span>` +
+      `<button type="button" class="btn" data-season="${i.id}" data-s="${s}">${seen === keys.length ? "Azzera" : "Segna tutta"}</button></div>` +
+      `<div class="ep-grid">` + keys.map((k, e) =>
+        `<button type="button" class="ep${nx && nx.k === k ? " next" : ""}" data-ep="${k}" aria-pressed="${epsDone.has(k)}" aria-label="Episodio ${x.from + e}">${x.from + e}</button>`).join("") + `</div></div>`;
+  }).join("") + `</div>`;
+}
+function itemHTML(i) {
+  const ign = ignored.has(i.id), on = watched.has(i.id) && !ign, t = TYPES[i.type];
+  const checked = selectMode ? selected.has(i.id) : on;
+  const disabled = selectMode ? false : (i.soon || ign);
+  const hasEps = i.slices && !i.soon && !ign && !selectMode;
+  const open = hasEps && openEps.has(i.id);
+  const seen = i.slices ? epsSeen(i) : 0;
+  const pct = i.slices && !on && seen ? Math.max(3, Math.round(seen / i.epsTotal * 100)) : 0;
+  return `<div class="item" data-item="${i.id}" style="--c:${t.color}"><label class="row ${on ? "done" : ""} ${i.soon ? "soon" : ""} ${ign ? "ign" : ""}">
+    <input type="checkbox" data-id="${i.id}" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""}>
+    <span class="box" aria-hidden="true">${CHECK}</span>
+    <span>
+      <span class="name">${esc(i.title)}</span>
+      <span class="meta"><span>${fmt(i.date, i.tbd)}</span><span>${fmtDur(i.min, i.approx)}</span>${hasEps ? epsBtn(i, open) : ""}</span>
+      <span class="meta chips2"><span class="tag">${esc(t.label.split(" e ")[0].split(" (")[0])}</span><span class="grp">${esc(i.group)}</span>${i.note ? `<span>${esc(i.note)}</span>` : ""}${i.soon ? '<span class="badge">In arrivo</span>' : ""}${ign ? '<span class="badge">Ignorato</span>' : ""}${selectMode && watched.has(i.id) && !ign ? '<span class="badge">Visto</span>' : ""}</span>
+      <span class="prog"${pct ? "" : " hidden"}><i style="width:${pct}%"></i></span>
+    </span>
+    <button type="button" class="ign-btn" data-ign="${i.id}" title="${ign ? "Rimetti questo titolo nella lista" : "Toglilo dalla lista e dal conteggio"}">${ign ? "Ripristina" : "Ignora"}</button>
+  </label>${open ? epsPanel(i) : ""}</div>`;
+}
+function replaceItem(i) {
+  const el = document.querySelector(`.item[data-item="${i.id}"]`);
+  if (!el) return;
+  el.outerHTML = itemHTML(i);
+  updateYear(document.querySelector(`.item[data-item="${i.id}"]`).closest("section"));
+}
+function updateYear(sec) {
+  const real = [...sec.querySelectorAll("input:not(:disabled)")];
+  const tot = sumMin(real.map(c => BYID.get(c.dataset.id)));
+  sec.querySelector("h2 span").textContent = `${real.filter(c => c.checked).length} di ${real.length}, ${fmtHours(tot)}`;
+}
 function renderList() {
-  updateCount();
-  updateBar();
-  const vis = visibleItems();
-  const list = document.getElementById("list");
-  if (!vis.length) { list.innerHTML = '<div class="empty">Nessun titolo con questi filtri.</div>'; return; }
-
+  updateCount(); updateBar();
+  const vis = visibleItems(), list = $("list");
+  if (!vis.length) {
+    list.innerHTML = `<div class="empty">Nessun titolo con questi filtri.${filtersActive() || query ? '<br><button type="button" class="btn" id="clearFilters">Azzera filtri e ricerca</button>' : ""}</div>`;
+    return;
+  }
   const byYear = {};
   vis.forEach(i => (byYear[i.year] = byYear[i.year] || []).push(i));
   list.innerHTML = Object.keys(byYear).sort().map(y => {
     const arr = byYear[y];
     const real = arr.filter(i => !i.soon && !ignored.has(i.id));
     const n = real.filter(i => watched.has(i.id)).length;
-    const counter = real.length ? `${n} di ${real.length} · ${fmtHours(sumMin(real))}` : (arr.some(i => !ignored.has(i.id)) ? "in arrivo" : "ignorati");
-    return `<section><h2 class="year">${y}<span>${counter}</span></h2>` + arr.map(i => {
-      const ign = ignored.has(i.id);
-      const on = watched.has(i.id) && !ign;
-      const t = TYPES[i.type];
-      const checked = selectMode ? selected.has(i.id) : on;
-      const disabled = selectMode ? false : (i.soon || ign);
-      const hasEps = i.slices && !i.soon && !ign && !selectMode;
-      const open = hasEps && openEps.has(i.id);
-      return `<div class="item" data-item="${i.id}"><label class="row ${on ? "done" : ""} ${i.soon ? "soon" : ""} ${ign ? "ign" : ""}">
-        <input type="checkbox" data-id="${i.id}" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""}>
-        <span class="box" aria-hidden="true">${CHECK}</span>
-        <span>
-          <span class="name">${i.title}</span>
-          <span class="meta">
-            <span class="tag" style="--c:${t.color}">${t.label.split(" (")[0]}</span>
-            <span class="studio-name">${i.studio}</span>
-            <span>${fmt(i.date, i.tbd)}</span>
-            <span>${fmtDur(i.min, i.approx)}</span>
-            ${hasEps ? epsBtn(i, open) : ""}
-            ${i.note ? `<span>${i.note}</span>` : ""}
-            ${i.soon ? '<span class="badge">In arrivo</span>' : ""}
-            ${ign ? '<span class="badge">Ignorato</span>' : ""}
-            ${selectMode && watched.has(i.id) && !ign ? '<span class="badge">Visto</span>' : ""}
-          </span>
-        </span>
-        <button type="button" class="ign-btn" data-ign="${i.id}" title="${ign ? "Rimetti questo titolo nella lista" : "Non mi interessa: toglilo dalla lista e dal conteggio"}">${ign ? "Ripristina" : "Ignora"}</button>
-      </label>${open ? epsPanel(i) : ""}</div>`;
-    }).join("") + "</section>";
+    const counter = real.length ? `${n} di ${real.length}, ${fmtHours(sumMin(real))}` : (arr.some(i => !ignored.has(i.id)) ? "in arrivo" : "ignorati");
+    return `<section><h2 class="year">${y}<span>${counter}</span></h2>${arr.map(itemHTML).join("")}</section>`;
   }).join("");
 }
-
-const epsBtn = (i, open) => {
-  const seen = epsSeen(i);
-  return `<button type="button" class="eps-btn ${seen && seen < i.epsTotal ? "part" : ""}" data-eps="${i.id}" aria-expanded="${open}">Episodi ${seen}/${i.epsTotal}</button>`;
-};
-function epsPanel(i) {
-  return `<div class="eps">` + i.slices.map((x, s) => {
-    const keys = sliceKeys(i, x), seen = keys.filter(k => epsDone.has(k)).length;
-    return `<div class="season${x.x ? " cross" : ""}"><div class="season-h"><span>${x.h ? x.h + " · " : ""}${seen}/${keys.length}</span>` +
-      `<button type="button" class="btn" data-season="${i.id}" data-s="${s}">${seen === keys.length ? "Azzera" : "Segna tutta"}</button></div>` +
-      `<div class="ep-grid">` + keys.map((k, e) =>
-        `<button type="button" class="ep" data-ep="${k}" aria-pressed="${epsDone.has(k)}" aria-label="Episodio ${x.from + e}">${x.from + e}</button>`).join("") + `</div></div>`;
-  }).join("") + `</div>`;
-}
-function updateYear(sec) {
-  const real = [...sec.querySelectorAll("input:not(:disabled)")];
-  const tot = sumMin(real.map(c => BYID.get(c.dataset.id)));
-  sec.querySelector("h2 span").textContent = `${real.filter(c => c.checked).length} di ${real.length} · ${fmtHours(tot)}`;
-}
-function syncItem(i) {            // aggiorna solo la riga toccata, senza ridisegnare la lista
-  const el = document.querySelector(`.item[data-item="${i.id}"]`);
-  if (!el) return;
-  const on = watched.has(i.id);
-  el.querySelector(".row").classList.toggle("done", on);
-  el.querySelector("input").checked = on;
-  const b = el.querySelector(".eps-btn");
-  if (b) { const seen = epsSeen(i); b.textContent = `Episodi ${seen}/${i.epsTotal}`; b.classList.toggle("part", seen > 0 && seen < i.epsTotal); }
-  const p = el.querySelector(".eps");
-  if (p) p.outerHTML = epsPanel(i);
-  updateYear(el.closest("section"));
-  updateStrip(i.id); updateCount();
-}
-function afterEpChange(i) {
-  epsSeen(i) === i.epsTotal ? watched.add(i.id) : watched.delete(i.id);
-  save();
-  hideDone && watched.has(i.id) ? refresh() : syncItem(i);
+function refresh() { renderReel(); renderNext(); renderList(); syncHeader(); }
+function syncAfter(i, flash) {            // aggiorna solo ciò che è cambiato, senza ridisegnare tutta la lista
+  if (hideDone && watched.has(i.id)) { refresh(); return; }
+  replaceItem(i); updateReel(flash); renderNext(); updateCount();
 }
 
+/* --- selezione multipla --- */
 const selVisible = () => visibleItems().filter(i => selected.has(i.id));
 function updateBar() {
   const vis = visibleItems();
-  const allSel = vis.length > 0 && vis.every(i => selected.has(i.id));
-  document.getElementById("selAllTop").textContent = selectMode && allSel ? "Deseleziona tutto" : "Seleziona tutto";
   if (!selectMode) return;
   const n = selVisible().length;
-  document.getElementById("selN").textContent = n === 1 ? "1 selezionato" : `${n} selezionati`;
-  ["selWatch", "selUnwatch", "selIgn", "selRestore"].forEach(id => document.getElementById(id).disabled = !n);
+  $("selN").textContent = n === 1 ? "1 selezionato" : `${n} selezionati`;
+  ["selWatch", "selUnwatch", "selIgn", "selRestore"].forEach(id => $(id).disabled = !n);
+  $("selAll").textContent = vis.length > 0 && vis.every(i => selected.has(i.id)) ? "Deseleziona tutto" : "Seleziona tutto";
 }
 function setSelectMode(on) {
-  selectMode = on;
-  selected.clear();
+  selectMode = on; selected.clear();
   document.body.classList.toggle("selmode", on);
-  document.getElementById("selMode").setAttribute("aria-pressed", on);
+  $("selMode").setAttribute("aria-pressed", on);
   renderList();
 }
-function applySel(fn) {
+function applySel(msg, fn) {
   const t = selVisible();
   if (!t.length) return;
-  fn(t);
   selected.clear();
-  save(); refresh();
+  withUndo(msg(t.length), () => fn(t));
 }
 
-function refresh() { renderStrip(); renderList(); updateStrip(); updateCount(); }
+/* --- filtri --- */
+function statsBy(pred) {
+  const c = counted().filter(pred);
+  return `${c.filter(i => watched.has(i.id)).length}/${c.length}`;
+}
+function filtersHTML() {
+  return `<h2>Filtri</h2><h3>Tipo</h3><div class="chips" id="chips">` +
+    Object.entries(TYPES).map(([k, t]) => `<button type="button" class="chip" data-t="${k}" aria-pressed="${activeTypes.has(k)}" style="--c:${t.color}">${esc(t.label)} <small>${statsBy(i => i.type === k)}</small></button>`).join("") +
+    `</div><h3>${CFG.groupLabel}</h3><div class="chips" id="groups">` +
+    GROUP_LABELS.map(n => `<button type="button" class="chip grp-chip" data-g="${esc(n)}" aria-pressed="${activeGroups.has(n)}">${esc(n)} <small>${statsBy(i => i.group === n)}</small></button>`).join("") +
+    `</div><label class="switch"><span>Nascondi i titoli già visti</span><input type="checkbox" id="fHide" ${hideDone ? "checked" : ""}></label>` +
+    `<label class="switch"><span>Mostra i titoli ignorati (${ignored.size})</span><input type="checkbox" id="fIgn" ${showIgn ? "checked" : ""}></label>` +
+    `<div class="sheet-actions"><button type="button" class="btn" id="fReset">Azzera filtri</button><button type="button" class="btn primary" id="fDone"></button></div>`;
+}
+function syncFilterSheet() {
+  $("fDone").textContent = `Mostra ${visibleItems().length} titoli`;
+  sheet.querySelectorAll("[data-t]").forEach(b => b.setAttribute("aria-pressed", activeTypes.has(b.dataset.t)));
+  sheet.querySelectorAll("[data-g]").forEach(b => b.setAttribute("aria-pressed", activeGroups.has(b.dataset.g)));
+}
+function openFilters() {
+  openSheet(filtersHTML(), () => { savePrefs(); renderReel(); renderNext(); });
+  syncFilterSheet();
+}
+sheet.addEventListener("click", e => {
+  const t = e.target.closest("[data-t]"), g = e.target.closest("[data-g]");
+  if (t) { const k = t.dataset.t; activeTypes.has(k) ? activeTypes.delete(k) : activeTypes.add(k); if (!activeTypes.size) activeTypes = new Set(ALL_TYPES); }
+  else if (g) { const k = g.dataset.g; activeGroups.has(k) ? activeGroups.delete(k) : activeGroups.add(k); if (!activeGroups.size) activeGroups = new Set(GROUP_LABELS); }
+  else if (e.target.closest("#fReset")) { activeTypes = new Set(ALL_TYPES); activeGroups = new Set(GROUP_LABELS); hideDone = false; showIgn = false; sheet.querySelector("#fHide").checked = false; sheet.querySelector("#fIgn").checked = false; }
+  else if (e.target.closest("#fDone")) { closeSheet(); return; }
+  else return;
+  syncFilterSheet(); renderList();
+});
+sheet.addEventListener("change", e => {
+  if (e.target.id === "fHide") hideDone = e.target.checked;
+  else if (e.target.id === "fIgn") showIgn = e.target.checked;
+  else return;
+  syncFilterSheet(); renderList();
+});
+$("filterBtn").addEventListener("click", openFilters);
 
-document.getElementById("list").addEventListener("click", e => {
+/* --- gestori della lista --- */
+let pressTimer = null, pressed = false;
+function markUpTo(key) {
+  const i = BYID.get(key.split("#")[0]);
+  const keys = epKeys(i), idx = keys.indexOf(key);
+  if (idx < 0) return;
+  const n = idx + 1;
+  last = i.id; savePrefs();
+  withUndo(`Segnati i primi ${n} episodi di ${i.title}`, () => { keys.slice(0, n).forEach(k => epsDone.add(k)); afterEpChange(i); });
+}
+const listEl = $("list");
+listEl.addEventListener("pointerdown", e => {
+  const ep = e.target.closest(".ep"); if (!ep) return;
+  pressed = false;
+  clearTimeout(pressTimer);
+  pressTimer = setTimeout(() => { pressed = true; if (navigator.vibrate) navigator.vibrate(15); markUpTo(ep.dataset.ep); }, 480);
+});
+["pointerup", "pointercancel", "pointerleave", "pointermove"].forEach(t => listEl.addEventListener(t, e => { if (t !== "pointermove" || Math.abs(e.movementX) + Math.abs(e.movementY) > 3) clearTimeout(pressTimer); }));
+listEl.addEventListener("contextmenu", e => { if (e.target.closest(".ep")) e.preventDefault(); });
+listEl.addEventListener("click", e => {
+  const cf = e.target.closest("#clearFilters");
+  if (cf) { activeTypes = new Set(ALL_TYPES); activeGroups = new Set(GROUP_LABELS); hideDone = false; showIgn = false; query = ""; $("q").value = ""; savePrefs(); renderList(); return; }
   const eb = e.target.closest(".eps-btn");
   if (eb) {
     e.preventDefault();
-    const i = BYID.get(eb.dataset.eps), el = eb.closest(".item");
-    if (openEps.has(i.id)) { openEps.delete(i.id); el.querySelector(".eps")?.remove(); }
-    else { openEps.add(i.id); el.querySelector(".row").insertAdjacentHTML("afterend", epsPanel(i)); }
-    eb.setAttribute("aria-expanded", openEps.has(i.id));
+    const i = BYID.get(eb.dataset.eps);
+    openEps.has(i.id) ? openEps.delete(i.id) : openEps.add(i.id);
+    replaceItem(i);
     return;
   }
   const ep = e.target.closest(".ep");
   if (ep) {
-    const k = ep.dataset.ep;
+    if (pressed) { pressed = false; return; }
+    const k = ep.dataset.ep, i = BYID.get(k.split("#")[0]);
     epsDone.has(k) ? epsDone.delete(k) : epsDone.add(k);
-    afterEpChange(BYID.get(k.split("#")[0]));
+    afterEpChange(i); last = i.id; savePrefs(); save(); syncAfter(i, i.id);
     return;
   }
   const sb = e.target.closest("[data-season]");
@@ -812,98 +1052,111 @@ document.getElementById("list").addEventListener("click", e => {
     const i = BYID.get(sb.dataset.season), keys = sliceKeys(i, i.slices[+sb.dataset.s]);
     const all = keys.every(k => epsDone.has(k));
     keys.forEach(k => all ? epsDone.delete(k) : epsDone.add(k));
-    afterEpChange(i);
+    afterEpChange(i); last = i.id; savePrefs(); save(); syncAfter(i, i.id);
     return;
   }
   const b = e.target.closest(".ign-btn"); if (!b) return;
   e.preventDefault();
-  const id = b.dataset.ign;
-  ignored.has(id) ? ignored.delete(id) : ignored.add(id);
-  save(); refresh();
+  const id = b.dataset.ign, was = ignored.has(id);
+  withUndo(was ? "Titolo ripristinato" : "Titolo ignorato", () => was ? ignored.delete(id) : ignored.add(id));
 });
-document.getElementById("list").addEventListener("change", e => {
+listEl.addEventListener("change", e => {
   const id = e.target.dataset.id;
   if (!id) return;
-  if (selectMode) {
-    e.target.checked ? selected.add(id) : selected.delete(id);
-    updateBar();
-    return;
-  }
-  setItemWatched(BYID.get(id), e.target.checked);
+  if (selectMode) { e.target.checked ? selected.add(id) : selected.delete(id); updateBar(); return; }
+  const i = BYID.get(id);
+  setItemWatched(i, e.target.checked);
+  if (e.target.checked) { last = id; savePrefs(); }
   save();
-  if (hideDone) { refresh(); } else syncItem(BYID.get(id));
+  syncAfter(i, id);
 });
-document.getElementById("chips").addEventListener("click", e => {
-  const b = e.target.closest(".chip"); if (!b) return;
-  const t = b.dataset.t;
-  activeTypes.has(t) ? activeTypes.delete(t) : activeTypes.add(t);
-  b.setAttribute("aria-pressed", activeTypes.has(t));
+$("selMode").addEventListener("click", () => setSelectMode(!selectMode));
+$("selDone").addEventListener("click", () => setSelectMode(false));
+$("selAll").addEventListener("click", () => {
+  const vis = visibleItems(), all = vis.length > 0 && vis.every(i => selected.has(i.id));
+  vis.forEach(i => all ? selected.delete(i.id) : selected.add(i.id));
   renderList();
 });
-document.getElementById("studios").addEventListener("click", e => {
-  const b = e.target.closest(".chip"); if (!b) return;
-  const n = b.dataset.s;
-  activeStudios.has(n) ? activeStudios.delete(n) : activeStudios.add(n);
-  b.setAttribute("aria-pressed", activeStudios.has(n));
-  renderList();
-});
-document.getElementById("selMode").addEventListener("click", () => setSelectMode(!selectMode));
-document.getElementById("selDone").addEventListener("click", () => setSelectMode(false));
-document.getElementById("selAllTop").addEventListener("click", () => {
-  if (!selectMode) { selectMode = true; selected.clear(); document.body.classList.add("selmode");
-    document.getElementById("selMode").setAttribute("aria-pressed", true); }
-  const vis = visibleItems();
-  const allSel = vis.length > 0 && vis.every(i => selected.has(i.id));
-  vis.forEach(i => allSel ? selected.delete(i.id) : selected.add(i.id));
-  renderList();
-});
-document.getElementById("selAll").addEventListener("click", () => {
-  visibleItems().forEach(i => selected.add(i.id)); renderList();
-});
-document.getElementById("selNone").addEventListener("click", () => { selected.clear(); renderList(); });
-document.getElementById("selWatch").addEventListener("click", () =>
-  applySel(t => t.filter(i => !i.soon && !ignored.has(i.id)).forEach(i => setItemWatched(i, true))));
-document.getElementById("selUnwatch").addEventListener("click", () => applySel(t => t.forEach(i => setItemWatched(i, false))));
-document.getElementById("selIgn").addEventListener("click", () => applySel(t => t.forEach(i => ignored.add(i.id))));
-document.getElementById("selRestore").addEventListener("click", () => applySel(t => t.forEach(i => ignored.delete(i.id))));
-document.getElementById("q").addEventListener("input", e => { query = e.target.value; renderList(); });
-document.getElementById("hideDone").addEventListener("click", e => {
-  hideDone = !hideDone; e.target.setAttribute("aria-pressed", hideDone); renderList();
-});
-document.getElementById("showIgn").addEventListener("click", e => {
-  showIgn = !showIgn; e.target.setAttribute("aria-pressed", showIgn); renderList();
-});
-document.getElementById("ignVisible").addEventListener("click", () => {
+$("selNone").addEventListener("click", () => { selected.clear(); renderList(); });
+$("selWatch").addEventListener("click", () => applySel(n => `${n} titoli segnati come visti`, t => t.filter(i => !i.soon && !ignored.has(i.id)).forEach(i => setItemWatched(i, true))));
+$("selUnwatch").addEventListener("click", () => applySel(n => `${n} titoli segnati come non visti`, t => t.forEach(i => setItemWatched(i, false))));
+$("selIgn").addEventListener("click", () => applySel(n => `${n} titoli ignorati`, t => t.forEach(i => ignored.add(i.id))));
+$("selRestore").addEventListener("click", () => applySel(n => `${n} titoli ripristinati`, t => t.forEach(i => ignored.delete(i.id))));
+let qTimer;
+$("q").addEventListener("input", e => { query = e.target.value; clearTimeout(qTimer); qTimer = setTimeout(renderList, 120); });
+
+/* --- dati --- */
+$("ignVisible").addEventListener("click", () => {
   const targets = visibleItems().filter(i => !ignored.has(i.id));
-  if (!targets.length) return;
-  if (!confirm(`Ignorare i ${targets.length} titoli attualmente filtrati? Potrai ripristinarli.`)) return;
-  targets.forEach(i => ignored.add(i.id)); save(); refresh();
+  if (!targets.length) { toast("Nessun titolo da ignorare"); return; }
+  withUndo(`${targets.length} titoli ignorati`, () => targets.forEach(i => ignored.add(i.id)));
 });
-document.getElementById("unIgnAll").addEventListener("click", () => {
-  if (!ignored.size) return;
-  if (!confirm("Rimettere nella lista tutti i titoli ignorati?")) return;
-  ignored.clear(); save(); refresh();
+$("unIgnAll").addEventListener("click", async () => {
+  if (!ignored.size) { toast("Non ci sono titoli ignorati"); return; }
+  if (await askConfirm("Rimettere nella lista tutti i titoli ignorati?", "Ripristina")) withUndo("Titoli ripristinati", () => ignored.clear());
 });
-document.getElementById("exportBk").addEventListener("click", exportBackup);
-document.getElementById("importBk").addEventListener("click", () => document.getElementById("importFile").click());
-document.getElementById("importFile").addEventListener("change", e => {
-  if (e.target.files[0]) importBackup(e.target.files[0]);
-  e.target.value = "";
+$("markAll").addEventListener("click", async () => {
+  if (await askConfirm("Segnare come visti tutti i titoli già usciti, esclusi gli ignorati?", "Segna tutto")) withUndo("Tutto segnato come visto", () => counted().forEach(i => setItemWatched(i, true)));
 });
-document.getElementById("markAll").addEventListener("click", () => {
-  if (!confirm("Segnare come visti tutti i titoli già usciti (esclusi gli ignorati)?")) return;
-  counted().forEach(i => setItemWatched(i, true)); save(); refresh();
+$("reset").addEventListener("click", async () => {
+  if (await askConfirm("Cancellare tutte le spunte e gli episodi visti? I titoli ignorati restano tali.", "Azzera")) withUndo("Spunte azzerate", () => { watched.clear(); epsDone.clear(); });
 });
-document.getElementById("reset").addEventListener("click", () => {
-  if (!confirm("Vuoi cancellare tutti i segni di spunta? Gli ignorati restano tali.")) return;
-  watched.clear(); epsDone.clear(); save(); refresh();
-});
+function exportBackup() {
+  const data = JSON.stringify({ app: CFG.appName, watched: [...watched], ignored: [...ignored], eps: [...epsDone] }, null, 1);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([data], { type: "application/json" }));
+  a.download = CFG.appName + "-backup.json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function importBackup(file) {
+  const r = new FileReader();
+  r.onload = async () => {
+    try {
+      const d = JSON.parse(r.result);
+      if (!Array.isArray(d.watched) || !Array.isArray(d.ignored)) throw new Error("formato");
+      const known = new Set(ITEMS.map(i => i.id)), knownEp = new Set(ITEMS.flatMap(epKeys));
+      watched = new Set(d.watched.map(migrateId).filter(id => known.has(id)));
+      ignored = new Set(d.ignored.map(migrateId).filter(id => known.has(id)));
+      epsDone = new Set((Array.isArray(d.eps) ? d.eps : []).filter(k => knownEp.has(k)));
+      normalizeEps(); refresh();
+      await save();
+      setStatus("Backup importato e salvato.");
+    } catch (e) { setStatus("File di backup non valido.", true); }
+  };
+  r.readAsText(file);
+}
+$("exportBk").addEventListener("click", exportBackup);
+$("importBk").addEventListener("click", () => $("importFile").click());
+$("importFile").addEventListener("change", e => { if (e.target.files[0]) importBackup(e.target.files[0]); e.target.value = ""; });
+
+/* --- icona per la schermata Home e altezza della testata --- */
+function makeIcon() {
+  try {
+    const c = document.createElement("canvas"); c.width = c.height = 180;
+    const g = c.getContext("2d");
+    g.fillStyle = CFG.icon.bg; g.fillRect(0, 0, 180, 180);
+    g.fillStyle = "rgba(255,255,255,.22)";
+    for (let x = 8; x < 180; x += 20) { g.fillRect(x, 10, 10, 8); g.fillRect(x, 162, 10, 8); }
+    g.fillStyle = "#fff"; g.textAlign = "center"; g.textBaseline = "middle";
+    g.font = `800 ${CFG.icon.letter.length > 1 ? 84 : 110}px "Arial Narrow", Arial, sans-serif`;
+    g.fillText(CFG.icon.letter, 90, 94);
+    $("touchIcon").href = c.toDataURL("image/png");
+  } catch (e) { /* senza icona personalizzata */ }
+}
+const syncHeader = () => document.documentElement.style.setProperty("--hh", $("top").getBoundingClientRect().height + "px");
+function trackHeader() {
+  syncHeader();
+  if (window.ResizeObserver) new ResizeObserver(syncHeader).observe($("top")); else window.addEventListener("resize", syncHeader);
+}
 
 (async function init() {
-  renderChips(); renderStudios();
-  await load();
+  makeIcon(); trackHeader();
+  watched = await loadKey(KEY); ignored = await loadKey(KEY_IGN); epsDone = await loadKey(KEY_EPS);
+  normalizeEps();
+  await loadPrefs();
   refresh();
-  try { await store.set("marvel-test", "1"); setStatus("Salvataggio automatico attivo."); }
+  try { await store.set(CFG.prefix + "-test", "1"); setStatus("Salvataggio automatico attivo."); }
   catch (e) { setStatus("Attenzione: qui il salvataggio automatico non è disponibile. Usa «Esporta backup» prima di chiudere.", true); }
 })();
 </script>
