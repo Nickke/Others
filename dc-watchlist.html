@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DC: cosa ho visto</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f5f6f8;
+    --surface: #ffffff;
+    --ink: #14171c;
+    --muted: #5a6070;
+    --line: #d9dce3;
+    --accent: #0a4fc2;
+    --accent-ink: #ffffff;
+    --film: #1f5fbf;
+    --serie: #b36b00;
+    --anim: #0e8a73;
+    --head: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --bg: #101218;
+      --surface: #1a1d25;
+      --ink: #eff0f3;
+      --muted: #a0a6b5;
+      --line: #2b303b;
+      --accent: #3f86ff;
+      --accent-ink: #ffffff;
+      --film: #5b9bff;
+      --serie: #f0a234;
+      --anim: #2dc9a8;
+    }
+  }
+  * { box-sizing: border-box;  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 80px; }
+
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0 12px;
+  }
+  .titlebar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  h1 {
+    font-family: var(--head);
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: .01em;
+    margin: 0;
+    line-height: 1;
+  }
+  .count { font-family: var(--head); font-size: 22px; font-weight: 700; white-space: nowrap; }
+  .count small { font-size: 15px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+
+  /* La striscia: un segmento per titolo, in ordine di uscita */
+  .strip { display: flex; gap: 2px; height: 22px; margin: 12px 0 4px; }
+  .strip i {
+    flex: 1; min-width: 2px; border-radius: 1px;
+    background: var(--line);
+    transition: background .15s, transform .15s;
+  }
+  .strip i.on { background: var(--c); }
+  .strip i.flash { transform: scaleY(1.35); }
+  .hours { font-size: 14px; margin: 6px 0 2px; display: flex; flex-wrap: wrap; gap: 2px 14px; }
+  .hours b { font-family: var(--head); font-size: 17px; }
+  .hours .sub { color: var(--muted); }
+  .strip-axis { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+
+  .tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; align-items: center; }
+  .search {
+    flex: 1 1 180px; min-width: 0;
+    font: inherit; padding: 8px 12px;
+    border: 1px solid var(--line); border-radius: 8px;
+    background: var(--surface); color: var(--ink);
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+  .chip {
+    font: inherit; font-size: 13px;
+    border: 1.5px solid var(--c, var(--line));
+    background: transparent; color: var(--ink);
+    padding: 4px 10px; border-radius: 999px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+  .chip[aria-pressed="false"] { opacity: .45; border-style: dashed; }
+  .chip[aria-pressed="false"]::before { background: transparent; border: 1.5px solid var(--c); }
+  .btn {
+    font: inherit; font-size: 14px; padding: 8px 12px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    border-radius: 8px; cursor: pointer;
+  }
+  .btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn.quiet { border-color: transparent; background: transparent; color: var(--muted); text-decoration: underline; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  h2.year {
+    font-family: var(--head);
+    font-size: 26px; font-weight: 800;
+    margin: 28px 0 6px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 4px;
+  }
+  h2.year span { font-size: 14px; font-weight: 500; color: var(--muted); font-family: var(--body); }
+
+  .row {
+    display: grid; grid-template-columns: 28px 1fr auto; gap: 12px;
+    align-items: start;
+    padding: 11px 4px;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    position: relative;
+  }
+  .row input { position: absolute; opacity: 0; pointer-events: none; }
+  .box {
+    width: 26px; height: 26px; border-radius: 6px;
+    border: 2px solid var(--muted);
+    display: grid; place-items: center;
+    margin-top: 1px;
+    transition: background .12s, border-color .12s;
+  }
+  .box svg { width: 16px; height: 16px; stroke: var(--accent-ink); stroke-width: 3; fill: none; opacity: 0; }
+  .row input:checked + .box { background: var(--accent); border-color: var(--accent); }
+  .row input:checked + .box svg { opacity: 1; }
+  .row input:focus-visible + .box { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .row:hover .box { border-color: var(--ink); }
+  .name { font-weight: 600; font-size: 17px; }
+  .row.done .name { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .meta { font-size: 13.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 2px; }
+  .tag { color: var(--c); font-weight: 600; }
+  .uni-name { color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; font-size: 12.5px; }
+  .chip.uni { border-radius: 6px; }
+  .chip.uni::before { display: none; }
+  .row.soon { cursor: default; opacity: .7; }
+  .row.soon .box { border-style: dashed; }
+  .badge {
+    font-size: 12px; font-weight: 600;
+    background: var(--ink); color: var(--bg);
+    padding: 1px 7px; border-radius: 4px;
+  }
+  .ign-btn {
+    font: inherit; font-size: 13px; color: var(--muted);
+    background: transparent; border: 1px solid var(--line); border-radius: 6px;
+    padding: 3px 9px; cursor: pointer; align-self: start; white-space: nowrap;
+  }
+  .ign-btn:hover { color: var(--ink); border-color: var(--ink); }
+  .row.ign { opacity: .55; cursor: default; }
+  .row.ign .box { border-style: dashed; }
+  .row.ign .name { text-decoration: none; }
+  .selbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    background: var(--surface); border-top: 2px solid var(--ink);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    display: none;
+  }
+  .selmode .selbar { display: block; }
+  .selbar-in { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .selbar .n { font-family: var(--head); font-weight: 700; font-size: 18px; margin-right: auto; }
+  .selbar .btn { padding: 6px 10px; font-size: 14px; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .selmode .ign-btn { display: none; }
+  .selmode .row, .selmode .row.ign, .selmode .row.soon { cursor: pointer; }
+  .selmode .wrap { padding-bottom: 170px; }
+  .empty { padding: 40px 0; text-align: center; color: var(--muted); }
+  footer { margin-top: 36px; font-size: 13px; color: var(--muted); }
+  footer p { margin: 6px 0; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="titlebar">
+      <h1>DC: cosa ho visto</h1>
+      <div class="count" aria-live="polite"><span id="done">0</span> / <span id="total">0</span><small id="pct">0%</small></div>
+    </div>
+    <div class="strip" id="strip" aria-hidden="true"></div>
+    <div class="hours" id="hours" aria-live="polite"></div>
+    <div class="strip-axis"><span>1978</span><span>oggi</span></div>
+  </header>
+
+  <div class="tools">
+      <input class="search" id="q" type="search" placeholder="Cerca un titolo" aria-label="Cerca un titolo">
+      <button class="btn" id="hideDone" aria-pressed="false">Nascondi i visti</button>
+      <button class="btn" id="showIgn" aria-pressed="false">Mostra ignorati (0)</button>
+      <button class="btn" id="selMode" aria-pressed="false">Seleziona più titoli</button>
+      <button class="btn primary" id="selAllTop">Seleziona tutto</button>
+      <div class="chips" id="chips" role="group" aria-label="Filtra per tipo"></div>
+      <div class="chips" id="universes" role="group" aria-label="Filtra per universo"></div>
+  </div>
+
+  <main id="list"></main>
+
+  <footer>
+    <p id="saveStatus"></p>
+    <p>Con «Ignora» togli un titolo dalla lista e dal conteggio: non lo vedrai più, ma puoi ripristinarlo in qualsiasi momento. Spunte e titoli ignorati vengono salvati in automatico.</p>
+    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni seriali è la durata complessiva stimata della stagione (o dell'intera serie, per quelle concluse). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 22 ottobre 2026: <i>Clayface</i> esce il 23 ottobre 2026, <i>Man of Tomorrow</i> il 9 luglio 2027 e <i>The Batman Part II</i> il 18 febbraio 2028. Puoi filtrare per tipo o per universo. Non sono inclusi cortometraggi, speciali minori e le serie animate per bambini.</p>
+    <p>
+      <button class="btn quiet" id="ignVisible">Ignora i titoli filtrati</button>
+      <button class="btn quiet" id="unIgnAll">Ripristina gli ignorati</button>
+      <button class="btn quiet" id="exportBk">Esporta backup</button>
+      <button class="btn quiet" id="importBk">Importa backup</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <button class="btn quiet" id="markAll">Segna tutto come visto</button>
+      <button class="btn quiet" id="reset">Azzera tutto</button>
+    </p>
+  </footer>
+</div>
+
+<div class="selbar" id="selbar" role="region" aria-label="Azioni sulla selezione">
+  <div class="selbar-in">
+    <span class="n" id="selN" aria-live="polite">0 selezionati</span>
+    <button class="btn" id="selAll">Seleziona tutto</button>
+    <button class="btn" id="selNone">Deseleziona</button>
+    <button class="btn primary" id="selWatch">Segna come visto</button>
+    <button class="btn" id="selUnwatch">Non visto</button>
+    <button class="btn" id="selIgn">Ignora</button>
+    <button class="btn" id="selRestore">Ripristina</button>
+    <button class="btn" id="selDone">Fine</button>
+  </div>
+</div>
+
+<script>
+const TYPES = {
+  film:  { label: "Film",                    color: "var(--film)" },
+  serie: { label: "Serie TV e streaming",    color: "var(--serie)" },
+  anim:  { label: "Animazione",              color: "var(--anim)" }
+};
+
+const UNIVERSES = {
+  dcu:  "DCU (James Gunn)",
+  dceu: "DCEU (Snyderverse)",
+  els:  "Elseworlds",
+  cls:  "Saghe classiche",
+  arw:  "Arrowverse",
+  tv:   "Altre serie TV",
+  ani:  "Animazione DC",
+  alt:  "Altri film DC"
+};
+
+// [data, titolo, tipo, universo, nota, stato]   stato: "soon" = in arrivo, "tbd" = in arrivo con data da confermare
+const RAW = [
+  // Saghe classiche: Superman, Burton/Schumacher, Nolan
+  ["1978-12-15","Superman (1978)","film","cls","Richard Donner"],
+  ["1980-12-19","Superman II","film","cls"],
+  ["1983-06-17","Superman III","film","cls"],
+  ["1984-11-21","Supergirl (1984)","film","cls"],
+  ["1987-07-24","Superman IV","film","cls"],
+  ["1989-06-23","Batman","film","cls","Tim Burton"],
+  ["1992-06-19","Batman – Il ritorno","film","cls","Tim Burton"],
+  ["1995-06-16","Batman Forever","film","cls","Joel Schumacher"],
+  ["1997-06-20","Batman & Robin","film","cls","Joel Schumacher"],
+  ["2005-06-15","Batman Begins","film","cls","Trilogia di Christopher Nolan"],
+  ["2006-06-28","Superman Returns","film","cls","Bryan Singer"],
+  ["2008-07-18","Il cavaliere oscuro","film","cls","Trilogia di Christopher Nolan"],
+  ["2012-07-20","Il cavaliere oscuro – Il ritorno","film","cls","Trilogia di Christopher Nolan"],
+
+  // Altri film DC
+  ["2004-06-04","Catwoman","film","alt"],
+  ["2005-02-18","Constantine","film","alt"],
+  ["2006-03-17","V for Vendetta","film","alt","Vertigo"],
+  ["2009-03-06","Watchmen","film","alt","Versione al cinema"],
+  ["2010-06-18","Jonah Hex","film","alt"],
+  ["2011-06-17","Lanterna Verde","film","alt"],
+
+  // DCEU
+  ["2013-06-14","L'uomo d'acciaio","film","dceu"],
+  ["2016-03-25","Batman v Superman: Dawn of Justice","film","dceu"],
+  ["2016-08-05","Suicide Squad","film","dceu"],
+  ["2017-06-02","Wonder Woman","film","dceu"],
+  ["2017-11-17","Justice League","film","dceu"],
+  ["2018-12-21","Aquaman","film","dceu"],
+  ["2019-04-05","Shazam!","film","dceu"],
+  ["2020-02-07","Birds of Prey","film","dceu"],
+  ["2020-12-25","Wonder Woman 1984","film","dceu"],
+  ["2021-03-18","Zack Snyder's Justice League","film","dceu","Versione del regista"],
+  ["2021-08-06","The Suicide Squad","film","dceu","James Gunn"],
+  ["2022-01-13","Peacemaker – Stagione 1","serie","dceu","8 episodi, HBO Max (la stagione 2 è nel DCU)"],
+  ["2022-10-21","Black Adam","film","dceu"],
+  ["2023-03-17","Shazam! Furia degli dei","film","dceu"],
+  ["2023-06-16","The Flash","film","dceu"],
+  ["2023-08-18","Blue Beetle","film","dceu"],
+  ["2023-12-22","Aquaman e il regno perduto","film","dceu"],
+
+  // Elseworlds
+  ["2019-10-04","Joker","film","els"],
+  ["2022-03-04","The Batman","film","els","Matt Reeves"],
+  ["2024-09-19","The Penguin","serie","els","8 episodi, HBO"],
+  ["2024-10-04","Joker: Folie à Deux","film","els"],
+  ["2028-02-18","The Batman Part II","film","els","Matt Reeves","soon"],
+
+  // DCU
+  ["2024-12-05","Creature Commandos – Stagione 1","anim","dcu","7 episodi, animazione"],
+  ["2025-07-11","Superman (2025)","film","dcu","James Gunn"],
+  ["2025-08-21","Peacemaker – Stagione 2","serie","dcu","8 episodi, HBO Max"],
+  ["2026-06-26","Supergirl (2026)","film","dcu"],
+  ["2026-08-16","Lanterns – Stagione 1","serie","dcu","8 episodi, HBO"],
+  ["2026-10-23","Clayface","film","dcu","Horror","soon"],
+  ["2027-07-09","Man of Tomorrow","film","dcu","","soon"],
+  ["2027-12-31","Creature Commandos – Stagione 2","anim","dcu","Animazione. Data da confermare","tbd"],
+
+  // Arrowverse
+  ["2012-10-10","Arrow","serie","arw","8 stagioni, 2012–2020"],
+  ["2014-10-07","The Flash (serie TV)","serie","arw","9 stagioni, 2014–2023"],
+  ["2015-10-26","Supergirl (serie TV)","serie","arw","6 stagioni, 2015–2021"],
+  ["2016-01-21","Legends of Tomorrow","serie","arw","7 stagioni, 2016–2022"],
+  ["2018-01-16","Black Lightning","serie","arw","4 stagioni, 2018–2021"],
+  ["2019-10-06","Batwoman","serie","arw","3 stagioni, 2019–2022"],
+  ["2021-02-23","Superman & Lois","serie","arw","4 stagioni, 2021–2024"],
+
+  // Altre serie TV
+  ["2001-10-16","Smallville","serie","tv","10 stagioni, 2001–2011"],
+  ["2014-09-22","Gotham","serie","tv","5 stagioni, 2014–2019"],
+  ["2018-10-12","Titans","serie","tv","4 stagioni, 2018–2023"],
+  ["2019-02-15","Doom Patrol","serie","tv","4 stagioni, 2019–2023"],
+  ["2019-05-31","Swamp Thing (serie TV)","serie","tv","1 stagione"],
+  ["2019-07-28","Pennyworth","serie","tv","3 stagioni, 2019–2022"],
+  ["2020-05-18","Stargirl","serie","tv","3 stagioni, 2020–2022"],
+
+  // Animazione
+  ["1992-09-05","Batman: The Animated Series","anim","ani","85 episodi, 1992–1995"],
+  ["1993-12-25","Batman: La maschera del fantasma","anim","ani","Film animato"],
+  ["1996-09-06","Superman: The Animated Series","anim","ani","54 episodi, 1996–2000"],
+  ["1999-01-10","Batman of the Future","anim","ani","52 episodi, 1999–2001"],
+  ["2001-11-17","Justice League e Justice League Unlimited","anim","ani","91 episodi, 2001–2006"],
+  ["2003-07-19","Teen Titans","anim","ani","65 episodi, 2003–2006"],
+  ["2010-07-27","Batman: Under the Red Hood","anim","ani","Film animato"],
+  ["2010-11-26","Young Justice","anim","ani","4 stagioni, 2010–2022"],
+  ["2012-09-25","Batman: The Dark Knight Returns – Parte 1","anim","ani","Film animato"],
+  ["2013-01-29","Batman: The Dark Knight Returns – Parte 2","anim","ani","Film animato"],
+  ["2013-07-30","Justice League: The Flashpoint Paradox","anim","ani","Film animato"],
+  ["2016-07-25","Batman: The Killing Joke","anim","ani","Film animato"],
+  ["2017-02-10","LEGO Batman – Il film","anim","ani","Film animato"],
+  ["2021-06-22","Batman: The Long Halloween – Parte 1","anim","ani","Film animato"],
+  ["2021-07-27","Batman: The Long Halloween – Parte 2","anim","ani","Film animato"],
+  ["2022-07-29","DC League of Super-Pets","anim","ani","Film animato"]
+];
+
+const MINUTES = {
+ "Superman (1978)": 143,
+ "Superman II": 127,
+ "Superman III": 125,
+ "Supergirl (1984)": 124,
+ "Superman IV": 90,
+ "Batman": 126,
+ "Batman – Il ritorno": 126,
+ "Batman Forever": 122,
+ "Batman & Robin": 125,
+ "Batman Begins": 140,
+ "Superman Returns": 154,
+ "Il cavaliere oscuro": 152,
+ "Il cavaliere oscuro – Il ritorno": 164,
+ "Catwoman": 104,
+ "Constantine": 121,
+ "V for Vendetta": 132,
+ "Watchmen": 162,
+ "Jonah Hex": 81,
+ "Lanterna Verde": 114,
+ "L'uomo d'acciaio": 143,
+ "Batman v Superman: Dawn of Justice": 151,
+ "Suicide Squad": 123,
+ "Wonder Woman": 141,
+ "Justice League": 120,
+ "Aquaman": 143,
+ "Shazam!": 132,
+ "Birds of Prey": 109,
+ "Wonder Woman 1984": 151,
+ "Zack Snyder's Justice League": 242,
+ "The Suicide Squad": 132,
+ "Peacemaker – Stagione 1": 320,
+ "Black Adam": 125,
+ "Shazam! Furia degli dei": 130,
+ "The Flash": 144,
+ "Blue Beetle": 127,
+ "Aquaman e il regno perduto": 124,
+ "Joker": 122,
+ "The Batman": 176,
+ "The Penguin": 440,
+ "Joker: Folie à Deux": 138,
+ "Creature Commandos – Stagione 1": 210,
+ "Superman (2025)": 129,
+ "Peacemaker – Stagione 2": 380,
+ "Supergirl (2026)": 108,
+ "Lanterns – Stagione 1": 440,
+ "Clayface": 108,
+ "Arrow": 7140,
+ "The Flash (serie TV)": 7730,
+ "Supergirl (serie TV)": 5290,
+ "Legends of Tomorrow": 4620,
+ "Black Lightning": 2440,
+ "Batwoman": 2020,
+ "Superman & Lois": 2270,
+ "Smallville": 9100,
+ "Gotham": 4300,
+ "Titans": 2450,
+ "Doom Patrol": 2160,
+ "Swamp Thing (serie TV)": 450,
+ "Pennyworth": 1500,
+ "Stargirl": 1510,
+ "Batman: The Animated Series": 1870,
+ "Batman: La maschera del fantasma": 76,
+ "Superman: The Animated Series": 1190,
+ "Batman of the Future": 1140,
+ "Justice League e Justice League Unlimited": 2000,
+ "Teen Titans": 1430,
+ "Batman: Under the Red Hood": 75,
+ "Young Justice": 2290,
+ "Batman: The Dark Knight Returns – Parte 1": 76,
+ "Batman: The Dark Knight Returns – Parte 2": 76,
+ "Justice League: The Flashpoint Paradox": 81,
+ "Batman: The Killing Joke": 76,
+ "LEGO Batman – Il film": 104,
+ "Batman: The Long Halloween – Parte 1": 88,
+ "Batman: The Long Halloween – Parte 2": 87,
+ "DC League of Super-Pets": 105
+};
+const isSeries = note => /stagion|episod/i.test(note);   // durata complessiva stimata
+
+const slug = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const ITEMS = [...RAW].sort((a, b) => a[0].localeCompare(b[0])).map(([date,title,type,uni,note,state]) => ({
+  id: date + "-" + slug(title), date, title, type, note: note || "", soon: state === "soon" || state === "tbd",
+  year: date.slice(0,4), tbd: state === "tbd", uni: UNIVERSES[uni],
+  min: MINUTES[title] || 0, approx: isSeries(note || "")
+}));
+
+const KEY = "dc-watched-v1";
+const KEY_IGN = "dc-ignored-v1";
+let watched = new Set();
+let ignored = new Set();
+let activeTypes = new Set(Object.keys(TYPES));
+let activeUnis = new Set(Object.values(UNIVERSES));
+let hideDone = false, showIgn = false, query = "";
+let selectMode = false;
+const selected = new Set();
+
+// Archiviazione: prima localStorage, in modo sincrono; in più window.storage quando la pagina gira dentro Claude; poi la memoria.
+const mem = {};
+const store = {
+  readLocal(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+  writeLocal(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } },
+  async get(k) {
+    const local = this.readLocal(k);
+    if (local) return local;
+    try {
+      if (window.storage && typeof window.storage.get === "function") {
+        const r = await window.storage.get(k, false);
+        if (r && r.value) return r.value;
+      }
+    } catch (e) { /* chiave assente o storage non disponibile */ }
+    return mem[k] === undefined ? null : mem[k];
+  },
+  async set(k, v) {
+    mem[k] = v;
+    let ok = this.writeLocal(k, v);          // scrittura immediata, prima di qualsiasi attesa
+    try {
+      if (window.storage && typeof window.storage.set === "function") {
+        const r = await window.storage.set(k, v, false);
+        if (r) ok = true;
+      }
+    } catch (e) { /* si resta sull'altro livello */ }
+    if (!ok) throw new Error("nessuno storage disponibile");
+  }
+};
+
+function setStatus(msg, bad) {
+  const el = document.getElementById("saveStatus");
+  el.textContent = msg;
+  el.style.color = bad ? "var(--accent)" : "";
+}
+async function loadKey(key) {
+  try {
+    const v = await store.get(key);
+    if (v) return new Set(JSON.parse(v));
+  } catch (e) { /* dati assenti o illeggibili */ }
+  return new Set();
+}
+async function load() { watched = await loadKey(KEY); ignored = await loadKey(KEY_IGN); }
+async function save() {
+  try {
+    await Promise.all([
+      store.set(KEY, JSON.stringify([...watched])),
+      store.set(KEY_IGN, JSON.stringify([...ignored]))
+    ]);
+    setStatus("Salvato automaticamente.");
+  } catch (e) {
+    setStatus("Salvataggio non riuscito: usa «Esporta backup» per non perdere i dati.", true);
+  }
+}
+
+function exportBackup() {
+  const data = JSON.stringify({ app: "dc-watchlist", watched: [...watched], ignored: [...ignored] }, null, 1);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([data], { type: "application/json" }));
+  a.download = "dc-watchlist-backup.json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function importBackup(file) {
+  const r = new FileReader();
+  r.onload = async () => {
+    try {
+      const d = JSON.parse(r.result);
+      if (!Array.isArray(d.watched) || !Array.isArray(d.ignored)) throw new Error("formato");
+      const known = new Set(ITEMS.map(i => i.id));
+      watched = new Set(d.watched.filter(id => known.has(id)));
+      ignored = new Set(d.ignored.filter(id => known.has(id)));
+      refresh();
+      await save();                       // save() scrive il proprio messaggio di stato: il nostro va dopo
+      setStatus("Backup importato e salvato.");
+    } catch (e) { setStatus("File di backup non valido.", true); }
+  };
+  r.readAsText(file);
+}
+
+const fmt = (d, tbd) => tbd ? d.slice(0,4) : new Date(d + "T12:00:00").toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
+const fmtDur = (m, approx) => {
+  if (!m) return "durata da definire";
+  const t = m < 60 ? `${m} min` : (m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`);
+  return (approx ? "circa " : "") + t;
+};
+const fmtHours = m => {
+  const h = m / 60;
+  return (h >= 100 ? Math.round(h).toLocaleString("it-IT") : h.toLocaleString("it-IT", { maximumFractionDigits: 1 })) + " h";
+};
+const sumMin = arr => arr.reduce((a, i) => a + i.min, 0);
+const CHECK = '<svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+// Titoli che contano: già usciti e non ignorati
+const counted = () => ITEMS.filter(i => !i.soon && !ignored.has(i.id));
+
+function renderStrip() {
+  document.getElementById("strip").innerHTML = counted().map(i =>
+    `<i data-id="${i.id}" title="${i.title.replace(/"/g,"&quot;")}" style="--c:${TYPES[i.type].color}"></i>`).join("");
+}
+function updateStrip(flashId) {
+  document.querySelectorAll("#strip i").forEach(el => {
+    el.classList.toggle("on", watched.has(el.dataset.id));
+    if (flashId && el.dataset.id === flashId) {
+      el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 250);
+    }
+  });
+}
+function updateCount() {
+  const real = counted();
+  const n = real.filter(i => watched.has(i.id)).length;
+  document.getElementById("done").textContent = n;
+  document.getElementById("total").textContent = real.length;
+  document.getElementById("pct").textContent = (real.length ? Math.round(n / real.length * 100) : 0) + "% visto";
+  const totMin = sumMin(real), doneMin = sumMin(real.filter(i => watched.has(i.id)));
+  const vis = visibleItems().filter(i => !i.soon && !ignored.has(i.id));
+  document.getElementById("hours").innerHTML =
+    `<span>Totale <b>${fmtHours(totMin)}</b></span>` +
+    `<span>Viste <b>${fmtHours(doneMin)}</b></span>` +
+    `<span>Da vedere <b>${fmtHours(totMin - doneMin)}</b></span>` +
+    `<span class="sub">Titoli filtrati: ${vis.length}, ${fmtHours(sumMin(vis))}</span>`;
+  document.getElementById("showIgn").textContent = `Mostra ignorati (${ignored.size})`;
+}
+
+function renderChips() {
+  document.getElementById("chips").innerHTML = Object.entries(TYPES).map(([k, t]) =>
+    `<button class="chip" data-t="${k}" aria-pressed="${activeTypes.has(k)}" style="--c:${t.color}">${t.label}</button>`).join("");
+}
+function renderUniverses() {
+  document.getElementById("universes").innerHTML = Object.values(UNIVERSES).map(n =>
+    `<button class="chip uni" data-u="${n}" aria-pressed="${activeUnis.has(n)}" style="--c:var(--ink)">${n}</button>`).join("");
+}
+
+function visibleItems() {
+  const q = query.trim().toLowerCase();
+  return ITEMS.filter(i =>
+    activeTypes.has(i.type) && activeUnis.has(i.uni) &&
+    (showIgn || !ignored.has(i.id)) &&
+    (!hideDone || !watched.has(i.id)) &&
+    (!q || i.title.toLowerCase().includes(q)));
+}
+
+function renderList() {
+  updateCount();
+  updateBar();
+  const vis = visibleItems();
+  const list = document.getElementById("list");
+  if (!vis.length) { list.innerHTML = '<div class="empty">Nessun titolo con questi filtri.</div>'; return; }
+
+  const byYear = {};
+  vis.forEach(i => (byYear[i.year] = byYear[i.year] || []).push(i));
+  list.innerHTML = Object.keys(byYear).sort().map(y => {
+    const arr = byYear[y];
+    const real = arr.filter(i => !i.soon && !ignored.has(i.id));
+    const n = real.filter(i => watched.has(i.id)).length;
+    const counter = real.length ? `${n} di ${real.length} · ${fmtHours(sumMin(real))}` : (arr.some(i => !ignored.has(i.id)) ? "in arrivo" : "ignorati");
+    return `<section><h2 class="year">${y}<span>${counter}</span></h2>` + arr.map(i => {
+      const ign = ignored.has(i.id);
+      const on = watched.has(i.id) && !ign;
+      const t = TYPES[i.type];
+      const checked = selectMode ? selected.has(i.id) : on;
+      const disabled = selectMode ? false : (i.soon || ign);
+      return `<label class="row ${on ? "done" : ""} ${i.soon ? "soon" : ""} ${ign ? "ign" : ""}">
+        <input type="checkbox" data-id="${i.id}" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""}>
+        <span class="box" aria-hidden="true">${CHECK}</span>
+        <span>
+          <span class="name">${i.title}</span>
+          <span class="meta">
+            <span class="tag" style="--c:${t.color}">${t.label.split(" e ")[0]}</span>
+            <span class="uni-name">${i.uni}</span>
+            <span>${fmt(i.date, i.tbd)}</span>
+            <span>${fmtDur(i.min, i.approx)}</span>
+            ${i.note ? `<span>${i.note}</span>` : ""}
+            ${i.soon ? '<span class="badge">In arrivo</span>' : ""}
+            ${ign ? '<span class="badge">Ignorato</span>' : ""}
+            ${selectMode && watched.has(i.id) && !ign ? '<span class="badge">Visto</span>' : ""}
+          </span>
+        </span>
+        <button type="button" class="ign-btn" data-ign="${i.id}" title="${ign ? "Rimetti questo titolo nella lista" : "Non mi interessa: toglilo dalla lista e dal conteggio"}">${ign ? "Ripristina" : "Ignora"}</button>
+      </label>`;
+    }).join("") + "</section>";
+  }).join("");
+}
+
+const selVisible = () => visibleItems().filter(i => selected.has(i.id));
+function updateBar() {
+  const vis = visibleItems();
+  const allSel = vis.length > 0 && vis.every(i => selected.has(i.id));
+  document.getElementById("selAllTop").textContent = selectMode && allSel ? "Deseleziona tutto" : "Seleziona tutto";
+  if (!selectMode) return;
+  const n = selVisible().length;
+  document.getElementById("selN").textContent = n === 1 ? "1 selezionato" : `${n} selezionati`;
+  ["selWatch", "selUnwatch", "selIgn", "selRestore"].forEach(id => document.getElementById(id).disabled = !n);
+}
+function setSelectMode(on) {
+  selectMode = on;
+  selected.clear();
+  document.body.classList.toggle("selmode", on);
+  document.getElementById("selMode").setAttribute("aria-pressed", on);
+  renderList();
+}
+function applySel(fn) {
+  const t = selVisible();
+  if (!t.length) return;
+  fn(t);
+  selected.clear();
+  save(); refresh();
+}
+
+function refresh() { renderStrip(); renderList(); updateStrip(); updateCount(); }
+
+document.getElementById("list").addEventListener("click", e => {
+  const b = e.target.closest(".ign-btn"); if (!b) return;
+  e.preventDefault();
+  const id = b.dataset.ign;
+  ignored.has(id) ? ignored.delete(id) : ignored.add(id);
+  save(); refresh();
+});
+document.getElementById("list").addEventListener("change", e => {
+  const id = e.target.dataset.id;
+  if (!id) return;
+  if (selectMode) {
+    e.target.checked ? selected.add(id) : selected.delete(id);
+    updateBar();
+    return;
+  }
+  e.target.checked ? watched.add(id) : watched.delete(id);
+  save();
+  if (hideDone) { refresh(); } else {
+    const row = e.target.closest(".row");
+    row.classList.toggle("done", e.target.checked);
+    const sec = row.closest("section");
+    const real = [...sec.querySelectorAll("input:not(:disabled)")];
+    const yearTot = sumMin(real.map(c => ITEMS.find(x => x.id === c.dataset.id)));
+    sec.querySelector("h2 span").textContent = `${real.filter(c => c.checked).length} di ${real.length} · ${fmtHours(yearTot)}`;
+    updateStrip(id); updateCount();
+  }
+});
+document.getElementById("chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  const t = b.dataset.t;
+  activeTypes.has(t) ? activeTypes.delete(t) : activeTypes.add(t);
+  b.setAttribute("aria-pressed", activeTypes.has(t));
+  renderList();
+});
+document.getElementById("universes").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  const n = b.dataset.u;
+  activeUnis.has(n) ? activeUnis.delete(n) : activeUnis.add(n);
+  b.setAttribute("aria-pressed", activeUnis.has(n));
+  renderList();
+});
+document.getElementById("selMode").addEventListener("click", () => setSelectMode(!selectMode));
+document.getElementById("selDone").addEventListener("click", () => setSelectMode(false));
+document.getElementById("selAllTop").addEventListener("click", () => {
+  if (!selectMode) { selectMode = true; selected.clear(); document.body.classList.add("selmode");
+    document.getElementById("selMode").setAttribute("aria-pressed", true); }
+  const vis = visibleItems();
+  const allSel = vis.length > 0 && vis.every(i => selected.has(i.id));
+  vis.forEach(i => allSel ? selected.delete(i.id) : selected.add(i.id));
+  renderList();
+});
+document.getElementById("selAll").addEventListener("click", () => {
+  visibleItems().forEach(i => selected.add(i.id)); renderList();
+});
+document.getElementById("selNone").addEventListener("click", () => { selected.clear(); renderList(); });
+document.getElementById("selWatch").addEventListener("click", () =>
+  applySel(t => t.filter(i => !i.soon && !ignored.has(i.id)).forEach(i => watched.add(i.id))));
+document.getElementById("selUnwatch").addEventListener("click", () => applySel(t => t.forEach(i => watched.delete(i.id))));
+document.getElementById("selIgn").addEventListener("click", () => applySel(t => t.forEach(i => ignored.add(i.id))));
+document.getElementById("selRestore").addEventListener("click", () => applySel(t => t.forEach(i => ignored.delete(i.id))));
+document.getElementById("q").addEventListener("input", e => { query = e.target.value; renderList(); });
+document.getElementById("hideDone").addEventListener("click", e => {
+  hideDone = !hideDone; e.target.setAttribute("aria-pressed", hideDone); renderList();
+});
+document.getElementById("showIgn").addEventListener("click", e => {
+  showIgn = !showIgn; e.target.setAttribute("aria-pressed", showIgn); renderList();
+});
+document.getElementById("ignVisible").addEventListener("click", () => {
+  const targets = visibleItems().filter(i => !ignored.has(i.id));
+  if (!targets.length) return;
+  if (!confirm(`Ignorare i ${targets.length} titoli attualmente filtrati? Potrai ripristinarli.`)) return;
+  targets.forEach(i => ignored.add(i.id)); save(); refresh();
+});
+document.getElementById("unIgnAll").addEventListener("click", () => {
+  if (!ignored.size) return;
+  if (!confirm("Rimettere nella lista tutti i titoli ignorati?")) return;
+  ignored.clear(); save(); refresh();
+});
+document.getElementById("exportBk").addEventListener("click", exportBackup);
+document.getElementById("importBk").addEventListener("click", () => document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change", e => {
+  if (e.target.files[0]) importBackup(e.target.files[0]);
+  e.target.value = "";
+});
+document.getElementById("markAll").addEventListener("click", () => {
+  if (!confirm("Segnare come visti tutti i titoli già usciti (esclusi gli ignorati)?")) return;
+  counted().forEach(i => watched.add(i.id)); save(); refresh();
+});
+document.getElementById("reset").addEventListener("click", () => {
+  if (!confirm("Vuoi cancellare tutti i segni di spunta? Gli ignorati restano tali.")) return;
+  watched.clear(); save(); refresh();
+});
+
+(async function init() {
+  renderChips(); renderUniverses();
+  await load();
+  refresh();
+  try { await store.set("dc-test", "1"); setStatus("Salvataggio automatico attivo."); }
+  catch (e) { setStatus("Attenzione: qui il salvataggio automatico non è disponibile. Usa «Esporta backup» prima di chiudere.", true); }
+})();
+</script>
+</body>
+</html>
