@@ -22,8 +22,8 @@
     --accent-ink: #ffffff;
     --film: #cf1f26;
     --serie: #2457c5;
-    --anim: #0b8a72;
-    --special: #a86400;
+    --anim: #07765f;
+    --special: #935c00;
     --tv: #6b45b8;
     --sony: #b01f78;
     --reel: #14171f;
@@ -63,7 +63,8 @@
   }
   body.noscroll { overflow: hidden; }
   button { font: inherit; color: inherit; touch-action: manipulation; }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 96px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-right)) 96px max(16px, env(safe-area-inset-left)); }
+  html:has(body.selmode) { scroll-padding-bottom: 200px; }
   :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
   /* Testata fissa: titolo, avanzamento e pellicola */
@@ -123,11 +124,11 @@
   .next-act { display: flex; gap: 8px; flex-shrink: 0; }
 
   .btn {
-    min-height: 40px; padding: 8px 14px; border: 1px solid var(--line); background: var(--surface);
+    min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); background: var(--surface);
     color: var(--ink); border-radius: 10px; cursor: pointer; font-size: 15px;
   }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
-  .btn.quiet { border-color: transparent; background: transparent; color: var(--muted); text-decoration: underline; min-height: 36px; padding: 6px 8px; font-size: 14px; }
+  .btn.quiet { border-color: transparent; background: transparent; color: var(--muted); text-decoration: underline; min-height: 44px; padding: 6px 10px; font-size: 14px; }
   .btn[disabled] { opacity: .45; cursor: default; }
 
   .bar { display: flex; gap: 8px; margin-top: 14px; align-items: center; }
@@ -173,16 +174,16 @@
   .meta { font-size: 13.5px; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 3px; }
   .meta.chips2 { margin-top: 5px; }
   .tag { color: var(--c); font-weight: 700; }
-  .grp { color: var(--ink); border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; font-size: 12.5px; }
+  .grp { color: var(--ink); border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; font-size: 13px; }
   .row.soon { cursor: default; opacity: .7; }
   .row.soon .box { border-style: dashed; }
-  .badge { font-size: 12px; font-weight: 600; background: var(--ink); color: var(--bg); padding: 1px 7px; border-radius: 5px; }
+  .badge { font-size: 13px; font-weight: 600; background: var(--ink); color: var(--bg); padding: 1px 7px; border-radius: 5px; }
   .prog { display: block; height: 4px; margin-top: 8px; border-radius: 2px; background: var(--line); overflow: hidden; }
   .prog[hidden] { display: none; }
   .prog i { display: block; height: 100%; background: var(--c); }
   .ign-btn {
     font-size: 13px; color: var(--muted); background: transparent; border: 1px solid transparent; border-radius: 8px;
-    padding: 6px 8px; cursor: pointer; align-self: start; white-space: nowrap; min-height: 36px;
+    padding: 6px 8px; cursor: pointer; align-self: start; white-space: nowrap; min-height: 44px;
   }
   .ign-btn:hover { color: var(--ink); border-color: var(--line); }
   .row.ign { opacity: .55; cursor: default; }
@@ -191,8 +192,9 @@
 
   .eps-btn {
     font-size: 13px; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 7px;
-    padding: 2px 9px; cursor: pointer; min-height: 28px; font-variant-numeric: tabular-nums;
+    padding: 2px 9px; cursor: pointer; min-height: 30px; font-variant-numeric: tabular-nums; position: relative;
   }
+  .eps-btn::after { content: ""; position: absolute; inset: -9px -5px; }
   .eps-btn.part { border-color: var(--c); color: var(--c); font-weight: 700; }
   .eps-btn[aria-expanded="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
   .eps { padding: 0 8px 16px 52px; }
@@ -200,16 +202,19 @@
   .season { margin-top: 12px; }
   .season.cross { border-left: 3px solid var(--accent); padding-left: 9px; }
   .season-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
-  .season-h .btn { min-height: 34px; padding: 4px 12px; font-size: 13.5px; white-space: nowrap; }
-  .ep-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .season-h .btn { min-height: 44px; padding: 4px 14px; font-size: 14px; white-space: nowrap; }
+  .ep-grid { display: flex; flex-wrap: wrap; gap: 8px; }
   .ep {
-    min-width: 42px; height: 40px; padding: 0 6px; font-size: 15px; font-variant-numeric: tabular-nums;
+    min-width: 44px; height: 44px; padding: 0 6px; font-size: 15px; font-variant-numeric: tabular-nums;
     border: 1.5px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink); cursor: pointer;
     -webkit-touch-callout: none; user-select: none; -webkit-user-select: none;
   }
   .ep[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
   .ep.next { border-color: var(--ink); border-width: 2.5px; font-weight: 700; }
 
+  .btn, .chip, .ep, .eps-btn, .ign-btn { transition: opacity .1s, background .12s, border-color .12s; }
+  .btn:active, .chip:active, .ep:active, .eps-btn:active, .ign-btn:active { opacity: .6; }
+  .row:not(.soon):not(.ign):active { background: color-mix(in srgb, var(--ink) 7%, transparent); }
   .empty { padding: 40px 0; text-align: center; color: var(--muted); }
   .empty .btn { margin-top: 12px; }
 
@@ -221,18 +226,18 @@
   /* Selezione multipla */
   .selbar {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 2px solid var(--ink);
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); display: none;
+    padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); display: none;
   }
   .selmode .selbar { display: block; }
-  .selbar-in { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .selbar-in { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   .selbar .n { font-family: var(--head); font-weight: 700; font-size: 18px; margin-right: auto; }
-  .selbar .btn { min-height: 40px; padding: 6px 11px; font-size: 14.5px; }
+  .selbar .btn { min-height: 44px; padding: 6px 11px; font-size: 14.5px; }
   .selmode .ign-btn, .selmode .eps-btn, .selmode .eps { display: none; }
   .selmode .row, .selmode .row.ign, .selmode .row.soon { cursor: pointer; }
   .selmode .wrap { padding-bottom: 190px; }
 
   /* Pannello a scomparsa (filtri e conferme) */
-  .sheet-back { position: fixed; inset: 0; z-index: 40; background: rgba(8, 10, 18, .5); display: flex; align-items: flex-end; justify-content: center; }
+  .sheet-back { position: fixed; inset: 0; z-index: 40; background: rgba(8, 10, 18, .6); display: flex; align-items: flex-end; justify-content: center; }
   .sheet-back[hidden] { display: none; }
   .sheet {
     width: 100%; max-width: 640px; max-height: 86vh; overflow: auto; background: var(--surface); color: var(--ink);
@@ -247,10 +252,10 @@
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
     font-size: 14.5px; border: 1.5px solid var(--c, var(--ink)); background: transparent; color: var(--ink);
-    padding: 7px 12px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; min-height: 40px;
+    padding: 7px 12px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; min-height: 44px;
   }
   .chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--ink)); }
-  .chip small { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  .chip small { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
   .chip[aria-pressed="false"] { opacity: .5; border-style: dashed; }
   .chip[aria-pressed="false"]::before { background: transparent; border: 1.5px solid var(--c, var(--ink)); }
   .chip.grp-chip { border-radius: 9px; }
@@ -267,7 +272,7 @@
   }
   .toast.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
   .selmode .toast { bottom: calc(110px + env(safe-area-inset-bottom)); }
-  .toast button { background: transparent; border: 0; color: var(--bg); font-weight: 700; text-decoration: underline; cursor: pointer; padding: 4px; min-height: 32px; }
+  .toast button { background: transparent; border: 0; color: var(--bg); font-weight: 700; text-decoration: underline; cursor: pointer; padding: 4px 8px; min-height: 44px; }
 
   @media (max-width: 420px) {
     .next-in { flex-direction: column; align-items: stretch; }
@@ -284,7 +289,7 @@
       <h1>Marvel: cosa ho visto</h1>
       <div class="count" aria-live="polite"><span id="done">0</span> / <span id="total">0</span><small id="pct">0%</small></div>
     </div>
-    <div class="reel" id="reel" role="img" aria-label="Avanzamento: un fotogramma per titolo, in ordine di uscita. Trascina per scorrere la lista.">
+    <div class="reel" id="reel" role="slider" tabindex="0" aria-label="Scorri i titoli in ordine di uscita: trascina oppure usa le frecce" aria-valuemin="1" aria-valuenow="1" aria-valuetext="">
       <span class="reel-tip" id="reelTip"></span>
     </div>
     <div class="hours" id="hours" aria-live="polite"></div>
@@ -293,7 +298,7 @@
   <section class="next" id="next" aria-label="Prossimo da vedere"></section>
 
   <div class="bar">
-    <input class="search" id="q" type="search" placeholder="Cerca un titolo" aria-label="Cerca un titolo" enterkeyhint="search">
+    <input class="search" id="q" type="search" placeholder="Cerca un titolo" aria-label="Cerca un titolo" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false">
     <button class="btn" id="filterBtn" aria-haspopup="dialog">Filtri<span class="badge-n" id="fcount" hidden>0</span></button>
     <button class="btn" id="selMode" aria-pressed="false">Seleziona</button>
   </div>
@@ -731,7 +736,7 @@ function toast(msg, undo) {
   }
   t.classList.add("show");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(hideToast, undo ? 5500 : 2400);
+  toastTimer = setTimeout(hideToast, undo ? 7000 : 2600);
 }
 const snapshot = () => ({ w: [...watched], i: [...ignored], e: [...epsDone] });
 function restore(s) { watched = new Set(s.w); ignored = new Set(s.i); epsDone = new Set(s.e); save(); refresh(); }
@@ -743,9 +748,9 @@ function withUndo(msg, fn) {
 
 const sheetBack = $("sheetBack"), sheet = $("sheet");
 let sheetClose = null, lastFocus = null;
-function openSheet(html, onClose) {
+function openSheet(html, onClose, label) {
   lastFocus = document.activeElement;
-  sheet.innerHTML = html; sheetBack.hidden = false; document.body.classList.add("noscroll");
+  sheet.innerHTML = html; sheet.setAttribute("aria-label", label || "Finestra"); sheetBack.hidden = false; document.body.classList.add("noscroll");
   sheetClose = onClose || null;
   (sheet.querySelector("button, input") || sheet).focus();
 }
@@ -756,10 +761,19 @@ function closeSheet() {
   if (lastFocus && lastFocus.focus) lastFocus.focus();
 }
 sheetBack.addEventListener("click", e => { if (e.target === sheetBack) closeSheet(); });
-document.addEventListener("keydown", e => { if (e.key === "Escape" && !sheetBack.hidden) closeSheet(); });
+document.addEventListener("keydown", e => {
+  if (sheetBack.hidden) return;
+  if (e.key === "Escape") { closeSheet(); return; }
+  if (e.key !== "Tab") return;
+  const f = [...sheet.querySelectorAll("button, input")].filter(x => !x.disabled && x.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], lastEl = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); }
+  else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
+});
 function askConfirm(text, okLabel) {
   return new Promise(res => {
-    openSheet(`<p class="ask">${text}</p><div class="sheet-actions"><button type="button" class="btn" data-a="no">Annulla</button><button type="button" class="btn primary" data-a="yes">${okLabel}</button></div>`, () => res(false));
+    openSheet(`<p class="ask">${text}</p><div class="sheet-actions"><button type="button" class="btn" data-a="no">Annulla</button><button type="button" class="btn primary" data-a="yes">${okLabel}</button></div>`, () => res(false), "Conferma");
     sheet.querySelector('[data-a="yes"]').onclick = () => { sheetClose = null; closeSheet(); res(true); };
     sheet.querySelector('[data-a="no"]').onclick = closeSheet;
   });
@@ -830,26 +844,41 @@ function jumpTo(id, instant) {
 }
 (function setupReel() {
   const reel = $("reel"), tip = $("reelTip");
-  let down = false, hideT, lastId = null;
-  function scrub(e) {
+  let down = false, hideT, lastId = null, cur = 0;
+  function show(idx, x) {
     const segs = reel.querySelectorAll("i");
     if (!segs.length) return;
+    cur = Math.max(0, Math.min(segs.length - 1, idx));
+    const id = segs[cur].dataset.id, i = BYID.get(id);
+    const shown = !!document.querySelector(`.item[data-item="${id}"]`);
+    const txt = i.title + ", " + i.year + (shown ? "" : " (nascosto dai filtri)");
     const r = reel.getBoundingClientRect();
-    const idx = Math.max(0, Math.min(segs.length - 1, Math.floor((e.clientX - r.left) / r.width * segs.length)));
-    const id = segs[idx].dataset.id;
-    if (id === lastId) return;
+    const px = x == null ? (cur + .5) / segs.length * r.width : x - r.left;
+    tip.textContent = txt;
+    tip.style.left = Math.max(70, Math.min(r.width - 70, px)) + "px";
+    tip.classList.add("show");
+    reel.setAttribute("aria-valuemax", segs.length); reel.setAttribute("aria-valuenow", cur + 1); reel.setAttribute("aria-valuetext", txt);
+    if (shown && id !== lastId) jumpTo(id, true);
     lastId = id;
-    const i = BYID.get(id), shown = !!document.querySelector(`.item[data-item="${id}"]`);
-    tip.textContent = i.title + ", " + i.year + (shown ? "" : " (nascosto dai filtri)");
-    const x = Math.max(70, Math.min(r.width - 70, e.clientX - r.left));
-    tip.style.left = x + "px"; tip.classList.add("show");
-    if (shown) jumpTo(id, true);
   }
+  const scrub = e => {
+    const n = reel.querySelectorAll("i").length, r = reel.getBoundingClientRect();
+    if (n) show(Math.floor((e.clientX - r.left) / r.width * n), e.clientX);
+  };
+  const hideLater = () => { clearTimeout(hideT); hideT = setTimeout(() => tip.classList.remove("show"), 900); };
   reel.addEventListener("pointerdown", e => { down = true; lastId = null; reel.setPointerCapture(e.pointerId); clearTimeout(hideT); scrub(e); });
   reel.addEventListener("pointermove", e => { if (down) scrub(e); });
-  const end = () => { down = false; hideT = setTimeout(() => tip.classList.remove("show"), 700); };
+  const end = () => { down = false; hideLater(); };
   reel.addEventListener("pointerup", end);
   reel.addEventListener("pointercancel", end);
+  reel.addEventListener("keydown", e => {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1, PageDown: 10, PageUp: -10 }[e.key];
+    if (e.key === "Home") cur = 0;
+    else if (e.key === "End") cur = Infinity;
+    else if (step) cur += step;
+    else return;
+    e.preventDefault(); clearTimeout(hideT); show(cur); hideLater();
+  });
 })();
 
 /* --- da vedere ora --- */
@@ -906,7 +935,7 @@ function itemHTML(i) {
     <span>
       <span class="name">${esc(i.title)}</span>
       <span class="meta"><span>${fmt(i.date, i.tbd)}</span><span>${fmtDur(i.min, i.approx)}</span>${hasEps ? epsBtn(i, open) : ""}</span>
-      <span class="meta chips2"><span class="tag">${esc(t.label.split(" e ")[0].split(" (")[0])}</span><span class="grp">${esc(i.group)}</span>${i.note ? `<span>${esc(i.note)}</span>` : ""}${i.soon ? '<span class="badge">In arrivo</span>' : ""}${ign ? '<span class="badge">Ignorato</span>' : ""}${selectMode && watched.has(i.id) && !ign ? '<span class="badge">Visto</span>' : ""}</span>
+      <span class="meta chips2"><span class="tag">${esc(t.label.split(" e ")[0].split(" (")[0])}</span>${t.label.split(" e ")[0].split(" (")[0] === i.group ? "" : `<span class="grp">${esc(i.group)}</span>`}${i.note ? `<span>${esc(i.note)}</span>` : ""}${i.soon ? '<span class="badge">In arrivo</span>' : ""}${ign ? '<span class="badge">Ignorato</span>' : ""}${selectMode && watched.has(i.id) && !ign ? '<span class="badge">Visto</span>' : ""}</span>
       <span class="prog"${pct ? "" : " hidden"}><i style="width:${pct}%"></i></span>
     </span>
     <button type="button" class="ign-btn" data-ign="${i.id}" title="${ign ? "Rimetti questo titolo nella lista" : "Toglilo dalla lista e dal conteggio"}">${ign ? "Ripristina" : "Ignora"}</button>
@@ -989,7 +1018,7 @@ function syncFilterSheet() {
   sheet.querySelectorAll("[data-g]").forEach(b => b.setAttribute("aria-pressed", activeGroups.has(b.dataset.g)));
 }
 function openFilters() {
-  openSheet(filtersHTML(), () => { savePrefs(); renderReel(); renderNext(); });
+  openSheet(filtersHTML(), () => { savePrefs(); renderReel(); renderNext(); }, "Filtri");
   syncFilterSheet();
 }
 sheet.addEventListener("click", e => {
