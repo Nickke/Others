@@ -10,13 +10,14 @@ Foto (facoltativa): salva immagini/<nome-del-file-ricetta>.jpg
 import html
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
 RICETTE = BASE / "ricette"
 IMMAGINI = BASE / "immagini"
 
-# Ordine delle categorie e delle sottocategorie nell'indice.
+# Ordine di categorie e sottocategorie. Le nuove finiscono in fondo da sole.
 STRUTTURA = {
     "Antipasti e salati": ["Torte salate e rustici", "Sfizi e stuzzichini"],
     "Primi": ["Pasta, gnocchi e passatelli", "Riso, farro e cereali", "Zuppe, vellutate e brodi"],
@@ -33,7 +34,22 @@ STRUTTURA = {
     "Altro": ["Consigli e spuntini"],
 }
 
-# Icone semplici (24x24, solo tratto) per le categorie.
+# Un colore per categoria (tutti con testo bianco leggibile, contrasto > 4.5).
+COLORI = {
+    "Antipasti e salati": "#5e6b10",
+    "Primi": "#b3261e",
+    "Secondi": "#7a2e68",
+    "Contorni": "#1e7a3c",
+    "Dolci": "#b0225e",
+    "Colazione e fit": "#1f5fa8",
+    "Basi e impasti": "#7a5a12",
+    "Conserve e marmellate": "#5b3fa0",
+    "Bevande e smoothie": "#0b7480",
+    "Altro": "#4b5560",
+}
+COLORI_EXTRA = ["#8a3d00", "#00695c", "#6a1b9a", "#37474f", "#9c2f2f", "#33691e"]
+
+# Icone semplici (24x24, solo tratto).
 ICONE = {
     "Antipasti e salati": '<path d="M4 20 20 4"/><circle cx="9" cy="15" r="2.4"/><circle cx="13" cy="11" r="2.4"/><circle cx="17" cy="7" r="2.4"/>',
     "Primi": '<path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 4c-1 1.5 1 2.5 0 4M12 4c-1 1.5 1 2.5 0 4M16 4c-1 1.5 1 2.5 0 4"/>',
@@ -46,11 +62,9 @@ ICONE = {
     "Bevande e smoothie": '<path d="M6 5h12l-1.5 15h-9zM7 10h10M14 5l2-3"/>',
     "Altro": '<circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/>',
 }
-ICONA_DEFAULT = ICONE["Altro"]
 
 
 def slug(s):
-    import unicodedata
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-") or "x"
 
@@ -75,12 +89,8 @@ def leggi(path):
             sezioni[cur].append(riga)
     meta["_file"] = path.name
     meta["_id"] = slug(path.stem)
-    corpo_sez = {}
-    for k, v in sezioni.items():
-        t = "\n".join(v).strip()
-        t = re.sub(r"<!--.*?-->", "", t, flags=re.S).strip()
-        corpo_sez[k] = t
-    meta["_sez"] = corpo_sez
+    meta["_sez"] = {k: re.sub(r"<!--.*?-->", "", "\n".join(v), flags=re.S).strip()
+                    for k, v in sezioni.items()}
     meta.setdefault("nome", path.stem.replace("-", " ").capitalize())
     meta.setdefault("categoria", "Altro")
     meta.setdefault("sottocategoria", "Varie")
@@ -103,16 +113,6 @@ def righe(blocco):
     return out
 
 
-def ordina_cat(c):
-    cats = list(STRUTTURA)
-    return cats.index(c) if c in cats else len(cats)
-
-
-def ordina_sub(c, s):
-    subs = STRUTTURA.get(c, [])
-    return subs.index(s) if s in subs else len(subs)
-
-
 def da_completare(r):
     return r.get("stato", "").lower() in ("solo nome", "parziale")
 
@@ -121,16 +121,25 @@ def raggruppa(ricette):
     albero = {}
     for r in ricette:
         albero.setdefault(r["categoria"], {}).setdefault(r["sottocategoria"], []).append(r)
-    cats = sorted(albero, key=ordina_cat)
+    cats = list(STRUTTURA)
+    ordc = sorted(albero, key=lambda c: cats.index(c) if c in cats else len(cats))
     out = []
-    for c in cats:
-        subs = sorted(albero[c], key=lambda s: ordina_sub(c, s))
-        out.append((c, [(s, sorted(albero[c][s], key=lambda r: r["nome"].lower())) for s in subs]))
+    for c in ordc:
+        subs = STRUTTURA.get(c, [])
+        ords = sorted(albero[c], key=lambda s: subs.index(s) if s in subs else len(subs))
+        out.append((c, [(s, sorted(albero[c][s], key=lambda r: r["nome"].lower())) for s in ords]))
     return out
 
 
+def colore(c, n_extra=[0]):
+    if c not in COLORI:
+        COLORI[c] = COLORI_EXTRA[n_extra[0] % len(COLORI_EXTRA)]
+        n_extra[0] += 1
+    return COLORI[c]
+
+
 def scrivi_indice_md(albero, tot):
-    md = ["# Il mio ricettario", "", f"{tot} ricette in {len(albero)} categorie.", "",
+    md = ["# Ricettario", "", f"{tot} ricette in {len(albero)} categorie.", "",
           "Versione da sfogliare nel browser: **Ricettario.html**.", ""]
     for c, subs in albero:
         n = sum(len(x) for _, x in subs)
@@ -149,45 +158,59 @@ def scheda(r):
     e = html.escape
     ing = "".join(f"<li>{e(x)}</li>" for x in righe(s.get("ingredienti", "")))
     pro = "".join(f"<li>{e(x)}</li>" for x in righe(s.get("procedimento", "")))
-    info = " · ".join(e(x) for x in [r.get("porzioni", ""), r.get("tempo", "")] if x and x.lower() != "null")
+    info = "".join(f"<span>{e(x)}</span>" for x in [r.get("porzioni", ""), r.get("tempo", "")]
+                   if x and x.lower() != "null")
     nut = e(s.get("valori nutrizionali", "")).replace("\n", "<br>")
     note = e(s.get("note", "")).replace("\n", "<br>")
-    badge = f'<span class="badge">da completare</span>' if da_completare(r) else ""
+    badge = '<span class="badge">da completare</span>' if da_completare(r) else ""
     testo = " ".join([r["nome"], r["categoria"], r["sottocategoria"], s.get("ingredienti", "")]).lower()
-    img = (f'<img class="foto" src="immagini/{html.escape(r["_img"])}" alt="{e(r["nome"])}" loading="lazy">'
+    img = (f'<img class="foto" src="immagini/{e(r["_img"])}" alt="{e(r["nome"])}" loading="lazy">'
            if r["_img"] else "")
+    extra = ""
+    if nut:
+        extra += f'<div class="extra"><h5>Valori nutrizionali</h5><p>{nut}</p></div>'
+    if note:
+        extra += f'<div class="extra"><h5>Note</h5><p>{note}</p></div>'
     return f"""<details class="ric" id="{r['_id']}" data-txt="{e(testo)}">
 <summary><span class="t">{e(r['nome'])}</span>{badge}</summary>
 <div class="corpo">
 {img}
 {f'<p class="info">{info}</p>' if info else ''}
-{f'<div class="col"><h5>Ingredienti</h5><ul>{ing}</ul></div>' if ing else ''}
-{f'<div class="col"><h5>Procedimento</h5><ol>{pro}</ol></div>' if pro else ''}
-{f'<h5>Valori nutrizionali</h5><p>{nut}</p>' if nut else ''}
-{f'<h5>Note</h5><p>{note}</p>' if note else ''}
+<div class="due">
+{f'<div class="ing"><h5>Ingredienti</h5><ul>{ing}</ul></div>' if ing else ''}
+{f'<div class="pro"><h5>Procedimento</h5><ol>{pro}</ol></div>' if pro else ''}
+</div>
+{extra}
 <p class="su"><a href="#indice">Torna all'indice</a></p>
 </div></details>"""
 
 
 def scrivi_html(albero, tot):
     e = html.escape
-    # ---- indice
-    salti, toc, corpo = [], [], []
+    tiles, toc, corpo = [], [], []
     for c, subs in albero:
+        col = colore(c)
         cid = "cat-" + slug(c)
         n = sum(len(x) for _, x in subs)
-        ico = f'<svg viewBox="0 0 24 24" aria-hidden="true">{ICONE.get(c, ICONA_DEFAULT)}</svg>'
-        salti.append(f'<a href="#{cid}" class="salto">{ico}<span>{e(c)}</span><b>{n}</b></a>')
-        t = [f'<section class="tocat" data-cat="{cid}"><h3><a href="#{cid}">{ico}{e(c)}</a><span class="n">{n}</span></h3>']
-        b = [f'<section class="cat" id="{cid}" data-cat="{cid}"><h2>{ico}{e(c)}</h2>']
+        ico = f'<svg viewBox="0 0 24 24" aria-hidden="true">{ICONE.get(c, ICONE["Altro"])}</svg>'
+        taglia = "grande" if n >= 60 else "medio" if n >= 25 else "piccolo"
+        elenco = ""
+        if taglia != "piccolo":
+            elenco = "<ul>" + "".join(f"<li>{e(s)}</li>" for s, _ in subs) + "</ul>"
+        tiles.append(f'<a class="tile {taglia}" href="#toc-{cid}" style="--c:{col}">{ico}'
+                     f'<span class="nome">{e(c)}</span><span class="num">{n} ricette</span>{elenco}</a>')
+        t = [f'<section class="tocat" id="toc-{cid}" style="--c:{col}" data-cat="{cid}">'
+             f'<h3><a href="#{cid}">{e(c)}</a><span class="n">{n}</span></h3>']
+        b = [f'<section class="cat" id="{cid}" style="--c:{col}" data-cat="{cid}">'
+             f'<h2>{ico}{e(c)}</h2>']
         for s, rs in subs:
             sid = f"sub-{slug(c)}-{slug(s)}"
-            t.append(f'<div class="tosub" data-sub="{sid}"><h4><a href="#{sid}">{e(s)}</a> <span class="n">{len(rs)}</span></h4><ul>')
-            b.append(f'<section class="sub" id="{sid}" data-sub="{sid}"><h3>{e(s)}</h3>')
+            t.append(f'<div class="tosub"><h4><a href="#{sid}">{e(s)}</a><span class="n">{len(rs)}</span></h4><ul>')
+            b.append(f'<section class="sub" id="{sid}"><h3>{e(s)}</h3>')
             for r in rs:
-                mark = " <em>(da completare)</em>" if da_completare(r) else ""
+                mark = '<em>da completare</em>' if da_completare(r) else ""
                 txt = " ".join([r["nome"], r["_sez"].get("ingredienti", "")]).lower()
-                t.append(f'<li data-ref="{r["_id"]}" data-txt="{e(txt)}"><a href="#{r["_id"]}">{e(r["nome"])}</a>{mark}</li>')
+                t.append(f'<li data-txt="{e(txt)}"><a href="#{r["_id"]}">{e(r["nome"])}</a>{mark}</li>')
                 b.append(scheda(r))
             t.append("</ul></div>")
             b.append("</section>")
@@ -195,115 +218,166 @@ def scrivi_html(albero, tot):
         b.append("</section>")
         toc.append("".join(t))
         corpo.append("".join(b))
-
-    pagina = PAGINA.replace("%%TOT%%", str(tot)).replace("%%NCAT%%", str(len(albero)))
-    pagina = pagina.replace("%%SALTI%%", "".join(salti)).replace("%%TOC%%", "".join(toc))
-    pagina = pagina.replace("%%CORPO%%", "".join(corpo))
+    pagina = (PAGINA.replace("%%TOT%%", str(tot)).replace("%%NCAT%%", str(len(albero)))
+              .replace("%%TILES%%", "".join(tiles)).replace("%%TOC%%", "".join(toc))
+              .replace("%%CORPO%%", "".join(corpo)))
     (BASE / "Ricettario.html").write_text(pagina, encoding="utf-8")
 
 
 PAGINA = """<!doctype html>
 <html lang="it"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Il mio ricettario</title>
+<title>Ricettario</title>
 <style>
-:root{--bg:#fbfbf9;--ink:#1f2a2e;--mut:#65757a;--acc:#1f5c4d;--acc2:#d9a21b;--line:#dfe4e2;--card:#fff}
+@font-face{font-family:'Bricolage Grotesque';font-weight:200 800;font-display:swap;src:url(font/bricolage-grotesque.woff2) format('woff2')}
+@font-face{font-family:'Source Serif 4';font-weight:200 900;font-style:normal;font-display:swap;src:url(font/source-serif-4.woff2) format('woff2')}
+@font-face{font-family:'Source Serif 4';font-weight:200 900;font-style:italic;font-display:swap;src:url(font/source-serif-4-italic.woff2) format('woff2')}
+:root{--bg:#f4f5f0;--ink:#17211b;--mut:#56635d;--line:#d6dbd3;--c:#1f5fa8;
+  --disp:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--body:'Source Serif 4',Georgia,serif}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:14px}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,'Palatino Linotype',serif}
+html{scroll-padding-top:84px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.65 var(--body)}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-.wrap{max-width:900px;margin:0 auto;padding:0 20px}
-.copertina{padding:64px 0 28px;border-bottom:3px double var(--ink)}
-.copertina h1{font:700 clamp(2.4rem,7vw,4rem)/1.02 Georgia,serif;margin:0;letter-spacing:-.02em}
-.copertina p{margin:12px 0 0;color:var(--mut);font:italic 1.1rem Georgia,serif}
-.cerca{margin:26px 0 0}
-#q{width:100%;padding:13px 15px;font:1rem system-ui,sans-serif;border:1px solid var(--ink);border-radius:4px;background:#fff}
-.salti{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:26px 0 0}
-.salto{display:flex;align-items:center;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:6px;background:var(--card);text-decoration:none;font:600 .92rem system-ui,sans-serif}
-.salto:hover{border-color:var(--acc)}
-.salto b{margin-left:auto;font-weight:600;color:var(--mut)}
-svg{width:22px;height:22px;flex:none;fill:none;stroke:var(--acc);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-h2.ind{font:700 1.9rem Georgia,serif;margin:44px 0 6px}
-.tocat{margin:30px 0 0}
-.tocat h3{display:flex;align-items:center;gap:10px;margin:0;padding-bottom:6px;border-bottom:1px solid var(--ink);font:700 1.35rem Georgia,serif}
-.tocat h3 a{display:flex;align-items:center;gap:10px;text-decoration:none}
-.n{margin-left:auto;font:.8rem system-ui,sans-serif;color:var(--mut);font-weight:400}
-.tosub h4{margin:16px 0 4px;font:700 .8rem system-ui,sans-serif;letter-spacing:.02em;color:var(--acc)}
+:focus-visible{outline:3px solid #1f5fa8;outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+svg{width:26px;height:26px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+.cover{padding:56px 0 22px}
+.cover h1{margin:0;font:800 clamp(3.4rem,13vw,8.4rem)/.86 var(--disp);letter-spacing:-.045em}
+.cover p{max-width:34em;margin:18px 0 0;font-size:1.2rem;color:var(--mut)}
+
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0}
+.bar .wrap{display:flex;gap:14px;align-items:center}
+#q{flex:1;min-width:0;height:48px;padding:0 16px;font:1rem var(--disp);color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:10px}
+.bar a{flex:none;min-height:48px;display:flex;align-items:center;padding:0 6px;font:600 1rem var(--disp);text-decoration:none}
+.bar a:hover{text-decoration:underline}
+#esito{font:.9rem var(--disp);color:var(--mut);margin:8px 0 0;min-height:1.3em}
+
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:10px;margin:26px 0 8px}
+.tile{display:flex;flex-direction:column;gap:2px;padding:16px;min-height:132px;color:#fff;background:var(--c);border-radius:12px;text-decoration:none}
+.tile:hover{filter:brightness(1.1)}
+.tile svg{width:30px;height:30px;margin-bottom:auto}
+.tile .nome{font:800 1.25rem/1.1 var(--disp);letter-spacing:-.01em}
+.tile .num{font:500 .95rem var(--disp);opacity:.92}
+.tile ul{list-style:none;margin:10px 0 0;padding:0;font:.95rem/1.35 var(--disp);opacity:.95}
+.tile.medio{grid-column:span 2}
+.tile.grande{grid-column:span 2;grid-row:span 2}
+.tile.grande .nome{font-size:clamp(2rem,5vw,3.2rem);line-height:.95}
+
+h2.ind{margin:64px 0 0;font:800 clamp(2rem,6vw,3rem)/1 var(--disp);letter-spacing:-.03em}
+.tocat{margin:34px 0 0;padding-left:18px;border-left:8px solid var(--c)}
+.tocat h3{display:flex;align-items:baseline;gap:12px;margin:0 0 6px;font:800 1.7rem/1.1 var(--disp);letter-spacing:-.02em}
+.tocat h3 a{color:var(--c);text-decoration:none}
+.n{font:500 .9rem var(--disp);color:var(--mut);margin-left:8px}
+.tocat h3 .n{margin-left:0}
+.tosub{margin:14px 0 0}
+.tosub h4{margin:0 0 2px;font:700 1.02rem var(--disp)}
 .tosub h4 a{text-decoration:none}
-.tosub h4 .n{margin-left:6px}
-.tosub ul{list-style:none;margin:0;padding:0;columns:2 260px;column-gap:28px}
-.tosub li{break-inside:avoid;padding:2px 0;font-size:.97rem;line-height:1.35}
-.tosub li a{text-decoration:none;border-bottom:1px dotted var(--mut)}
-.tosub li a:hover{color:var(--acc);border-bottom-color:var(--acc)}
-.tosub em{color:var(--mut);font-size:.8em}
-.libro{margin-top:60px}
-.cat{margin-top:56px}
-.cat>h2{display:flex;align-items:center;gap:12px;margin:0 0 4px;padding:10px 0;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);font:700 1.9rem Georgia,serif}
-.cat>h2 svg{width:30px;height:30px}
-.sub>h3{margin:28px 0 8px;font:italic 400 1.3rem Georgia,serif;color:var(--acc)}
+.tosub h4 a:hover{text-decoration:underline}
+.tosub ul{list-style:none;margin:0;padding:0;columns:2 280px;column-gap:32px}
+.tosub li{break-inside:avoid;padding:3px 0;font-size:1rem;line-height:1.4}
+.tosub li a{display:inline-block;padding:3px 0;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--c) 45%,transparent);text-underline-offset:3px}
+.tosub li a:hover{text-decoration-color:var(--c)}
+.tosub em{margin-left:6px;font:italic .85rem var(--body);color:var(--mut)}
+
+.libro{margin-top:72px}
+.cat{margin-top:64px}
+.cat>h2{display:flex;align-items:center;gap:14px;margin:0;padding:22px 22px;background:var(--c);color:#fff;border-radius:12px;font:800 clamp(1.9rem,6vw,3.1rem)/1 var(--disp);letter-spacing:-.03em}
+.cat>h2 svg{width:38px;height:38px}
+.sub>h3{margin:36px 0 6px;font:800 1.4rem/1.2 var(--disp);color:var(--c);letter-spacing:-.01em}
 .ric{border-bottom:1px solid var(--line)}
-.ric summary{list-style:none;cursor:pointer;padding:11px 2px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
-.ric summary::-webkit-details-marker{display:none}
-.ric summary::before{content:"+";font:600 1rem system-ui,sans-serif;color:var(--acc);width:1em}
-.ric[open] summary::before{content:"\\2212"}
-.t{font-weight:700;font-size:1.05rem}
-.badge{font:.7rem system-ui,sans-serif;background:#f4e6bf;color:#6b4a00;border-radius:4px;padding:2px 7px}
-.corpo{padding:2px 4px 18px 22px}
-.foto{display:block;width:100%;max-width:520px;border-radius:4px;margin:4px 0 12px}
-.info{margin:0 0 6px;color:var(--mut);font:.88rem system-ui,sans-serif}
-.corpo h5{margin:14px 0 4px;font:700 .8rem system-ui,sans-serif;color:var(--acc);letter-spacing:.02em}
-.corpo ul,.corpo ol{margin:0;padding-left:22px}
-.corpo li{margin:3px 0}
-.corpo p{margin:4px 0}
-.su{margin-top:12px!important;font:.8rem system-ui,sans-serif}
-.su a{color:var(--mut)}
-.vuoto{display:none;text-align:center;color:var(--mut);padding:36px;font-family:system-ui,sans-serif}
-.piede{margin:70px 0 40px;color:var(--mut);font:.8rem system-ui,sans-serif;text-align:center}
-@media (max-width:560px){body{font-size:16px}.copertina{padding-top:40px}}
+.ric>summary{list-style:none;cursor:pointer;min-height:48px;padding:10px 4px 10px 30px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:relative}
+.ric>summary::-webkit-details-marker{display:none}
+.ric>summary::before{content:"";position:absolute;left:6px;top:50%;width:9px;height:9px;margin-top:-6px;border-right:2.5px solid var(--c);border-bottom:2.5px solid var(--c);transform:rotate(-45deg)}
+.ric[open]>summary::before{transform:rotate(45deg)}
+.ric[open]{border-left:6px solid var(--c);padding-left:12px;margin-left:-18px;background:color-mix(in srgb,var(--c) 4%,var(--bg))}
+.ric[open]>summary{padding-left:22px}
+.ric[open]>summary::before{left:0}
+.t{font:700 1.08rem/1.3 var(--disp)}
+.badge{font:600 .75rem var(--disp);padding:2px 8px;border:1.5px solid var(--mut);border-radius:999px;color:var(--mut)}
+.corpo{padding:4px 8px 22px 12px}
+.foto{display:block;width:100%;max-width:560px;border-radius:8px;margin:6px 0 14px}
+.info{display:flex;flex-wrap:wrap;gap:4px 22px;margin:0 0 14px;font:500 .95rem var(--disp);color:var(--mut)}
+.due{display:grid;grid-template-columns:1fr;gap:22px}
+@media (min-width:780px){.due{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:36px}}
+h5{margin:0 0 8px;font:800 1.05rem var(--disp);color:var(--c)}
+.ing{padding:16px 18px;background:color-mix(in srgb,var(--c) 9%,#fff);border-radius:10px;align-self:start}
+.ing ul{margin:0;padding:0;list-style:none}
+.ing li{padding:5px 0 5px 16px;position:relative;border-bottom:1px solid color-mix(in srgb,var(--c) 14%,transparent)}
+.ing li:last-child{border-bottom:0}
+.ing li::before{content:"";position:absolute;left:0;top:.95em;width:6px;height:6px;border-radius:50%;background:var(--c)}
+.pro ol{margin:0;padding:0;list-style:none;counter-reset:p}
+.pro li{counter-increment:p;position:relative;padding:0 0 14px 44px}
+.pro li::before{content:counter(p);position:absolute;left:0;top:-.1em;font:800 1.6rem/1 var(--disp);color:var(--c)}
+.extra{margin-top:10px}
+.extra p{margin:0;max-width:44em}
+.su{margin:16px 0 0;font:500 .95rem var(--disp)}
+.su a{color:var(--mut);display:inline-block;padding:10px 0}
+.vuoto{display:none;max-width:30em;margin:40px 0;font-size:1.1rem;color:var(--mut)}
+.piede{margin:80px 0 48px}
+.piede a{font:600 1rem var(--disp)}
+
+@media (max-width:760px){
+  body{font-size:17px}
+  .cover{padding-top:36px}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .tile.medio{grid-column:span 2}
+  .tile.grande{grid-column:span 2;grid-row:span 1}
+  .ric[open]{margin-left:-8px;padding-left:8px}
+}
 @media print{
-  body{font-size:11pt;background:#fff}
-  .cerca,.salti,.su,.piede{display:none}
+  body{background:#fff;font-size:11pt}
+  .bar,.tiles,.su,.piede,.cover p,#esito{display:none}
   .cat{break-before:page;margin-top:0}
-  .ric{break-inside:avoid}
-  .corpo{display:block}
-  a{text-decoration:none}
+  .ric{break-inside:avoid;border-left:0!important;background:none!important;margin-left:0!important;padding-left:0!important}
+  .cat>h2{background:none;color:var(--c);padding:0;border-bottom:3px solid var(--c);border-radius:0}
+  .ing{background:none;border:1px solid var(--line)}
 }
 </style></head><body>
-<div class="wrap">
-<header class="copertina" id="inizio">
-<h1>Il mio ricettario</h1>
-<p>%%TOT%% ricette in %%NCAT%% categorie, raccolte dalle chat di ogni giorno.</p>
-<div class="cerca"><input id="q" type="search" placeholder="Cerca una ricetta o un ingrediente: bonet, farro, pomodorini" aria-label="Cerca" autocomplete="off"></div>
-<nav class="salti" aria-label="Categorie">%%SALTI%%</nav>
-</header>
+<header class="cover"><div class="wrap">
+<h1>Ricettario</h1>
+<p>%%TOT%% ricette dalle chat di ogni giorno, dai pancake fit al bonet, dalle frise ai cocktail. Scegli una categoria o cerca un ingrediente.</p>
+</div></header>
 
-<main>
+<div class="bar"><div class="wrap">
+<input id="q" type="search" placeholder="Cerca per nome o ingrediente" aria-label="Cerca una ricetta" autocomplete="off">
+<a href="#indice">Indice</a>
+</div></div>
+
+<main class="wrap">
+<p id="esito" role="status" aria-live="polite"></p>
+<nav class="tiles" aria-label="Categorie">%%TILES%%</nav>
+
 <section id="indice">
 <h2 class="ind">Indice</h2>
 %%TOC%%
 </section>
-<p class="vuoto" id="vuoto">Nessuna ricetta trovata.</p>
+
+<p class="vuoto" id="vuoto">Nessuna ricetta trovata. Prova con un ingrediente più semplice, per esempio «farro» o «zucca».</p>
 <div class="libro">%%CORPO%%</div>
+<p class="piede"><a href="#top">Torna in cima</a></p>
 </main>
-<p class="piede"><a href="#inizio">Torna in cima</a></p>
-</div>
 <script>
-const q=document.getElementById('q');
+const q=document.getElementById('q'),esito=document.getElementById('esito');
 const ric=[...document.querySelectorAll('.ric')];
 const voci=[...document.querySelectorAll('.tosub li')];
-function aggiorna(){
-  const t=q.value.trim().toLowerCase();let n=0;
-  ric.forEach(r=>{const ok=!t||r.dataset.txt.includes(t);r.style.display=ok?'':'none';if(ok)n++;
-    if(t&&ok){r.open=n<=3}else if(!t){r.open=false}});
-  voci.forEach(v=>{v.style.display=(!t||v.dataset.txt.includes(t))?'':'none'});
+function nascondiVuoti(){
   document.querySelectorAll('.tosub,.sub').forEach(s=>{
     const k=s.querySelectorAll(s.classList.contains('sub')?'.ric':'li');
     s.style.display=[...k].some(x=>x.style.display!=='none')?'':'none'});
   document.querySelectorAll('.tocat,.cat').forEach(c=>{
     const k=c.querySelectorAll(c.classList.contains('cat')?'.sub':'.tosub');
     c.style.display=[...k].some(x=>x.style.display!=='none')?'':'none'});
+}
+function aggiorna(){
+  const t=q.value.trim().toLowerCase();let n=0;
+  ric.forEach(r=>{const ok=!t||r.dataset.txt.includes(t);r.style.display=ok?'':'none';
+    if(ok)n++;if(t&&ok)r.open=n<=3;else if(!t)r.open=false});
+  voci.forEach(v=>{v.style.display=(!t||v.dataset.txt.includes(t))?'':'none'});
+  nascondiVuoti();
   document.getElementById('vuoto').style.display=n?'none':'block';
+  esito.textContent=t?(n+(n===1?' ricetta trovata':' ricette trovate')):'';
 }
 q.addEventListener('input',aggiorna);
 function apriDaHash(){const el=document.getElementById(location.hash.slice(1));if(el&&el.tagName==='DETAILS')el.open=true}

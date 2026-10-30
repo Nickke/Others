@@ -1,6 +1,6 @@
-# Il mio ricettario
+# Ricettario
 
-302 ricette in 10 categorie.
+307 ricette in 10 categorie.
 
 Versione da sfogliare nel browser: **Ricettario.html**.
 
@@ -9,12 +9,12 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 
 ### Torte salate e rustici (11)
 
-- [Girelle di pasta sfoglia alla zucca e formaggio](ricette/girelle-di-pasta-sfoglia-alla-zucca-e-formaggio.md) _(da completare)_
+- [Girelle di pasta sfoglia alla zucca e formaggio](ricette/girelle-di-pasta-sfoglia-alla-zucca-e-formaggio.md)
 - [Muffin salati proteici](ricette/muffin-salati-proteici.md) _(da completare)_
 - [Pizza rustica con cipolla (impasto multi-farina, in teglia)](ricette/pizza-rustica-con-cipolla-impasto-multi-farina-in-teglia.md) _(da completare)_
 - [Pizzette di albume](ricette/pizzette-di-albume.md)
 - [Torta salata asparagi, petto di tacchino e mozzarella (senza uova)](ricette/torta-salata-asparagi-petto-di-tacchino-e-mozzarella-senza-uova.md)
-- [Torta salata con pasta sfoglia, pancetta, uvetta, ricotta, uova e toma](ricette/torta-salata-con-pasta-sfoglia-pancetta-uvetta-ricotta-uova-e-toma.md) _(da completare)_
+- [Torta salata con pasta sfoglia, pancetta, uvetta, ricotta, uova e toma](ricette/torta-salata-con-pasta-sfoglia-pancetta-uvetta-ricotta-uova-e-toma.md)
 - [Torta salata fit con base di lenticchie e carote (senza uova)](ricette/torta-salata-fit-con-base-di-lenticchie-e-carote-senza-uova.md)
 - [Torta salata fit con ricotta (senza pasta)](ricette/torta-salata-fit-con-ricotta-senza-pasta.md) _(da completare)_
 - [Torta salata fit ricotta, asparagi e prosciutto crudo (teglia 28 cm)](ricette/torta-salata-fit-ricotta-asparagi-e-prosciutto-crudo-teglia-28-cm.md)
@@ -24,7 +24,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 ### Sfizi e stuzzichini (12)
 
 - [Apericena pugliese per 9 persone (menu e buffet)](ricette/apericena-pugliese-per-9-persone-menu-e-buffet.md) _(da completare)_
-- [Crema di ricotta, limone e pepe per pasta o riso](ricette/crema-di-ricotta-limone-e-pepe-per-pasta-o-riso.md) _(da completare)_
+- [Crema di ricotta, limone e pepe per pasta o riso](ricette/crema-di-ricotta-limone-e-pepe-per-pasta-o-riso.md)
 - [Crema salata di ricotta con finocchio](ricette/crema-salata-di-ricotta-con-finocchio.md) _(da completare)_
 - [Feta al forno con miele](ricette/feta-al-forno-con-miele.md)
 - [Feta al miele al microonde](ricette/feta-al-miele-al-microonde.md)
@@ -33,20 +33,20 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Grissini di pasta sfoglia al sesamo](ricette/grissini-di-pasta-sfoglia-al-sesamo.md)
 - [Grissini di pasta sfoglia e prosciutto](ricette/grissini-di-pasta-sfoglia-e-prosciutto.md)
 - [Guacamole senza cipolla](ricette/guacamole-senza-cipolla.md)
-- [Ricotta salata con zucchine e grana](ricette/ricotta-salata-con-zucchine-e-grana.md) _(da completare)_
-- [Taralli pugliesi](ricette/taralli-pugliesi.md) _(da completare)_
+- [Ricotta salata con zucchine e grana](ricette/ricotta-salata-con-zucchine-e-grana.md)
+- [Taralli pugliesi](ricette/taralli-pugliesi.md)
 
 
 ## Primi (30)
 
 ### Pasta, gnocchi e passatelli (8)
 
-- [Carbonara tradizionale romana (con variante panna familiare)](ricette/carbonara-tradizionale-romana-con-variante-panna-familiare.md) _(da completare)_
+- [Carbonara tradizionale romana (con variante panna familiare)](ricette/carbonara-tradizionale-romana-con-variante-panna-familiare.md)
 - [Gnocchi alla zucca e salvia](ricette/gnocchi-alla-zucca-e-salvia.md)
-- [Gnocchi con crema di zucca e formaggio](ricette/gnocchi-con-crema-di-zucca-e-formaggio.md) _(da completare)_
+- [Gnocchi con crema di zucca e formaggio](ricette/gnocchi-con-crema-di-zucca-e-formaggio.md)
 - [Passatelli (senza formaggio, solo albume)](ricette/passatelli-senza-formaggio-solo-albume.md)
 - [Passatelli in brodo](ricette/passatelli-in-brodo.md)
-- [Pasta fit ricotta e zucchine](ricette/pasta-fit-ricotta-e-zucchine.md) _(da completare)_
+- [Pasta fit ricotta e zucchine](ricette/pasta-fit-ricotta-e-zucchine.md)
 - [Ragù bianco fit con macinato di manzo e albume (senza brodo)](ricette/ragu-bianco-fit-con-macinato-di-manzo-e-albume-senza-brodo.md)
 - [Ravioli ricotta e spinaci](ricette/ravioli-ricotta-e-spinaci.md)
 
@@ -73,7 +73,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Stracciatella marchigiana](ricette/stracciatella-marchigiana.md)
 - [Stracciatella marchigiana (versione con albumi)](ricette/stracciatella-marchigiana-versione-con-albumi.md)
 - [Stracciatella marchigiana con albumi](ricette/stracciatella-marchigiana-con-albumi.md)
-- [Vellutata di zucca con crostini croccanti](ricette/vellutata-di-zucca-con-crostini-croccanti.md) _(da completare)_
+- [Vellutata di zucca con crostini croccanti](ricette/vellutata-di-zucca-con-crostini-croccanti.md)
 - [Vellutata di zucca con pancetta croccante](ricette/vellutata-di-zucca-con-pancetta-croccante.md)
 - [Vellutata di zucca senza patate (2 persone, cremosa con latte vegetale, burro e formaggio)](ricette/vellutata-di-zucca-senza-patate-2-persone-cremosa-con-latte-vegetale-b.md)
 - [Zuppa leggera di verdure con tofu e zenzero (vellutata)](ricette/zuppa-leggera-di-verdure-con-tofu-e-zenzero-vellutata.md)
@@ -83,7 +83,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 
 ### Carne e pesce (11)
 
-- [Fricco di pollo marchigiano](ricette/fricco-di-pollo-marchigiano.md) _(da completare)_
+- [Fricco di pollo marchigiano](ricette/fricco-di-pollo-marchigiano.md)
 - [Lonza di suino al forno con patate (trancio 1,156 kg)](ricette/lonza-di-suino-al-forno-con-patate-trancio-1-156-kg.md)
 - [Pollo a cubetti speziato (meal prep)](ricette/pollo-a-cubetti-speziato-meal-prep.md) _(da completare)_
 - [Pollo al forno con zucchine, peperoni e riso (meal prep)](ricette/pollo-al-forno-con-zucchine-peperoni-e-riso-meal-prep.md)
@@ -100,7 +100,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Frittata di albumi e verdure](ricette/frittata-di-albumi-e-verdure.md)
 - [Frittata fit proteica con contorno fresco (uova, sfilacci, carota, avocado)](ricette/frittata-fit-proteica-con-contorno-fresco-uova-sfilacci-carota-avocado.md)
 - [Frittata proteica con spinaci e sfilacci di cavallo](ricette/frittata-proteica-con-spinaci-e-sfilacci-di-cavallo.md)
-- [Frittata proteica ricotta e spinaci](ricette/frittata-proteica-ricotta-e-spinaci.md) _(da completare)_
+- [Frittata proteica ricotta e spinaci](ricette/frittata-proteica-ricotta-e-spinaci.md)
 - [Frittata proteica smart con macinato e tuorli](ricette/frittata-proteica-smart-con-macinato-e-tuorli.md)
 - [Omelette proteica con albume e verdure](ricette/omelette-proteica-con-albume-e-verdure.md)
 
@@ -127,8 +127,8 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 ### Verdure e legumi (10)
 
 - [Asparagi saltati con ricotta / pollo / riso (idee)](ricette/asparagi-saltati-con-ricotta-pollo-riso-idee.md) _(da completare)_
-- [Cannellini con cipolla rossa, olio EVO e prezzemolo](ricette/cannellini-con-cipolla-rossa-olio-evo-e-prezzemolo.md) _(da completare)_
-- [Ceci con pomodorini e origano](ricette/ceci-con-pomodorini-e-origano.md) _(da completare)_
+- [Cannellini con cipolla rossa, olio EVO e prezzemolo](ricette/cannellini-con-cipolla-rossa-olio-evo-e-prezzemolo.md)
+- [Ceci con pomodorini e origano](ricette/ceci-con-pomodorini-e-origano.md)
 - [Cipolla caramellata al volo](ricette/cipolla-caramellata-al-volo.md)
 - [Coste di bietola (cottura)](ricette/coste-di-bietola-cottura.md)
 - [Foglie di bietola (cottura)](ricette/foglie-di-bietola-cottura.md)
@@ -139,7 +139,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 
 ### Patate e zucca (7)
 
-- [Passata speziata di zucca](ricette/passata-speziata-di-zucca.md) _(da completare)_
+- [Passata speziata di zucca](ricette/passata-speziata-di-zucca.md)
 - [Patate e scamorza filante al microonde (con contenitore a vapore)](ricette/patate-e-scamorza-filante-al-microonde-con-contenitore-a-vapore.md)
 - [Patate gratinate con crema di zucca e parmigiano (versione leggera)](ricette/patate-gratinate-con-crema-di-zucca-e-parmigiano-versione-leggera.md)
 - [Purè di patate fatto in casa](ricette/pure-di-patate-fatto-in-casa.md)
@@ -148,37 +148,37 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Zucca Delica al forno](ricette/zucca-delica-al-forno.md)
 
 
-## Dolci (50)
+## Dolci (55)
 
 ### Torte e dolci da forno (19)
 
-- [Carrot cake autunnale con noci e frosting](ricette/carrot-cake-autunnale-con-noci-e-frosting.md) _(da completare)_
-- [Ciambellone al vino](ricette/ciambellone-al-vino.md) _(da completare)_
-- [Miascia comasca](ricette/miascia-comasca.md) _(da completare)_
+- [Carrot cake autunnale con noci e frosting](ricette/carrot-cake-autunnale-con-noci-e-frosting.md)
+- [Ciambellone al vino](ricette/ciambellone-al-vino.md)
+- [Miascia comasca](ricette/miascia-comasca.md)
 - [Pinza veneta (dolce dell'Epifania)](ricette/pinza-veneta-dolce-dell-epifania.md)
-- [Pumpkin cheesecake](ricette/pumpkin-cheesecake.md) _(da completare)_
+- [Pumpkin cheesecake](ricette/pumpkin-cheesecake.md)
 - [Torta ai cachi e cacao](ricette/torta-ai-cachi-e-cacao.md)
 - [Torta ai tre cioccolati (base cacao + 3 mousse, stampo 28 cm)](ricette/torta-ai-tre-cioccolati-base-cacao-3-mousse-stampo-28-cm.md) _(da completare)_
-- [Torta alle pere, cioccolato e cannella](ricette/torta-alle-pere-cioccolato-e-cannella.md) _(da completare)_
-- [Torta caprese al limone (senza glutine)](ricette/torta-caprese-al-limone-senza-glutine.md) _(da completare)_
+- [Torta alle pere, cioccolato e cannella](ricette/torta-alle-pere-cioccolato-e-cannella.md)
+- [Torta caprese al limone (senza glutine)](ricette/torta-caprese-al-limone-senza-glutine.md)
 - [Torta con due dischi di pan di Spagna, Alchermes e farcitura](ricette/torta-con-due-dischi-di-pan-di-spagna-alchermes-e-farcitura.md)
-- [Torta di mele, zucca e cannella](ricette/torta-di-mele-zucca-e-cannella.md) _(da completare)_
+- [Torta di mele, zucca e cannella](ricette/torta-di-mele-zucca-e-cannella.md)
 - [Torta meringata](ricette/torta-meringata.md)
-- [Torta meringata (versione dettagliata)](ricette/torta-meringata-versione-dettagliata.md) _(da completare)_
+- [Torta meringata (versione dettagliata)](ricette/torta-meringata-versione-dettagliata.md)
 - [Torta morbida alle mandorle con crema al limone (senza glutine)](ricette/torta-morbida-alle-mandorle-con-crema-al-limone-senza-glutine.md) _(da completare)_
 - [Torta ricotta, pere e cioccolato (stampo 26 cm)](ricette/torta-ricotta-pere-e-cioccolato-stampo-26-cm.md)
 - [Torta Sacher](ricette/torta-sacher.md)
 - [Torta Sacher (stampo 28 cm)](ricette/torta-sacher-stampo-28-cm.md)
 - [Torta soffice al limone senza glutine con crema pasticcera](ricette/torta-soffice-al-limone-senza-glutine-con-crema-pasticcera.md) _(da completare)_
-- [Torta soffice di zucca, mandorle e cannella](ricette/torta-soffice-di-zucca-mandorle-e-cannella.md) _(da completare)_
+- [Torta soffice di zucca, mandorle e cannella](ricette/torta-soffice-di-zucca-mandorle-e-cannella.md)
 
 ### Crostate, strudel e tarte (12)
 
 - [Cenerini / cestini di crostata (con gli avanzi della torta)](ricette/cenerini-cestini-di-crostata-con-gli-avanzi-della-torta.md)
-- [Crostata di marmellata (quantita di marmellata e trucchi)](ricette/crostata-di-marmellata-quantita-di-marmellata-e-trucchi.md) _(da completare)_
+- [Crostata di marmellata (quantita di marmellata e trucchi)](ricette/crostata-di-marmellata-quantita-di-marmellata-e-trucchi.md)
 - [Crostata di zucca (frolla senza uova)](ricette/crostata-di-zucca-frolla-senza-uova.md)
-- [Crostata morbida senza glutine con crema pasticcera](ricette/crostata-morbida-senza-glutine-con-crema-pasticcera.md) _(da completare)_
-- [Crostata zucca e cioccolato](ricette/crostata-zucca-e-cioccolato.md) _(da completare)_
+- [Crostata morbida senza glutine con crema pasticcera](ricette/crostata-morbida-senza-glutine-con-crema-pasticcera.md)
+- [Crostata zucca e cioccolato](ricette/crostata-zucca-e-cioccolato.md)
 - [Strudel di mele con pasta sfoglia](ricette/strudel-di-mele-con-pasta-sfoglia.md)
 - [Strudel di mele tradizionale](ricette/strudel-di-mele-tradizionale.md)
 - [Strudel trentino di mele](ricette/strudel-trentino-di-mele.md)
@@ -189,28 +189,33 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 
 ### Dolci al cucchiaio (10)
 
-- [Apple crumble con cannella e vaniglia](ricette/apple-crumble-con-cannella-e-vaniglia.md) _(da completare)_
-- [Bicchieri dessert crema al limone e crumble di mandorle (senza glutine)](ricette/bicchieri-dessert-crema-al-limone-e-crumble-di-mandorle-senza-glutine.md) _(da completare)_
-- [Bonet (latte intero, agar agar, cottura e sformatura)](ricette/bonet-latte-intero-agar-agar-cottura-e-sformatura.md) _(da completare)_
+- [Apple crumble con cannella e vaniglia](ricette/apple-crumble-con-cannella-e-vaniglia.md)
+- [Bicchieri dessert crema al limone e crumble di mandorle (senza glutine)](ricette/bicchieri-dessert-crema-al-limone-e-crumble-di-mandorle-senza-glutine.md)
+- [Bonet (latte intero, agar agar, cottura e sformatura)](ricette/bonet-latte-intero-agar-agar-cottura-e-sformatura.md)
 - [Bonet piemontese (versione ottimizzata)](ricette/bonet-piemontese-versione-ottimizzata.md)
 - [Budino di cachi e cacao senza farina](ricette/budino-di-cachi-e-cacao-senza-farina.md)
 - [Crostata tiramisù (stampo 28 cm) con frolla al caffè](ricette/crostata-tiramisu-stampo-28-cm-con-frolla-al-caffe.md)
-- [Riso al latte](ricette/riso-al-latte.md) _(da completare)_
+- [Riso al latte](ricette/riso-al-latte.md)
 - [Tiramisù alla zucca (versione leggera con mascarpone e ricotta)](ricette/tiramisu-alla-zucca-versione-leggera-con-mascarpone-e-ricotta.md)
 - [Tiramisù alla zucca classico con uova](ricette/tiramisu-alla-zucca-classico-con-uova.md)
 - [Tiramisù alla zucca con crema soffice (senza uova)](ricette/tiramisu-alla-zucca-con-crema-soffice-senza-uova.md)
 
-### Biscotti e piccola pasticceria (9)
+### Biscotti e piccola pasticceria (14)
 
 - [Brownies XXL (teglia 43x33 cm, versione alta)](ricette/brownies-xxl-teglia-43x33-cm-versione-alta.md)
+- [Calcioni / piconi dolci marchigiani](ricette/calcioni-piconi-dolci-marchigiani.md)
+- [Cavallucci marchigiani](ricette/cavallucci-marchigiani.md) _(da completare)_
 - [Cestini di sfoglia alla cannella con crema pasticcera](ricette/cestini-di-sfoglia-alla-cannella-con-crema-pasticcera.md)
+- [Ciambellone marchigiano](ricette/ciambellone-marchigiano.md)
+- [Cicerchiata marchigiana](ricette/cicerchiata-marchigiana.md)
 - [Cinnamon roll (girelle alla cannella)](ricette/cinnamon-roll-girelle-alla-cannella.md)
 - [Dolce alla zucca ispirato a Cinnamoroll](ricette/dolce-alla-zucca-ispirato-a-cinnamoroll.md) _(da completare)_
-- [Dolci tradizionali marchigiani (frustingo, cicerchiata, calcioni/piconi dolci, cavallucci, ciambellone marchigiano, serpe di Ancona)](ricette/dolci-tradizionali-marchigiani-frustingo-cicerchiata-calcioni-piconi-d.md) _(da completare)_
 - [Frittelle dolci di polenta](ricette/frittelle-dolci-di-polenta.md)
+- [Frustingo marchigiano](ricette/frustingo-marchigiano.md)
 - [Macarons francesi con ganache al cioccolato](ricette/macarons-francesi-con-ganache-al-cioccolato.md)
 - [Meringhe classiche (4 albumi)](ricette/meringhe-classiche-4-albumi.md)
 - [Pumpkin cinnamon rolls con cream cheese frosting](ricette/pumpkin-cinnamon-rolls-con-cream-cheese-frosting.md)
+- [Serpe di Ancona](ricette/serpe-di-ancona.md) _(da completare)_
 
 
 ## Colazione e fit (92)
@@ -296,7 +301,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 
 ### Dolci fit e merende (21)
 
-- [Banana bread proteico](ricette/banana-bread-proteico.md) _(da completare)_
+- [Banana bread proteico](ricette/banana-bread-proteico.md)
 - [Barrette di frutta secca ricoperte di cioccolato (fit)](ricette/barrette-di-frutta-secca-ricoperte-di-cioccolato-fit.md)
 - [Barrette proteiche fit datteri e burro di arachidi (senza cottura)](ricette/barrette-proteiche-fit-datteri-e-burro-di-arachidi-senza-cottura.md)
 - [Biscotti fit banana e avena](ricette/biscotti-fit-banana-e-avena.md)
@@ -327,7 +332,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 
 ### Frolle e impasti (10)
 
-- [Frolla al caffè (versione con 175 g di burro, stampo 28 cm)](ricette/frolla-al-caffe-versione-con-175-g-di-burro-stampo-28-cm.md) _(da completare)_
+- [Frolla al caffè (versione con 175 g di burro, stampo 28 cm)](ricette/frolla-al-caffe-versione-con-175-g-di-burro-stampo-28-cm.md)
 - [Frolla senza uova](ricette/frolla-senza-uova.md)
 - [Frolla tipo Stefano Laghi senza uova con eritritolo (400 g farina)](ricette/frolla-tipo-stefano-laghi-senza-uova-con-eritritolo-400-g-farina.md)
 - [Pasta brisée per tarte Tatin (teglia 26 cm)](ricette/pasta-brisee-per-tarte-tatin-teglia-26-cm.md)
@@ -341,7 +346,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 ### Pane, pizza e lievitati (6)
 
 - [Impasto pizza in teglia (Manitoba + farina 0 + semola + farro) - 2 teglie tonde 28 cm](ricette/impasto-pizza-in-teglia-manitoba-farina-0-semola-farro-2-teglie-tonde-.md)
-- [Pane alle olive (gestione pieghe, olive e origano)](ricette/pane-alle-olive-gestione-pieghe-olive-e-origano.md) _(da completare)_
+- [Pane alle olive (gestione pieghe, olive e origano)](ricette/pane-alle-olive-gestione-pieghe-olive-e-origano.md)
 - [Pane alle olive (impasto con pieghe, forno 240°C)](ricette/pane-alle-olive-impasto-con-pieghe-forno-240c.md)
 - [Pane proteico all'albume (versione usata dall'utente)](ricette/pane-proteico-all-albume-versione-usata-dall-utente.md)
 - [Pane proteico banana e albume](ricette/pane-proteico-banana-e-albume.md)
@@ -350,7 +355,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 ### Creme, farciture e glasse (14)
 
 - [Bagna all'Alchermes per pan di Spagna](ricette/bagna-all-alchermes-per-pan-di-spagna.md)
-- [Bagna per tiramisù e come bagnare i savoiardi](ricette/bagna-per-tiramisu-e-come-bagnare-i-savoiardi.md) _(da completare)_
+- [Bagna per tiramisù e come bagnare i savoiardi](ricette/bagna-per-tiramisu-e-come-bagnare-i-savoiardi.md)
 - [Crema al mascarpone e panna per farcire torta](ricette/crema-al-mascarpone-e-panna-per-farcire-torta.md)
 - [Crema chantilly](ricette/crema-chantilly.md)
 - [Crema di zucca per crostata (670 g di zucca, senza uova)](ricette/crema-di-zucca-per-crostata-670-g-di-zucca-senza-uova.md)
@@ -360,7 +365,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Crema pasticcera con latte di soia (dosi ridotte per torta da 28 cm)](ricette/crema-pasticcera-con-latte-di-soia-dosi-ridotte-per-torta-da-28-cm.md)
 - [Crema pasticcera fit (con farina o amido)](ricette/crema-pasticcera-fit-con-farina-o-amido.md)
 - [Crema pasticcera per crostata da 28 cm (con 98 g di tuorlo, anche latte di soia)](ricette/crema-pasticcera-per-crostata-da-28-cm-con-98-g-di-tuorlo-anche-latte-.md)
-- [Crème Chantilly originale](ricette/creme-chantilly-originale.md) _(da completare)_
+- [Crème Chantilly originale](ricette/creme-chantilly-originale.md)
 - [Ganache al cioccolato fondente (liscia e montata, dosi ridotte)](ricette/ganache-al-cioccolato-fondente-liscia-e-montata-dosi-ridotte.md)
 - [Glassa neutra trasparente](ricette/glassa-neutra-trasparente.md)
 

@@ -1,0 +1,4 @@
+﻿Font incluse in questa cartella (licenza SIL Open Font License 1.1):
+- Bricolage Grotesque, di Mathieu Triay (Google Fonts)
+- Source Serif 4, di Frank Grießhammer / Adobe (Google Fonts)
+Si possono usare e ridistribuire liberamente.
