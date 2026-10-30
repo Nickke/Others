@@ -20,3 +20,5 @@ Non indicato.
 
 ## Note
 Nel post la ricetta completa non è scritta: serve guardare il video. La descrizione elenca solo i componenti: base croccante di graham, crema di cheesecake cotta alla vaniglia e cannella con strati di mele caramellate, copertura di mele speziate, crumble di avena e salsa al caramello salato.
+
+- Nel commento l'autore (Blue Bowl) rimanda alla ricetta scritta sul suo sito, bluebowlrecipes.com ("Salted Caramel Apple Pie Cheesecake"). Il sito non si è potuto aprire da qui: apri il link dal post per le dosi.

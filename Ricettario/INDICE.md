@@ -100,7 +100,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Polpettone classico al forno](ricette/polpettone-classico-al-forno.md)
 - [Sformato di pollo e zucca filante](ricette/sformato-di-pollo-e-zucca-filante.md)
 - [Tacchino con zucchine e finocchio in padella](ricette/tacchino-con-zucchine-e-finocchio-in-padella.md) _(da completare)_
-- [Tacos di pollo con riso croccante](ricette/crispy-rice-chicken-tacos-fb.md) _(da completare)_
+- [Tacos di pollo con riso croccante](ricette/crispy-rice-chicken-tacos-fb.md)
 
 ### Uova e frittate (6)
 
@@ -347,7 +347,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Cheesecake in tazza Pan di Stelle](ricette/cheesecake-in-tazza-pan-di-stelle-fb.md)
 - [Cornetti fit alla marmellata (albicocca o ciliegia) / sfogliatine proteiche](ricette/cornetti-fit-alla-marmellata-albicocca-o-ciliegia-sfogliatine-proteich.md)
 - [Fettamisù al pistacchio](ricette/fettamisu-al-pistacchio-fb.md)
-- [Kinder Cereali proteico fatto in casa](ricette/kinder-cereali-proteico-fb.md) _(da completare)_
+- [Kinder Cereali proteico fatto in casa (su stecco)](ricette/kinder-cereali-proteico-fb.md)
 - [Lava cake super light (in friggitrice ad aria)](ricette/lava-cake-super-light-fb.md)
 - [Lemon bars crude e vegane (senza glutine)](ricette/lemon-bars-crude-vegane-fb.md)
 - [Muffin fit alla banana e avena](ricette/muffin-fit-alla-banana-e-avena.md)
@@ -465,7 +465,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 
 - [Acqua elettrolitica al limone](ricette/acqua-elettrolitica-al-limone-fb.md)
 - [Bevanda calda miele, limone e chiodi di garofano (per la tosse)](ricette/bevanda-calda-miele-limone-e-chiodi-di-garofano-per-la-tosse.md)
-- [Limonata fermentata naturalmente (soda al limone biologica)](ricette/limonata-fermentata-biologica-fb.md) _(da completare)_
+- [Limonata fermentata naturalmente (soda al limone)](ricette/limonata-fermentata-biologica-fb.md)
 - [Shaker post workout (proteine isolate + creatina)](ricette/shaker-post-workout-proteine-isolate-creatina.md) _(da completare)_
 
 
