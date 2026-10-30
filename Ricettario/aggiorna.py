@@ -198,7 +198,7 @@ def scheda(r):
         extra += f'<div class="extra"><h5>Valori nutrizionali</h5><p>{nut}</p></div>'
     if note:
         extra += f'<div class="extra"><h5>Note</h5><p>{note}</p></div>'
-    return f"""<details class="ric" id="{r['_id']}" data-txt="{e(testo)}">
+    return f"""<details class="ric" id="{r['_id']}" data-txt="{e(testo)}" data-nome="{e(r['nome'])}" data-sub="{e(r['sottocategoria'])}">
 <summary><span class="t">{e(r['nome'])}</span>{badge}</summary>
 <div class="corpo">
 {img}
@@ -344,6 +344,8 @@ h5{margin:0 0 8px;font:800 1.05rem var(--disp);color:var(--c)}
 .fonte a{color:var(--c);font-weight:600}
 .su{margin:4px 0 0;font:500 .95rem var(--disp)}
 .su a{color:var(--mut);display:inline-block;padding:10px 0}
+.rtit{margin:34px 0 4px;font:800 1.35rem/1.2 var(--disp);letter-spacing:-.01em}
+.rsub{margin-left:auto;font:500 .85rem var(--disp);color:var(--mut)}
 .vuoto{display:none;max-width:30em;margin:40px 0;font-size:1.1rem;color:var(--mut)}
 .piede{margin:80px 0 48px}
 .piede a{font:600 1rem var(--disp)}
@@ -390,34 +392,39 @@ h5{margin:0 0 8px;font:800 1.05rem var(--disp);color:var(--c)}
 </main>
 <script>
 const q=document.getElementById('q'),esito=document.getElementById('esito');
+const norm=t=>t.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase();
 const ric=[...document.querySelectorAll('.ric')];
-const voci=[...document.querySelectorAll('.tosub li')];
-function nascondiVuoti(){
-  document.querySelectorAll('.tosub,.sub').forEach(s=>{
-    const k=s.querySelectorAll(s.classList.contains('sub')?'.ric':'li');
-    s.style.display=[...k].some(x=>x.style.display!=='none')?'':'none'});
-  document.querySelectorAll('.tocat,.cat').forEach(c=>{
-    const k=c.querySelectorAll(c.classList.contains('cat')?'.sub':'.tosub');
-    c.style.display=[...k].some(x=>x.style.display!=='none')?'':'none'});
-}
+ric.forEach(r=>{r._txt=norm(r.dataset.txt);r._nome=norm(r.dataset.nome)});
+const blocchi=['.tiles','#indice','.libro'].map(s=>document.querySelector(s));
+const ris=document.createElement('div');ris.id='risultati';ris.hidden=true;
+document.querySelector('.libro').after(ris);
+function titolo(txt){const h=document.createElement('h3');h.className='rtit';h.textContent=txt;return h}
+function clona(r){const c=r.cloneNode(true);c.removeAttribute('id');c.style.display='';
+  const cat=r.closest('.cat');c.style.setProperty('--c',getComputedStyle(cat).getPropertyValue('--c'));
+  const sp=document.createElement('span');sp.className='rsub';sp.textContent=r.dataset.sub;c.querySelector('summary').append(sp);
+  c.querySelector('.su')?.remove();return c}
 function aggiorna(){
-  const t=q.value.trim().toLowerCase();let n=0;
-  // durante la ricerca mostro solo i risultati: nascondo riquadri e indice
-  document.querySelector('.tiles').style.display=t?'none':'';
-  document.getElementById('indice').style.display=t?'none':'';
-  document.querySelector('.libro').style.marginTop=t?'24px':'';
-  ric.forEach(r=>{const ok=!t||r.dataset.txt.includes(t);r.style.display=ok?'':'none';
-    if(ok)n++;if(t&&ok)r.open=n<=8;else if(!t)r.open=false});
-  voci.forEach(v=>{v.style.display=(!t||v.dataset.txt.includes(t))?'':'none'});
-  nascondiVuoti();
+  const toks=norm(q.value).split(/\\s+/).filter(Boolean);
+  if(!toks.length){ris.hidden=true;ris.replaceChildren();blocchi.forEach(b=>b.style.display='');
+    document.getElementById('vuoto').style.display='none';esito.textContent='';return}
+  const perNome=[],perIngr=[];
+  ric.forEach(r=>{if(toks.every(t=>r._txt.includes(t))) (toks.every(t=>r._nome.includes(t))?perNome:perIngr).push(r)});
+  perNome.sort((a,b)=>(+!a._nome.startsWith(toks[0]))-(+!b._nome.startsWith(toks[0])));
+  blocchi.forEach(b=>b.style.display='none');
+  ris.replaceChildren();ris.hidden=false;
+  if(perNome.length){ris.append(titolo(perNome.length+(perNome.length===1?' ricetta con ':' ricette con ')+'«'+q.value.trim()+'» nel nome'));
+    perNome.forEach((r,i)=>{const c=clona(r);c.open=i<5;ris.append(c)})}
+  if(perIngr.length){ris.append(titolo(perIngr.length+(perIngr.length===1?' ricetta che lo contiene':' ricette che lo contengono')+' negli ingredienti'));
+    perIngr.forEach(r=>ris.append(clona(r)))}
+  const n=perNome.length+perIngr.length;
   document.getElementById('vuoto').style.display=n?'none':'block';
-  esito.textContent=t?(n+(n===1?' ricetta trovata':' ricette trovate')):'';
+  esito.textContent=n+(n===1?' ricetta trovata':' ricette trovate');
 }
 q.addEventListener('input',aggiorna);
 document.querySelector('.bar a').addEventListener('click',()=>{q.value='';aggiorna()});
 function apriDaHash(){const el=document.getElementById(location.hash.slice(1));if(el&&el.tagName==='DETAILS')el.open=true}
 window.addEventListener('hashchange',apriDaHash);apriDaHash();
-window.addEventListener('beforeprint',()=>ric.forEach(r=>r.open=true));
+window.addEventListener('beforeprint',()=>document.querySelectorAll('details.ric').forEach(r=>r.open=true));
 </script></body></html>"""
 
 
