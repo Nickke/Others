@@ -402,14 +402,19 @@ function nascondiVuoti(){
 }
 function aggiorna(){
   const t=q.value.trim().toLowerCase();let n=0;
+  // durante la ricerca mostro solo i risultati: nascondo riquadri e indice
+  document.querySelector('.tiles').style.display=t?'none':'';
+  document.getElementById('indice').style.display=t?'none':'';
+  document.querySelector('.libro').style.marginTop=t?'24px':'';
   ric.forEach(r=>{const ok=!t||r.dataset.txt.includes(t);r.style.display=ok?'':'none';
-    if(ok)n++;if(t&&ok)r.open=n<=3;else if(!t)r.open=false});
+    if(ok)n++;if(t&&ok)r.open=n<=8;else if(!t)r.open=false});
   voci.forEach(v=>{v.style.display=(!t||v.dataset.txt.includes(t))?'':'none'});
   nascondiVuoti();
   document.getElementById('vuoto').style.display=n?'none':'block';
   esito.textContent=t?(n+(n===1?' ricetta trovata':' ricette trovate')):'';
 }
 q.addEventListener('input',aggiorna);
+document.querySelector('.bar a').addEventListener('click',()=>{q.value='';aggiorna()});
 function apriDaHash(){const el=document.getElementById(location.hash.slice(1));if(el&&el.tagName==='DETAILS')el.open=true}
 window.addEventListener('hashchange',apriDaHash);apriDaHash();
 window.addEventListener('beforeprint',()=>ric.forEach(r=>r.open=true));
