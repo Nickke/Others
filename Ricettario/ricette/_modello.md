@@ -36,5 +36,7 @@ Categorie e sottocategorie (scrivile esattamente così):
   Altro: Consigli e spuntini
 Una sottocategoria nuova viene aggiunta in fondo alla sua categoria; una categoria nuova in fondo all'indice.
 Stato: completa | parziale | solo nome (le ultime due mostrano "da completare").
+Fonte: scrivi  fonte: Facebook - Nome del profilo - https://link-del-post  (oppure  fonte: scritta a mano,  fonte: https://sito.it/ricetta ).
 Foto: salva immagini/<nome-di-questo-file>.jpg (viene trovata da sola) oppure aggiungi la riga  immagine: nome.jpg
 -->
+

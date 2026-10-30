@@ -153,9 +153,36 @@ def scrivi_indice_md(albero, tot):
     (BASE / "INDICE.md").write_text("\n".join(md) + "\n", encoding="utf-8")
 
 
+def etichetta_fonte(r):
+    """Testo leggibile della fonte: ChatGPT, profilo Facebook, sito web... (con link se c'è un URL)."""
+    e = html.escape
+    f = r.get("fonte", "").strip()
+    parti = []
+    m = re.match(r"CHAT\s+\d+\s*-\s*(.*?)\s*\((\d{4})-(\d{2})-(\d{2})\)\s*$", f)
+    if m:
+        parti.append(f"ChatGPT, chat «{e(m.group(1))}» ({m.group(4)}/{m.group(3)}/{m.group(2)})")
+    elif f.lower().startswith("facebook"):
+        # formato:  Facebook - Nome profilo - https://...
+        pezzi = [x.strip() for x in f.split(" - ")]
+        nome = pezzi[1] if len(pezzi) > 1 and not pezzi[1].startswith("http") else ""
+        url = next((x for x in pezzi if x.startswith("http")), "")
+        et = "Facebook" + (f", profilo {e(nome)}" if nome else "")
+        parti.append(f'<a href="{e(url)}" rel="noopener">{et}</a>' if url else et)
+    elif f.startswith("http"):
+        parti.append(f'<a href="{e(f)}" rel="noopener">{e(f)}</a>')
+    elif f and f.lower() != "scritta a mano":
+        parti.append(e(f))
+    elif f:
+        parti.append("scritta a mano")
+    if "integrata da ricette di riferimento online" in r["_sez"].get("note", "").lower():
+        parti.append("integrata con ricette di riferimento online (vedi Note)")
+    return "Fonte: " + " + ".join(parti) if parti else ""
+
+
 def scheda(r):
     s = r["_sez"]
     e = html.escape
+    fonte = etichetta_fonte(r)
     ing = "".join(f"<li>{e(x)}</li>" for x in righe(s.get("ingredienti", "")))
     pro = "".join(f"<li>{e(x)}</li>" for x in righe(s.get("procedimento", "")))
     info = "".join(f"<span>{e(x)}</span>" for x in [r.get("porzioni", ""), r.get("tempo", "")]
@@ -181,6 +208,7 @@ def scheda(r):
 {f'<div class="pro"><h5>Procedimento</h5><ol>{pro}</ol></div>' if pro else ''}
 </div>
 {extra}
+{f'<p class="fonte">{fonte}</p>' if fonte else ''}
 <p class="su"><a href="#indice">Torna all'indice</a></p>
 </div></details>"""
 
@@ -312,7 +340,9 @@ h5{margin:0 0 8px;font:800 1.05rem var(--disp);color:var(--c)}
 .pro li::before{content:counter(p);position:absolute;left:0;top:-.1em;font:800 1.6rem/1 var(--disp);color:var(--c)}
 .extra{margin-top:10px}
 .extra p{margin:0;max-width:44em}
-.su{margin:16px 0 0;font:500 .95rem var(--disp)}
+.fonte{margin:14px 0 0;padding-top:10px;border-top:1px solid var(--line);font:500 .9rem/1.4 var(--disp);color:var(--mut)}
+.fonte a{color:var(--c);font-weight:600}
+.su{margin:4px 0 0;font:500 .95rem var(--disp)}
 .su a{color:var(--mut);display:inline-block;padding:10px 0}
 .vuoto{display:none;max-width:30em;margin:40px 0;font-size:1.1rem;color:var(--mut)}
 .piede{margin:80px 0 48px}

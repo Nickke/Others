@@ -1,11 +1,11 @@
 # Ricettario
 
-307 ricette in 10 categorie.
+357 ricette in 10 categorie.
 
 Versione da sfogliare nel browser: **Ricettario.html**.
 
 
-## Antipasti e salati (23)
+## Antipasti e salati (25)
 
 ### Torte salate e rustici (11)
 
@@ -21,7 +21,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Torta salata proteica di zucchine e ricotta (senza pasta)](ricette/torta-salata-proteica-di-zucchine-e-ricotta-senza-pasta.md) _(da completare)_
 - [Torta salata zucchine, tonno e Philadelphia (anche con peperoni)](ricette/torta-salata-zucchine-tonno-e-philadelphia-anche-con-peperoni.md)
 
-### Sfizi e stuzzichini (12)
+### Sfizi e stuzzichini (14)
 
 - [Apericena pugliese per 9 persone (menu e buffet)](ricette/apericena-pugliese-per-9-persone-menu-e-buffet.md) _(da completare)_
 - [Crema di ricotta, limone e pepe per pasta o riso](ricette/crema-di-ricotta-limone-e-pepe-per-pasta-o-riso.md)
@@ -29,11 +29,13 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Feta al forno con miele](ricette/feta-al-forno-con-miele.md)
 - [Feta al miele al microonde](ricette/feta-al-miele-al-microonde.md)
 - [Focaccia pugliese congelata: come scaldarla](ricette/focaccia-pugliese-congelata-come-scaldarla.md)
+- [Focaccine di zucchine](ricette/focaccine-di-zucchine-fb.md) _(da completare)_
 - [Frise con pomodorini](ricette/frise-con-pomodorini.md)
 - [Grissini di pasta sfoglia al sesamo](ricette/grissini-di-pasta-sfoglia-al-sesamo.md)
 - [Grissini di pasta sfoglia e prosciutto](ricette/grissini-di-pasta-sfoglia-e-prosciutto.md)
 - [Guacamole senza cipolla](ricette/guacamole-senza-cipolla.md)
 - [Ricotta salata con zucchine e grana](ricette/ricotta-salata-con-zucchine-e-grana.md)
+- [Snack croccanti fit di lenticchie rosse e avena](ricette/snack-croccanti-lenticchie-e-avena-fb.md)
 - [Taralli pugliesi](ricette/taralli-pugliesi.md)
 
 
@@ -79,21 +81,26 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Zuppa leggera di verdure con tofu e zenzero (vellutata)](ricette/zuppa-leggera-di-verdure-con-tofu-e-zenzero-vellutata.md)
 
 
-## Secondi (31)
+## Secondi (36)
 
-### Carne e pesce (11)
+### Carne e pesce (16)
 
 - [Fricco di pollo marchigiano](ricette/fricco-di-pollo-marchigiano.md)
 - [Lonza di suino al forno con patate (trancio 1,156 kg)](ricette/lonza-di-suino-al-forno-con-patate-trancio-1-156-kg.md)
 - [Pollo a cubetti speziato (meal prep)](ricette/pollo-a-cubetti-speziato-meal-prep.md) _(da completare)_
 - [Pollo al forno con zucchine, peperoni e riso (meal prep)](ricette/pollo-al-forno-con-zucchine-peperoni-e-riso-meal-prep.md)
+- [Pollo al pesto e mozzarella (marinata da congelatore)](ricette/pollo-al-pesto-e-mozzarella-da-congelatore-fb.md)
+- [Pollo buffalo ranch (marinata da congelatore)](ricette/pollo-buffalo-ranch-da-congelatore-fb.md)
 - [Pollo cremoso alla zucca](ricette/pollo-cremoso-alla-zucca.md)
 - [Pollo cremoso alla zucca e parmigiano](ricette/pollo-cremoso-alla-zucca-e-parmigiano.md)
+- [Pollo miele e senape (marinata da congelatore)](ricette/pollo-miele-e-senape-da-congelatore-fb.md)
+- [Pollo teriyaki all'ananas (marinata da congelatore)](ricette/pollo-teriyaki-all-ananas-da-congelatore-fb.md)
 - [Polpette di manzo al sugo di zucca](ricette/polpette-di-manzo-al-sugo-di-zucca.md)
 - [Polpette fit di salmone e zucchine con crema di spinaci e yogurt](ricette/polpette-fit-di-salmone-e-zucchine-con-crema-di-spinaci-e-yogurt.md)
 - [Polpettone classico al forno](ricette/polpettone-classico-al-forno.md)
 - [Sformato di pollo e zucca filante](ricette/sformato-di-pollo-e-zucca-filante.md)
 - [Tacchino con zucchine e finocchio in padella](ricette/tacchino-con-zucchine-e-finocchio-in-padella.md) _(da completare)_
+- [Tacos di pollo con riso croccante](ricette/crispy-rice-chicken-tacos-fb.md) _(da completare)_
 
 ### Uova e frittate (6)
 
@@ -148,15 +155,21 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Zucca Delica al forno](ricette/zucca-delica-al-forno.md)
 
 
-## Dolci (55)
+## Dolci (71)
 
-### Torte e dolci da forno (19)
+### Torte e dolci da forno (25)
 
+- [Apple pie cheesecake](ricette/apple-pie-cheesecake-fb.md) _(da completare)_
+- [Barrette crumble al limone (Old Fashioned Lemon Crumble Bars)](ricette/barrette-crumble-al-limone-fb.md) _(da completare)_
 - [Carrot cake autunnale con noci e frosting](ricette/carrot-cake-autunnale-con-noci-e-frosting.md)
 - [Ciambellone al vino](ricette/ciambellone-al-vino.md)
+- [Cinnamon rolls](ricette/cinnamon-rolls-fb-2.md)
+- [Cinnamon rolls al Lotus](ricette/cinnamon-rolls-lotus-fb.md)
+- [Cinnamon rolls sofficissimi con glassa al Philadelphia](ricette/cinnamon-rolls-fb.md)
 - [Miascia comasca](ricette/miascia-comasca.md)
 - [Pinza veneta (dolce dell'Epifania)](ricette/pinza-veneta-dolce-dell-epifania.md)
 - [Pumpkin cheesecake](ricette/pumpkin-cheesecake.md)
+- [Sbrisolona alle mele senza uova e senza burro](ricette/sbrisolona-alle-mele-fb.md)
 - [Torta ai cachi e cacao](ricette/torta-ai-cachi-e-cacao.md)
 - [Torta ai tre cioccolati (base cacao + 3 mousse, stampo 28 cm)](ricette/torta-ai-tre-cioccolati-base-cacao-3-mousse-stampo-28-cm.md) _(da completare)_
 - [Torta alle pere, cioccolato e cannella](ricette/torta-alle-pere-cioccolato-e-cannella.md)
@@ -172,11 +185,12 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Torta soffice al limone senza glutine con crema pasticcera](ricette/torta-soffice-al-limone-senza-glutine-con-crema-pasticcera.md) _(da completare)_
 - [Torta soffice di zucca, mandorle e cannella](ricette/torta-soffice-di-zucca-mandorle-e-cannella.md)
 
-### Crostate, strudel e tarte (12)
+### Crostate, strudel e tarte (13)
 
 - [Cenerini / cestini di crostata (con gli avanzi della torta)](ricette/cenerini-cestini-di-crostata-con-gli-avanzi-della-torta.md)
 - [Crostata di marmellata (quantita di marmellata e trucchi)](ricette/crostata-di-marmellata-quantita-di-marmellata-e-trucchi.md)
 - [Crostata di zucca (frolla senza uova)](ricette/crostata-di-zucca-frolla-senza-uova.md)
+- [Crostata moderna all'albicocca, yogurt e mandorla](ricette/crostata-moderna-albicocca-yogurt-e-mandorla-fb.md) _(da completare)_
 - [Crostata morbida senza glutine con crema pasticcera](ricette/crostata-morbida-senza-glutine-con-crema-pasticcera.md)
 - [Crostata zucca e cioccolato](ricette/crostata-zucca-e-cioccolato.md)
 - [Strudel di mele con pasta sfoglia](ricette/strudel-di-mele-con-pasta-sfoglia.md)
@@ -187,21 +201,27 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Torta crostata "Sacher rivisitata"](ricette/torta-crostata-sacher-rivisitata.md) _(da completare)_
 - [Torta della nonna (teglia 28 cm, crema con latte di soia)](ricette/torta-della-nonna-teglia-28-cm-crema-con-latte-di-soia.md)
 
-### Dolci al cucchiaio (10)
+### Dolci al cucchiaio (15)
 
 - [Apple crumble con cannella e vaniglia](ricette/apple-crumble-con-cannella-e-vaniglia.md)
 - [Bicchieri dessert crema al limone e crumble di mandorle (senza glutine)](ricette/bicchieri-dessert-crema-al-limone-e-crumble-di-mandorle-senza-glutine.md)
 - [Bonet (latte intero, agar agar, cottura e sformatura)](ricette/bonet-latte-intero-agar-agar-cottura-e-sformatura.md)
 - [Bonet piemontese (versione ottimizzata)](ricette/bonet-piemontese-versione-ottimizzata.md)
 - [Budino di cachi e cacao senza farina](ricette/budino-di-cachi-e-cacao-senza-farina.md)
+- [Crema yogurt e cacao](ricette/crema-yogurt-e-cacao-fb.md)
 - [Crostata tiramisù (stampo 28 cm) con frolla al caffè](ricette/crostata-tiramisu-stampo-28-cm-con-frolla-al-caffe.md)
+- [Mini barrette al pistacchio senza cottura](ricette/barrette-pistacchio-senza-cottura-fb.md) _(da completare)_
+- [Mousse al cacao e yogurt (fit)](ricette/mousse-cacao-e-yogurt-fb.md)
+- [Panna cotta al Bounty](ricette/panna-cotta-al-bounty-fb.md)
 - [Riso al latte](ricette/riso-al-latte.md)
 - [Tiramisù alla zucca (versione leggera con mascarpone e ricotta)](ricette/tiramisu-alla-zucca-versione-leggera-con-mascarpone-e-ricotta.md)
 - [Tiramisù alla zucca classico con uova](ricette/tiramisu-alla-zucca-classico-con-uova.md)
 - [Tiramisù alla zucca con crema soffice (senza uova)](ricette/tiramisu-alla-zucca-con-crema-soffice-senza-uova.md)
+- [Torta al cioccolato più buona del mondo (senza glutine)](ricette/torta-al-cioccolato-piu-buona-del-mondo-fb.md)
 
-### Biscotti e piccola pasticceria (14)
+### Biscotti e piccola pasticceria (18)
 
+- [Biscotti di avena e banane senza glutine](ricette/biscotti-avena-e-banane-fb.md)
 - [Brownies XXL (teglia 43x33 cm, versione alta)](ricette/brownies-xxl-teglia-43x33-cm-versione-alta.md)
 - [Calcioni / piconi dolci marchigiani](ricette/calcioni-piconi-dolci-marchigiani.md)
 - [Cavallucci marchigiani](ricette/cavallucci-marchigiani.md) _(da completare)_
@@ -213,12 +233,15 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Frittelle dolci di polenta](ricette/frittelle-dolci-di-polenta.md)
 - [Frustingo marchigiano](ricette/frustingo-marchigiano.md)
 - [Macarons francesi con ganache al cioccolato](ricette/macarons-francesi-con-ganache-al-cioccolato.md)
+- [Macarons senza riposo](ricette/macarons-senza-riposo-fb.md) _(da completare)_
 - [Meringhe classiche (4 albumi)](ricette/meringhe-classiche-4-albumi.md)
+- [Mini cookies con gocce di cioccolato](ricette/mini-cookies-con-gocce-di-cioccolato-fb.md)
 - [Pumpkin cinnamon rolls con cream cheese frosting](ricette/pumpkin-cinnamon-rolls-con-cream-cheese-frosting.md)
+- [Salame di cioccolato alla banana (senza forno)](ricette/salame-di-cioccolato-alla-banana-fb.md)
 - [Serpe di Ancona](ricette/serpe-di-ancona.md) _(da completare)_
 
 
-## Colazione e fit (92)
+## Colazione e fit (112)
 
 ### Pancake e crêpes (29)
 
@@ -272,7 +295,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Piadina proteica di farro con tacchino e yogurt (uova nascoste)](ricette/piadina-proteica-di-farro-con-tacchino-e-yogurt-uova-nascoste.md)
 - [Piadina proteica di farro e avena (1 piadina)](ricette/piadina-proteica-di-farro-e-avena-1-piadina.md)
 
-### Granola, muesli e porridge (24)
+### Granola, muesli e porridge (27)
 
 - [Barrette di muesli compatte (avena, uvetta, nocciole, chia)](ricette/barrette-di-muesli-compatte-avena-uvetta-nocciole-chia.md)
 - [Granola (versione semplice)](ricette/granola-versione-semplice.md)
@@ -283,6 +306,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Granola fit con avena e nocciole](ricette/granola-fit-con-avena-e-nocciole.md)
 - [Granola semplice con solo avena, noci e cannella](ricette/granola-semplice-con-solo-avena-noci-e-cannella.md)
 - [Granola: come renderla più croccante (ricottura)](ricette/granola-come-renderla-piu-croccante-ricottura.md) _(da completare)_
+- [Magnesio in polvere casalingo (mix di semi e cacao)](ricette/magnesio-in-polvere-casalingo-fb.md) _(da completare)_
 - [Muesli a blocchi con avena, uvetta, frutta secca e semi di chia](ricette/muesli-a-blocchi-con-avena-uvetta-frutta-secca-e-semi-di-chia.md)
 - [Muesli con fiocchi d'avena e nocciole](ricette/muesli-con-fiocchi-d-avena-e-nocciole.md)
 - [Muesli croccante con avena, nocciole e uvetta](ricette/muesli-croccante-con-avena-nocciole-e-uvetta.md)
@@ -292,27 +316,46 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Muesli fit croccante con avena e frutta secca](ricette/muesli-fit-croccante-con-avena-e-frutta-secca.md)
 - [Muesli/granola fit croccante a blocchi](ricette/muesli-granola-fit-croccante-a-blocchi.md)
 - [Muslei fit (granola al forno con noci e semi)](ricette/muslei-fit-granola-al-forno-con-noci-e-semi.md)
+- [Overnight al tiramisù](ricette/overnight-tiramisu-fb.md)
 - [Overnight porridge fit (definizione)](ricette/overnight-porridge-fit-definizione.md)
 - [Porridge / muesli (colazione dell'utente)](ricette/porridge-muesli-colazione-dell-utente.md) _(da completare)_
+- [Porridge Bounty (cocco e cacao)](ricette/porridge-bounty-fb.md)
 - [Porridge overnight](ricette/porridge-overnight.md)
 - [Porridge proteico (colazione)](ricette/porridge-proteico-colazione.md)
 - [Porridge proteico alla cannella e mela](ricette/porridge-proteico-alla-cannella-e-mela.md)
 - [Pudding proteico alla vaniglia e mandorle (senza semi di chia)](ricette/pudding-proteico-alla-vaniglia-e-mandorle-senza-semi-di-chia.md)
 
-### Dolci fit e merende (21)
+### Dolci fit e merende (38)
 
 - [Banana bread proteico](ricette/banana-bread-proteico.md)
+- [Banoffee slice Biscoff senza cottura](ricette/banoffee-slice-biscoff-fb.md)
 - [Barrette di frutta secca ricoperte di cioccolato (fit)](ricette/barrette-di-frutta-secca-ricoperte-di-cioccolato-fit.md)
+- [Barrette di granola senza cottura (con fragole liofilizzate)](ricette/barrette-di-granola-senza-cottura-fb.md) _(da completare)_
 - [Barrette proteiche fit datteri e burro di arachidi (senza cottura)](ricette/barrette-proteiche-fit-datteri-e-burro-di-arachidi-senza-cottura.md)
+- [Barrette proteiche Oreo truffle con frosting proteico](ricette/barrette-proteiche-oreo-truffle-fb.md)
+- [Biscotti da colazione (avena, banana, uova e frutta secca)](ricette/biscotti-colazione-avena-banana-fb.md) _(da completare)_
 - [Biscotti fit banana e avena](ricette/biscotti-fit-banana-e-avena.md)
+- [Brownie al cioccolato in padella (senza forno)](ricette/brownie-al-cioccolato-in-padella-fb.md)
 - [Brownie fit (versione fit della ricetta dell'utente)](ricette/brownie-fit-versione-fit-della-ricetta-dell-utente.md)
+- [Brownies banana e cacao (fit)](ricette/brownies-banana-e-cacao-fb.md)
+- [Brownies fit](ricette/brownies-fit-fb.md)
 - [Brownies fit con eritritolo](ricette/brownies-fit-con-eritritolo.md)
+- [Brownies senza grassi](ricette/brownies-senza-grassi-fb.md)
 - [Budino fit proteico con agar agar](ricette/budino-fit-proteico-con-agar-agar.md)
+- [Carrot cake fit](ricette/carrot-cake-fit-fb.md)
 - [Cestino fit di cioccolato fondente con burro di arachidi e frutta secca](ricette/cestino-fit-di-cioccolato-fondente-con-burro-di-arachidi-e-frutta-secc.md)
+- [Cheesecake in tazza Pan di Stelle](ricette/cheesecake-in-tazza-pan-di-stelle-fb.md)
 - [Cornetti fit alla marmellata (albicocca o ciliegia) / sfogliatine proteiche](ricette/cornetti-fit-alla-marmellata-albicocca-o-ciliegia-sfogliatine-proteich.md)
+- [Fettamisù al pistacchio](ricette/fettamisu-al-pistacchio-fb.md)
+- [Kinder Cereali proteico fatto in casa](ricette/kinder-cereali-proteico-fb.md) _(da completare)_
+- [Lava cake super light (in friggitrice ad aria)](ricette/lava-cake-super-light-fb.md)
+- [Lemon bars crude e vegane (senza glutine)](ricette/lemon-bars-crude-vegane-fb.md)
 - [Muffin fit alla banana e avena](ricette/muffin-fit-alla-banana-e-avena.md)
+- [Muffin magici alla ricotta](ricette/muffin-magici-ricotta-fb.md)
 - [Mug cake alla banana (microonde)](ricette/mug-cake-alla-banana-microonde.md)
 - [Mug cake ricotta al cacao (microonde)](ricette/mug-cake-ricotta-al-cacao-microonde.md) _(da completare)_
+- [Pan gocciole fit light (in friggitrice ad aria)](ricette/pan-gocciole-fit-light-fb.md)
+- [Quadrotti Snickers al cottage cheese](ricette/cottage-cheese-snickers-squares-fb.md)
 - [Ricotta dolce fit con marmellata e frutti di bosco](ricette/ricotta-dolce-fit-con-marmellata-e-frutti-di-bosco.md) _(da completare)_
 - [Spumone di albume fit](ricette/spumone-di-albume-fit.md)
 - [Torta fit al cacao con uova e yogurt](ricette/torta-fit-al-cacao-con-uova-e-yogurt.md) _(da completare)_
@@ -328,7 +371,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Toast proteico con avocado e uova](ricette/toast-proteico-con-avocado-e-uova.md)
 
 
-## Basi e impasti (37)
+## Basi e impasti (41)
 
 ### Frolle e impasti (10)
 
@@ -343,8 +386,11 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Pasta frolla per 2 crostate di marmellata da 28 cm](ricette/pasta-frolla-per-2-crostate-di-marmellata-da-28-cm.md)
 - [Tipologie di impasto per lo strudel](ricette/tipologie-di-impasto-per-lo-strudel.md) _(da completare)_
 
-### Pane, pizza e lievitati (6)
+### Pane, pizza e lievitati (9)
 
+- [Filoncini con olive e parmigiano (impasto in una ciotola)](ricette/filoncini-olive-e-parmigiano-fb.md)
+- [Focaccia ad alta idratazione (100%) con pomodorini](ricette/focaccia-100-idratazione-fb.md)
+- [Focaccia pugliese con patata e pomodorini](ricette/focaccia-pugliese-con-patata-e-pomodorini-fb.md)
 - [Impasto pizza in teglia (Manitoba + farina 0 + semola + farro) - 2 teglie tonde 28 cm](ricette/impasto-pizza-in-teglia-manitoba-farina-0-semola-farro-2-teglie-tonde-.md)
 - [Pane alle olive (gestione pieghe, olive e origano)](ricette/pane-alle-olive-gestione-pieghe-olive-e-origano.md)
 - [Pane alle olive (impasto con pieghe, forno 240°C)](ricette/pane-alle-olive-impasto-con-pieghe-forno-240c.md)
@@ -352,7 +398,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Pane proteico banana e albume](ricette/pane-proteico-banana-e-albume.md)
 - [Panini proteici allo yogurt greco (farina 0)](ricette/panini-proteici-allo-yogurt-greco-farina-0.md)
 
-### Creme, farciture e glasse (14)
+### Creme, farciture e glasse (15)
 
 - [Bagna all'Alchermes per pan di Spagna](ricette/bagna-all-alchermes-per-pan-di-spagna.md)
 - [Bagna per tiramisù e come bagnare i savoiardi](ricette/bagna-per-tiramisu-e-come-bagnare-i-savoiardi.md)
@@ -368,6 +414,7 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Crème Chantilly originale](ricette/creme-chantilly-originale.md)
 - [Ganache al cioccolato fondente (liscia e montata, dosi ridotte)](ricette/ganache-al-cioccolato-fondente-liscia-e-montata-dosi-ridotte.md)
 - [Glassa neutra trasparente](ricette/glassa-neutra-trasparente.md)
+- [Lemon curd senza uova](ricette/lemon-curd-senza-uova-fb.md)
 
 ### Salse e marinature (7)
 
@@ -388,10 +435,11 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Marmellata di arance con eritritolo (versione 2)](ricette/marmellata-di-arance-con-eritritolo-versione-2.md)
 
 
-## Bevande e smoothie (19)
+## Bevande e smoothie (22)
 
-### Smoothie e frullati (4)
+### Smoothie e frullati (5)
 
+- [Frullato di cetriolo, ananas, sedano e semi di chia](ricette/frullato-chia-cetriolo-ananas-fb.md) _(da completare)_
 - [Smoothie bowl alla banana](ricette/smoothie-bowl-alla-banana.md)
 - [Smoothie pre-allenamento 2 banane, semi di chia e latte di mandorla](ricette/smoothie-pre-allenamento-2-banane-semi-di-chia-e-latte-di-mandorla.md) _(da completare)_
 - [Smoothie proteico al cioccolato e banana (pre-nanna)](ricette/smoothie-proteico-al-cioccolato-e-banana-pre-nanna.md)
@@ -413,9 +461,11 @@ Versione da sfogliare nel browser: **Ricettario.html**.
 - [Ruby Red Berry (mocktail con Monster Ultra Fantasy Ruby Red)](ricette/ruby-red-berry-mocktail-con-monster-ultra-fantasy-ruby-red.md)
 - [Spritz Select con Prosecco](ricette/spritz-select-con-prosecco.md) _(da completare)_
 
-### Altre bevande (2)
+### Altre bevande (4)
 
+- [Acqua elettrolitica al limone](ricette/acqua-elettrolitica-al-limone-fb.md)
 - [Bevanda calda miele, limone e chiodi di garofano (per la tosse)](ricette/bevanda-calda-miele-limone-e-chiodi-di-garofano-per-la-tosse.md)
+- [Limonata fermentata naturalmente (soda al limone biologica)](ricette/limonata-fermentata-biologica-fb.md) _(da completare)_
 - [Shaker post workout (proteine isolate + creatina)](ricette/shaker-post-workout-proteine-isolate-creatina.md) _(da completare)_
 
 
