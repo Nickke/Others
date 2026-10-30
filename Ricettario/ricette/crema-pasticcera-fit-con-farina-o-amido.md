@@ -1,6 +1,7 @@
 ---
 nome: Crema pasticcera fit (con farina o amido)
-categoria: Dolci
+categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 porzioni: 2-3
 tempo: cottura 5-7 min
 stato: completa

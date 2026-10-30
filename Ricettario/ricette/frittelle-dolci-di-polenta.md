@@ -1,6 +1,7 @@
 ---
 nome: Frittelle dolci di polenta
-categoria: Colazione e fit
+categoria: Dolci
+sottocategoria: Biscotti e piccola pasticceria
 porzioni: 1
 tempo: riposo 10 min
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Torta meringata
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 porzioni: 8 persone
 tempo: Meringa in forno statico 100-110 C per circa 2-2,5 ore
 stato: completa

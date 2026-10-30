@@ -1,6 +1,7 @@
 ---
 nome: Stracciatella marchigiana con albumi
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 porzioni: 2 persone
 tempo: Cottura 2-3 minuti dopo l'aggiunta degli albumi
 stato: completa

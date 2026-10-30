@@ -1,6 +1,7 @@
 ---
 nome: Frolla senza uova
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 tempo: riposo 30 min; cottura 180°C 25-35 min
 stato: completa
 fonte: CHAT 148 - Testo per negoziazione trasferte (2025-09-12)

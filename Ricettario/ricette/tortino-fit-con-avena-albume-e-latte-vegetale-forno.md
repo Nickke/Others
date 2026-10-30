@@ -1,6 +1,7 @@
 ---
 nome: Tortino fit con avena, albume e latte vegetale (forno)
 categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: 1
 tempo: 20-25 min a 180 °C
 stato: completa

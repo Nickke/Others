@@ -1,6 +1,7 @@
 ---
 nome: Crêpes classiche
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 6-8 crêpes
 tempo: riposo 20-30 min; 45-60 s + 20-30 s di cottura
 stato: completa

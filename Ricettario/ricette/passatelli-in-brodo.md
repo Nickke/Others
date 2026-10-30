@@ -1,6 +1,7 @@
 ---
 nome: Passatelli in brodo
 categoria: Primi
+sottocategoria: Pasta, gnocchi e passatelli
 porzioni: 2 (dosi per 4 riportate in note)
 tempo: cottura 2-3 min; riposo impasto 30 min
 stato: completa

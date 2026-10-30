@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit di grano saraceno (senza yogurt)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 5 persone, 5 piadine
 tempo: riposo 10-15 min; cottura 1-2 min per lato
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Biscotti fit banana e avena
 categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 tempo: 15-20 min a 180°C
 stato: completa
 fonte: CHAT 62 - Bathrobe translation request (2024-06-12)

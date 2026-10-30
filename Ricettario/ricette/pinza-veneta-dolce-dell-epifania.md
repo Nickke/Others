@@ -1,6 +1,7 @@
 ---
 nome: Pinza veneta (dolce dell'Epifania)
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 porzioni: 6-8
 tempo: polenta 40-45 min; forno 60 min a 180°C statico
 stato: completa

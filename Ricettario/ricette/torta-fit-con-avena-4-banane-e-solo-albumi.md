@@ -1,6 +1,7 @@
 ---
 nome: Torta fit con avena, 4 banane e solo albumi
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 tempo: Forno statico 180°C 35-40 min; ventilato 160-170°C 30-35 min
 stato: completa
 fonte: CHAT 84 - Ricetta torta avena banane (2024-08-28)

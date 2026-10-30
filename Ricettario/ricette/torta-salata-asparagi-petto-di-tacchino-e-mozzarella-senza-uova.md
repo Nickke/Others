@@ -1,6 +1,7 @@
 ---
 nome: Torta salata asparagi, petto di tacchino e mozzarella (senza uova)
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 tempo: 180°C 25-30 min
 stato: completa
 fonte: CHAT 318 - Torta Salata Asparagi Mozzarella (2024-04-03)

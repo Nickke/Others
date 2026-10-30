@@ -1,6 +1,7 @@
 ---
 nome: Frittata proteica smart con macinato e tuorli
-categoria: Colazione e fit
+categoria: Secondi
+sottocategoria: Uova e frittate
 porzioni: 1
 stato: completa
 fonte: CHAT 161 - Condividere foto WhatsApp iPhone (2026-03-23)

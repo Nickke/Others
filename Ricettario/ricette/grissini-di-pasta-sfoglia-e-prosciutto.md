@@ -1,6 +1,7 @@
 ---
 nome: Grissini di pasta sfoglia e prosciutto
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 tempo: Forno 200°C, 12-15 minuti
 stato: completa
 fonte: CHAT 118 - Grissini pasta sfoglia prosciutto (2024-11-30)

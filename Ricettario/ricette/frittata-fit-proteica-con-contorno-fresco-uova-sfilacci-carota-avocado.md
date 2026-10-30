@@ -1,6 +1,7 @@
 ---
 nome: Frittata fit proteica con contorno fresco (uova, sfilacci, carota, avocado)
 categoria: Secondi
+sottocategoria: Uova e frittate
 porzioni: 1
 stato: completa
 fonte: CHAT 143 - Correzione e traduzione inglese (2025-07-30)

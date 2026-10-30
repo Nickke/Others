@@ -1,6 +1,7 @@
 ---
 nome: Pumpkin cinnamon rolls con cream cheese frosting
 categoria: Dolci
+sottocategoria: Biscotti e piccola pasticceria
 porzioni: 12 rolls (teglia 30x20 cm)
 tempo: Prima lievitazione 1,5-2 ore; seconda 30-45 min; cottura 25-30 min a 175 C statico (controllare da 23-24 min)
 stato: completa

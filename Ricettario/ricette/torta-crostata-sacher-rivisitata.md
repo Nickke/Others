@@ -1,6 +1,7 @@
 ---
 nome: Torta crostata "Sacher rivisitata"
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 porzioni: Torta da 28 cm di diametro con bordi alti
 tempo: Preparata il giorno prima; conservata in frigo, tolta 30-60 minuti prima di servire
 stato: parziale

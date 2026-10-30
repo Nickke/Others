@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit (farina, acqua, olio)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 1 piadina
 tempo: 1 min per lato; riposo 15-20 min
 stato: completa

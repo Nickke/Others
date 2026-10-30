@@ -1,6 +1,7 @@
 ---
 nome: Bowl proteica di farro con spinaci, sfilacci di cavallo e fiocchi di latte
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 tempo: farro 15-20 min
 stato: completa

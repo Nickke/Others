@@ -1,6 +1,7 @@
 ---
 nome: Farro con salmone, feta e avocado
 categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 2 persone
 tempo: Cottura farro circa 20-30 minuti
 stato: completa

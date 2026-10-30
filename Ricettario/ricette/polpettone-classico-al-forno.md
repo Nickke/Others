@@ -1,6 +1,7 @@
 ---
 nome: Polpettone classico al forno
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 4-6
 tempo: 180°C statico 45-55 min; riposo 10 min
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Crêpes senza glutine e senza lattosio (farina di riso)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1
 stato: completa
 fonte: CHAT 206 - Correzione e traduzione inglese (2026-10-18)

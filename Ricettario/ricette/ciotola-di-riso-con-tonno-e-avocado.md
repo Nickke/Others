@@ -1,6 +1,7 @@
 ---
 nome: Ciotola di riso con tonno e avocado
-categoria: Primi
+categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 stato: completa
 fonte: CHAT 250 - Ripristino ruoli utenti (2024-08-23)

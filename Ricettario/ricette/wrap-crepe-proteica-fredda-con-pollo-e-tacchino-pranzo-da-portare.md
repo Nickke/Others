@@ -1,6 +1,7 @@
 ---
 nome: Wrap/crepe proteica fredda con pollo e tacchino (pranzo da portare)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1
 stato: parziale
 fonte: CHAT 161 - Condividere foto WhatsApp iPhone (2026-03-23)

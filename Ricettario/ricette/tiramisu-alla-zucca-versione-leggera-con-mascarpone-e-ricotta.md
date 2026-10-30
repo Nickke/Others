@@ -1,6 +1,7 @@
 ---
 nome: Tiramisù alla zucca (versione leggera con mascarpone e ricotta)
 categoria: Dolci
+sottocategoria: Dolci al cucchiaio
 porzioni: 6
 tempo: riposo in frigo 4-6 ore
 stato: completa

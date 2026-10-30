@@ -1,6 +1,7 @@
 ---
 nome: Ricotta dolce fit con marmellata e frutti di bosco
 categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 stato: solo nome
 fonte: CHAT 163 - Piano settimanale pasti (2026-04-11)
 ---

@@ -1,6 +1,7 @@
 ---
 nome: Mug cake ricotta al cacao (microonde)
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: 1
 tempo: 2 min
 stato: parziale

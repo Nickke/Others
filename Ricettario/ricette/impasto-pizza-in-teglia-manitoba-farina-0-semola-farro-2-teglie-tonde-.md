@@ -1,6 +1,7 @@
 ---
 nome: Impasto pizza in teglia (Manitoba + farina 0 + semola + farro) - 2 teglie tonde 28 cm
 categoria: Basi e impasti
+sottocategoria: Pane, pizza e lievitati
 porzioni: 2 teglie tonde da 28 cm
 stato: completa
 fonte: CHAT 158 - Correzione e traduzione frasi (2026-01-28)

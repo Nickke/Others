@@ -1,6 +1,7 @@
 ---
 nome: Barrette di muesli compatte (avena, uvetta, nocciole, chia)
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: Riposo in frigo almeno 1 ora
 stato: completa
 fonte: CHAT 242 - Compatta Muesli Barrette (2024-03-21)

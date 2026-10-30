@@ -1,6 +1,7 @@
 ---
 nome: Salsa di burro di arachidi e soia
 categoria: Basi e impasti
+sottocategoria: Salse e marinature
 stato: completa
 fonte: CHAT 119 - GUID allegati SAP DMS (2024-12-02)
 ---

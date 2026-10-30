@@ -1,6 +1,7 @@
 ---
 nome: Pollo cremoso alla zucca e parmigiano
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 2 porzioni
 tempo: Preparazione 10 min, cottura 15-20 min
 stato: completa

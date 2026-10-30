@@ -1,6 +1,7 @@
 ---
 nome: Granola con avena, noci e semi di chia
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: Forno 160°C per 25-30 min
 stato: completa
 fonte: CHAT 156 - Granola Fit con Avena. (2024-04-10)

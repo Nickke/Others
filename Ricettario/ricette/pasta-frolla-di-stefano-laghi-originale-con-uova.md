@@ -1,6 +1,7 @@
 ---
 nome: Pasta frolla di Stefano Laghi (originale con uova)
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 tempo: riposo in frigo 12-24 ore
 stato: completa
 fonte: CHAT 148 - Testo per negoziazione trasferte (2025-09-12)

@@ -1,6 +1,7 @@
 ---
 nome: Crostata di marmellata (quantita di marmellata e trucchi)
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 porzioni: stampo da 28 cm
 stato: parziale
 fonte: CHAT 183 - Piada fit lenticchie rosse (2026-06-11)

@@ -1,6 +1,7 @@
 ---
 nome: Pane alle olive (gestione pieghe, olive e origano)
 categoria: Basi e impasti
+sottocategoria: Pane, pizza e lievitati
 porzioni: 1 filone medio
 tempo: 4 pieghe ogni 20 min, lievitazione fino a raddoppio, poi pieghe a 3 con olive
 stato: parziale

@@ -1,6 +1,7 @@
 ---
 nome: Cous cous fit con verdure e macinato (2 persone)
-categoria: Colazione e fit
+categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 2
 tempo: cous cous 5 min di riposo; verdure 6-8 min
 stato: completa

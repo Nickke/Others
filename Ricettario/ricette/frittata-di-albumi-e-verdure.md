@@ -1,6 +1,7 @@
 ---
 nome: Frittata di albumi e verdure
-categoria: Colazione e fit
+categoria: Secondi
+sottocategoria: Uova e frittate
 stato: completa
 fonte: CHAT 331 - Ricetta Fit con Albume (2024-03-03)
 ---

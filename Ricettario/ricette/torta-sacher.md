@@ -1,6 +1,7 @@
 ---
 nome: Torta Sacher
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 tempo: cottura 50-60 min a 180°C
 stato: completa
 fonte: CHAT 52 - Bandiera Argentina con Sole (2024-06-26)

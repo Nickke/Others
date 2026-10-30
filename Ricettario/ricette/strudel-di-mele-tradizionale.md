@@ -1,6 +1,7 @@
 ---
 nome: Strudel di mele tradizionale
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 porzioni: 6-8
 tempo: riposo 30-60 min; 180°C statico 35-40 min
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Pancake fit alla banana
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 tempo: 2-3 minuti per lato
 stato: completa
 fonte: CHAT 84 - Ricetta torta avena banane (2024-08-28)

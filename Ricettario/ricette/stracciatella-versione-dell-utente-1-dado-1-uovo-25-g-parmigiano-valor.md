@@ -1,6 +1,7 @@
 ---
 nome: Stracciatella (versione dell'utente: 1 dado, 1 uovo, 25 g parmigiano) - valori nutrizionali
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 stato: parziale
 fonte: CHAT 158 - Correzione e traduzione frasi (2026-01-28)
 ---

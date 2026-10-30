@@ -1,6 +1,7 @@
 ---
 nome: Muffin fit alla banana e avena
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 tempo: Forno 180°C, 15-20 minuti
 stato: completa
 fonte: CHAT 84 - Ricetta torta avena banane (2024-08-28)

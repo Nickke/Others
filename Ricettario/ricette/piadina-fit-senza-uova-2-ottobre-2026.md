@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit senza uova (2 ottobre 2026)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: Circa 5 piadine
 tempo: Riposo 20-30 min; cottura 1-2 min per lato
 stato: completa

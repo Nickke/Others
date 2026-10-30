@@ -1,6 +1,7 @@
 ---
 nome: Girelle di pasta sfoglia alla zucca e formaggio
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 tempo: Cottura 18-25 min a 190-200 °C
 stato: parziale
 fonte: CHAT 207 - Ricette con passata di zucca (2026-10-27)

@@ -1,6 +1,7 @@
 ---
 nome: Crepes (padella poco antiaderente, latte di soia e farina 00)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 6-8 crepes
 tempo: Riposo impasto 20-30 min
 stato: completa

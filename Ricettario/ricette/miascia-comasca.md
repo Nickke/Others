@@ -1,6 +1,7 @@
 ---
 nome: Miascia comasca
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 stato: solo nome
 fonte: CHAT 155 - Correzione e miglioramento testo (2025-12-17)
 ---

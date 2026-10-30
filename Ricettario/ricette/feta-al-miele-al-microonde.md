@@ -1,6 +1,7 @@
 ---
 nome: Feta al miele al microonde
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 tempo: 4-6 minuti complessivi
 stato: completa
 fonte: CHAT 208 - Storia Sexy Recovery (2026-10-28)

@@ -1,6 +1,7 @@
 ---
 nome: Pancake fit al farro con albume montato (versione 50 g albume)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1
 tempo: 2-3 min per lato
 stato: completa

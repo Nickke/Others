@@ -1,6 +1,7 @@
 ---
 nome: Crème Chantilly originale
-categoria: Dolci
+categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 stato: parziale
 fonte: CHAT 155 - Correzione e miglioramento testo (2025-12-17)
 ---

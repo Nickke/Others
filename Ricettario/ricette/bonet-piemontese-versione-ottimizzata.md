@@ -1,6 +1,7 @@
 ---
 nome: Bonet piemontese (versione ottimizzata)
 categoria: Dolci
+sottocategoria: Dolci al cucchiaio
 porzioni: 6-8 porzioni
 tempo: Cottura a bagnomaria 150 C statico 55-65 min (controllare da 45-50); raffreddamento e frigo min 3-6 ore, meglio tutta la notte
 stato: completa

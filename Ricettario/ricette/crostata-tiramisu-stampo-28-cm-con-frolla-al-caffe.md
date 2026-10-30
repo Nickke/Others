@@ -1,6 +1,7 @@
 ---
 nome: Crostata tiramisù (stampo 28 cm) con frolla al caffè
 categoria: Dolci
+sottocategoria: Dolci al cucchiaio
 porzioni: stampo 28 cm
 tempo: frolla in frigo 1 h; cottura in bianco 170-175°C 20 min con pesi + 10-15 min senza; crema in frigo 4-6 h (meglio una notte)
 stato: completa

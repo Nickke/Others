@@ -1,6 +1,7 @@
 ---
 nome: Bicchieri dessert crema al limone e crumble di mandorle (senza glutine)
 categoria: Dolci
+sottocategoria: Dolci al cucchiaio
 stato: parziale
 fonte: CHAT 160 - Ricetta pasta frolla (2026-03-12)
 ---

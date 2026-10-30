@@ -1,6 +1,7 @@
 ---
 nome: Brownie fit (versione fit della ricetta dell'utente)
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 tempo: 20-25 min a 180°C
 stato: completa
 fonte: CHAT 107 - Aggiornamento sulla problematica (2024-09-18)

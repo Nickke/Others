@@ -1,6 +1,7 @@
 ---
 nome: Zucca appassita al forno
 categoria: Contorni
+sottocategoria: Patate e zucca
 tempo: 20-30 min a 180°C ventilato
 stato: completa
 fonte: CHAT 152 - Correzione testo compleanno (2025-11-21)

@@ -1,6 +1,7 @@
 ---
 nome: Pancake banana e uova senza glutine e senza lattosio (con polenta)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1
 tempo: prep 5 min, cottura 8 min; ~2-3 min per lato
 stato: completa

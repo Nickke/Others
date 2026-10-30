@@ -1,6 +1,7 @@
 ---
 nome: Coste di bietola (cottura)
 categoria: Contorni
+sottocategoria: Verdure e legumi
 tempo: 5-7 minuti di bollitura
 stato: completa
 fonte: CHAT 13 - Cuocere coste bietole (2024-03-16)

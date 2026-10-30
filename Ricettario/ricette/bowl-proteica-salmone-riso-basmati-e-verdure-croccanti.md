@@ -1,6 +1,7 @@
 ---
 nome: Bowl proteica salmone, riso basmati e verdure croccanti
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 stato: completa
 fonte: CHAT 143 - Correzione e traduzione inglese (2025-07-30)

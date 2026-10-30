@@ -1,6 +1,7 @@
 ---
 nome: Muesli croccanti con avena e nocciole (fit)
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: 25-30 min a 160 °C
 stato: completa
 fonte: CHAT 274 - Muslei con avena e nocciole (2024-04-06)

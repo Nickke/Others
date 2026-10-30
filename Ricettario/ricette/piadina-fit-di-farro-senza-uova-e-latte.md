@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit di farro senza uova e latte
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 4 piadine
 tempo: riposo 20-30 min; cottura 2 min per lato
 stato: completa

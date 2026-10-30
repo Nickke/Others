@@ -1,6 +1,7 @@
 ---
 nome: Cestini di sfoglia alla cannella con crema pasticcera
 categoria: Dolci
+sottocategoria: Biscotti e piccola pasticceria
 porzioni: 6-8 cestini
 tempo: prima cottura 200°C 12-16 min; versione cotta insieme 190°C 25-30 min
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Granola (versione semplice)
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: 25-30 min a 160 °C
 stato: completa
 fonte: CHAT 213 - Muesli fatto in casa (2024-04-10)

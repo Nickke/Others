@@ -1,6 +1,7 @@
 ---
 nome: Pancake fit con farina di mandorle, latte di soia, yogurt greco e uova
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 6-7 pancake piccoli o 3 grandi
 tempo: Cottura 2-3 minuti per lato
 stato: completa

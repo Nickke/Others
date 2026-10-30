@@ -1,6 +1,7 @@
 ---
 nome: Pancake proteici salati post-workout (zero gusto uovo, 2 uova)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1
 tempo: 2-3 min coperto
 stato: completa

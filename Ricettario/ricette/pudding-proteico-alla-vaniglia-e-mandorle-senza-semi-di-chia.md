@@ -1,6 +1,7 @@
 ---
 nome: Pudding proteico alla vaniglia e mandorle (senza semi di chia)
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 porzioni: 1
 tempo: Riposo in frigo almeno 4 ore o tutta la notte
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Tortino fit con avena, albumi e latte al microonde
 categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: 1
 tempo: 2-3 min al microonde
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Riso basmati cremoso alla zucca e Grana
 categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 1
 tempo: 20 min
 stato: completa

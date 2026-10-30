@@ -1,6 +1,7 @@
 ---
 nome: Strudel di mele con pasta sfoglia
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 tempo: 30-35 min a 180°C
 stato: completa
 fonte: CHAT 119 - GUID allegati SAP DMS (2024-12-02)

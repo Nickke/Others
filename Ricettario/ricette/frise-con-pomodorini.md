@@ -1,6 +1,7 @@
 ---
 nome: Frise con pomodorini
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 porzioni: 10 frise
 tempo: Pomodorini a riposo 2-3 ore in frigo (anche una mattina per la sera)
 stato: completa

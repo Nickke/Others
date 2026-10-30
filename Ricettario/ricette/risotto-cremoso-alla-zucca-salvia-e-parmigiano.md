@@ -1,6 +1,7 @@
 ---
 nome: Risotto cremoso alla zucca, salvia e parmigiano
 categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 2 porzioni
 tempo: Preparazione 5 min, cottura 18-20 min
 stato: completa

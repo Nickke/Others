@@ -1,6 +1,7 @@
 ---
 nome: Crêpes con 3 albumi
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 4-5 crêpes
 tempo: prep 5 min, cottura 10 min
 stato: completa

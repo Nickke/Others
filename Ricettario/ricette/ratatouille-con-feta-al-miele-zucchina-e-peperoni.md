@@ -1,6 +1,7 @@
 ---
 nome: Ratatouille con feta al miele (zucchina e peperoni)
 categoria: Contorni
+sottocategoria: Verdure e legumi
 tempo: padella: peperoni 5-6 min; forno 200°C 20 + 10-15 min
 stato: parziale
 fonte: CHAT 155 - Correzione e miglioramento testo (2025-12-17)

@@ -1,6 +1,7 @@
 ---
 nome: Crostata morbida senza glutine con crema pasticcera
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 stato: parziale
 fonte: CHAT 160 - Ricetta pasta frolla (2026-03-12)
 ---

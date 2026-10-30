@@ -1,6 +1,7 @@
 ---
 nome: Mug cake alla banana (microonde)
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: 1
 tempo: Microonde 800 W, 2-3 minuti
 stato: completa

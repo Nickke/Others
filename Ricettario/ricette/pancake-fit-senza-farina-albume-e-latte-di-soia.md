@@ -1,6 +1,7 @@
 ---
 nome: Pancake fit senza farina (albume e latte di soia)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 tempo: 2-3 min per lato
 stato: completa
 fonte: CHAT 332 - Pancake Fit Senza Farina (2024-03-03)

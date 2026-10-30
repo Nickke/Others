@@ -1,6 +1,7 @@
 ---
 nome: Tiramisù alla zucca con crema soffice (senza uova)
 categoria: Dolci
+sottocategoria: Dolci al cucchiaio
 tempo: riposo in frigo almeno 6 ore
 stato: completa
 fonte: CHAT 148 - Testo per negoziazione trasferte (2025-09-12)

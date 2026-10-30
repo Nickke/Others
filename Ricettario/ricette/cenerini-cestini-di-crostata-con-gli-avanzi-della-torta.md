@@ -1,6 +1,7 @@
 ---
 nome: Cenerini / cestini di crostata (con gli avanzi della torta)
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 tempo: Cottura in bianco 10-12 minuti a 160-170 C; seconda cottura 5-7 minuti a 160 C
 stato: completa
 fonte: CHAT 123 - Crepes fit farro (2024-12-19)

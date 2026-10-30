@@ -1,6 +1,7 @@
 ---
 nome: Patata ripiena con macinato e Galbanino (microonde)
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1 cena
 tempo: 15-20 min
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Asparagi saltati con ricotta / pollo / riso (idee)
 categoria: Contorni
+sottocategoria: Verdure e legumi
 tempo: sbollentare 5 min
 stato: parziale
 fonte: CHAT 162 - Risposta provocante e seducente (2026-04-02)

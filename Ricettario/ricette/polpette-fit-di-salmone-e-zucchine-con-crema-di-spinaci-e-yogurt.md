@@ -1,6 +1,7 @@
 ---
 nome: Polpette fit di salmone e zucchine con crema di spinaci e yogurt
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 1
 tempo: Forno 180°C, 15-20 minuti
 stato: completa

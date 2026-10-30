@@ -1,6 +1,7 @@
 ---
 nome: Sformato di pollo e zucca filante
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 1
 tempo: 35 min; forno 190°C 15-20 min
 stato: completa

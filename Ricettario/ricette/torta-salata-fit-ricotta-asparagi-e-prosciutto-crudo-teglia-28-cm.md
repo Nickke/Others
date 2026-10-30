@@ -1,6 +1,7 @@
 ---
 nome: Torta salata fit ricotta, asparagi e prosciutto crudo (teglia 28 cm)
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 porzioni: Teglia da 28 cm
 tempo: Riposo pasta 20 min; forno 180°C statico 35-40 min (ultimi 5 min a 190°C)
 stato: completa

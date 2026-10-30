@@ -1,6 +1,7 @@
 ---
 nome: Piada bresaola fit e saporita (con pecorino o gorgonzola)
-categoria: Secondi
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 1
 stato: parziale
 fonte: CHAT 146 - Ricetta pancake fit (2025-08-24)

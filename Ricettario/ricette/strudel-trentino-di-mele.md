@@ -1,6 +1,7 @@
 ---
 nome: Strudel trentino di mele
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 porzioni: 1 strudel grande (6-8 porzioni)
 tempo: Riposo pasta 30 min; cottura 40-50 min a 180°C statico
 stato: completa

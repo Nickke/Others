@@ -1,6 +1,7 @@
 ---
 nome: Lonza di suino al forno con patate (trancio 1,156 kg)
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 5-6
 tempo: 180°C statico 70-80 min; riposo 10 min
 stato: completa

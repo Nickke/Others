@@ -1,6 +1,7 @@
 ---
 nome: Tiramisù alla zucca classico con uova
 categoria: Dolci
+sottocategoria: Dolci al cucchiaio
 tempo: zucca 25-30 min a 180°C; riposo 6 ore
 stato: completa
 fonte: CHAT 148 - Testo per negoziazione trasferte (2025-09-12)

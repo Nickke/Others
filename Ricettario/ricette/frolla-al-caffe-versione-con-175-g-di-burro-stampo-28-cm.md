@@ -1,6 +1,7 @@
 ---
 nome: Frolla al caffè (versione con 175 g di burro, stampo 28 cm)
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 porzioni: stampo 28 cm
 stato: parziale
 fonte: CHAT 172 - Parole inesistenti in italiano (2026-05-03)

@@ -1,6 +1,7 @@
 ---
 nome: Budino fit proteico con agar agar
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 tempo: Rassodare in frigo 1-2 ore
 stato: completa
 fonte: CHAT 295 - Budino Fit con Proteine (2024-03-03)

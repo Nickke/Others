@@ -1,6 +1,7 @@
 ---
 nome: Muesli con fiocchi d'avena e nocciole
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 stato: completa
 fonte: CHAT 213 - Muesli fatto in casa (2024-04-10)
 ---

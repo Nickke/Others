@@ -1,6 +1,7 @@
 ---
 nome: Vellutata di zucca con crostini croccanti
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 tempo: Circa 10 minuti
 stato: parziale
 fonte: CHAT 207 - Ricette con passata di zucca (2026-10-27)

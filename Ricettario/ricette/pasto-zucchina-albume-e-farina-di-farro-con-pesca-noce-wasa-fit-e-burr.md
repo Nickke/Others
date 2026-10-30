@@ -1,6 +1,7 @@
 ---
 nome: Pasto: zucchina, albume e farina di farro (con pesca noce, Wasa fit e burro di arachidi)
-categoria: Altro
+categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: Metà delle quantità
 stato: parziale
 fonte: CHAT 276 - Proteine in albume d'uovo (2024-06-16)

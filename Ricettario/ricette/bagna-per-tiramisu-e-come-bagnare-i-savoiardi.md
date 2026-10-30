@@ -1,6 +1,7 @@
 ---
 nome: Bagna per tiramisù e come bagnare i savoiardi
 categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 tempo: immersione 1 secondo per lato
 stato: parziale
 fonte: CHAT 148 - Testo per negoziazione trasferte (2025-09-12)

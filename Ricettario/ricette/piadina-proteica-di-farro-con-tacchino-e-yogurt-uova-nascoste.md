@@ -1,6 +1,7 @@
 ---
 nome: Piadina proteica di farro con tacchino e yogurt (uova nascoste)
 categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 1 abbondante
 tempo: 10 min (3-4 min per lato)
 stato: completa

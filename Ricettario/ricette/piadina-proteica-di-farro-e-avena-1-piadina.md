@@ -1,6 +1,7 @@
 ---
 nome: Piadina proteica di farro e avena (1 piadina)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 1 piadina
 tempo: Cottura 2-3 minuti per lato
 stato: completa

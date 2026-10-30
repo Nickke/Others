@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit (28 agosto 2026)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 1 piadina
 tempo: Riposo 20-30 min
 stato: completa

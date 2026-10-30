@@ -1,6 +1,7 @@
 ---
 nome: Pancake fit con farina di farro, albume e latte di soia
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 tempo: 2-3 min + 1-2 min per lato
 stato: completa
 fonte: CHAT 107 - Aggiornamento sulla problematica (2024-09-18)

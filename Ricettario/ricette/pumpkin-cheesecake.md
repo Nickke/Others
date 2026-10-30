@@ -1,6 +1,7 @@
 ---
 nome: Pumpkin cheesecake
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 stato: solo nome
 fonte: CHAT 201 - Origine grano e pasta (2026-09-26)
 ---

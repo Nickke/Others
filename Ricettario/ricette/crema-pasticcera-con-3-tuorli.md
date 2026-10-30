@@ -1,6 +1,7 @@
 ---
 nome: Crema pasticcera con 3 tuorli
 categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 stato: completa
 fonte: CHAT 205 - Regole semplificate gioco (2026-10-17)
 ---

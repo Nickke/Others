@@ -1,6 +1,7 @@
 ---
 nome: Barrette proteiche fit datteri e burro di arachidi (senza cottura)
 categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: 8-10 barrette (versione con 200 g di datteri)
 tempo: Riposo in frigo 1 ora (o freezer 20-30 minuti); conservazione 5 giorni in frigo
 stato: completa

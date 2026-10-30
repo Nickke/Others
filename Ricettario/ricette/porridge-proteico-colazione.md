@@ -1,6 +1,7 @@
 ---
 nome: Porridge proteico (colazione)
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 porzioni: 1
 stato: completa
 fonte: CHAT 192 - Piano alimentare CrossFit (2026-08-27)

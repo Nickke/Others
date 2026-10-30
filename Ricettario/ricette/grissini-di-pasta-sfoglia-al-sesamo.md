@@ -1,6 +1,7 @@
 ---
 nome: Grissini di pasta sfoglia al sesamo
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 tempo: Grill 10-12 min (combi 5 min + grill 4-5 min)
 stato: completa
 fonte: CHAT 179 - Grazie 2K follower (2026-06-03)

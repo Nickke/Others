@@ -1,6 +1,7 @@
 ---
 nome: Salse fit allo yogurt per lonza
 categoria: Basi e impasti
+sottocategoria: Salse e marinature
 stato: completa
 fonte: CHAT 180 - Riepilogo farmaci e terapia (2026-06-03)
 ---

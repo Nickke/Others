@@ -1,6 +1,7 @@
 ---
 nome: Purè di patate fatto in casa
 categoria: Contorni
+sottocategoria: Patate e zucca
 porzioni: 4
 tempo: patate 20-25 min
 stato: completa

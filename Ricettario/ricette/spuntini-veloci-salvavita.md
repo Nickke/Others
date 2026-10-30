@@ -1,6 +1,7 @@
 ---
 nome: Spuntini veloci salvavita
 categoria: Altro
+sottocategoria: Consigli e spuntini
 stato: solo nome
 fonte: CHAT 163 - Piano settimanale pasti (2026-04-11)
 ---

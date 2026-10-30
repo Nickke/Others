@@ -1,6 +1,7 @@
 ---
 nome: Verdure grigliate miste (meal prep)
 categoria: Contorni
+sottocategoria: Verdure e legumi
 stato: parziale
 fonte: CHAT 163 - Piano settimanale pasti (2026-04-11)
 ---

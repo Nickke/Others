@@ -1,6 +1,7 @@
 ---
 nome: Insalatona proteica con sfilacci e Wasa
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 stato: parziale
 fonte: CHAT 126 - Minuta Handover Progetto (2025-03-01)

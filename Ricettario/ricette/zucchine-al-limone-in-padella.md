@@ -1,6 +1,7 @@
 ---
 nome: Zucchine al limone in padella
 categoria: Contorni
+sottocategoria: Verdure e legumi
 porzioni: 2-3
 tempo: 5-7 min
 stato: completa

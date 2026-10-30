@@ -1,6 +1,7 @@
 ---
 nome: Crema di zucca per crostata (670 g di zucca, senza uova)
-categoria: Dolci
+categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 tempo: cottura 2-3 min dopo addensamento
 stato: completa
 fonte: CHAT 148 - Testo per negoziazione trasferte (2025-09-12)

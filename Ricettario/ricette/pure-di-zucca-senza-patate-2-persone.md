@@ -1,6 +1,7 @@
 ---
 nome: Purè di zucca (senza patate, 2 persone)
 categoria: Contorni
+sottocategoria: Patate e zucca
 porzioni: 2
 tempo: forno 25-30 min a 180°C ventilato
 stato: completa

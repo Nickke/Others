@@ -1,6 +1,7 @@
 ---
 nome: Smoothie bowl alla banana
 categoria: Bevande e smoothie
+sottocategoria: Smoothie e frullati
 porzioni: 1
 stato: completa
 fonte: CHAT 84 - Ricetta torta avena banane (2024-08-28)

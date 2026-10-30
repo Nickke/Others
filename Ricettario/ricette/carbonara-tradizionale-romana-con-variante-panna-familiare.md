@@ -1,6 +1,7 @@
 ---
 nome: Carbonara tradizionale romana (con variante panna familiare)
 categoria: Primi
+sottocategoria: Pasta, gnocchi e passatelli
 stato: parziale
 fonte: CHAT 141 - Carbonara con panna origine (2025-07-16)
 ---

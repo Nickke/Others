@@ -1,6 +1,7 @@
 ---
 nome: Risotto pancetta e peperoni con paprika (4 persone, 100 g pancetta)
 categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 4
 tempo: peperoni 8-10 min; tostatura riso 2 min
 stato: completa

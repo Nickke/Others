@@ -1,6 +1,7 @@
 ---
 nome: Pasta frolla (versione finale con uova intere e burro)
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 tempo: Riposo in frigo almeno 2-3 ore
 stato: completa
 fonte: CHAT 123 - Crepes fit farro (2024-12-19)

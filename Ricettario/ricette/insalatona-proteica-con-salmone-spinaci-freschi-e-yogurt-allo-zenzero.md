@@ -1,6 +1,7 @@
 ---
 nome: Insalatona proteica con salmone, spinaci freschi e yogurt allo zenzero
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 tempo: Pronta in 10 minuti
 stato: completa

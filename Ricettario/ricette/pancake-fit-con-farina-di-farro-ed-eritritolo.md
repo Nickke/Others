@@ -1,6 +1,7 @@
 ---
 nome: Pancake fit con farina di farro ed eritritolo
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 4 pancake medi
 tempo: 1-2 min per lato
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Gnocchi con crema di zucca e formaggio
 categoria: Primi
+sottocategoria: Pasta, gnocchi e passatelli
 stato: parziale
 fonte: CHAT 207 - Ricette con passata di zucca (2026-10-27)
 ---

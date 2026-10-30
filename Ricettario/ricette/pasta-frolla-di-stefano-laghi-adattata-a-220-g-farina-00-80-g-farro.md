@@ -1,6 +1,7 @@
 ---
 nome: Pasta frolla di Stefano Laghi (adattata a 220 g farina 00 + 80 g farro)
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 tempo: Riposo in frigo almeno 2 ore (meglio notte); cottura crostata 20-25 min, biscotti 12-15 min a 170-175°C statico
 stato: completa
 fonte: CHAT 160 - Ricetta pasta frolla (2026-03-12)

@@ -1,6 +1,7 @@
 ---
 nome: Smoothie proteico al cioccolato e banana (pre-nanna)
 categoria: Bevande e smoothie
+sottocategoria: Smoothie e frullati
 porzioni: 1
 stato: completa
 fonte: CHAT 44 - Smoothie Proteico Pre-Nanna (2024-03-05)

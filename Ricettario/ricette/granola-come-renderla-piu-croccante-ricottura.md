@@ -1,6 +1,7 @@
 ---
 nome: Granola: come renderla più croccante (ricottura)
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: Forno ventilato 140-150°C, 10-15 minuti
 stato: parziale
 fonte: CHAT 84 - Ricetta torta avena banane (2024-08-28)

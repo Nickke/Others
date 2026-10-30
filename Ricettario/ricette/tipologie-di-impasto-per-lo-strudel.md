@@ -1,6 +1,7 @@
 ---
 nome: Tipologie di impasto per lo strudel
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 stato: solo nome
 fonte: CHAT 153 - Ricetta pasta brisee (2025-12-05)
 ---

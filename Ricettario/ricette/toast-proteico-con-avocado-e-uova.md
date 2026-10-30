@@ -1,6 +1,7 @@
 ---
 nome: Toast proteico con avocado e uova
 categoria: Colazione e fit
+sottocategoria: Colazioni salate
 stato: completa
 fonte: CHAT 44 - Smoothie Proteico Pre-Nanna (2024-03-05)
 ---

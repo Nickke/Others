@@ -1,6 +1,7 @@
 ---
 nome: Porridge overnight
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 porzioni: 1
 tempo: Riposo in frigo 6-8 ore o tutta la notte
 stato: completa

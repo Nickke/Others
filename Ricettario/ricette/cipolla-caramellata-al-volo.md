@@ -1,6 +1,7 @@
 ---
 nome: Cipolla caramellata al volo
 categoria: Contorni
+sottocategoria: Verdure e legumi
 porzioni: 1 cipolla
 tempo: 10-15 min
 stato: completa

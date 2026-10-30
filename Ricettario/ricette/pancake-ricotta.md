@@ -1,6 +1,7 @@
 ---
 nome: Pancake ricotta
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1
 stato: parziale
 fonte: CHAT 162 - Risposta provocante e seducente (2026-04-02)

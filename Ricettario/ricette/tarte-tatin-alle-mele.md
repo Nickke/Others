@@ -1,6 +1,7 @@
 ---
 nome: Tarte tatin alle mele
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 tempo: mele 10 min sul fuoco; forno 30-35 min a 180°C statico
 stato: completa
 fonte: CHAT 152 - Correzione testo compleanno (2025-11-21)

@@ -1,6 +1,7 @@
 ---
 nome: Pollo al forno con zucchine, peperoni e riso (meal prep)
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 2-3 pasti
 tempo: forno 200°C ventilato 30-40 min
 stato: completa

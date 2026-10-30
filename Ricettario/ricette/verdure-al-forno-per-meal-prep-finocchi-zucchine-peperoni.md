@@ -1,6 +1,7 @@
 ---
 nome: Verdure al forno per meal prep (finocchi, zucchine, peperoni)
 categoria: Contorni
+sottocategoria: Verdure e legumi
 tempo: 35-45 min totali
 stato: completa
 fonte: CHAT 164 - Torta salata ricotta asparagi (2026-04-11)

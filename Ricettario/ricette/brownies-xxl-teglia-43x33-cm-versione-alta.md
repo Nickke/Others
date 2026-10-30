@@ -1,6 +1,7 @@
 ---
 nome: Brownies XXL (teglia 43x33 cm, versione alta)
 categoria: Dolci
+sottocategoria: Biscotti e piccola pasticceria
 porzioni: Circa 20 pezzi grandi o 30-40 quadrotti
 tempo: Forno 175°C statico 38-48 min
 stato: completa

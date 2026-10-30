@@ -1,6 +1,7 @@
 ---
 nome: Feta al forno con miele
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 porzioni: 2 persone
 tempo: 5 min preparazione + 15-20 min cottura a 200°C
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Ragù bianco fit con macinato di manzo e albume (senza brodo)
-categoria: Secondi
+categoria: Primi
+sottocategoria: Pasta, gnocchi e passatelli
 porzioni: 3-4
 tempo: Preparazione 10 min; cottura circa 45 min nella versione base
 stato: completa

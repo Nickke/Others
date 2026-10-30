@@ -1,6 +1,7 @@
 ---
 nome: Macarons francesi con ganache al cioccolato
 categoria: Dolci
+sottocategoria: Biscotti e piccola pasticceria
 tempo: Riposo gusci 30 min; cottura 150°C 15-18 min; riposo in frigo 24 ore
 stato: completa
 fonte: CHAT 115 - Esperimento Finalizzato Prove Creazione (2024-11-13)

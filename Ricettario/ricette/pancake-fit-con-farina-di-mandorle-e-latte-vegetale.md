@@ -1,6 +1,7 @@
 ---
 nome: Pancake fit con farina di mandorle e latte vegetale
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 6-7 pancake piccoli
 tempo: Cottura 2-3 minuti per lato
 stato: completa

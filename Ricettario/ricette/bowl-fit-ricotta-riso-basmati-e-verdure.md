@@ -1,6 +1,7 @@
 ---
 nome: Bowl fit ricotta, riso basmati e verdure
-categoria: Colazione e fit
+categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 stato: parziale
 fonte: CHAT 162 - Risposta provocante e seducente (2026-04-02)

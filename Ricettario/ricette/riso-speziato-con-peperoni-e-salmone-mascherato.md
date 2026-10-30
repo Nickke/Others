@@ -1,6 +1,7 @@
 ---
 nome: Riso speziato con peperoni e salmone 'mascherato'
-categoria: Colazione e fit
+categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 1
 stato: completa
 fonte: CHAT 158 - Correzione e traduzione frasi (2026-01-28)

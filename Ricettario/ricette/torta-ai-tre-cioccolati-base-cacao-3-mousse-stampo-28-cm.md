@@ -1,6 +1,7 @@
 ---
 nome: Torta ai tre cioccolati (base cacao + 3 mousse, stampo 28 cm)
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 porzioni: stampo 28 cm, base 26 cm
 tempo: congelamento prima della glassa
 stato: parziale

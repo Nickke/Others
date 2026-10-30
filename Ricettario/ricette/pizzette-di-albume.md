@@ -1,6 +1,7 @@
 ---
 nome: Pizzette di albume
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 porzioni: 4-6 pizzette
 tempo: 2 min per lato + 5-7 min a 180°C
 stato: completa

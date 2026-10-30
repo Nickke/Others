@@ -1,6 +1,7 @@
 ---
 nome: Taralli pugliesi
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 tempo: riposo 30 min; cottura 25-30 min a 190°C
 stato: parziale
 fonte: CHAT 132 - Accesso SPO IT locale (2025-05-06)

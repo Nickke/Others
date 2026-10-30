@@ -1,6 +1,7 @@
 ---
 nome: Torta ricotta, pere e cioccolato (stampo 26 cm)
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 porzioni: Stampo da 26 cm
 tempo: Forno 180°C statico 40-45 min
 stato: completa

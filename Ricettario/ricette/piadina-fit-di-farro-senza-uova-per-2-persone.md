@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit di farro senza uova (per 2 persone)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 2 persone, 4 piccole o 2 grandi
 tempo: riposo 15-20 min; cottura 1-2 min per lato
 stato: completa

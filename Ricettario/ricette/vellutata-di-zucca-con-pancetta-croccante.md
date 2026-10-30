@@ -1,6 +1,7 @@
 ---
 nome: Vellutata di zucca con pancetta croccante
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 porzioni: 1
 tempo: 15 min
 stato: completa

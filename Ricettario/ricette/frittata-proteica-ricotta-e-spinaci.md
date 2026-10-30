@@ -1,6 +1,7 @@
 ---
 nome: Frittata proteica ricotta e spinaci
 categoria: Secondi
+sottocategoria: Uova e frittate
 porzioni: 1
 stato: parziale
 fonte: CHAT 162 - Risposta provocante e seducente (2026-04-02)

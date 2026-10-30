@@ -1,6 +1,7 @@
 ---
 nome: Tortino fit di cioccolato fondente con burro di arachidi e frutta secca
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: 4 tortini (circa 50 g ciascuno)
 tempo: Freezer 15-20 minuti + 30 minuti; 5 minuti a temperatura ambiente prima di servire
 stato: completa

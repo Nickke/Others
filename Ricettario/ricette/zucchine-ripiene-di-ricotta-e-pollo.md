@@ -1,6 +1,7 @@
 ---
 nome: Zucchine ripiene di ricotta e pollo
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 tempo: forno 20 min
 stato: parziale
 fonte: CHAT 162 - Risposta provocante e seducente (2026-04-02)

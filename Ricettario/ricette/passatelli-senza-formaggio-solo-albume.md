@@ -1,6 +1,7 @@
 ---
 nome: Passatelli (senza formaggio, solo albume)
 categoria: Primi
+sottocategoria: Pasta, gnocchi e passatelli
 porzioni: circa 4
 tempo: cottura circa 5 min
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Torta salata zucchine, tonno e Philadelphia (anche con peperoni)
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 tempo: 25-30 min a 200°C
 stato: completa
 fonte: CHAT 119 - GUID allegati SAP DMS (2024-12-02)

@@ -1,6 +1,7 @@
 ---
 nome: Crema pasticcera per crostata da 28 cm (con 98 g di tuorlo, anche latte di soia)
-categoria: Dolci
+categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 porzioni: crostata Ø 28 cm
 tempo: bollore 30-40 sec
 stato: completa

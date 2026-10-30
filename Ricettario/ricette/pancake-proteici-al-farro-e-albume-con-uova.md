@@ -1,6 +1,7 @@
 ---
 nome: Pancake proteici al farro e albume (con uova)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1
 stato: completa
 fonte: CHAT 143 - Correzione e traduzione inglese (2025-07-30)

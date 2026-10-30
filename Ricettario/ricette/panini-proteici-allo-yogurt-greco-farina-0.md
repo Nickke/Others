@@ -1,6 +1,7 @@
 ---
 nome: Panini proteici allo yogurt greco (farina 0)
 categoria: Basi e impasti
+sottocategoria: Pane, pizza e lievitati
 porzioni: 6-8 panini grandi
 tempo: 4 pieghe ogni 20 min, lievitazione, formatura, seconda lievitazione, cottura
 stato: completa

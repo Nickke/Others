@@ -1,6 +1,7 @@
 ---
 nome: Spumone di albume fit
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 stato: completa
 fonte: CHAT 338 - Spumone albume fit rapido (2024-07-01)
 ---

@@ -1,6 +1,7 @@
 ---
 nome: Muesli/granola fit croccante a blocchi
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 porzioni: 1 teglia
 tempo: 20-25 min a 160°C
 stato: completa

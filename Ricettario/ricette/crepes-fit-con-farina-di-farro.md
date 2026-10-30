@@ -1,6 +1,7 @@
 ---
 nome: Crepes fit con farina di farro
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: circa 4 crepes
 tempo: Riposo impasto 15-20 min (opzionale); cottura 1-2 min per lato
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Stracciatella in brodo
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 porzioni: circa 4
 tempo: 2-3 min di cottura delle uova
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Salsa allo yogurt, limone e paprika
 categoria: Basi e impasti
+sottocategoria: Salse e marinature
 tempo: riposo 10 min in frigo
 stato: completa
 fonte: CHAT 179 - Grazie 2K follower (2026-06-03)

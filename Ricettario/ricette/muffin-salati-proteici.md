@@ -1,6 +1,7 @@
 ---
 nome: Muffin salati proteici
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 tempo: 20-25 min a 180°C
 stato: parziale
 fonte: CHAT 155 - Correzione e miglioramento testo (2025-12-17)

@@ -1,6 +1,7 @@
 ---
 nome: Bonet (latte intero, agar agar, cottura e sformatura)
 categoria: Dolci
+sottocategoria: Dolci al cucchiaio
 tempo: 150 C statico a bagnomaria circa 50-60 min (fatto 55 min)
 stato: parziale
 fonte: CHAT 198 - Latte per bonet (2026-09-11)

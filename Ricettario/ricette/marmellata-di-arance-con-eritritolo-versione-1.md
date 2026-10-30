@@ -1,6 +1,7 @@
 ---
 nome: Marmellata di arance con eritritolo (versione 1)
 categoria: Conserve e marmellate
+sottocategoria: Marmellate
 tempo: Circa 1 h + 30-40 min di cottura
 stato: completa
 fonte: CHAT 284 - Marmellata Arancia Eritritolo (2024-03-02)

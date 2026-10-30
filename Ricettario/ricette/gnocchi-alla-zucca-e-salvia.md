@@ -1,6 +1,7 @@
 ---
 nome: Gnocchi alla zucca e salvia
 categoria: Primi
+sottocategoria: Pasta, gnocchi e passatelli
 porzioni: 1
 tempo: 15 min
 stato: completa

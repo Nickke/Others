@@ -1,6 +1,7 @@
 ---
 nome: Pasta frolla per 2 crostate di marmellata da 28 cm
-categoria: Dolci
+categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 porzioni: 2 crostate da 28 cm (con frolla in piu per biscotti)
 tempo: Riposo frolla in frigo almeno 1 ora; cottura forno statico 180 C 35-40 min
 stato: completa

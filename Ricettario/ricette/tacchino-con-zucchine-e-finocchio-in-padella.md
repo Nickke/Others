@@ -1,6 +1,7 @@
 ---
 nome: Tacchino con zucchine e finocchio in padella
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 1
 tempo: 10 min
 stato: parziale

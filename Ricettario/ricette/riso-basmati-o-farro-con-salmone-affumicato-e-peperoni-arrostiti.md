@@ -1,6 +1,7 @@
 ---
 nome: Riso basmati (o farro) con salmone affumicato e peperoni arrostiti
-categoria: Colazione e fit
+categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 1
 tempo: farro 20-25 min; peperoni 20-25 min a 200°C
 stato: completa

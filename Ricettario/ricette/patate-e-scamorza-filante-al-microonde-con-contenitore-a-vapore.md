@@ -1,6 +1,7 @@
 ---
 nome: Patate e scamorza filante al microonde (con contenitore a vapore)
 categoria: Contorni
+sottocategoria: Patate e zucca
 porzioni: 1-2
 tempo: P100 9 min + grill+MW 3 min + grill 1-2 min
 stato: completa

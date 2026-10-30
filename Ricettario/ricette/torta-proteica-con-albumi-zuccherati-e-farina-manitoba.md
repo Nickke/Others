@@ -1,6 +1,7 @@
 ---
 nome: Torta proteica con albumi zuccherati e farina Manitoba
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 tempo: 35-40 min a 175-180°C statico
 stato: completa
 fonte: CHAT 155 - Correzione e miglioramento testo (2025-12-17)

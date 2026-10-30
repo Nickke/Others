@@ -1,6 +1,7 @@
 ---
 nome: Porridge proteico alla cannella e mela
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 porzioni: 1
 tempo: Cottura circa 7-10 minuti
 stato: completa

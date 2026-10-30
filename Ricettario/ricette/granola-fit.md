@@ -1,6 +1,7 @@
 ---
 nome: Granola fit
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: 20-25 min a 160 °C
 stato: completa
 fonte: CHAT 321 - Granola Fit Ricetta (2024-04-15)

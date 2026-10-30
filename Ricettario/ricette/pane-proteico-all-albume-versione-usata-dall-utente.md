@@ -1,6 +1,7 @@
 ---
 nome: Pane proteico all'albume (versione usata dall'utente)
 categoria: Basi e impasti
+sottocategoria: Pane, pizza e lievitati
 porzioni: Non indicate (stima nutrizionale su 4 o 6 porzioni)
 tempo: Forno 180°C statico, 28 min usati (consigliati 30-40 min)
 stato: completa

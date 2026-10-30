@@ -1,6 +1,7 @@
 ---
 nome: Muesli a blocchi con avena, uvetta, frutta secca e semi di chia
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: Forno 160°C, 20-25 minuti
 stato: completa
 fonte: CHAT 34 - Muesli con avena e frutta. (2024-03-17)

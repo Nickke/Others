@@ -1,6 +1,7 @@
 ---
 nome: Stracciatella marchigiana (versione con albumi)
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 tempo: pochi minuti
 stato: completa
 fonte: CHAT 250 - Ripristino ruoli utenti (2024-08-23)

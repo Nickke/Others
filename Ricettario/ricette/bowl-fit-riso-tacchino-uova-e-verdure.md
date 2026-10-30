@@ -1,6 +1,7 @@
 ---
 nome: Bowl fit riso, tacchino, uova e verdure
-categoria: Colazione e fit
+categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 tempo: circa 15 min
 stato: completa

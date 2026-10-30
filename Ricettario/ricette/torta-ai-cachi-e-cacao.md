@@ -1,6 +1,7 @@
 ---
 nome: Torta ai cachi e cacao
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 tempo: 35-40 min a 180°C
 stato: completa
 fonte: CHAT 107 - Aggiornamento sulla problematica (2024-09-18)

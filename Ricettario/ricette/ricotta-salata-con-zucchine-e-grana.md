@@ -1,6 +1,7 @@
 ---
 nome: Ricotta salata con zucchine e grana
-categoria: Secondi
+categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 stato: solo nome
 fonte: CHAT 163 - Piano settimanale pasti (2026-04-11)
 ---

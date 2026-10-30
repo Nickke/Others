@@ -1,6 +1,7 @@
 ---
 nome: Pizza rustica con cipolla (impasto multi-farina, in teglia)
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 tempo: Cipolla stufata 8-10 min; lievitazione in teglia 20-40 min; cottura circa 8 min + 4-5 min
 stato: parziale
 fonte: CHAT 160 - Ricetta pasta frolla (2026-03-12)

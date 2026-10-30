@@ -1,6 +1,7 @@
 ---
 nome: Barrette di frutta secca ricoperte di cioccolato (fit)
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: circa 10 barrette
 tempo: riposo in frigo almeno 30 min
 stato: completa

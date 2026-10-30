@@ -1,6 +1,7 @@
 ---
 nome: Glassa neutra trasparente
 categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 stato: completa
 fonte: CHAT 161 - Condividere foto WhatsApp iPhone (2026-03-23)
 ---

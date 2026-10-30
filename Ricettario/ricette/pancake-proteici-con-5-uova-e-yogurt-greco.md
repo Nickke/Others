@@ -1,6 +1,7 @@
 ---
 nome: Pancake proteici con 5 uova e yogurt greco
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 tempo: 2-3 min per lato
 stato: completa
 fonte: CHAT 155 - Correzione e miglioramento testo (2025-12-17)

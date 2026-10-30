@@ -1,6 +1,7 @@
 ---
 nome: Granola semplice con solo avena, noci e cannella
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: Forno 150°C, 20-25 minuti
 stato: completa
 fonte: CHAT 53 - Granola Fit Recipe (2024-04-15)

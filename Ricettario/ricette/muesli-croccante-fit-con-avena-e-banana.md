@@ -1,6 +1,7 @@
 ---
 nome: Muesli croccante fit con avena e banana
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: Forno 160°C, 25-30 minuti
 stato: completa
 fonte: CHAT 84 - Ricetta torta avena banane (2024-08-28)

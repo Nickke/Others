@@ -1,6 +1,7 @@
 ---
 nome: Pane alle olive (impasto con pieghe, forno 240°C)
 categoria: Basi e impasti
+sottocategoria: Pane, pizza e lievitati
 tempo: pieghe 3 x 20 min; lievitazione fino a raddoppio (2-3 h circa); cottura 10 min a 240°C con teglia capovolta + 18 min a 220°C
 stato: completa
 fonte: CHAT 186 - 100 pesos Filippine in euro (2026-07-15)

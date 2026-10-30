@@ -1,6 +1,7 @@
 ---
 nome: Insalata dolce di riso basmati e yogurt
-categoria: Colazione e fit
+categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 1
 stato: completa
 fonte: CHAT 126 - Minuta Handover Progetto (2025-03-01)

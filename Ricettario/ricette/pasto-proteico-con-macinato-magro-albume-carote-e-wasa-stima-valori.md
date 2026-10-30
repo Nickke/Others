@@ -1,6 +1,7 @@
 ---
 nome: Pasto proteico con macinato magro, albume, carote e Wasa (stima valori)
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 stato: parziale
 fonte: CHAT 119 - GUID allegati SAP DMS (2024-12-02)

@@ -1,6 +1,7 @@
 ---
 nome: Pancake fit con albume e banana (senza farina)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 tempo: 2-3 minuti per lato
 stato: completa
 fonte: CHAT 58 - Pancake Fit con Albume (2024-03-03)

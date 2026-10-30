@@ -1,6 +1,7 @@
 ---
 nome: Torta salata fit con ricotta (senza pasta)
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 tempo: forno 180° x 30 min
 stato: parziale
 fonte: CHAT 162 - Risposta provocante e seducente (2026-04-02)

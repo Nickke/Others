@@ -1,6 +1,7 @@
 ---
 nome: Torta Sacher (stampo 28 cm)
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 porzioni: stampo 28 cm
 tempo: cottura 170° statico 35-40 min; riposo 2-3 ore
 stato: completa

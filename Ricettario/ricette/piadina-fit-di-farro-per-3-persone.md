@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit di farro per 3 persone
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 3 grandi o 6 piccole
 tempo: riposo 20-30 min; cottura 1-2 min per lato
 stato: completa

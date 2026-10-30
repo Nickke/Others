@@ -1,6 +1,7 @@
 ---
 nome: Marinatura classica BBQ per costine (dolce-affumicata)
 categoria: Basi e impasti
+sottocategoria: Salse e marinature
 tempo: riposo in frigo qualche ora (meglio una notte)
 stato: completa
 fonte: CHAT 147 - Correzione e traduzione inglese (2025-09-10)

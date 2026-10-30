@@ -1,6 +1,7 @@
 ---
 nome: Torta meringata (versione dettagliata)
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 tempo: Meringhe 100-110 °C per circa 2-2,5 ore
 stato: parziale
 fonte: CHAT 208 - Storia Sexy Recovery (2026-10-28)

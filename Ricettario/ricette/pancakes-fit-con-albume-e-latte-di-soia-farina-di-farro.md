@@ -1,6 +1,7 @@
 ---
 nome: Pancakes fit con albume e latte di soia (farina di farro)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 tempo: 2-3 minuti per lato
 stato: completa
 fonte: CHAT 95 - Ingoiare o sputare (2024-06-07)

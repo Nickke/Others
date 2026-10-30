@@ -1,6 +1,7 @@
 ---
 nome: Ravioli ricotta e spinaci
 categoria: Primi
+sottocategoria: Pasta, gnocchi e passatelli
 porzioni: 4
 tempo: riposo pasta 30 min; cottura 3-4 min
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit fatta in casa (domenica al mare)
 categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 1 piadina
 tempo: Riposo 20-30 min
 stato: completa

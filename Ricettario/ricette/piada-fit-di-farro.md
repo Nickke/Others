@@ -1,6 +1,7 @@
 ---
 nome: Piada fit di farro
 categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 2 piadine grandi (24-26 cm)
 tempo: Riposo 10-15 min; cottura 1-2 min per lato
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Frolla tipo Stefano Laghi senza uova con eritritolo (400 g farina)
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 tempo: riposo 8-12 ore; cottura 20-25 min a 165-170°C
 stato: completa
 fonte: CHAT 148 - Testo per negoziazione trasferte (2025-09-12)

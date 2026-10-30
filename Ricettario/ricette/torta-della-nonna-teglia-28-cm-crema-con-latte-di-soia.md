@@ -1,6 +1,7 @@
 ---
 nome: Torta della nonna (teglia 28 cm, crema con latte di soia)
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 porzioni: Teglia da 28 cm, piena
 tempo: Forno 180°C statico 40-45 min
 stato: completa

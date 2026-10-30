@@ -1,6 +1,7 @@
 ---
 nome: Pancake proteici yogurt greco e banana
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 4-5 pancake (circa 2 colazioni)
 stato: parziale
 fonte: CHAT 163 - Piano settimanale pasti (2026-04-11)

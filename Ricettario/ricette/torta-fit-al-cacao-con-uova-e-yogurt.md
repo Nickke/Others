@@ -1,6 +1,7 @@
 ---
 nome: Torta fit al cacao con uova e yogurt
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 tempo: 30 min a 180°C
 stato: parziale
 fonte: CHAT 155 - Correzione e miglioramento testo (2025-12-17)

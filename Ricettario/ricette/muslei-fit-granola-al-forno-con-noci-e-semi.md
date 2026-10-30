@@ -1,6 +1,7 @@
 ---
 nome: Muslei fit (granola al forno con noci e semi)
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: 25-30 min di forno a 160°C
 stato: completa
 fonte: CHAT 334 - Muslei Fit Ricetta (2024-03-17)

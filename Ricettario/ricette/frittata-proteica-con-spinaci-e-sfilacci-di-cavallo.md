@@ -1,6 +1,7 @@
 ---
 nome: Frittata proteica con spinaci e sfilacci di cavallo
 categoria: Secondi
+sottocategoria: Uova e frittate
 porzioni: 1
 tempo: 10 min totali
 stato: completa

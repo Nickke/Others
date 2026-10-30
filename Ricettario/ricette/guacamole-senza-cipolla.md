@@ -1,6 +1,7 @@
 ---
 nome: Guacamole senza cipolla
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 stato: completa
 fonte: CHAT 147 - Correzione e traduzione inglese (2025-09-10)
 ---

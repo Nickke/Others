@@ -1,6 +1,7 @@
 ---
 nome: Pane proteico banana e albume
-categoria: Colazione e fit
+categoria: Basi e impasti
+sottocategoria: Pane, pizza e lievitati
 porzioni: 1 persona
 tempo: Forno 180°C 20-25 min (o microonde 5-6 min)
 stato: completa

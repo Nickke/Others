@@ -1,6 +1,7 @@
 ---
 nome: Pancake proteici farro + proteine isolate (anti-attaccamento)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1 (5-6 pancake)
 stato: completa
 fonte: CHAT 255 - Autorizzazioni utente ATHIKPRAV1 (2024-07-10)

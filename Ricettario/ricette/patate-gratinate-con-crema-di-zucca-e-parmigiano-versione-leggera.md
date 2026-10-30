@@ -1,6 +1,7 @@
 ---
 nome: Patate gratinate con crema di zucca e parmigiano (versione leggera)
 categoria: Contorni
+sottocategoria: Patate e zucca
 porzioni: 1 persona (versione finale); versione base 2 porzioni
 tempo: Preparazione 10 min, cottura 20-25 min
 stato: completa

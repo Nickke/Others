@@ -1,6 +1,7 @@
 ---
 nome: Crema chantilly
 categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 porzioni: circa 500 g
 tempo: Raffreddare ciotola e fruste 15-20 minuti prima
 stato: completa

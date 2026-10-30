@@ -1,6 +1,7 @@
 ---
 nome: Vellutata di zucca senza patate (2 persone, cremosa con latte vegetale, burro e formaggio)
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 porzioni: 2
 tempo: cottura circa 20 min
 stato: completa

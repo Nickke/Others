@@ -1,6 +1,7 @@
 ---
 nome: Pasta frolla di Stefano Laghi (per biscotti da tè)
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 tempo: Riposo in frigo almeno 1 ora
 stato: completa
 fonte: CHAT 123 - Crepes fit farro (2024-12-19)

@@ -1,6 +1,7 @@
 ---
 nome: Tarte Tatin di mele (teglia di vetro 26 cm, 260 g di zucchero)
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 porzioni: Teglia tonda da 26 cm
 tempo: Forno 190°C statico 45-55 min (teglia di vetro); riposo 3-4 min prima di capovolgere
 stato: completa

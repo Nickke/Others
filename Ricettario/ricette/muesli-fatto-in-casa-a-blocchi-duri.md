@@ -1,6 +1,7 @@
 ---
 nome: Muesli fatto in casa a blocchi duri
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: 20-25 min a 160 °C
 stato: completa
 fonte: CHAT 241 - Muesli fatto in casa (2024-03-21)

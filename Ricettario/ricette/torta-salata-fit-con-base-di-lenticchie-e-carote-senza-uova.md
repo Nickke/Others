@@ -1,6 +1,7 @@
 ---
 nome: Torta salata fit con base di lenticchie e carote (senza uova)
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 tempo: lenticchie circa 15 min; cottura 30-35 min a 180°C
 stato: completa
 fonte: CHAT 97 - Integrazione culturale spiegata (2024-08-04)

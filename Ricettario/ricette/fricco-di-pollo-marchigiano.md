@@ -1,6 +1,7 @@
 ---
 nome: Fricco di pollo marchigiano
 categoria: Secondi
+sottocategoria: Carne e pesce
 stato: solo nome
 fonte: CHAT 190 - Traduzione messaggio sensibile (2026-08-15)
 ---

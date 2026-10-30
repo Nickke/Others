@@ -1,6 +1,7 @@
 ---
 nome: Torta salata proteica di zucchine e ricotta (senza pasta)
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 porzioni: 4 porzioni (3-4 pasti)
 stato: parziale
 fonte: CHAT 163 - Piano settimanale pasti (2026-04-11)

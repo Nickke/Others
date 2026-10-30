@@ -1,6 +1,7 @@
 ---
 nome: Risotto con gorgonzola, pere, cavolo viola e noci
 categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 4 persone
 stato: completa
 fonte: CHAT 117 - Piadina proteica avena (2024-11-24)

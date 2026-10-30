@@ -1,6 +1,7 @@
 ---
 nome: Crêpes con farina di farro
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: circa 6 crêpes
 tempo: riposo 30 min; cottura 1-2 min per lato
 stato: completa

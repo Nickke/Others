@@ -1,6 +1,7 @@
 ---
 nome: Tortino di yogurt greco a bagnomaria (monoporzione in barattolo)
 categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: 1 porzione abbondante (anche 6 monoporzioni moltiplicando x6)
 tempo: Forno statico 160-170 C, 30-40 min a bagnomaria; poi raffreddare e frigo
 stato: completa

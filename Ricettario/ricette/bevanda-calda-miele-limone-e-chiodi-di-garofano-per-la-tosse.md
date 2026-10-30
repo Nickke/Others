@@ -1,6 +1,7 @@
 ---
 nome: Bevanda calda miele, limone e chiodi di garofano (per la tosse)
 categoria: Bevande e smoothie
+sottocategoria: Altre bevande
 porzioni: 1 tazza
 tempo: Infusione 5-10 min
 stato: completa

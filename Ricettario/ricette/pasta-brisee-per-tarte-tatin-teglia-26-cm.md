@@ -1,6 +1,7 @@
 ---
 nome: Pasta brisée per tarte Tatin (teglia 26 cm)
 categoria: Basi e impasti
+sottocategoria: Frolle e impasti
 porzioni: Copre una teglia tonda da 26 cm
 tempo: Riposo in frigo 30-40 min
 stato: completa

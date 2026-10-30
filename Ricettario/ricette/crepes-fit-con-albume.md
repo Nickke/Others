@@ -1,6 +1,7 @@
 ---
 nome: Crepes fit con albume
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 tempo: 1-2 min per lato
 stato: completa
 fonte: CHAT 335 - Too Bad - Peccato (2024-07-19)

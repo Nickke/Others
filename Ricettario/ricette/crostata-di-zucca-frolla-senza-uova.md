@@ -1,6 +1,7 @@
 ---
 nome: Crostata di zucca (frolla senza uova)
 categoria: Dolci
+sottocategoria: Crostate, strudel e tarte
 tempo: 35-40 min a 180°C
 stato: completa
 fonte: CHAT 148 - Testo per negoziazione trasferte (2025-09-12)

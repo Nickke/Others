@@ -1,6 +1,7 @@
 ---
 nome: Muesli fit croccante con avena e frutta secca
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: Forno 160°C, 25-30 minuti
 stato: completa
 fonte: CHAT 5 - Misura ingredienti in ml o grammi (2024-04-10)

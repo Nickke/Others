@@ -1,6 +1,7 @@
 ---
 nome: Melograno Spritz
 categoria: Bevande e smoothie
+sottocategoria: Cocktail e mocktail
 porzioni: 1 bicchiere
 stato: completa
 fonte: CHAT 189 - Ricetta Frise con Pomodorini (2026-08-05)

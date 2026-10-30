@@ -1,6 +1,7 @@
 ---
 nome: Budino di cachi e cacao senza farina
 categoria: Dolci
+sottocategoria: Dolci al cucchiaio
 tempo: riposo in frigo 1-2 ore
 stato: completa
 fonte: CHAT 107 - Aggiornamento sulla problematica (2024-09-18)

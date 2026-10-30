@@ -1,24 +1,18 @@
-# Ricettario – Indice
+# Il mio ricettario
 
-Totale ricette: **302**
+302 ricette in 10 categorie.
+
+Versione da sfogliare nel browser: **Ricettario.html**.
 
 
-## Antipasti e salati
+## Antipasti e salati (23)
 
-- [Apericena pugliese per 9 persone (menu e buffet)](ricette/apericena-pugliese-per-9-persone-menu-e-buffet.md) _(da completare)_
-- [Crema salata di ricotta con finocchio](ricette/crema-salata-di-ricotta-con-finocchio.md) _(da completare)_
-- [Feta al forno con miele](ricette/feta-al-forno-con-miele.md)
-- [Feta al miele al microonde](ricette/feta-al-miele-al-microonde.md)
-- [Focaccia pugliese congelata: come scaldarla](ricette/focaccia-pugliese-congelata-come-scaldarla.md)
-- [Frise con pomodorini](ricette/frise-con-pomodorini.md)
+### Torte salate e rustici (11)
+
 - [Girelle di pasta sfoglia alla zucca e formaggio](ricette/girelle-di-pasta-sfoglia-alla-zucca-e-formaggio.md) _(da completare)_
-- [Grissini di pasta sfoglia al sesamo](ricette/grissini-di-pasta-sfoglia-al-sesamo.md)
-- [Grissini di pasta sfoglia e prosciutto](ricette/grissini-di-pasta-sfoglia-e-prosciutto.md)
-- [Guacamole senza cipolla](ricette/guacamole-senza-cipolla.md)
 - [Muffin salati proteici](ricette/muffin-salati-proteici.md) _(da completare)_
 - [Pizza rustica con cipolla (impasto multi-farina, in teglia)](ricette/pizza-rustica-con-cipolla-impasto-multi-farina-in-teglia.md) _(da completare)_
 - [Pizzette di albume](ricette/pizzette-di-albume.md)
-- [Taralli pugliesi](ricette/taralli-pugliesi.md) _(da completare)_
 - [Torta salata asparagi, petto di tacchino e mozzarella (senza uova)](ricette/torta-salata-asparagi-petto-di-tacchino-e-mozzarella-senza-uova.md)
 - [Torta salata con pasta sfoglia, pancetta, uvetta, ricotta, uova e toma](ricette/torta-salata-con-pasta-sfoglia-pancetta-uvetta-ricotta-uova-e-toma.md) _(da completare)_
 - [Torta salata fit con base di lenticchie e carote (senza uova)](ricette/torta-salata-fit-con-base-di-lenticchie-e-carote-senza-uova.md)
@@ -27,24 +21,53 @@ Totale ricette: **302**
 - [Torta salata proteica di zucchine e ricotta (senza pasta)](ricette/torta-salata-proteica-di-zucchine-e-ricotta-senza-pasta.md) _(da completare)_
 - [Torta salata zucchine, tonno e Philadelphia (anche con peperoni)](ricette/torta-salata-zucchine-tonno-e-philadelphia-anche-con-peperoni.md)
 
-## Primi
+### Sfizi e stuzzichini (12)
+
+- [Apericena pugliese per 9 persone (menu e buffet)](ricette/apericena-pugliese-per-9-persone-menu-e-buffet.md) _(da completare)_
+- [Crema di ricotta, limone e pepe per pasta o riso](ricette/crema-di-ricotta-limone-e-pepe-per-pasta-o-riso.md) _(da completare)_
+- [Crema salata di ricotta con finocchio](ricette/crema-salata-di-ricotta-con-finocchio.md) _(da completare)_
+- [Feta al forno con miele](ricette/feta-al-forno-con-miele.md)
+- [Feta al miele al microonde](ricette/feta-al-miele-al-microonde.md)
+- [Focaccia pugliese congelata: come scaldarla](ricette/focaccia-pugliese-congelata-come-scaldarla.md)
+- [Frise con pomodorini](ricette/frise-con-pomodorini.md)
+- [Grissini di pasta sfoglia al sesamo](ricette/grissini-di-pasta-sfoglia-al-sesamo.md)
+- [Grissini di pasta sfoglia e prosciutto](ricette/grissini-di-pasta-sfoglia-e-prosciutto.md)
+- [Guacamole senza cipolla](ricette/guacamole-senza-cipolla.md)
+- [Ricotta salata con zucchine e grana](ricette/ricotta-salata-con-zucchine-e-grana.md) _(da completare)_
+- [Taralli pugliesi](ricette/taralli-pugliesi.md) _(da completare)_
+
+
+## Primi (30)
+
+### Pasta, gnocchi e passatelli (8)
 
 - [Carbonara tradizionale romana (con variante panna familiare)](ricette/carbonara-tradizionale-romana-con-variante-panna-familiare.md) _(da completare)_
-- [Ciotola di riso con tonno e avocado](ricette/ciotola-di-riso-con-tonno-e-avocado.md)
-- [Crema di ricotta, limone e pepe per pasta o riso](ricette/crema-di-ricotta-limone-e-pepe-per-pasta-o-riso.md) _(da completare)_
-- [Farro con salmone, feta e avocado](ricette/farro-con-salmone-feta-e-avocado.md)
 - [Gnocchi alla zucca e salvia](ricette/gnocchi-alla-zucca-e-salvia.md)
 - [Gnocchi con crema di zucca e formaggio](ricette/gnocchi-con-crema-di-zucca-e-formaggio.md) _(da completare)_
 - [Passatelli (senza formaggio, solo albume)](ricette/passatelli-senza-formaggio-solo-albume.md)
 - [Passatelli in brodo](ricette/passatelli-in-brodo.md)
 - [Pasta fit ricotta e zucchine](ricette/pasta-fit-ricotta-e-zucchine.md) _(da completare)_
+- [Ragù bianco fit con macinato di manzo e albume (senza brodo)](ricette/ragu-bianco-fit-con-macinato-di-manzo-e-albume-senza-brodo.md)
 - [Ravioli ricotta e spinaci](ricette/ravioli-ricotta-e-spinaci.md)
+
+### Riso, farro e cereali (13)
+
+- [Cous cous fit con verdure e macinato (2 persone)](ricette/cous-cous-fit-con-verdure-e-macinato-2-persone.md)
+- [Farro con salmone, feta e avocado](ricette/farro-con-salmone-feta-e-avocado.md)
+- [Farro freddo con peperoni, salsa yogurt e salmone nascosto](ricette/farro-freddo-con-peperoni-salsa-yogurt-e-salmone-nascosto.md)
+- [Insalata calda di farro con pollo, zucchine e feta](ricette/insalata-calda-di-farro-con-pollo-zucchine-e-feta.md)
+- [Insalata dolce di riso basmati e yogurt](ricette/insalata-dolce-di-riso-basmati-e-yogurt.md)
+- [Riso basmati (o farro) con salmone affumicato e peperoni arrostiti](ricette/riso-basmati-o-farro-con-salmone-affumicato-e-peperoni-arrostiti.md)
 - [Riso basmati con pancetta croccante e peperoni](ricette/riso-basmati-con-pancetta-croccante-e-peperoni.md)
 - [Riso basmati cremoso alla zucca e Grana](ricette/riso-basmati-cremoso-alla-zucca-e-grana.md)
 - [Riso basmati per meal prep](ricette/riso-basmati-per-meal-prep.md) _(da completare)_
+- [Riso speziato con peperoni e salmone 'mascherato'](ricette/riso-speziato-con-peperoni-e-salmone-mascherato.md)
 - [Risotto con gorgonzola, pere, cavolo viola e noci](ricette/risotto-con-gorgonzola-pere-cavolo-viola-e-noci.md)
 - [Risotto cremoso alla zucca, salvia e parmigiano](ricette/risotto-cremoso-alla-zucca-salvia-e-parmigiano.md)
 - [Risotto pancetta e peperoni con paprika (4 persone, 100 g pancetta)](ricette/risotto-pancetta-e-peperoni-con-paprika-4-persone-100-g-pancetta.md)
+
+### Zuppe, vellutate e brodi (9)
+
 - [Stracciatella (versione dell'utente: 1 dado, 1 uovo, 25 g parmigiano) - valori nutrizionali](ricette/stracciatella-versione-dell-utente-1-dado-1-uovo-25-g-parmigiano-valor.md) _(da completare)_
 - [Stracciatella in brodo](ricette/stracciatella-in-brodo.md)
 - [Stracciatella marchigiana](ricette/stracciatella-marchigiana.md)
@@ -55,24 +78,13 @@ Totale ricette: **302**
 - [Vellutata di zucca senza patate (2 persone, cremosa con latte vegetale, burro e formaggio)](ricette/vellutata-di-zucca-senza-patate-2-persone-cremosa-con-latte-vegetale-b.md)
 - [Zuppa leggera di verdure con tofu e zenzero (vellutata)](ricette/zuppa-leggera-di-verdure-con-tofu-e-zenzero-vellutata.md)
 
-## Secondi
 
-- [Bowl calda di farro con macinato, zucchine e spinaci](ricette/bowl-calda-di-farro-con-macinato-zucchine-e-spinaci.md)
-- [Bowl proteica con sfilacci di cavallo, uovo poché e crema di spinaci](ricette/bowl-proteica-con-sfilacci-di-cavallo-uovo-poche-e-crema-di-spinaci.md)
-- [Bowl proteica di farro con spinaci, sfilacci di cavallo e fiocchi di latte](ricette/bowl-proteica-di-farro-con-spinaci-sfilacci-di-cavallo-e-fiocchi-di-la.md)
-- [Bowl proteica salmone, riso basmati e verdure croccanti](ricette/bowl-proteica-salmone-riso-basmati-e-verdure-croccanti.md)
+## Secondi (31)
+
+### Carne e pesce (11)
+
 - [Fricco di pollo marchigiano](ricette/fricco-di-pollo-marchigiano.md) _(da completare)_
-- [Frittata fit proteica con contorno fresco (uova, sfilacci, carota, avocado)](ricette/frittata-fit-proteica-con-contorno-fresco-uova-sfilacci-carota-avocado.md)
-- [Frittata proteica con spinaci e sfilacci di cavallo](ricette/frittata-proteica-con-spinaci-e-sfilacci-di-cavallo.md)
-- [Frittata proteica ricotta e spinaci](ricette/frittata-proteica-ricotta-e-spinaci.md) _(da completare)_
-- [Insalata calda di farro con pollo, zucchine e feta](ricette/insalata-calda-di-farro-con-pollo-zucchine-e-feta.md)
-- [Insalatona fit definizione (finocchio, carote, pollo alla piastra)](ricette/insalatona-fit-definizione-finocchio-carote-pollo-alla-piastra.md)
-- [Insalatona proteica con salmone, spinaci freschi e yogurt allo zenzero](ricette/insalatona-proteica-con-salmone-spinaci-freschi-e-yogurt-allo-zenzero.md)
-- [Insalatona proteica con sfilacci e Wasa](ricette/insalatona-proteica-con-sfilacci-e-wasa.md) _(da completare)_
 - [Lonza di suino al forno con patate (trancio 1,156 kg)](ricette/lonza-di-suino-al-forno-con-patate-trancio-1-156-kg.md)
-- [Pasto proteico con macinato magro, albume, carote e Wasa (stima valori)](ricette/pasto-proteico-con-macinato-magro-albume-carote-e-wasa-stima-valori.md) _(da completare)_
-- [Patata ripiena con macinato e Galbanino (microonde)](ricette/patata-ripiena-con-macinato-e-galbanino-microonde.md)
-- [Piada bresaola fit e saporita (con pecorino o gorgonzola)](ricette/piada-bresaola-fit-e-saporita-con-pecorino-o-gorgonzola.md) _(da completare)_
 - [Pollo a cubetti speziato (meal prep)](ricette/pollo-a-cubetti-speziato-meal-prep.md) _(da completare)_
 - [Pollo al forno con zucchine, peperoni e riso (meal prep)](ricette/pollo-al-forno-con-zucchine-peperoni-e-riso-meal-prep.md)
 - [Pollo cremoso alla zucca](ricette/pollo-cremoso-alla-zucca.md)
@@ -80,13 +92,39 @@ Totale ricette: **302**
 - [Polpette di manzo al sugo di zucca](ricette/polpette-di-manzo-al-sugo-di-zucca.md)
 - [Polpette fit di salmone e zucchine con crema di spinaci e yogurt](ricette/polpette-fit-di-salmone-e-zucchine-con-crema-di-spinaci-e-yogurt.md)
 - [Polpettone classico al forno](ricette/polpettone-classico-al-forno.md)
-- [Ragù bianco fit con macinato di manzo e albume (senza brodo)](ricette/ragu-bianco-fit-con-macinato-di-manzo-e-albume-senza-brodo.md)
-- [Ricotta salata con zucchine e grana](ricette/ricotta-salata-con-zucchine-e-grana.md) _(da completare)_
 - [Sformato di pollo e zucca filante](ricette/sformato-di-pollo-e-zucca-filante.md)
 - [Tacchino con zucchine e finocchio in padella](ricette/tacchino-con-zucchine-e-finocchio-in-padella.md) _(da completare)_
+
+### Uova e frittate (6)
+
+- [Frittata di albumi e verdure](ricette/frittata-di-albumi-e-verdure.md)
+- [Frittata fit proteica con contorno fresco (uova, sfilacci, carota, avocado)](ricette/frittata-fit-proteica-con-contorno-fresco-uova-sfilacci-carota-avocado.md)
+- [Frittata proteica con spinaci e sfilacci di cavallo](ricette/frittata-proteica-con-spinaci-e-sfilacci-di-cavallo.md)
+- [Frittata proteica ricotta e spinaci](ricette/frittata-proteica-ricotta-e-spinaci.md) _(da completare)_
+- [Frittata proteica smart con macinato e tuorli](ricette/frittata-proteica-smart-con-macinato-e-tuorli.md)
+- [Omelette proteica con albume e verdure](ricette/omelette-proteica-con-albume-e-verdure.md)
+
+### Bowl, insalatone e piatti unici (14)
+
+- [Bowl calda di farro con macinato, zucchine e spinaci](ricette/bowl-calda-di-farro-con-macinato-zucchine-e-spinaci.md)
+- [Bowl fit ricotta, riso basmati e verdure](ricette/bowl-fit-ricotta-riso-basmati-e-verdure.md) _(da completare)_
+- [Bowl fit riso, tacchino, uova e verdure](ricette/bowl-fit-riso-tacchino-uova-e-verdure.md)
+- [Bowl proteica con sfilacci di cavallo, uovo poché e crema di spinaci](ricette/bowl-proteica-con-sfilacci-di-cavallo-uovo-poche-e-crema-di-spinaci.md)
+- [Bowl proteica di farro con spinaci, sfilacci di cavallo e fiocchi di latte](ricette/bowl-proteica-di-farro-con-spinaci-sfilacci-di-cavallo-e-fiocchi-di-la.md)
+- [Bowl proteica salmone, riso basmati e verdure croccanti](ricette/bowl-proteica-salmone-riso-basmati-e-verdure-croccanti.md)
+- [Ciotola di riso con tonno e avocado](ricette/ciotola-di-riso-con-tonno-e-avocado.md)
+- [Insalatona fit definizione (finocchio, carote, pollo alla piastra)](ricette/insalatona-fit-definizione-finocchio-carote-pollo-alla-piastra.md)
+- [Insalatona proteica con salmone, spinaci freschi e yogurt allo zenzero](ricette/insalatona-proteica-con-salmone-spinaci-freschi-e-yogurt-allo-zenzero.md)
+- [Insalatona proteica con sfilacci e Wasa](ricette/insalatona-proteica-con-sfilacci-e-wasa.md) _(da completare)_
+- [Pasto proteico con macinato magro, albume, carote e Wasa (stima valori)](ricette/pasto-proteico-con-macinato-magro-albume-carote-e-wasa-stima-valori.md) _(da completare)_
+- [Pasto: zucchina, albume e farina di farro (con pesca noce, Wasa fit e burro di arachidi)](ricette/pasto-zucchina-albume-e-farina-di-farro-con-pesca-noce-wasa-fit-e-burr.md) _(da completare)_
+- [Patata ripiena con macinato e Galbanino (microonde)](ricette/patata-ripiena-con-macinato-e-galbanino-microonde.md)
 - [Zucchine ripiene di ricotta e pollo](ricette/zucchine-ripiene-di-ricotta-e-pollo.md) _(da completare)_
 
-## Contorni
+
+## Contorni (17)
+
+### Verdure e legumi (10)
 
 - [Asparagi saltati con ricotta / pollo / riso (idee)](ricette/asparagi-saltati-con-ricotta-pollo-riso-idee.md) _(da completare)_
 - [Cannellini con cipolla rossa, olio EVO e prezzemolo](ricette/cannellini-con-cipolla-rossa-olio-evo-e-prezzemolo.md) _(da completare)_
@@ -94,125 +132,99 @@ Totale ricette: **302**
 - [Cipolla caramellata al volo](ricette/cipolla-caramellata-al-volo.md)
 - [Coste di bietola (cottura)](ricette/coste-di-bietola-cottura.md)
 - [Foglie di bietola (cottura)](ricette/foglie-di-bietola-cottura.md)
+- [Ratatouille con feta al miele (zucchina e peperoni)](ricette/ratatouille-con-feta-al-miele-zucchina-e-peperoni.md) _(da completare)_
+- [Verdure al forno per meal prep (finocchi, zucchine, peperoni)](ricette/verdure-al-forno-per-meal-prep-finocchi-zucchine-peperoni.md)
+- [Verdure grigliate miste (meal prep)](ricette/verdure-grigliate-miste-meal-prep.md) _(da completare)_
+- [Zucchine al limone in padella](ricette/zucchine-al-limone-in-padella.md)
+
+### Patate e zucca (7)
+
+- [Passata speziata di zucca](ricette/passata-speziata-di-zucca.md) _(da completare)_
 - [Patate e scamorza filante al microonde (con contenitore a vapore)](ricette/patate-e-scamorza-filante-al-microonde-con-contenitore-a-vapore.md)
 - [Patate gratinate con crema di zucca e parmigiano (versione leggera)](ricette/patate-gratinate-con-crema-di-zucca-e-parmigiano-versione-leggera.md)
 - [Purè di patate fatto in casa](ricette/pure-di-patate-fatto-in-casa.md)
 - [Purè di zucca (senza patate, 2 persone)](ricette/pure-di-zucca-senza-patate-2-persone.md)
-- [Ratatouille con feta al miele (zucchina e peperoni)](ricette/ratatouille-con-feta-al-miele-zucchina-e-peperoni.md) _(da completare)_
-- [Verdure al forno per meal prep (finocchi, zucchine, peperoni)](ricette/verdure-al-forno-per-meal-prep-finocchi-zucchine-peperoni.md)
-- [Verdure grigliate miste (meal prep)](ricette/verdure-grigliate-miste-meal-prep.md) _(da completare)_
 - [Zucca appassita al forno](ricette/zucca-appassita-al-forno.md)
 - [Zucca Delica al forno](ricette/zucca-delica-al-forno.md)
-- [Zucchine al limone in padella](ricette/zucchine-al-limone-in-padella.md)
 
-## Dolci
 
-- [Apple crumble con cannella e vaniglia](ricette/apple-crumble-con-cannella-e-vaniglia.md) _(da completare)_
-- [Banana bread proteico](ricette/banana-bread-proteico.md) _(da completare)_
-- [Barrette di frutta secca ricoperte di cioccolato (fit)](ricette/barrette-di-frutta-secca-ricoperte-di-cioccolato-fit.md)
-- [Bicchieri dessert crema al limone e crumble di mandorle (senza glutine)](ricette/bicchieri-dessert-crema-al-limone-e-crumble-di-mandorle-senza-glutine.md) _(da completare)_
-- [Bonet (latte intero, agar agar, cottura e sformatura)](ricette/bonet-latte-intero-agar-agar-cottura-e-sformatura.md) _(da completare)_
-- [Bonet piemontese (versione ottimizzata)](ricette/bonet-piemontese-versione-ottimizzata.md)
-- [Brownie fit (versione fit della ricetta dell'utente)](ricette/brownie-fit-versione-fit-della-ricetta-dell-utente.md)
-- [Brownies fit con eritritolo](ricette/brownies-fit-con-eritritolo.md)
-- [Brownies XXL (teglia 43x33 cm, versione alta)](ricette/brownies-xxl-teglia-43x33-cm-versione-alta.md)
-- [Budino di cachi e cacao senza farina](ricette/budino-di-cachi-e-cacao-senza-farina.md)
-- [Budino fit proteico con agar agar](ricette/budino-fit-proteico-con-agar-agar.md)
+## Dolci (50)
+
+### Torte e dolci da forno (19)
+
 - [Carrot cake autunnale con noci e frosting](ricette/carrot-cake-autunnale-con-noci-e-frosting.md) _(da completare)_
-- [Cenerini / cestini di crostata (con gli avanzi della torta)](ricette/cenerini-cestini-di-crostata-con-gli-avanzi-della-torta.md)
-- [Cestini di sfoglia alla cannella con crema pasticcera](ricette/cestini-di-sfoglia-alla-cannella-con-crema-pasticcera.md)
-- [Cestino fit di cioccolato fondente con burro di arachidi e frutta secca](ricette/cestino-fit-di-cioccolato-fondente-con-burro-di-arachidi-e-frutta-secc.md)
 - [Ciambellone al vino](ricette/ciambellone-al-vino.md) _(da completare)_
-- [Cinnamon roll (girelle alla cannella)](ricette/cinnamon-roll-girelle-alla-cannella.md)
-- [Cornetti fit alla marmellata (albicocca o ciliegia) / sfogliatine proteiche](ricette/cornetti-fit-alla-marmellata-albicocca-o-ciliegia-sfogliatine-proteich.md)
-- [Crema di zucca per crostata (670 g di zucca, senza uova)](ricette/crema-di-zucca-per-crostata-670-g-di-zucca-senza-uova.md)
-- [Crema pasticcera fit (con farina o amido)](ricette/crema-pasticcera-fit-con-farina-o-amido.md)
-- [Crema pasticcera per crostata da 28 cm (con 98 g di tuorlo, anche latte di soia)](ricette/crema-pasticcera-per-crostata-da-28-cm-con-98-g-di-tuorlo-anche-latte-.md)
-- [Crostata di marmellata (quantita di marmellata e trucchi)](ricette/crostata-di-marmellata-quantita-di-marmellata-e-trucchi.md) _(da completare)_
-- [Crostata di zucca (frolla senza uova)](ricette/crostata-di-zucca-frolla-senza-uova.md)
-- [Crostata morbida senza glutine con crema pasticcera](ricette/crostata-morbida-senza-glutine-con-crema-pasticcera.md) _(da completare)_
-- [Crostata tiramisù (stampo 28 cm) con frolla al caffè](ricette/crostata-tiramisu-stampo-28-cm-con-frolla-al-caffe.md)
-- [Crostata zucca e cioccolato](ricette/crostata-zucca-e-cioccolato.md) _(da completare)_
-- [Crème Chantilly originale](ricette/creme-chantilly-originale.md) _(da completare)_
-- [Dolce alla zucca ispirato a Cinnamoroll](ricette/dolce-alla-zucca-ispirato-a-cinnamoroll.md) _(da completare)_
-- [Dolci tradizionali marchigiani (frustingo, cicerchiata, calcioni/piconi dolci, cavallucci, ciambellone marchigiano, serpe di Ancona)](ricette/dolci-tradizionali-marchigiani-frustingo-cicerchiata-calcioni-piconi-d.md) _(da completare)_
-- [Macarons francesi con ganache al cioccolato](ricette/macarons-francesi-con-ganache-al-cioccolato.md)
-- [Meringhe classiche (4 albumi)](ricette/meringhe-classiche-4-albumi.md)
 - [Miascia comasca](ricette/miascia-comasca.md) _(da completare)_
-- [Muffin fit alla banana e avena](ricette/muffin-fit-alla-banana-e-avena.md)
-- [Mug cake alla banana (microonde)](ricette/mug-cake-alla-banana-microonde.md)
-- [Mug cake ricotta al cacao (microonde)](ricette/mug-cake-ricotta-al-cacao-microonde.md) _(da completare)_
-- [Pasta frolla per 2 crostate di marmellata da 28 cm](ricette/pasta-frolla-per-2-crostate-di-marmellata-da-28-cm.md)
 - [Pinza veneta (dolce dell'Epifania)](ricette/pinza-veneta-dolce-dell-epifania.md)
 - [Pumpkin cheesecake](ricette/pumpkin-cheesecake.md) _(da completare)_
-- [Pumpkin cinnamon rolls con cream cheese frosting](ricette/pumpkin-cinnamon-rolls-con-cream-cheese-frosting.md)
-- [Riso al latte](ricette/riso-al-latte.md) _(da completare)_
-- [Spumone di albume fit](ricette/spumone-di-albume-fit.md)
-- [Strudel di mele con pasta sfoglia](ricette/strudel-di-mele-con-pasta-sfoglia.md)
-- [Strudel di mele tradizionale](ricette/strudel-di-mele-tradizionale.md)
-- [Strudel trentino di mele](ricette/strudel-trentino-di-mele.md)
-- [Tarte tatin alle mele](ricette/tarte-tatin-alle-mele.md)
-- [Tarte Tatin di mele (teglia di vetro 26 cm, 260 g di zucchero)](ricette/tarte-tatin-di-mele-teglia-di-vetro-26-cm-260-g-di-zucchero.md)
-- [Tiramisù alla zucca (versione leggera con mascarpone e ricotta)](ricette/tiramisu-alla-zucca-versione-leggera-con-mascarpone-e-ricotta.md)
-- [Tiramisù alla zucca classico con uova](ricette/tiramisu-alla-zucca-classico-con-uova.md)
-- [Tiramisù alla zucca con crema soffice (senza uova)](ricette/tiramisu-alla-zucca-con-crema-soffice-senza-uova.md)
 - [Torta ai cachi e cacao](ricette/torta-ai-cachi-e-cacao.md)
 - [Torta ai tre cioccolati (base cacao + 3 mousse, stampo 28 cm)](ricette/torta-ai-tre-cioccolati-base-cacao-3-mousse-stampo-28-cm.md) _(da completare)_
 - [Torta alle pere, cioccolato e cannella](ricette/torta-alle-pere-cioccolato-e-cannella.md) _(da completare)_
 - [Torta caprese al limone (senza glutine)](ricette/torta-caprese-al-limone-senza-glutine.md) _(da completare)_
 - [Torta con due dischi di pan di Spagna, Alchermes e farcitura](ricette/torta-con-due-dischi-di-pan-di-spagna-alchermes-e-farcitura.md)
-- [Torta crostata "Sacher rivisitata"](ricette/torta-crostata-sacher-rivisitata.md) _(da completare)_
-- [Torta della nonna (teglia 28 cm, crema con latte di soia)](ricette/torta-della-nonna-teglia-28-cm-crema-con-latte-di-soia.md)
 - [Torta di mele, zucca e cannella](ricette/torta-di-mele-zucca-e-cannella.md) _(da completare)_
-- [Torta fit al cacao con uova e yogurt](ricette/torta-fit-al-cacao-con-uova-e-yogurt.md) _(da completare)_
-- [Torta fit con avena, 4 banane e solo albumi](ricette/torta-fit-con-avena-4-banane-e-solo-albumi.md)
 - [Torta meringata](ricette/torta-meringata.md)
 - [Torta meringata (versione dettagliata)](ricette/torta-meringata-versione-dettagliata.md) _(da completare)_
 - [Torta morbida alle mandorle con crema al limone (senza glutine)](ricette/torta-morbida-alle-mandorle-con-crema-al-limone-senza-glutine.md) _(da completare)_
-- [Torta proteica con albumi zuccherati e farina Manitoba](ricette/torta-proteica-con-albumi-zuccherati-e-farina-manitoba.md)
 - [Torta ricotta, pere e cioccolato (stampo 26 cm)](ricette/torta-ricotta-pere-e-cioccolato-stampo-26-cm.md)
 - [Torta Sacher](ricette/torta-sacher.md)
 - [Torta Sacher (stampo 28 cm)](ricette/torta-sacher-stampo-28-cm.md)
 - [Torta soffice al limone senza glutine con crema pasticcera](ricette/torta-soffice-al-limone-senza-glutine-con-crema-pasticcera.md) _(da completare)_
 - [Torta soffice di zucca, mandorle e cannella](ricette/torta-soffice-di-zucca-mandorle-e-cannella.md) _(da completare)_
-- [Tortino fit di cioccolato fondente con burro di arachidi e frutta secca](ricette/tortino-fit-di-cioccolato-fondente-con-burro-di-arachidi-e-frutta-secc.md)
 
-## Colazione e fit
+### Crostate, strudel e tarte (12)
 
-- [Barrette di muesli compatte (avena, uvetta, nocciole, chia)](ricette/barrette-di-muesli-compatte-avena-uvetta-nocciole-chia.md)
-- [Barrette proteiche fit datteri e burro di arachidi (senza cottura)](ricette/barrette-proteiche-fit-datteri-e-burro-di-arachidi-senza-cottura.md)
-- [Biscotti fit banana e avena](ricette/biscotti-fit-banana-e-avena.md)
-- [Bowl fit ricotta, riso basmati e verdure](ricette/bowl-fit-ricotta-riso-basmati-e-verdure.md) _(da completare)_
-- [Bowl fit riso, tacchino, uova e verdure](ricette/bowl-fit-riso-tacchino-uova-e-verdure.md)
-- [Cous cous fit con verdure e macinato (2 persone)](ricette/cous-cous-fit-con-verdure-e-macinato-2-persone.md)
+- [Cenerini / cestini di crostata (con gli avanzi della torta)](ricette/cenerini-cestini-di-crostata-con-gli-avanzi-della-torta.md)
+- [Crostata di marmellata (quantita di marmellata e trucchi)](ricette/crostata-di-marmellata-quantita-di-marmellata-e-trucchi.md) _(da completare)_
+- [Crostata di zucca (frolla senza uova)](ricette/crostata-di-zucca-frolla-senza-uova.md)
+- [Crostata morbida senza glutine con crema pasticcera](ricette/crostata-morbida-senza-glutine-con-crema-pasticcera.md) _(da completare)_
+- [Crostata zucca e cioccolato](ricette/crostata-zucca-e-cioccolato.md) _(da completare)_
+- [Strudel di mele con pasta sfoglia](ricette/strudel-di-mele-con-pasta-sfoglia.md)
+- [Strudel di mele tradizionale](ricette/strudel-di-mele-tradizionale.md)
+- [Strudel trentino di mele](ricette/strudel-trentino-di-mele.md)
+- [Tarte tatin alle mele](ricette/tarte-tatin-alle-mele.md)
+- [Tarte Tatin di mele (teglia di vetro 26 cm, 260 g di zucchero)](ricette/tarte-tatin-di-mele-teglia-di-vetro-26-cm-260-g-di-zucchero.md)
+- [Torta crostata "Sacher rivisitata"](ricette/torta-crostata-sacher-rivisitata.md) _(da completare)_
+- [Torta della nonna (teglia 28 cm, crema con latte di soia)](ricette/torta-della-nonna-teglia-28-cm-crema-con-latte-di-soia.md)
+
+### Dolci al cucchiaio (10)
+
+- [Apple crumble con cannella e vaniglia](ricette/apple-crumble-con-cannella-e-vaniglia.md) _(da completare)_
+- [Bicchieri dessert crema al limone e crumble di mandorle (senza glutine)](ricette/bicchieri-dessert-crema-al-limone-e-crumble-di-mandorle-senza-glutine.md) _(da completare)_
+- [Bonet (latte intero, agar agar, cottura e sformatura)](ricette/bonet-latte-intero-agar-agar-cottura-e-sformatura.md) _(da completare)_
+- [Bonet piemontese (versione ottimizzata)](ricette/bonet-piemontese-versione-ottimizzata.md)
+- [Budino di cachi e cacao senza farina](ricette/budino-di-cachi-e-cacao-senza-farina.md)
+- [Crostata tiramisù (stampo 28 cm) con frolla al caffè](ricette/crostata-tiramisu-stampo-28-cm-con-frolla-al-caffe.md)
+- [Riso al latte](ricette/riso-al-latte.md) _(da completare)_
+- [Tiramisù alla zucca (versione leggera con mascarpone e ricotta)](ricette/tiramisu-alla-zucca-versione-leggera-con-mascarpone-e-ricotta.md)
+- [Tiramisù alla zucca classico con uova](ricette/tiramisu-alla-zucca-classico-con-uova.md)
+- [Tiramisù alla zucca con crema soffice (senza uova)](ricette/tiramisu-alla-zucca-con-crema-soffice-senza-uova.md)
+
+### Biscotti e piccola pasticceria (9)
+
+- [Brownies XXL (teglia 43x33 cm, versione alta)](ricette/brownies-xxl-teglia-43x33-cm-versione-alta.md)
+- [Cestini di sfoglia alla cannella con crema pasticcera](ricette/cestini-di-sfoglia-alla-cannella-con-crema-pasticcera.md)
+- [Cinnamon roll (girelle alla cannella)](ricette/cinnamon-roll-girelle-alla-cannella.md)
+- [Dolce alla zucca ispirato a Cinnamoroll](ricette/dolce-alla-zucca-ispirato-a-cinnamoroll.md) _(da completare)_
+- [Dolci tradizionali marchigiani (frustingo, cicerchiata, calcioni/piconi dolci, cavallucci, ciambellone marchigiano, serpe di Ancona)](ricette/dolci-tradizionali-marchigiani-frustingo-cicerchiata-calcioni-piconi-d.md) _(da completare)_
+- [Frittelle dolci di polenta](ricette/frittelle-dolci-di-polenta.md)
+- [Macarons francesi con ganache al cioccolato](ricette/macarons-francesi-con-ganache-al-cioccolato.md)
+- [Meringhe classiche (4 albumi)](ricette/meringhe-classiche-4-albumi.md)
+- [Pumpkin cinnamon rolls con cream cheese frosting](ricette/pumpkin-cinnamon-rolls-con-cream-cheese-frosting.md)
+
+
+## Colazione e fit (92)
+
+### Pancake e crêpes (29)
+
+- [Crepe base anti-aderente (proteica)](ricette/crepe-base-anti-aderente-proteica.md)
+- [Crepes (padella poco antiaderente, latte di soia e farina 00)](ricette/crepes-padella-poco-antiaderente-latte-di-soia-e-farina-00.md)
 - [Crepes fit con albume](ricette/crepes-fit-con-albume.md)
 - [Crepes fit con farina di farro](ricette/crepes-fit-con-farina-di-farro.md)
+- [Crêpes classiche](ricette/crepes-classiche.md)
+- [Crêpes con 3 albumi](ricette/crepes-con-3-albumi.md)
 - [Crêpes con farina di farro](ricette/crepes-con-farina-di-farro.md)
 - [Crêpes senza glutine e senza lattosio (farina di riso)](ricette/crepes-senza-glutine-e-senza-lattosio-farina-di-riso.md)
-- [Farro freddo con peperoni, salsa yogurt e salmone nascosto](ricette/farro-freddo-con-peperoni-salsa-yogurt-e-salmone-nascosto.md)
-- [Frittata di albumi e verdure](ricette/frittata-di-albumi-e-verdure.md)
-- [Frittata proteica smart con macinato e tuorli](ricette/frittata-proteica-smart-con-macinato-e-tuorli.md)
-- [Frittelle dolci di polenta](ricette/frittelle-dolci-di-polenta.md)
-- [Granola (versione semplice)](ricette/granola-versione-semplice.md)
-- [Granola con avena, nocciole e uvetta](ricette/granola-con-avena-nocciole-e-uvetta.md)
-- [Granola con avena, noci e semi di chia](ricette/granola-con-avena-noci-e-semi-di-chia.md)
-- [Granola fit](ricette/granola-fit.md)
-- [Granola fit (versione completa)](ricette/granola-fit-versione-completa.md)
-- [Granola fit con avena e nocciole](ricette/granola-fit-con-avena-e-nocciole.md)
-- [Granola semplice con solo avena, noci e cannella](ricette/granola-semplice-con-solo-avena-noci-e-cannella.md)
-- [Granola: come renderla più croccante (ricottura)](ricette/granola-come-renderla-piu-croccante-ricottura.md) _(da completare)_
-- [Insalata dolce di riso basmati e yogurt](ricette/insalata-dolce-di-riso-basmati-e-yogurt.md)
-- [Muesli a blocchi con avena, uvetta, frutta secca e semi di chia](ricette/muesli-a-blocchi-con-avena-uvetta-frutta-secca-e-semi-di-chia.md)
-- [Muesli con fiocchi d'avena e nocciole](ricette/muesli-con-fiocchi-d-avena-e-nocciole.md)
-- [Muesli croccante con avena, nocciole e uvetta](ricette/muesli-croccante-con-avena-nocciole-e-uvetta.md)
-- [Muesli croccante fit con avena e banana](ricette/muesli-croccante-fit-con-avena-e-banana.md)
-- [Muesli croccanti con avena e nocciole (fit)](ricette/muesli-croccanti-con-avena-e-nocciole-fit.md)
-- [Muesli fatto in casa a blocchi duri](ricette/muesli-fatto-in-casa-a-blocchi-duri.md)
-- [Muesli fit croccante con avena e frutta secca](ricette/muesli-fit-croccante-con-avena-e-frutta-secca.md)
-- [Muesli/granola fit croccante a blocchi](ricette/muesli-granola-fit-croccante-a-blocchi.md)
-- [Muslei fit (granola al forno con noci e semi)](ricette/muslei-fit-granola-al-forno-con-noci-e-semi.md)
-- [Omelette proteica con albume e verdure](ricette/omelette-proteica-con-albume-e-verdure.md)
-- [Overnight porridge fit (definizione)](ricette/overnight-porridge-fit-definizione.md)
 - [Pancake al farro con albume e latte vegetale](ricette/pancake-al-farro-con-albume-e-latte-vegetale.md)
 - [Pancake banana e uova senza glutine e senza lattosio (con polenta)](ricette/pancake-banana-e-uova-senza-glutine-e-senza-lattosio-con-polenta.md)
 - [Pancake fit al farro con albume e latte vegetale](ricette/pancake-fit-al-farro-con-albume-e-latte-vegetale.md)
@@ -233,85 +245,156 @@ Totale ricette: **302**
 - [Pancake ricotta](ricette/pancake-ricotta.md) _(da completare)_
 - [Pancake/crepes salate di albume (185 g di albume)](ricette/pancake-crepes-salate-di-albume-185-g-di-albume.md)
 - [Pancakes fit con albume e latte di soia (farina di farro)](ricette/pancakes-fit-con-albume-e-latte-di-soia-farina-di-farro.md)
-- [Pane proteico banana e albume](ricette/pane-proteico-banana-e-albume.md)
+- [Wrap/crepe proteica fredda con pollo e tacchino (pranzo da portare)](ricette/wrap-crepe-proteica-fredda-con-pollo-e-tacchino-pranzo-da-portare.md) _(da completare)_
+
+### Piadine (17)
+
+- [Piada bresaola fit e saporita (con pecorino o gorgonzola)](ricette/piada-bresaola-fit-e-saporita-con-pecorino-o-gorgonzola.md) _(da completare)_
 - [Piada fit con albume e farina](ricette/piada-fit-con-albume-e-farina.md)
 - [Piada fit con lenticchie rosse decorticate (senza farina)](ricette/piada-fit-con-lenticchie-rosse-decorticate-senza-farina.md)
 - [Piada fit di farro](ricette/piada-fit-di-farro.md)
-- [Piadina fit allo yogurt](ricette/piadina-fit-allo-yogurt.md)
-- [Piadina fit fatta in casa (domenica al mare)](ricette/piadina-fit-fatta-in-casa-domenica-al-mare.md)
-- [Piadina proteica di farro con tacchino e yogurt (uova nascoste)](ricette/piadina-proteica-di-farro-con-tacchino-e-yogurt-uova-nascoste.md)
-- [Porridge / muesli (colazione dell'utente)](ricette/porridge-muesli-colazione-dell-utente.md) _(da completare)_
-- [Porridge overnight](ricette/porridge-overnight.md)
-- [Porridge proteico (colazione)](ricette/porridge-proteico-colazione.md)
-- [Porridge proteico alla cannella e mela](ricette/porridge-proteico-alla-cannella-e-mela.md)
-- [Pudding proteico alla vaniglia e mandorle (senza semi di chia)](ricette/pudding-proteico-alla-vaniglia-e-mandorle-senza-semi-di-chia.md)
-- [Ricotta dolce fit con marmellata e frutti di bosco](ricette/ricotta-dolce-fit-con-marmellata-e-frutti-di-bosco.md) _(da completare)_
-- [Riso basmati (o farro) con salmone affumicato e peperoni arrostiti](ricette/riso-basmati-o-farro-con-salmone-affumicato-e-peperoni-arrostiti.md)
-- [Riso speziato con peperoni e salmone 'mascherato'](ricette/riso-speziato-con-peperoni-e-salmone-mascherato.md)
-- [Toast proteico con avocado e uova](ricette/toast-proteico-con-avocado-e-uova.md)
-- [Tortino di yogurt greco a bagnomaria (monoporzione in barattolo)](ricette/tortino-di-yogurt-greco-a-bagnomaria-monoporzione-in-barattolo.md)
-- [Tortino fit con avena, albume e latte vegetale (forno)](ricette/tortino-fit-con-avena-albume-e-latte-vegetale-forno.md)
-- [Tortino fit con avena, albumi e latte al microonde](ricette/tortino-fit-con-avena-albumi-e-latte-al-microonde.md)
-- [Wrap/crepe proteica fredda con pollo e tacchino (pranzo da portare)](ricette/wrap-crepe-proteica-fredda-con-pollo-e-tacchino-pranzo-da-portare.md) _(da completare)_
-
-## Basi e impasti
-
-- [Bagna all'Alchermes per pan di Spagna](ricette/bagna-all-alchermes-per-pan-di-spagna.md)
-- [Bagna per tiramisù e come bagnare i savoiardi](ricette/bagna-per-tiramisu-e-come-bagnare-i-savoiardi.md) _(da completare)_
-- [Crema al mascarpone e panna per farcire torta](ricette/crema-al-mascarpone-e-panna-per-farcire-torta.md)
-- [Crema chantilly](ricette/crema-chantilly.md)
-- [Crema diplomatica per farcire torta](ricette/crema-diplomatica-per-farcire-torta.md)
-- [Crema pasticcera classica per farcire torta](ricette/crema-pasticcera-classica-per-farcire-torta.md)
-- [Crema pasticcera con 3 tuorli](ricette/crema-pasticcera-con-3-tuorli.md)
-- [Crema pasticcera con latte di soia (dosi ridotte per torta da 28 cm)](ricette/crema-pasticcera-con-latte-di-soia-dosi-ridotte-per-torta-da-28-cm.md)
-- [Crepe base anti-aderente (proteica)](ricette/crepe-base-anti-aderente-proteica.md)
-- [Crepes (padella poco antiaderente, latte di soia e farina 00)](ricette/crepes-padella-poco-antiaderente-latte-di-soia-e-farina-00.md)
-- [Crêpes classiche](ricette/crepes-classiche.md)
-- [Crêpes con 3 albumi](ricette/crepes-con-3-albumi.md)
-- [Frolla al caffè (versione con 175 g di burro, stampo 28 cm)](ricette/frolla-al-caffe-versione-con-175-g-di-burro-stampo-28-cm.md) _(da completare)_
-- [Frolla senza uova](ricette/frolla-senza-uova.md)
-- [Frolla tipo Stefano Laghi senza uova con eritritolo (400 g farina)](ricette/frolla-tipo-stefano-laghi-senza-uova-con-eritritolo-400-g-farina.md)
-- [Ganache al cioccolato fondente (liscia e montata, dosi ridotte)](ricette/ganache-al-cioccolato-fondente-liscia-e-montata-dosi-ridotte.md)
-- [Glassa neutra trasparente](ricette/glassa-neutra-trasparente.md)
-- [Impasto pizza in teglia (Manitoba + farina 0 + semola + farro) - 2 teglie tonde 28 cm](ricette/impasto-pizza-in-teglia-manitoba-farina-0-semola-farro-2-teglie-tonde-.md)
-- [Marinatura asiatica agrodolce per costine](ricette/marinatura-asiatica-agrodolce-per-costine.md)
-- [Marinatura classica BBQ per costine (dolce-affumicata)](ricette/marinatura-classica-bbq-per-costine-dolce-affumicata.md)
-- [Marinatura mediterranea per costine](ricette/marinatura-mediterranea-per-costine.md)
-- [Marinatura piccante alla birra per costine](ricette/marinatura-piccante-alla-birra-per-costine.md)
-- [Pane alle olive (gestione pieghe, olive e origano)](ricette/pane-alle-olive-gestione-pieghe-olive-e-origano.md) _(da completare)_
-- [Pane alle olive (impasto con pieghe, forno 240°C)](ricette/pane-alle-olive-impasto-con-pieghe-forno-240c.md)
-- [Pane proteico all'albume (versione usata dall'utente)](ricette/pane-proteico-all-albume-versione-usata-dall-utente.md)
-- [Panini proteici allo yogurt greco (farina 0)](ricette/panini-proteici-allo-yogurt-greco-farina-0.md)
-- [Pasta brisée per tarte Tatin (teglia 26 cm)](ricette/pasta-brisee-per-tarte-tatin-teglia-26-cm.md)
-- [Pasta frolla (versione finale con uova intere e burro)](ricette/pasta-frolla-versione-finale-con-uova-intere-e-burro.md)
-- [Pasta frolla di Stefano Laghi (adattata a 220 g farina 00 + 80 g farro)](ricette/pasta-frolla-di-stefano-laghi-adattata-a-220-g-farina-00-80-g-farro.md)
-- [Pasta frolla di Stefano Laghi (originale con uova)](ricette/pasta-frolla-di-stefano-laghi-originale-con-uova.md)
-- [Pasta frolla di Stefano Laghi (per biscotti da tè)](ricette/pasta-frolla-di-stefano-laghi-per-biscotti-da-te.md)
 - [Piadina di lenticchie rosse decorticate](ricette/piadina-di-lenticchie-rosse-decorticate.md)
 - [Piadina fit (28 agosto 2026)](ricette/piadina-fit-28-agosto-2026.md)
 - [Piadina fit (farina, acqua, olio)](ricette/piadina-fit-farina-acqua-olio.md)
+- [Piadina fit allo yogurt](ricette/piadina-fit-allo-yogurt.md)
 - [Piadina fit di farro (senza lievito)](ricette/piadina-fit-di-farro-senza-lievito.md)
 - [Piadina fit di farro per 3 persone](ricette/piadina-fit-di-farro-per-3-persone.md)
 - [Piadina fit di farro senza uova (per 2 persone)](ricette/piadina-fit-di-farro-senza-uova-per-2-persone.md)
 - [Piadina fit di farro senza uova e latte](ricette/piadina-fit-di-farro-senza-uova-e-latte.md)
 - [Piadina fit di grano saraceno (senza yogurt)](ricette/piadina-fit-di-grano-saraceno-senza-yogurt.md)
+- [Piadina fit fatta in casa (domenica al mare)](ricette/piadina-fit-fatta-in-casa-domenica-al-mare.md)
 - [Piadina fit senza uova (2 ottobre 2026)](ricette/piadina-fit-senza-uova-2-ottobre-2026.md)
+- [Piadina proteica di farro con tacchino e yogurt (uova nascoste)](ricette/piadina-proteica-di-farro-con-tacchino-e-yogurt-uova-nascoste.md)
 - [Piadina proteica di farro e avena (1 piadina)](ricette/piadina-proteica-di-farro-e-avena-1-piadina.md)
+
+### Granola, muesli e porridge (24)
+
+- [Barrette di muesli compatte (avena, uvetta, nocciole, chia)](ricette/barrette-di-muesli-compatte-avena-uvetta-nocciole-chia.md)
+- [Granola (versione semplice)](ricette/granola-versione-semplice.md)
+- [Granola con avena, nocciole e uvetta](ricette/granola-con-avena-nocciole-e-uvetta.md)
+- [Granola con avena, noci e semi di chia](ricette/granola-con-avena-noci-e-semi-di-chia.md)
+- [Granola fit](ricette/granola-fit.md)
+- [Granola fit (versione completa)](ricette/granola-fit-versione-completa.md)
+- [Granola fit con avena e nocciole](ricette/granola-fit-con-avena-e-nocciole.md)
+- [Granola semplice con solo avena, noci e cannella](ricette/granola-semplice-con-solo-avena-noci-e-cannella.md)
+- [Granola: come renderla più croccante (ricottura)](ricette/granola-come-renderla-piu-croccante-ricottura.md) _(da completare)_
+- [Muesli a blocchi con avena, uvetta, frutta secca e semi di chia](ricette/muesli-a-blocchi-con-avena-uvetta-frutta-secca-e-semi-di-chia.md)
+- [Muesli con fiocchi d'avena e nocciole](ricette/muesli-con-fiocchi-d-avena-e-nocciole.md)
+- [Muesli croccante con avena, nocciole e uvetta](ricette/muesli-croccante-con-avena-nocciole-e-uvetta.md)
+- [Muesli croccante fit con avena e banana](ricette/muesli-croccante-fit-con-avena-e-banana.md)
+- [Muesli croccanti con avena e nocciole (fit)](ricette/muesli-croccanti-con-avena-e-nocciole-fit.md)
+- [Muesli fatto in casa a blocchi duri](ricette/muesli-fatto-in-casa-a-blocchi-duri.md)
+- [Muesli fit croccante con avena e frutta secca](ricette/muesli-fit-croccante-con-avena-e-frutta-secca.md)
+- [Muesli/granola fit croccante a blocchi](ricette/muesli-granola-fit-croccante-a-blocchi.md)
+- [Muslei fit (granola al forno con noci e semi)](ricette/muslei-fit-granola-al-forno-con-noci-e-semi.md)
+- [Overnight porridge fit (definizione)](ricette/overnight-porridge-fit-definizione.md)
+- [Porridge / muesli (colazione dell'utente)](ricette/porridge-muesli-colazione-dell-utente.md) _(da completare)_
+- [Porridge overnight](ricette/porridge-overnight.md)
+- [Porridge proteico (colazione)](ricette/porridge-proteico-colazione.md)
+- [Porridge proteico alla cannella e mela](ricette/porridge-proteico-alla-cannella-e-mela.md)
+- [Pudding proteico alla vaniglia e mandorle (senza semi di chia)](ricette/pudding-proteico-alla-vaniglia-e-mandorle-senza-semi-di-chia.md)
+
+### Dolci fit e merende (21)
+
+- [Banana bread proteico](ricette/banana-bread-proteico.md) _(da completare)_
+- [Barrette di frutta secca ricoperte di cioccolato (fit)](ricette/barrette-di-frutta-secca-ricoperte-di-cioccolato-fit.md)
+- [Barrette proteiche fit datteri e burro di arachidi (senza cottura)](ricette/barrette-proteiche-fit-datteri-e-burro-di-arachidi-senza-cottura.md)
+- [Biscotti fit banana e avena](ricette/biscotti-fit-banana-e-avena.md)
+- [Brownie fit (versione fit della ricetta dell'utente)](ricette/brownie-fit-versione-fit-della-ricetta-dell-utente.md)
+- [Brownies fit con eritritolo](ricette/brownies-fit-con-eritritolo.md)
+- [Budino fit proteico con agar agar](ricette/budino-fit-proteico-con-agar-agar.md)
+- [Cestino fit di cioccolato fondente con burro di arachidi e frutta secca](ricette/cestino-fit-di-cioccolato-fondente-con-burro-di-arachidi-e-frutta-secc.md)
+- [Cornetti fit alla marmellata (albicocca o ciliegia) / sfogliatine proteiche](ricette/cornetti-fit-alla-marmellata-albicocca-o-ciliegia-sfogliatine-proteich.md)
+- [Muffin fit alla banana e avena](ricette/muffin-fit-alla-banana-e-avena.md)
+- [Mug cake alla banana (microonde)](ricette/mug-cake-alla-banana-microonde.md)
+- [Mug cake ricotta al cacao (microonde)](ricette/mug-cake-ricotta-al-cacao-microonde.md) _(da completare)_
+- [Ricotta dolce fit con marmellata e frutti di bosco](ricette/ricotta-dolce-fit-con-marmellata-e-frutti-di-bosco.md) _(da completare)_
+- [Spumone di albume fit](ricette/spumone-di-albume-fit.md)
+- [Torta fit al cacao con uova e yogurt](ricette/torta-fit-al-cacao-con-uova-e-yogurt.md) _(da completare)_
+- [Torta fit con avena, 4 banane e solo albumi](ricette/torta-fit-con-avena-4-banane-e-solo-albumi.md)
+- [Torta proteica con albumi zuccherati e farina Manitoba](ricette/torta-proteica-con-albumi-zuccherati-e-farina-manitoba.md)
+- [Tortino di yogurt greco a bagnomaria (monoporzione in barattolo)](ricette/tortino-di-yogurt-greco-a-bagnomaria-monoporzione-in-barattolo.md)
+- [Tortino fit con avena, albume e latte vegetale (forno)](ricette/tortino-fit-con-avena-albume-e-latte-vegetale-forno.md)
+- [Tortino fit con avena, albumi e latte al microonde](ricette/tortino-fit-con-avena-albumi-e-latte-al-microonde.md)
+- [Tortino fit di cioccolato fondente con burro di arachidi e frutta secca](ricette/tortino-fit-di-cioccolato-fondente-con-burro-di-arachidi-e-frutta-secc.md)
+
+### Colazioni salate (1)
+
+- [Toast proteico con avocado e uova](ricette/toast-proteico-con-avocado-e-uova.md)
+
+
+## Basi e impasti (37)
+
+### Frolle e impasti (10)
+
+- [Frolla al caffè (versione con 175 g di burro, stampo 28 cm)](ricette/frolla-al-caffe-versione-con-175-g-di-burro-stampo-28-cm.md) _(da completare)_
+- [Frolla senza uova](ricette/frolla-senza-uova.md)
+- [Frolla tipo Stefano Laghi senza uova con eritritolo (400 g farina)](ricette/frolla-tipo-stefano-laghi-senza-uova-con-eritritolo-400-g-farina.md)
+- [Pasta brisée per tarte Tatin (teglia 26 cm)](ricette/pasta-brisee-per-tarte-tatin-teglia-26-cm.md)
+- [Pasta frolla (versione finale con uova intere e burro)](ricette/pasta-frolla-versione-finale-con-uova-intere-e-burro.md)
+- [Pasta frolla di Stefano Laghi (adattata a 220 g farina 00 + 80 g farro)](ricette/pasta-frolla-di-stefano-laghi-adattata-a-220-g-farina-00-80-g-farro.md)
+- [Pasta frolla di Stefano Laghi (originale con uova)](ricette/pasta-frolla-di-stefano-laghi-originale-con-uova.md)
+- [Pasta frolla di Stefano Laghi (per biscotti da tè)](ricette/pasta-frolla-di-stefano-laghi-per-biscotti-da-te.md)
+- [Pasta frolla per 2 crostate di marmellata da 28 cm](ricette/pasta-frolla-per-2-crostate-di-marmellata-da-28-cm.md)
+- [Tipologie di impasto per lo strudel](ricette/tipologie-di-impasto-per-lo-strudel.md) _(da completare)_
+
+### Pane, pizza e lievitati (6)
+
+- [Impasto pizza in teglia (Manitoba + farina 0 + semola + farro) - 2 teglie tonde 28 cm](ricette/impasto-pizza-in-teglia-manitoba-farina-0-semola-farro-2-teglie-tonde-.md)
+- [Pane alle olive (gestione pieghe, olive e origano)](ricette/pane-alle-olive-gestione-pieghe-olive-e-origano.md) _(da completare)_
+- [Pane alle olive (impasto con pieghe, forno 240°C)](ricette/pane-alle-olive-impasto-con-pieghe-forno-240c.md)
+- [Pane proteico all'albume (versione usata dall'utente)](ricette/pane-proteico-all-albume-versione-usata-dall-utente.md)
+- [Pane proteico banana e albume](ricette/pane-proteico-banana-e-albume.md)
+- [Panini proteici allo yogurt greco (farina 0)](ricette/panini-proteici-allo-yogurt-greco-farina-0.md)
+
+### Creme, farciture e glasse (14)
+
+- [Bagna all'Alchermes per pan di Spagna](ricette/bagna-all-alchermes-per-pan-di-spagna.md)
+- [Bagna per tiramisù e come bagnare i savoiardi](ricette/bagna-per-tiramisu-e-come-bagnare-i-savoiardi.md) _(da completare)_
+- [Crema al mascarpone e panna per farcire torta](ricette/crema-al-mascarpone-e-panna-per-farcire-torta.md)
+- [Crema chantilly](ricette/crema-chantilly.md)
+- [Crema di zucca per crostata (670 g di zucca, senza uova)](ricette/crema-di-zucca-per-crostata-670-g-di-zucca-senza-uova.md)
+- [Crema diplomatica per farcire torta](ricette/crema-diplomatica-per-farcire-torta.md)
+- [Crema pasticcera classica per farcire torta](ricette/crema-pasticcera-classica-per-farcire-torta.md)
+- [Crema pasticcera con 3 tuorli](ricette/crema-pasticcera-con-3-tuorli.md)
+- [Crema pasticcera con latte di soia (dosi ridotte per torta da 28 cm)](ricette/crema-pasticcera-con-latte-di-soia-dosi-ridotte-per-torta-da-28-cm.md)
+- [Crema pasticcera fit (con farina o amido)](ricette/crema-pasticcera-fit-con-farina-o-amido.md)
+- [Crema pasticcera per crostata da 28 cm (con 98 g di tuorlo, anche latte di soia)](ricette/crema-pasticcera-per-crostata-da-28-cm-con-98-g-di-tuorlo-anche-latte-.md)
+- [Crème Chantilly originale](ricette/creme-chantilly-originale.md) _(da completare)_
+- [Ganache al cioccolato fondente (liscia e montata, dosi ridotte)](ricette/ganache-al-cioccolato-fondente-liscia-e-montata-dosi-ridotte.md)
+- [Glassa neutra trasparente](ricette/glassa-neutra-trasparente.md)
+
+### Salse e marinature (7)
+
+- [Marinatura asiatica agrodolce per costine](ricette/marinatura-asiatica-agrodolce-per-costine.md)
+- [Marinatura classica BBQ per costine (dolce-affumicata)](ricette/marinatura-classica-bbq-per-costine-dolce-affumicata.md)
+- [Marinatura mediterranea per costine](ricette/marinatura-mediterranea-per-costine.md)
+- [Marinatura piccante alla birra per costine](ricette/marinatura-piccante-alla-birra-per-costine.md)
 - [Salsa allo yogurt, limone e paprika](ricette/salsa-allo-yogurt-limone-e-paprika.md)
 - [Salsa di burro di arachidi e soia](ricette/salsa-di-burro-di-arachidi-e-soia.md)
 - [Salse fit allo yogurt per lonza](ricette/salse-fit-allo-yogurt-per-lonza.md)
-- [Tipologie di impasto per lo strudel](ricette/tipologie-di-impasto-per-lo-strudel.md) _(da completare)_
 
-## Conserve e marmellate
+
+## Conserve e marmellate (2)
+
+### Marmellate (2)
 
 - [Marmellata di arance con eritritolo (versione 1)](ricette/marmellata-di-arance-con-eritritolo-versione-1.md)
 - [Marmellata di arance con eritritolo (versione 2)](ricette/marmellata-di-arance-con-eritritolo-versione-2.md)
-- [Passata speziata di zucca](ricette/passata-speziata-di-zucca.md) _(da completare)_
 
-## Bevande e smoothie
+
+## Bevande e smoothie (19)
+
+### Smoothie e frullati (4)
+
+- [Smoothie bowl alla banana](ricette/smoothie-bowl-alla-banana.md)
+- [Smoothie pre-allenamento 2 banane, semi di chia e latte di mandorla](ricette/smoothie-pre-allenamento-2-banane-semi-di-chia-e-latte-di-mandorla.md) _(da completare)_
+- [Smoothie proteico al cioccolato e banana (pre-nanna)](ricette/smoothie-proteico-al-cioccolato-e-banana-pre-nanna.md)
+- [Smoothie proteico alla banana e burro di arachidi (pre-nanna)](ricette/smoothie-proteico-alla-banana-e-burro-di-arachidi-pre-nanna.md)
+
+### Cocktail e mocktail (13)
 
 - [Apple Ice (cocktail senza prosecco)](ricette/apple-ice-cocktail-senza-prosecco.md) _(da completare)_
-- [Bevanda calda miele, limone e chiodi di garofano (per la tosse)](ricette/bevanda-calda-miele-limone-e-chiodi-di-garofano-per-la-tosse.md)
 - [Black Demon (cocktail)](ricette/black-demon-cocktail.md) _(da completare)_
 - [Dark Cuba Fake (cocktail)](ricette/dark-cuba-fake-cocktail.md) _(da completare)_
 - [Drink da caos totale (cocktail)](ricette/drink-da-caos-totale-cocktail.md) _(da completare)_
@@ -323,14 +406,17 @@ Totale ricette: **302**
 - [Mocktail Melograno & Mirtillo](ricette/mocktail-melograno-mirtillo.md)
 - [Monster Pirate (cocktail)](ricette/monster-pirate-cocktail.md) _(da completare)_
 - [Ruby Red Berry (mocktail con Monster Ultra Fantasy Ruby Red)](ricette/ruby-red-berry-mocktail-con-monster-ultra-fantasy-ruby-red.md)
-- [Shaker post workout (proteine isolate + creatina)](ricette/shaker-post-workout-proteine-isolate-creatina.md) _(da completare)_
-- [Smoothie bowl alla banana](ricette/smoothie-bowl-alla-banana.md)
-- [Smoothie pre-allenamento 2 banane, semi di chia e latte di mandorla](ricette/smoothie-pre-allenamento-2-banane-semi-di-chia-e-latte-di-mandorla.md) _(da completare)_
-- [Smoothie proteico al cioccolato e banana (pre-nanna)](ricette/smoothie-proteico-al-cioccolato-e-banana-pre-nanna.md)
-- [Smoothie proteico alla banana e burro di arachidi (pre-nanna)](ricette/smoothie-proteico-alla-banana-e-burro-di-arachidi-pre-nanna.md)
 - [Spritz Select con Prosecco](ricette/spritz-select-con-prosecco.md) _(da completare)_
 
-## Altro
+### Altre bevande (2)
 
-- [Pasto: zucchina, albume e farina di farro (con pesca noce, Wasa fit e burro di arachidi)](ricette/pasto-zucchina-albume-e-farina-di-farro-con-pesca-noce-wasa-fit-e-burr.md) _(da completare)_
+- [Bevanda calda miele, limone e chiodi di garofano (per la tosse)](ricette/bevanda-calda-miele-limone-e-chiodi-di-garofano-per-la-tosse.md)
+- [Shaker post workout (proteine isolate + creatina)](ricette/shaker-post-workout-proteine-isolate-creatina.md) _(da completare)_
+
+
+## Altro (1)
+
+### Consigli e spuntini (1)
+
 - [Spuntini veloci salvavita](ricette/spuntini-veloci-salvavita.md) _(da completare)_
+

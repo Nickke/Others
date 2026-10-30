@@ -1,6 +1,7 @@
 ---
 nome: Zuppa leggera di verdure con tofu e zenzero (vellutata)
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 porzioni: 1-2 persone
 tempo: Cottura verdure 10-12 minuti; tofu ultimi 5 minuti
 stato: completa

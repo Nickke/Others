@@ -1,6 +1,7 @@
 ---
 nome: Crema al mascarpone e panna per farcire torta
 categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 stato: completa
 fonte: CHAT 157 - Crema gentamicina e betametasone (2026-01-19)
 ---

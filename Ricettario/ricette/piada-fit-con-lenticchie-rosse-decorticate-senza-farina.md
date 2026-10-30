@@ -1,6 +1,7 @@
 ---
 nome: Piada fit con lenticchie rosse decorticate (senza farina)
 categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 2 piadine
 tempo: Ammollo 3-4 ore (meglio una notte); cottura 3-4 min per lato
 stato: completa

@@ -1,6 +1,7 @@
 ---
 nome: Pollo a cubetti speziato (meal prep)
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 4-5 porzioni
 stato: parziale
 fonte: CHAT 163 - Piano settimanale pasti (2026-04-11)

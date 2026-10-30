@@ -1,6 +1,7 @@
 ---
 nome: Cannellini con cipolla rossa, olio EVO e prezzemolo
 categoria: Contorni
+sottocategoria: Verdure e legumi
 tempo: 5 minuti
 stato: solo nome
 fonte: CHAT 189 - Ricetta Frise con Pomodorini (2026-08-05)

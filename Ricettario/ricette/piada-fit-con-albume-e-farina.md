@@ -1,6 +1,7 @@
 ---
 nome: Piada fit con albume e farina
 categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 1
 stato: completa
 fonte: CHAT 282 - Piada Fit con Albume (2024-05-15)

@@ -1,6 +1,7 @@
 ---
 nome: Insalata calda di farro con pollo, zucchine e feta
-categoria: Secondi
+categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 2
 tempo: farro 20-30 min; pollo 5-7 min
 stato: completa

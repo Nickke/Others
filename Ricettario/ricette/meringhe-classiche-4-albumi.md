@@ -1,6 +1,7 @@
 ---
 nome: Meringhe classiche (4 albumi)
 categoria: Dolci
+sottocategoria: Biscotti e piccola pasticceria
 tempo: 90-100°C statico 1h30-2h
 stato: completa
 fonte: CHAT 161 - Condividere foto WhatsApp iPhone (2026-03-23)

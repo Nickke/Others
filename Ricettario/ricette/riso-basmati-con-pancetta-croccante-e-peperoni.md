@@ -1,6 +1,7 @@
 ---
 nome: Riso basmati con pancetta croccante e peperoni
 categoria: Primi
+sottocategoria: Riso, farro e cereali
 porzioni: 4
 tempo: peperoni 8-10 min
 stato: completa

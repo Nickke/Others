@@ -1,6 +1,7 @@
 ---
 nome: Torta con due dischi di pan di Spagna, Alchermes e farcitura
 categoria: Dolci
+sottocategoria: Torte e dolci da forno
 tempo: riposo in frigo 1-2 ore
 stato: completa
 fonte: CHAT 157 - Crema gentamicina e betametasone (2026-01-19)

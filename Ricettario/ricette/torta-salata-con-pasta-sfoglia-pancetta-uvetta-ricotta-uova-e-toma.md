@@ -1,6 +1,7 @@
 ---
 nome: Torta salata con pasta sfoglia, pancetta, uvetta, ricotta, uova e toma
 categoria: Antipasti e salati
+sottocategoria: Torte salate e rustici
 stato: solo nome
 fonte: CHAT 127 - Abbinamento torta salata (2025-03-02)
 ---

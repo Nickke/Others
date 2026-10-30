@@ -1,6 +1,7 @@
 ---
 nome: Pasta fit ricotta e zucchine
 categoria: Primi
+sottocategoria: Pasta, gnocchi e passatelli
 porzioni: 1
 stato: parziale
 fonte: CHAT 162 - Risposta provocante e seducente (2026-04-02)

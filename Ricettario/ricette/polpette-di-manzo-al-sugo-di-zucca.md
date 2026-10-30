@@ -1,6 +1,7 @@
 ---
 nome: Polpette di manzo al sugo di zucca
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 1
 tempo: 30 min
 stato: completa

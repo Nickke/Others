@@ -1,6 +1,7 @@
 ---
 nome: Pancake/crepes salate di albume (185 g di albume)
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 4-5 crepes grandi o 6-7 pancake sottili
 tempo: crepes 1-1,5 min per lato; pancake 2 min per lato
 stato: completa

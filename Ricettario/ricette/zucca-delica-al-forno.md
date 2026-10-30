@@ -1,6 +1,7 @@
 ---
 nome: Zucca Delica al forno
 categoria: Contorni
+sottocategoria: Patate e zucca
 tempo: 35-45 min a 200°C statico
 stato: completa
 fonte: CHAT 199 - Calcolo punti Servio Tullio (2026-09-22)

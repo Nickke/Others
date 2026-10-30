@@ -1,6 +1,7 @@
 ---
 nome: Bowl calda di farro con macinato, zucchine e spinaci
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 tempo: farro 20-25 min
 stato: completa

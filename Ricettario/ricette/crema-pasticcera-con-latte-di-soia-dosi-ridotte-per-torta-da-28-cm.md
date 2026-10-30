@@ -1,6 +1,7 @@
 ---
 nome: Crema pasticcera con latte di soia (dosi ridotte per torta da 28 cm)
 categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 porzioni: Per farcire una torta/crostata da 28 cm
 tempo: Raffreddamento: almeno 2 ore in frigo
 stato: completa

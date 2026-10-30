@@ -1,6 +1,7 @@
 ---
 nome: Apericena pugliese per 9 persone (menu e buffet)
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 porzioni: 9 persone (1 vegana)
 stato: parziale
 fonte: CHAT 189 - Ricetta Frise con Pomodorini (2026-08-05)

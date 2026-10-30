@@ -1,6 +1,7 @@
 ---
 nome: Ganache al cioccolato fondente (liscia e montata, dosi ridotte)
 categoria: Basi e impasti
+sottocategoria: Creme, farciture e glasse
 porzioni: Per ricoprire e decorare una torta da 28 cm
 tempo: Per ganache montata: riposo in frigo almeno 6 ore (o tutta la notte)
 stato: completa

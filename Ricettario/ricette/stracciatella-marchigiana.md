@@ -1,6 +1,7 @@
 ---
 nome: Stracciatella marchigiana
 categoria: Primi
+sottocategoria: Zuppe, vellutate e brodi
 stato: completa
 fonte: CHAT 266 - Strac Marchigiana Recipe (2024-05-07)
 ---

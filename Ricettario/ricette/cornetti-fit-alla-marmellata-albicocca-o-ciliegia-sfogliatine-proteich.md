@@ -1,6 +1,7 @@
 ---
 nome: Cornetti fit alla marmellata (albicocca o ciliegia) / sfogliatine proteiche
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 porzioni: 8 cornetti
 tempo: forno 180°C 18-20 min; microonde combi 4 min + grill 5-6 min
 stato: completa

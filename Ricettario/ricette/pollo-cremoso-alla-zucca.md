@@ -1,6 +1,7 @@
 ---
 nome: Pollo cremoso alla zucca
 categoria: Secondi
+sottocategoria: Carne e pesce
 porzioni: 1
 tempo: 25 min
 stato: completa

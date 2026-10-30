@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit di farro (senza lievito)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 3-4 piadine
 tempo: Riposo 10-15 min; cottura 2-3 min per lato
 stato: completa

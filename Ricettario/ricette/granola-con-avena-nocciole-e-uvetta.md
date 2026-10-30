@@ -1,6 +1,7 @@
 ---
 nome: Granola con avena, nocciole e uvetta
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 tempo: 25-30 min a 160 °C
 stato: completa
 fonte: CHAT 326 - Granola con avena, nocciole (2024-03-12)

@@ -1,6 +1,7 @@
 ---
 nome: Omelette proteica con albume e verdure
-categoria: Colazione e fit
+categoria: Secondi
+sottocategoria: Uova e frittate
 porzioni: 1 porzione abbondante
 stato: completa
 fonte: CHAT 169 - Traduzione tabella nutrizionale (2026-04-29)

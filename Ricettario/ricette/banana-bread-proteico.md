@@ -1,6 +1,7 @@
 ---
 nome: Banana bread proteico
-categoria: Dolci
+categoria: Colazione e fit
+sottocategoria: Dolci fit e merende
 stato: parziale
 fonte: CHAT 84 - Ricetta torta avena banane (2024-08-28)
 ---

@@ -1,6 +1,7 @@
 ---
 nome: Piadina di lenticchie rosse decorticate
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 2-3 piadine
 tempo: ammollo 2-4 ore (o notte); cottura 2-3 min per lato
 stato: completa

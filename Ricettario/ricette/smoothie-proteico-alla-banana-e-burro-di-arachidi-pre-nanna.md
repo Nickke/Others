@@ -1,6 +1,7 @@
 ---
 nome: Smoothie proteico alla banana e burro di arachidi (pre-nanna)
 categoria: Bevande e smoothie
+sottocategoria: Smoothie e frullati
 porzioni: 1
 stato: completa
 fonte: CHAT 29 - Ricetta Smoothie Fit Pre-Nanna (2024-03-05)

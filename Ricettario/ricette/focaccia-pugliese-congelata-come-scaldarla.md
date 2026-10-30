@@ -1,6 +1,7 @@
 ---
 nome: Focaccia pugliese congelata: come scaldarla
 categoria: Antipasti e salati
+sottocategoria: Sfizi e stuzzichini
 tempo: 10-12 min (parz. scongelata) o 15-18 min (congelata) a 180 C
 stato: completa
 fonte: CHAT 189 - Ricetta Frise con Pomodorini (2026-08-05)

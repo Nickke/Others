@@ -1,6 +1,7 @@
 ---
 nome: Overnight porridge fit (definizione)
 categoria: Colazione e fit
+sottocategoria: Granola, muesli e porridge
 porzioni: 1
 tempo: riposo in frigo una notte
 stato: completa

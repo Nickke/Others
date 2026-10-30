@@ -1,6 +1,7 @@
 ---
 nome: Bowl proteica con sfilacci di cavallo, uovo poché e crema di spinaci
 categoria: Secondi
+sottocategoria: Bowl, insalatone e piatti unici
 porzioni: 1
 tempo: Riso basmati 10-12 min
 stato: completa

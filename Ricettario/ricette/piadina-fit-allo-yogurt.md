@@ -1,6 +1,7 @@
 ---
 nome: Piadina fit allo yogurt
 categoria: Colazione e fit
+sottocategoria: Piadine
 porzioni: 1 piadina
 tempo: 1-1,5 min per lato; riposo 10-15 min
 stato: completa

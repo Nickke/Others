@@ -1,6 +1,7 @@
 ---
 nome: Pancake al farro con albume e latte vegetale
 categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 stato: completa
 fonte: CHAT 218 - Pancake fit albume farro. (2024-03-03)
 ---

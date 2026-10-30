@@ -1,6 +1,7 @@
 ---
 nome: Cinnamon roll (girelle alla cannella)
 categoria: Dolci
+sottocategoria: Biscotti e piccola pasticceria
 porzioni: 6-8 girelle
 tempo: lievitazione 1-2 ore + 30 min; cottura 20-25 min a 180°C
 stato: completa

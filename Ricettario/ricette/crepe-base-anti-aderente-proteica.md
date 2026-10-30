@@ -1,6 +1,7 @@
 ---
 nome: Crepe base anti-aderente (proteica)
-categoria: Basi e impasti
+categoria: Colazione e fit
+sottocategoria: Pancake e crêpes
 porzioni: 1
 stato: completa
 fonte: CHAT 161 - Condividere foto WhatsApp iPhone (2026-03-23)

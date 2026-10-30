@@ -1,6 +1,7 @@
 ---
 nome: Smoothie pre-allenamento 2 banane, semi di chia e latte di mandorla
 categoria: Bevande e smoothie
+sottocategoria: Smoothie e frullati
 porzioni: 1
 stato: parziale
 fonte: CHAT 162 - Risposta provocante e seducente (2026-04-02)
