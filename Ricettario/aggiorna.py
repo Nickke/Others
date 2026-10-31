@@ -190,7 +190,7 @@ def scheda(r):
     nut = e(s.get("valori nutrizionali", "")).replace("\n", "<br>")
     note = e(s.get("note", "")).replace("\n", "<br>")
     badge = '<span class="badge">da completare</span>' if da_completare(r) else ""
-    testo = " ".join([r["nome"], r["categoria"], r["sottocategoria"], s.get("ingredienti", "")]).lower()
+    testo = " ".join([r["nome"], s.get("ingredienti", "")]).lower()
     img = (f'<img class="foto" src="immagini/{e(r["_img"])}" alt="{e(r["nome"])}" loading="lazy">'
            if r["_img"] else "")
     extra = ""
