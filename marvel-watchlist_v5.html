@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eceef3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c0f19" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Marvel">
+<link rel="apple-touch-icon" id="touchIcon" href="">
+<title>Marvel: cosa ho visto</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #eceef3;
+    --surface: #ffffff;
+    --ink: #10131c;
+    --muted: #586074;
+    --line: #d3d7e0;
+    --accent: #cf1f26;
+    --accent-ink: #ffffff;
+    --film: #cf1f26;
+    --serie: #2457c5;
+    --anim: #07765f;
+    --special: #935c00;
+    --tv: #6b45b8;
+    --sony: #b01f78;
+    --fox: #8a6500;
+    --reel: #14171f;
+    --frame: #4a5268;
+    --hole: #7d869b;
+    --head: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --hh: 150px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --bg: #0c0f19;
+      --surface: #151a28;
+      --ink: #eef0f6;
+      --muted: #9aa2b6;
+      --line: #262d40;
+      --accent: #f2444b;
+      --accent-ink: #0c0f19;
+      --film: #f2444b;
+      --serie: #6aa0ff;
+      --anim: #32cfae;
+      --special: #f3a93b;
+      --tv: #ab92f0;
+      --sony: #f574bd;
+      --fox: #f2c744;
+      --reel: #07090f;
+      --frame: #3a4258;
+      --hole: #5a627a;
+    }
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-padding-top: calc(var(--hh) + 56px); }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 16px; line-height: 1.45;
+    -webkit-text-size-adjust: 100%;
+  }
+  body.noscroll { overflow: hidden; }
+  button { font: inherit; color: inherit; touch-action: manipulation; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-right)) 96px max(16px, env(safe-area-inset-left)); }
+  html:has(body.selmode) { scroll-padding-bottom: 200px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* Testata fissa: titolo, avanzamento e pellicola */
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--bg);
+    padding: calc(10px + env(safe-area-inset-top)) 0 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .titlebar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  h1 {
+    font-family: var(--head); font-weight: 800; font-size: clamp(23px, 7.2vw, 30px); white-space: nowrap;
+    letter-spacing: -.005em; margin: 0; line-height: 1;
+  }
+  .count { font-family: var(--head); font-size: 24px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .count small { font-size: 15px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+
+  /* La pellicola: un fotogramma per titolo, in ordine di uscita. Si trascina per scorrere la lista. */
+  .reel {
+    position: relative; display: flex; gap: 2px; height: 34px; margin: 10px 0 6px;
+    padding: 7px 0; background: var(--reel); border-radius: 4px;
+    touch-action: none; cursor: pointer; user-select: none; -webkit-user-select: none;
+  }
+  .reel::before, .reel::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 3px;
+    background: repeating-linear-gradient(90deg, var(--hole) 0 5px, transparent 5px 10px);
+  }
+  .reel::before { top: 2px; }
+  .reel::after { bottom: 2px; }
+  .reel i {
+    flex: 1; min-width: 2px;
+    background: linear-gradient(to top, var(--c) var(--p, 0%), var(--frame) var(--p, 0%));
+    transition: background .15s;
+  }
+  .reel i.on { --p: 100%; }
+  .reel i.next { background: var(--ink); }
+  .reel-tip {
+    position: absolute; top: -2px; transform: translate(-50%, -100%);
+    background: var(--ink); color: var(--bg); font-size: 13px; font-weight: 600;
+    padding: 3px 8px; border-radius: 6px; white-space: nowrap; max-width: 88vw; overflow: hidden; text-overflow: ellipsis;
+    pointer-events: none; opacity: 0; transition: opacity .12s;
+  }
+  .reel-tip.show { opacity: 1; }
+  .hours { display: flex; flex-wrap: wrap; gap: 0 16px; font-size: 14px; color: var(--muted); }
+  .hours b { font-family: var(--head); font-size: 17px; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  /* Da vedere ora */
+  .next { margin-top: 14px; }
+  .next-in {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px 14px; border: 1.5px solid var(--ink); border-radius: 10px; background: var(--surface);
+  }
+  .next-txt { display: flex; flex-direction: column; min-width: 0; }
+  .next-k { font-size: 13px; color: var(--muted); }
+  .next-t { font-family: var(--head); font-size: 21px; line-height: 1.15; overflow-wrap: anywhere; }
+  .next-s { font-size: 14px; color: var(--muted); }
+  .next-act { display: flex; gap: 8px; flex-shrink: 0; }
+
+  .btn {
+    min-height: 44px; padding: 8px 14px; border: 1px solid var(--line); background: var(--surface);
+    color: var(--ink); border-radius: 10px; cursor: pointer; font-size: 15px;
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .btn.quiet { border-color: transparent; background: transparent; color: var(--muted); text-decoration: underline; min-height: 44px; padding: 6px 10px; font-size: 14px; }
+  .btn[disabled] { opacity: .45; cursor: default; }
+
+  .bar { display: flex; gap: 8px; margin-top: 14px; align-items: center; }
+  .search {
+    flex: 1 1 auto; min-width: 0; font: inherit; font-size: 16px; min-height: 44px; padding: 8px 12px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink);
+  }
+  .bar .btn { min-height: 44px; white-space: nowrap; }
+  .badge-n {
+    display: inline-block; min-width: 20px; padding: 0 6px; margin-left: 6px; border-radius: 10px;
+    background: var(--accent); color: var(--accent-ink); font-size: 13px; font-weight: 700; text-align: center;
+  }
+  .badge-n[hidden] { display: none; }
+  .fsum { margin: 8px 2px 0; font-size: 13.5px; color: var(--muted); min-height: 0; }
+
+  h2.year {
+    position: sticky; top: var(--hh); z-index: 5; background: var(--bg);
+    font-family: var(--head); font-size: 26px; font-weight: 800; letter-spacing: -.005em;
+    margin: 22px 0 0; padding: 6px 0 4px;
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 2px solid var(--ink);
+  }
+  h2.year span { font-size: 14px; font-weight: 500; color: var(--muted); font-family: var(--body); font-variant-numeric: tabular-nums; }
+
+  .item { border-bottom: 1px solid var(--line); border-left: 4px solid var(--c, transparent); scroll-margin-top: calc(var(--hh) + 56px); }
+  .item.hl { animation: hl 1.2s ease-out; }
+  @keyframes hl { from { background: color-mix(in srgb, var(--c) 28%, transparent); } to { background: transparent; } }
+  .row {
+    display: grid; grid-template-columns: 30px 1fr auto; gap: 12px; align-items: start;
+    padding: 12px 6px 12px 10px; cursor: pointer; position: relative; min-height: 56px;
+  }
+  .row input { position: absolute; opacity: 0; pointer-events: none; }
+  .box {
+    width: 28px; height: 28px; border-radius: 7px; border: 2px solid var(--muted);
+    display: grid; place-items: center; margin-top: 1px; transition: background .12s, border-color .12s;
+  }
+  .box svg { width: 17px; height: 17px; stroke: var(--accent-ink); stroke-width: 3; fill: none; opacity: 0; transform: scale(.6); transition: opacity .12s, transform .12s; }
+  .row input:checked + .box { background: var(--accent); border-color: var(--accent); }
+  .row input:checked + .box svg { opacity: 1; transform: none; }
+  .row input:focus-visible + .box { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .name { font-weight: 600; font-size: 17px; line-height: 1.25; overflow-wrap: anywhere; }
+  .row.done .name { color: var(--muted); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .meta { font-size: 13.5px; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 3px; }
+  .meta.chips2 { margin-top: 5px; }
+  .tag { color: var(--c); font-weight: 700; }
+  .grp { color: var(--ink); border: 1px solid var(--line); border-radius: 5px; padding: 0 6px; font-size: 13px; }
+  .row.soon { cursor: default; opacity: .7; }
+  .row.soon .box { border-style: dashed; }
+  .badge { font-size: 13px; font-weight: 600; background: var(--ink); color: var(--bg); padding: 1px 7px; border-radius: 5px; }
+  .prog { display: block; height: 4px; margin-top: 8px; border-radius: 2px; background: var(--line); overflow: hidden; }
+  .prog[hidden] { display: none; }
+  .prog i { display: block; height: 100%; background: var(--c); }
+  .ign-btn {
+    font-size: 13px; color: var(--muted); background: transparent; border: 1px solid transparent; border-radius: 8px;
+    padding: 6px 8px; cursor: pointer; align-self: start; white-space: nowrap; min-height: 44px;
+  }
+  .ign-btn:hover { color: var(--ink); border-color: var(--line); }
+  .row.ign { opacity: .55; cursor: default; }
+  .row.ign .box { border-style: dashed; }
+  .row.ign .name { text-decoration: none; }
+
+  .eps-btn {
+    font-size: 13px; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 7px;
+    padding: 2px 9px; cursor: pointer; min-height: 30px; font-variant-numeric: tabular-nums; position: relative;
+  }
+  .eps-btn::after { content: ""; position: absolute; inset: -9px -5px; }
+  .eps-btn.part { border-color: var(--c); color: var(--c); font-weight: 700; }
+  .eps-btn[aria-expanded="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .eps { padding: 0 8px 16px 52px; }
+  .eps-hint { font-size: 13px; color: var(--muted); margin: 2px 0 4px; }
+  .season { margin-top: 12px; }
+  .season.cross { border-left: 3px solid var(--accent); padding-left: 9px; }
+  .season-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+  .season-h .btn { min-height: 44px; padding: 4px 14px; font-size: 14px; white-space: nowrap; }
+  .ep-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ep {
+    min-width: 44px; height: 44px; padding: 0 6px; font-size: 15px; font-variant-numeric: tabular-nums;
+    border: 1.5px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink); cursor: pointer;
+    -webkit-touch-callout: none; user-select: none; -webkit-user-select: none;
+  }
+  .ep[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .ep.next { border-color: var(--ink); border-width: 2.5px; font-weight: 700; }
+
+  .btn, .chip, .ep, .eps-btn, .ign-btn { transition: opacity .1s, background .12s, border-color .12s; }
+  .btn:active, .chip:active, .ep:active, .eps-btn:active, .ign-btn:active { opacity: .6; }
+  .row:not(.soon):not(.ign):active { background: color-mix(in srgb, var(--ink) 7%, transparent); }
+  .empty { padding: 40px 0; text-align: center; color: var(--muted); }
+  .empty .btn { margin-top: 12px; }
+
+  footer { margin-top: 36px; font-size: 13.5px; color: var(--muted); }
+  footer p { margin: 8px 0; max-width: 62ch; }
+  footer h3 { font-family: var(--head); font-size: 18px; color: var(--ink); margin: 22px 0 4px; }
+  .data-actions { display: flex; flex-wrap: wrap; gap: 2px 4px; margin: 0 -8px; }
+
+  /* Selezione multipla */
+  .selbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--surface); border-top: 2px solid var(--ink);
+    padding: 10px max(16px, env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); display: none;
+  }
+  .selmode .selbar { display: block; }
+  .selbar-in { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .selbar .n { font-family: var(--head); font-weight: 700; font-size: 18px; margin-right: auto; }
+  .selbar .btn { min-height: 44px; padding: 6px 11px; font-size: 14.5px; }
+  .selmode .ign-btn, .selmode .eps-btn, .selmode .eps { display: none; }
+  .selmode .row, .selmode .row.ign, .selmode .row.soon { cursor: pointer; }
+  .selmode .wrap { padding-bottom: 190px; }
+
+  /* Pannello a scomparsa (filtri e conferme) */
+  .sheet-back { position: fixed; inset: 0; z-index: 40; background: rgba(8, 10, 18, .6); display: flex; align-items: flex-end; justify-content: center; }
+  .sheet-back[hidden] { display: none; }
+  .sheet {
+    width: 100%; max-width: 640px; max-height: 86vh; overflow: auto; background: var(--surface); color: var(--ink);
+    border-radius: 18px 18px 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom));
+    animation: up .18s ease-out;
+  }
+  @keyframes up { from { transform: translateY(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+  .sheet h2 { font-family: var(--head); font-size: 24px; margin: 0 0 6px; }
+  .sheet h3 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: var(--muted); }
+  .sheet .ask { font-size: 17px; margin: 4px 0 8px; }
+  .sheet-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 14.5px; border: 1.5px solid var(--c, var(--ink)); background: transparent; color: var(--ink);
+    padding: 7px 12px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; min-height: 44px;
+  }
+  .chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--ink)); }
+  .chip small { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  .chip[aria-pressed="false"] { opacity: .5; border-style: dashed; }
+  .chip[aria-pressed="false"]::before { background: transparent; border: 1.5px solid var(--c, var(--ink)); }
+  .chip.grp-chip { border-radius: 9px; }
+  .chip.grp-chip::before { display: none; }
+  .switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 16px; cursor: pointer; }
+  .switch:first-of-type { margin-top: 16px; }
+  .switch input { width: 22px; height: 22px; accent-color: var(--accent); }
+
+  .toast {
+    position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); transform: translate(-50%, 24px);
+    z-index: 50; display: flex; align-items: center; gap: 14px; max-width: min(92vw, 520px);
+    background: var(--ink); color: var(--bg); padding: 11px 16px; border-radius: 12px; font-size: 15px;
+    opacity: 0; pointer-events: none; transition: opacity .15s, transform .15s;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+  .selmode .toast { bottom: calc(110px + env(safe-area-inset-bottom)); }
+  .toast button { background: transparent; border: 0; color: var(--bg); font-weight: 700; text-decoration: underline; cursor: pointer; padding: 4px 8px; min-height: 44px; }
+
+  @media (max-width: 420px) {
+    .next-in { flex-direction: column; align-items: stretch; }
+    .next-act .btn { flex: 1; }
+    .eps { padding-left: 46px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top" id="top">
+    <div class="titlebar">
+      <h1>Marvel: cosa ho visto</h1>
+      <div class="count" aria-live="polite"><span id="done">0</span> / <span id="total">0</span><small id="pct">0%</small></div>
+    </div>
+    <div class="reel" id="reel" role="slider" tabindex="0" aria-label="Scorri i titoli in ordine di uscita: trascina oppure usa le frecce" aria-valuemin="1" aria-valuenow="1" aria-valuetext="">
+      <span class="reel-tip" id="reelTip"></span>
+    </div>
+    <div class="hours" id="hours" aria-live="polite"></div>
+  </header>
+
+  <section class="next" id="next" aria-label="Prossimo da vedere"></section>
+
+  <div class="bar">
+    <input class="search" id="q" type="search" placeholder="Cerca un titolo" aria-label="Cerca un titolo" enterkeyhint="search" autocomplete="off" autocapitalize="off" spellcheck="false">
+    <button class="btn" id="filterBtn" aria-haspopup="dialog">Filtri<span class="badge-n" id="fcount" hidden>0</span></button>
+    <button class="btn" id="selMode" aria-pressed="false">Seleziona</button>
+  </div>
+  <p class="fsum" id="fsum" hidden></p>
+
+  <main id="list"></main>
+
+  <footer>
+    <p id="saveStatus"></p>
+    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni è la durata complessiva stimata della stagione (o dell'intera serie, per quelle di Marvel Television). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 18 novembre 2026. I film e le serie Fox (X-Men, Deadpool, Fantastici 4) sono in ordine di uscita: i due mondi si uniscono con <i>Deadpool &amp; Wolverine</i>. <i>VisionQuest</i> si è concluso l'11 novembre, <i>Avengers: Doomsday</i> esce il 18 dicembre 2026 e <i>Beyond the Spider-Verse</i> il 25 giugno 2027.</p>
+    <p>Con «Ignora» togli un titolo dalla lista e dal conteggio: non lo vedrai più, ma puoi ripristinarlo quando vuoi. Spunte, episodi e filtri vengono salvati in automatico su questo dispositivo.</p>
+    <p>Per le serie con episodi tocca «Episodi» sotto il titolo e spunta quelli che hai visto. Tieni premuto un episodio per segnare anche tutti quelli che lo precedono. Il titolo risulta visto quando hai spuntato tutti gli episodi e le ore viste contano in proporzione.</p>
+    <h3>Dati</h3>
+    <div class="data-actions">
+      <button class="btn quiet" id="exportBk">Esporta backup</button>
+      <button class="btn quiet" id="importBk">Importa backup</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+      <button class="btn quiet" id="ignVisible">Ignora i titoli mostrati</button>
+      <button class="btn quiet" id="unIgnAll">Ripristina gli ignorati</button>
+      <button class="btn quiet" id="markAll">Segna tutto come visto</button>
+      <button class="btn quiet" id="reset">Azzera le spunte</button>
+    </div>
+  </footer>
+</div>
+
+<div class="selbar" id="selbar" role="region" aria-label="Azioni sulla selezione">
+  <div class="selbar-in">
+    <span class="n" id="selN" aria-live="polite">0 selezionati</span>
+    <button class="btn" id="selAll">Seleziona tutto</button>
+    <button class="btn" id="selNone">Deseleziona</button>
+    <button class="btn primary" id="selWatch">Segna come visto</button>
+    <button class="btn" id="selUnwatch">Non visto</button>
+    <button class="btn" id="selIgn">Ignora</button>
+    <button class="btn" id="selRestore">Ripristina</button>
+    <button class="btn" id="selDone">Fine</button>
+  </div>
+</div>
+
+<div class="sheet-back" id="sheetBack" hidden>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" tabindex="-1"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const TYPES = {
+  film:    { label: "Film",                  color: "var(--film)" },
+  serie:   { label: "Serie Disney+",         color: "var(--serie)" },
+  anim:    { label: "Animazione",            color: "var(--anim)" },
+  special: { label: "Speciali",              color: "var(--special)" },
+  tv:      { label: "Marvel Television (Netflix, ABC…)", color: "var(--tv)" },
+  sony:    { label: "Film Sony (Spider-Man, Venom…)", color: "var(--sony)" },
+  fox:     { label: "Fox (X-Men, Deadpool, Legion…)", color: "var(--fox)" }
+};
+
+// [data, titolo, tipo, nota, stato]
+const RAW = [
+  ["1992-10-31","X-Men: The Animated Series","anim","5 stagioni, 1992–1997. Prosegue in X-Men '97"],
+  ["2000-07-14","X-Men","fox"],
+  ["2003-05-02","X2","fox"],
+  ["2005-07-08","I Fantastici 4","fox","Fantastici Quattro"],
+  ["2006-05-26","X-Men – Conflitto finale","fox"],
+  ["2007-06-15","I Fantastici 4 e Silver Surfer","fox","Fantastici Quattro"],
+  ["2009-05-01","X-Men Origins: Wolverine","fox"],
+  ["2011-06-03","X-Men: First Class","fox"],
+  ["2013-07-26","Wolverine – L'immortale","fox"],
+  ["2014-05-23","X-Men: Giorni di un futuro passato","fox"],
+  ["2015-08-07","Fantastic 4 – I Fantastici Quattro","fox","Reboot del 2015"],
+  ["2016-02-12","Deadpool","fox"],
+  ["2016-05-27","X-Men: Apocalisse","fox"],
+  ["2017-02-08","Legion","fox","3 stagioni, 2017–2019 (FX)"],
+  ["2017-03-03","Logan – The Wolverine","fox"],
+  ["2017-10-02","The Gifted","fox","2 stagioni, 2017–2019"],
+  ["2018-05-18","Deadpool 2","fox"],
+  ["2019-06-07","X-Men: Dark Phoenix","fox"],
+  ["2020-08-28","The New Mutants","fox"],
+  ["2002-05-03","Spider-Man","sony","Sam Raimi"],
+  ["2004-06-30","Spider-Man 2","sony","Sam Raimi"],
+  ["2007-02-16","Ghost Rider","sony"],
+  ["2007-05-04","Spider-Man 3","sony","Sam Raimi"],
+  ["2012-02-17","Ghost Rider: Spirito di vendetta","sony"],
+  ["2012-07-03","The Amazing Spider-Man","sony","Andrew Garfield"],
+  ["2014-05-02","The Amazing Spider-Man 2","sony","Andrew Garfield"],
+  ["2018-10-05","Venom","sony","Sony's Spider-Man Universe"],
+  ["2018-12-14","Spider-Man: Un nuovo universo","sony","Animazione, Miles Morales"],
+  ["2021-10-01","Venom: La furia di Carnage","sony"],
+  ["2022-04-01","Morbius","sony"],
+  ["2023-06-02","Spider-Man: Across the Spider-Verse","sony","Animazione, Miles Morales"],
+  ["2024-02-14","Madame Web","sony"],
+  ["2024-10-25","Venom: The Last Dance","sony"],
+  ["2024-12-13","Kraven il cacciatore","sony"],
+  ["2027-06-25","Spider-Man: Beyond the Spider-Verse","sony","In arrivo","soon"],
+  ["2008-05-02","Iron Man","film"],
+  ["2008-06-13","L'incredibile Hulk","film"],
+  ["2010-05-07","Iron Man 2","film"],
+  ["2011-05-06","Thor","film"],
+  ["2011-07-22","Captain America: Il primo Vendicatore","film"],
+  ["2012-05-04","The Avengers","film"],
+  ["2013-05-03","Iron Man 3","film"],
+  ["2013-09-24","Agents of S.H.I.E.L.D.","tv","7 stagioni, 2013–2020"],
+  ["2013-11-08","Thor: The Dark World","film"],
+  ["2014-04-04","Captain America: The Winter Soldier","film"],
+  ["2014-08-01","Guardiani della Galassia","film"],
+  ["2015-01-06","Agent Carter","tv","2 stagioni, 2015–2016"],
+  ["2015-04-10","Daredevil (Netflix)","tv","3 stagioni, 2015–2018"],
+  ["2015-05-01","Avengers: Age of Ultron","film"],
+  ["2015-07-17","Ant-Man","film"],
+  ["2015-11-20","Jessica Jones","tv","3 stagioni, 2015–2019"],
+  ["2016-05-06","Captain America: Civil War","film"],
+  ["2016-09-30","Luke Cage","tv","2 stagioni, 2016–2018"],
+  ["2016-11-04","Doctor Strange","film"],
+  ["2017-03-17","Iron Fist","tv","2 stagioni, 2017–2018"],
+  ["2017-05-05","Guardiani della Galassia Vol. 2","film"],
+  ["2017-07-07","Spider-Man: Homecoming","film"],
+  ["2017-08-18","The Defenders","tv","1 stagione"],
+  ["2017-09-29","Inhumans","tv","1 stagione"],
+  ["2017-11-03","Thor: Ragnarok","film"],
+  ["2017-11-17","The Punisher (Netflix)","tv","2 stagioni, 2017–2019"],
+  ["2017-11-21","Runaways","tv","3 stagioni, 2017–2019"],
+  ["2018-02-16","Black Panther","film"],
+  ["2018-04-27","Avengers: Infinity War","film"],
+  ["2018-06-07","Cloak & Dagger","tv","2 stagioni, 2018–2019"],
+  ["2018-07-06","Ant-Man and the Wasp","film"],
+  ["2019-03-08","Captain Marvel","film"],
+  ["2019-04-26","Avengers: Endgame","film"],
+  ["2019-07-02","Spider-Man: Far From Home","film"],
+  ["2020-10-16","Helstrom","tv","1 stagione"],
+  ["2021-01-15","WandaVision","serie"],
+  ["2021-03-19","The Falcon and the Winter Soldier","serie"],
+  ["2021-05-21","M.O.D.O.K.","tv","1 stagione (animazione, Hulu)"],
+  ["2021-06-09","Loki – Stagione 1","serie"],
+  ["2021-07-09","Black Widow","film"],
+  ["2021-08-11","What If…? – Stagione 1","anim"],
+  ["2021-09-03","Shang-Chi e la leggenda dei Dieci Anelli","film"],
+  ["2021-11-05","Eternals","film"],
+  ["2021-11-17","Hit-Monkey","tv","2 stagioni, 2021–2024 (animazione, Hulu)"],
+  ["2021-11-24","Hawkeye","serie"],
+  ["2021-12-17","Spider-Man: No Way Home","film"],
+  ["2022-03-30","Moon Knight","serie"],
+  ["2022-05-06","Doctor Strange nel Multiverso della Follia","film"],
+  ["2022-06-08","Ms. Marvel","serie"],
+  ["2022-07-08","Thor: Love and Thunder","film"],
+  ["2022-08-10","I Am Groot","anim","Cortometraggi, 2 stagioni (2022–2023)"],
+  ["2022-08-18","She-Hulk: Attorney at Law","serie"],
+  ["2022-10-07","Werewolf by Night","special"],
+  ["2022-11-11","Black Panther: Wakanda Forever","film"],
+  ["2022-11-25","Guardiani della Galassia: Holiday Special","special"],
+  ["2023-02-17","Ant-Man and the Wasp: Quantumania","film"],
+  ["2023-05-05","Guardiani della Galassia Vol. 3","film"],
+  ["2023-06-21","Secret Invasion","serie"],
+  ["2023-10-05","Loki – Stagione 2","serie"],
+  ["2023-11-10","The Marvels","film"],
+  ["2023-12-22","What If…? – Stagione 2","anim"],
+  ["2024-01-09","Echo","serie"],
+  ["2024-03-20","X-Men '97 – Stagione 1","anim"],
+  ["2024-07-26","Deadpool & Wolverine","film"],
+  ["2024-09-18","Agatha All Along","serie"],
+  ["2024-12-22","What If…? – Stagione 3","anim"],
+  ["2025-01-29","Your Friendly Neighborhood Spider-Man – Stagione 1","anim"],
+  ["2025-02-14","Captain America: Brave New World","film"],
+  ["2025-03-04","Daredevil: Born Again – Stagione 1","serie"],
+  ["2025-05-02","Thunderbolts*","film"],
+  ["2025-06-24","Ironheart","serie"],
+  ["2025-07-25","I Fantastici Quattro: Gli inizi","film"],
+  ["2025-08-01","Eyes of Wakanda","anim"],
+  ["2025-09-24","Marvel Zombies","anim"],
+  ["2026-01-27","Wonder Man","serie"],
+  ["2026-03-24","Daredevil: Born Again – Stagione 2","serie"],
+  ["2026-05-12","The Punisher: One Last Kill","special"],
+  ["2026-07-31","Spider-Man: Brand New Day","film"],
+  ["2026-09-25","Avengers: Endgame Encore","film","Riedizione al cinema con scene nuove. Facoltativo."],
+  ["2026-10-13","VisionQuest","serie","Finale l'11 novembre"],
+  ["2026-12-18","Avengers: Doomsday","film","In arrivo","soon"],
+  ["2026-12-31","X-Men '97 – Stagione 2","anim","Data da confermare","soon"],
+  ["2026-12-31","Your Friendly Neighborhood Spider-Man – Stagione 2","anim","Data da confermare","soon"]
+];
+
+const STUDIOS = ["Marvel Studios", "Sony / Marvel Studios", "Sony Pictures", "Marvel Television", "20th Century Fox"];
+const FOX_TITLES = ["X-Men: The Animated Series"];
+const CO_PRODUCED = ["Spider-Man: Homecoming","Spider-Man: Far From Home","Spider-Man: No Way Home","Spider-Man: Brand New Day"];
+const studioOf = (title, type) =>
+  CO_PRODUCED.includes(title) ? "Sony / Marvel Studios" :
+  type === "fox" || FOX_TITLES.includes(title) ? "20th Century Fox" :
+  type === "sony" ? "Sony Pictures" :
+  type === "tv" ? "Marvel Television" : "Marvel Studios";
+
+const MINUTES = {
+ "Iron Man": 126,
+ "L'incredibile Hulk": 112,
+ "Iron Man 2": 124,
+ "Thor": 115,
+ "Captain America: Il primo Vendicatore": 124,
+ "The Avengers": 143,
+ "Iron Man 3": 130,
+ "Thor: The Dark World": 112,
+ "Captain America: The Winter Soldier": 136,
+ "Guardiani della Galassia": 121,
+ "Avengers: Age of Ultron": 141,
+ "Ant-Man": 117,
+ "Captain America: Civil War": 147,
+ "Doctor Strange": 115,
+ "Guardiani della Galassia Vol. 2": 136,
+ "Spider-Man: Homecoming": 133,
+ "Thor: Ragnarok": 130,
+ "Black Panther": 134,
+ "Avengers: Infinity War": 149,
+ "Ant-Man and the Wasp": 118,
+ "Captain Marvel": 123,
+ "Avengers: Endgame": 181,
+ "Spider-Man: Far From Home": 129,
+ "Black Widow": 134,
+ "Shang-Chi e la leggenda dei Dieci Anelli": 132,
+ "Eternals": 156,
+ "Spider-Man: No Way Home": 148,
+ "Doctor Strange nel Multiverso della Follia": 126,
+ "Thor: Love and Thunder": 119,
+ "Black Panther: Wakanda Forever": 161,
+ "Ant-Man and the Wasp: Quantumania": 125,
+ "Guardiani della Galassia Vol. 3": 150,
+ "The Marvels": 105,
+ "Deadpool & Wolverine": 128,
+ "Captain America: Brave New World": 118,
+ "Thunderbolts*": 127,
+ "I Fantastici Quattro: Gli inizi": 115,
+ "Spider-Man: Brand New Day": 132,
+ "Avengers: Endgame Encore": 186,
+ "Avengers: Doomsday": 150,
+ "Spider-Man": 121,
+ "Spider-Man 2": 127,
+ "Spider-Man 3": 139,
+ "Ghost Rider": 110,
+ "Ghost Rider: Spirito di vendetta": 96,
+ "The Amazing Spider-Man": 136,
+ "The Amazing Spider-Man 2": 142,
+ "Venom": 112,
+ "Spider-Man: Un nuovo universo": 117,
+ "Venom: La furia di Carnage": 97,
+ "Morbius": 104,
+ "Spider-Man: Across the Spider-Verse": 140,
+ "Madame Web": 116,
+ "Venom: The Last Dance": 109,
+ "Kraven il cacciatore": 127,
+ "WandaVision": 380,
+ "The Falcon and the Winter Soldier": 330,
+ "Loki – Stagione 1": 290,
+ "What If…? – Stagione 1": 290,
+ "Hawkeye": 285,
+ "Moon Knight": 270,
+ "Ms. Marvel": 240,
+ "She-Hulk: Attorney at Law": 270,
+ "I Am Groot": 50,
+ "Werewolf by Night": 53,
+ "Guardiani della Galassia: Holiday Special": 44,
+ "Secret Invasion": 270,
+ "Loki – Stagione 2": 300,
+ "What If…? – Stagione 2": 240,
+ "Echo": 225,
+ "X-Men '97 – Stagione 1": 270,
+ "Agatha All Along": 380,
+ "What If…? – Stagione 3": 190,
+ "Your Friendly Neighborhood Spider-Man – Stagione 1": 250,
+ "Daredevil: Born Again – Stagione 1": 450,
+ "Ironheart": 300,
+ "Eyes of Wakanda": 120,
+ "Marvel Zombies": 110,
+ "Wonder Man": 360,
+ "Daredevil: Born Again – Stagione 2": 360,
+ "The Punisher: One Last Kill": 60,
+ "VisionQuest": 360,
+ "X-Men '97 – Stagione 2": 270,
+ "Your Friendly Neighborhood Spider-Man – Stagione 2": 250,
+ "Agents of S.H.I.E.L.D.": 5850,
+ "Agent Carter": 770,
+ "Daredevil (Netflix)": 2030,
+ "Jessica Jones": 1950,
+ "Luke Cage": 1430,
+ "Iron Fist": 1200,
+ "The Defenders": 400,
+ "Inhumans": 345,
+ "The Punisher (Netflix)": 1430,
+ "Runaways": 1480,
+ "Cloak & Dagger": 900,
+ "Helstrom": 450,
+ "M.O.D.O.K.": 220,
+ "Hit-Monkey": 500,
+ "X-Men": 104,
+ "X2": 134,
+ "I Fantastici 4": 106,
+ "X-Men – Conflitto finale": 104,
+ "I Fantastici 4 e Silver Surfer": 92,
+ "X-Men Origins: Wolverine": 107,
+ "X-Men: First Class": 132,
+ "Wolverine – L'immortale": 126,
+ "X-Men: Giorni di un futuro passato": 132,
+ "Fantastic 4 – I Fantastici Quattro": 100,
+ "Deadpool": 108,
+ "X-Men: Apocalisse": 144,
+ "Logan – The Wolverine": 137,
+ "Deadpool 2": 119,
+ "X-Men: Dark Phoenix": 114,
+ "The New Mutants": 94,
+ "X-Men: The Animated Series": 1670,
+ "Legion": 1500,
+ "The Gifted": 1250
+};
+const SERIES_TYPES = ["serie", "anim", "tv"];   // durata complessiva stimata
+
+// Episodi: per ogni serie un elenco di fette {h: intestazione, k: prefisso chiave, from, to, x: crossover}
+const EPS = {"X-Men: The Animated Series":[13,13,19,17,14],"Legion":[8,11,8],"The Gifted":[13,16],"Agents of S.H.I.E.L.D.":[22,22,22,22,22,13,13],"Agent Carter":[8,10],"Daredevil (Netflix)":[13,13,13],"Jessica Jones":[13,13,13],"Luke Cage":[13,13],"Iron Fist":[13,10],"The Defenders":[8],"Inhumans":[8],"The Punisher (Netflix)":[13,13],"Runaways":[10,13,10],"Cloak & Dagger":[10,10],"Helstrom":[10],"M.O.D.O.K.":[10],"Hit-Monkey":[10,10],"WandaVision":[9],"The Falcon and the Winter Soldier":[6],"Loki – Stagione 1":[6],"What If…? – Stagione 1":[9],"Hawkeye":[6],"Moon Knight":[6],"Ms. Marvel":[6],"She-Hulk: Attorney at Law":[9],"I Am Groot":[5,5],"Secret Invasion":[6],"Loki – Stagione 2":[6],"What If…? – Stagione 2":[9],"Echo":[5],"X-Men '97 – Stagione 1":[10],"Agatha All Along":[9],"What If…? – Stagione 3":[8],"Your Friendly Neighborhood Spider-Man – Stagione 1":[10],"Daredevil: Born Again – Stagione 1":[9],"Ironheart":[6],"Eyes of Wakanda":[4],"Marvel Zombies":[4],"Wonder Man":[8],"Daredevil: Born Again – Stagione 2":[8],"VisionQuest":[8]};
+const mkSlices = e => !e ? null : typeof e[0] === "number"
+  ? e.map((n, s) => ({ h: e.length > 1 ? `Stagione ${s + 1}` : "", k: String(s + 1), from: 1, to: n }))
+  : e;
+
+
+const GROUP_LABELS = STUDIOS;
+const ROWS = RAW.map(([date, title, type, note, state]) => ({
+  date, title, type, group: studioOf(title, type), note: note || "",
+  state: date === "2026-12-31" ? "tbd" : state, approx: SERIES_TYPES.includes(type) || /stagion|episod/i.test(note || "")
+}));
+const CFG = { prefix: "marvel", appName: "marvel-watchlist", groupLabel: "Casa di produzione",
+  legacyIds: { "2018-06-04-cloak-dagger": "2018-06-07-cloak-dagger" }, icon: { bg: "#cf1f26", letter: "M" } };
+
+
+/* ===== Motore comune ===== */
+const $ = id => document.getElementById(id);
+const slug = s => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const sliceLen = x => x.to - x.from + 1;
+const ITEMS = [...ROWS].sort((a, b) => a.date.localeCompare(b.date)).map(r => {
+  const slices = mkSlices(EPS[r.title]);
+  return {
+    id: r.date + "-" + slug(r.title), date: r.date, title: r.title, type: r.type, note: r.note,
+    soon: r.state === "soon" || r.state === "tbd", tbd: r.state === "tbd",
+    year: r.date.slice(0, 4), group: r.group, min: MINUTES[r.title] || 0, approx: r.approx,
+    slices, epsTotal: slices ? slices.reduce((a, x) => a + sliceLen(x), 0) : 0
+  };
+});
+const BYID = new Map(ITEMS.map(i => [i.id, i]));
+
+const KEY = CFG.prefix + "-watched-v1", KEY_IGN = CFG.prefix + "-ignored-v1";
+const KEY_EPS = CFG.prefix + "-eps-v1", KEY_UI = CFG.prefix + "-ui-v1";
+const ALL_TYPES = Object.keys(TYPES);
+let watched = new Set(), ignored = new Set();
+let epsDone = new Set();                 // episodi visti: "<id titolo>#<prefisso>-<episodio>"
+const openEps = new Set();               // titoli con la sottolista aperta
+let activeTypes = new Set(ALL_TYPES), activeGroups = new Set(GROUP_LABELS);
+let hideDone = false, showIgn = false, query = "", last = null;
+let selectMode = false;
+const selected = new Set();
+
+/* --- archiviazione: localStorage in modo sincrono; in più window.storage dentro Claude; poi la memoria --- */
+const mem = {};
+const store = {
+  readLocal(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+  writeLocal(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } },
+  async get(k) {
+    const local = this.readLocal(k);
+    if (local) return local;
+    try {
+      if (window.storage && typeof window.storage.get === "function") {
+        const r = await window.storage.get(k, false);
+        if (r && r.value) return r.value;
+      }
+    } catch (e) { /* chiave assente o storage non disponibile */ }
+    return mem[k] === undefined ? null : mem[k];
+  },
+  async set(k, v) {
+    mem[k] = v;
+    let ok = this.writeLocal(k, v);
+    try {
+      if (window.storage && typeof window.storage.set === "function") {
+        const r = await window.storage.set(k, v, false);
+        if (r) ok = true;
+      }
+    } catch (e) { /* si resta sull'altro livello */ }
+    if (!ok) throw new Error("nessuno storage disponibile");
+  }
+};
+function setStatus(msg, bad) {
+  const el = $("saveStatus");
+  el.textContent = msg;
+  el.style.color = bad ? "var(--accent)" : "";
+}
+const migrateId = id => (CFG.legacyIds || {})[id] || id;
+async function loadKey(key) {
+  try {
+    const v = await store.get(key);
+    if (v) return new Set(JSON.parse(v).map(migrateId));
+  } catch (e) { /* dati assenti o illeggibili */ }
+  return new Set();
+}
+async function save() {
+  try {
+    await Promise.all([
+      store.set(KEY, JSON.stringify([...watched])),
+      store.set(KEY_IGN, JSON.stringify([...ignored])),
+      store.set(KEY_EPS, JSON.stringify([...epsDone]))
+    ]);
+    setStatus("Salvato automaticamente.");
+  } catch (e) {
+    setStatus("Salvataggio non riuscito: usa «Esporta backup» per non perdere i dati.", true);
+  }
+}
+function savePrefs() {
+  store.set(KEY_UI, JSON.stringify({ types: [...activeTypes], groups: [...activeGroups], hideDone, showIgn, last })).catch(() => {});
+}
+async function loadPrefs() {
+  try {
+    const v = await store.get(KEY_UI);
+    if (!v) return;
+    const p = JSON.parse(v);
+    const t = Array.isArray(p.types) ? p.types.filter(x => TYPES[x]) : [];
+    const g = Array.isArray(p.groups) ? p.groups.filter(x => GROUP_LABELS.includes(x)) : [];
+    if (t.length) activeTypes = new Set(t);
+    if (g.length) activeGroups = new Set(g);
+    hideDone = !!p.hideDone; showIgn = !!p.showIgn; last = p.last && BYID.has(p.last) ? p.last : null;
+  } catch (e) { /* preferenze assenti */ }
+}
+
+/* --- episodi --- */
+const sliceKeys = (i, x) => Array.from({ length: sliceLen(x) }, (_, e) => `${i.id}#${x.k}-${x.from + e}`);
+const epKeys = i => i.slices ? i.slices.flatMap(x => sliceKeys(i, x)) : [];
+const epsSeen = i => i.slices ? epKeys(i).filter(k => epsDone.has(k)).length : 0;
+const isPart = i => i.slices && !watched.has(i.id) && epsSeen(i) > 0;
+const watchedMin = i => watched.has(i.id) ? i.min : (i.slices ? Math.round(i.min * epsSeen(i) / i.epsTotal) : 0);
+function setItemWatched(i, on) {
+  on ? watched.add(i.id) : watched.delete(i.id);
+  epKeys(i).forEach(k => on ? epsDone.add(k) : epsDone.delete(k));
+}
+function normalizeEps() {                // coerenza tra titolo visto ed episodi visti (anche per spunte salvate prima degli episodi)
+  ITEMS.forEach(i => {
+    if (!i.slices) return;
+    if (watched.has(i.id)) epKeys(i).forEach(k => epsDone.add(k));
+    else if (epsSeen(i) === i.epsTotal) watched.add(i.id);
+  });
+}
+function afterEpChange(i) {
+  epsSeen(i) === i.epsTotal ? watched.add(i.id) : watched.delete(i.id);
+}
+function firstUnseen(i) {
+  for (const x of i.slices) {
+    for (let n = x.from; n <= x.to; n++) {
+      const k = `${i.id}#${x.k}-${n}`;
+      if (!epsDone.has(k)) return { k, n, x };
+    }
+  }
+  return null;
+}
+const sliceBase = x => x.x ? x.h : (x.h || "").replace(/ · ep\..*$/, "");
+const epLabel = (x, n) => x.x ? x.h : (sliceBase(x) ? sliceBase(x) + ", " : "") + "episodio " + n;
+
+/* --- formati --- */
+const fmt = (d, tbd) => tbd ? d.slice(0, 4) : new Date(d + "T12:00:00").toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
+const fmtDur = (m, approx) => {
+  if (!m) return "durata da definire";
+  const t = m < 60 ? `${m} min` : (m % 60 ? `${Math.floor(m / 60)} h ${m % 60} min` : `${m / 60} h`);
+  return (approx ? "circa " : "") + t;
+};
+const fmtHours = m => {
+  const h = m / 60;
+  return (h >= 100 ? Math.round(h).toLocaleString("it-IT") : h.toLocaleString("it-IT", { maximumFractionDigits: 1 })) + " h";
+};
+const sumMin = arr => arr.reduce((a, i) => a + i.min, 0);
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+const CHECK = '<svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+/* --- interfaccia di servizio: avvisi, pannelli, conferme --- */
+let toastTimer;
+function hideToast() { $("toast").classList.remove("show"); }
+function toast(msg, undo) {
+  const t = $("toast");
+  t.textContent = "";
+  const s = document.createElement("span"); s.textContent = msg; t.append(s);
+  if (undo) {
+    const b = document.createElement("button"); b.type = "button"; b.textContent = "Annulla";
+    b.onclick = () => { undo(); hideToast(); };
+    t.append(b);
+  }
+  t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, undo ? 7000 : 2600);
+}
+const snapshot = () => ({ w: [...watched], i: [...ignored], e: [...epsDone] });
+function restore(s) { watched = new Set(s.w); ignored = new Set(s.i); epsDone = new Set(s.e); save(); refresh(); }
+function withUndo(msg, fn) {
+  const s = snapshot();
+  fn(); save(); refresh();
+  toast(msg, () => restore(s));
+}
+
+const sheetBack = $("sheetBack"), sheet = $("sheet");
+let sheetClose = null, lastFocus = null;
+function openSheet(html, onClose, label) {
+  lastFocus = document.activeElement;
+  sheet.innerHTML = html; sheet.setAttribute("aria-label", label || "Finestra"); sheetBack.hidden = false; document.body.classList.add("noscroll");
+  sheetClose = onClose || null;
+  (sheet.querySelector("button, input") || sheet).focus();
+}
+function closeSheet() {
+  sheetBack.hidden = true; document.body.classList.remove("noscroll");
+  const c = sheetClose; sheetClose = null;
+  if (c) c();
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+sheetBack.addEventListener("click", e => { if (e.target === sheetBack) closeSheet(); });
+document.addEventListener("keydown", e => {
+  if (sheetBack.hidden) return;
+  if (e.key === "Escape") { closeSheet(); return; }
+  if (e.key !== "Tab") return;
+  const f = [...sheet.querySelectorAll("button, input")].filter(x => !x.disabled && x.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], lastEl = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); }
+  else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
+});
+function askConfirm(text, okLabel) {
+  return new Promise(res => {
+    openSheet(`<p class="ask">${text}</p><div class="sheet-actions"><button type="button" class="btn" data-a="no">Annulla</button><button type="button" class="btn primary" data-a="yes">${okLabel}</button></div>`, () => res(false), "Conferma");
+    sheet.querySelector('[data-a="yes"]').onclick = () => { sheetClose = null; closeSheet(); res(true); };
+    sheet.querySelector('[data-a="no"]').onclick = closeSheet;
+  });
+}
+
+/* --- conteggi e viste --- */
+const counted = () => ITEMS.filter(i => !i.soon && !ignored.has(i.id));
+const typeOk = i => activeTypes.has(i.type) && activeGroups.has(i.group);
+function visibleItems() {
+  const q = query.trim().toLowerCase();
+  return ITEMS.filter(i =>
+    typeOk(i) && (showIgn || !ignored.has(i.id)) && (!hideDone || !watched.has(i.id)) &&
+    (!q || i.title.toLowerCase().includes(q)));
+}
+const filtersActive = () => (activeTypes.size < ALL_TYPES.length) + (activeGroups.size < GROUP_LABELS.length) + hideDone + showIgn;
+
+function updateCount() {
+  const real = counted();
+  const n = real.filter(i => watched.has(i.id)).length;
+  $("done").textContent = n;
+  $("total").textContent = real.length;
+  $("pct").textContent = (real.length ? Math.round(n / real.length * 100) : 0) + "% visto";
+  const totMin = sumMin(real), doneMin = real.reduce((a, i) => a + watchedMin(i), 0);
+  $("hours").innerHTML =
+    `<span><b>${fmtHours(totMin)}</b> in tutto</span><span><b>${fmtHours(doneMin)}</b> viste</span><span><b>${fmtHours(totMin - doneMin)}</b> da vedere</span>`;
+  const fc = filtersActive();
+  const b = $("fcount"); b.hidden = !fc; b.textContent = fc;
+  const vis = visibleItems().filter(i => !i.soon && !ignored.has(i.id));
+  const sum = $("fsum");
+  if (fc || query.trim()) { sum.hidden = false; sum.textContent = `${vis.length} titoli mostrati, ${fmtHours(sumMin(vis))}`; }
+  else sum.hidden = true;
+}
+
+/* --- pellicola --- */
+function nextUp() {
+  const pool = ITEMS.filter(i => !i.soon && !ignored.has(i.id) && typeOk(i));
+  const lastItem = last && BYID.get(last);
+  const part = (lastItem && pool.includes(lastItem) && isPart(lastItem)) ? lastItem : pool.find(isPart);
+  const item = part || pool.find(i => !watched.has(i.id));
+  if (!item) return null;
+  return { item, ep: item.slices ? firstUnseen(item) : null, part: !!part };
+}
+function renderReel() {
+  const nx = nextUp();
+  $("reel").querySelectorAll("i").forEach(el => el.remove());
+  $("reel").insertAdjacentHTML("beforeend", counted().map(i => {
+    const p = i.slices && !watched.has(i.id) && epsSeen(i) ? Math.round(epsSeen(i) / i.epsTotal * 100) : 0;
+    return `<i data-id="${i.id}" style="--c:${TYPES[i.type].color}${p ? `;--p:${p}%` : ""}" class="${watched.has(i.id) ? "on" : ""}${nx && nx.item === i ? " next" : ""}"></i>`;
+  }).join(""));
+}
+function updateReel(flashId) {
+  const nx = nextUp();
+  $("reel").querySelectorAll("i").forEach(el => {
+    const i = BYID.get(el.dataset.id);
+    el.classList.toggle("on", watched.has(i.id));
+    el.classList.toggle("next", !!nx && nx.item === i);
+    const p = i.slices && !watched.has(i.id) && epsSeen(i) ? Math.round(epsSeen(i) / i.epsTotal * 100) : 0;
+    p ? el.style.setProperty("--p", p + "%") : el.style.removeProperty("--p");
+    if (flashId && el.dataset.id === flashId) { el.animate([{ transform: "scaleY(1.5)" }, { transform: "none" }], { duration: 260 }); }
+  });
+}
+function jumpTo(id, instant) {
+  const el = document.querySelector(`.item[data-item="${id}"]`);
+  if (!el) return false;
+  el.scrollIntoView({ block: "start", behavior: instant ? "auto" : "smooth" });
+  el.classList.remove("hl"); void el.offsetWidth; el.classList.add("hl");
+  return true;
+}
+(function setupReel() {
+  const reel = $("reel"), tip = $("reelTip");
+  let down = false, hideT, lastId = null, cur = 0;
+  function show(idx, x) {
+    const segs = reel.querySelectorAll("i");
+    if (!segs.length) return;
+    cur = Math.max(0, Math.min(segs.length - 1, idx));
+    const id = segs[cur].dataset.id, i = BYID.get(id);
+    const shown = !!document.querySelector(`.item[data-item="${id}"]`);
+    const txt = i.title + ", " + i.year + (shown ? "" : " (nascosto dai filtri)");
+    const r = reel.getBoundingClientRect();
+    const px = x == null ? (cur + .5) / segs.length * r.width : x - r.left;
+    tip.textContent = txt;
+    tip.style.left = Math.max(70, Math.min(r.width - 70, px)) + "px";
+    tip.classList.add("show");
+    reel.setAttribute("aria-valuemax", segs.length); reel.setAttribute("aria-valuenow", cur + 1); reel.setAttribute("aria-valuetext", txt);
+    if (shown && id !== lastId) jumpTo(id, true);
+    lastId = id;
+  }
+  const scrub = e => {
+    const n = reel.querySelectorAll("i").length, r = reel.getBoundingClientRect();
+    if (n) show(Math.floor((e.clientX - r.left) / r.width * n), e.clientX);
+  };
+  const hideLater = () => { clearTimeout(hideT); hideT = setTimeout(() => tip.classList.remove("show"), 900); };
+  reel.addEventListener("pointerdown", e => { down = true; lastId = null; reel.setPointerCapture(e.pointerId); clearTimeout(hideT); scrub(e); });
+  reel.addEventListener("pointermove", e => { if (down) scrub(e); });
+  const end = () => { down = false; hideLater(); };
+  reel.addEventListener("pointerup", end);
+  reel.addEventListener("pointercancel", end);
+  reel.addEventListener("keydown", e => {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1, PageDown: 10, PageUp: -10 }[e.key];
+    if (e.key === "Home") cur = 0;
+    else if (e.key === "End") cur = Infinity;
+    else if (step) cur += step;
+    else return;
+    e.preventDefault(); clearTimeout(hideT); show(cur); hideLater();
+  });
+})();
+
+/* --- da vedere ora --- */
+function renderNext() {
+  const el = $("next"), nx = nextUp();
+  if (!nx) { el.innerHTML = counted().length ? '<div class="next-in"><div class="next-txt"><span class="next-t">Hai visto tutto quello che è uscito.</span></div></div>' : ""; return; }
+  const { item, ep, part } = nx;
+  const sub = ep ? epLabel(ep.x, ep.n) : (item.slices ? "" : fmtDur(item.min, item.approx));
+  el.innerHTML = `<div class="next-in"><div class="next-txt"><span class="next-k">${part ? "Continua da qui" : "Il prossimo"}</span>` +
+    `<strong class="next-t">${esc(item.title)}</strong>${sub ? `<span class="next-s">${esc(sub)}</span>` : ""}</div>` +
+    `<div class="next-act"><button type="button" class="btn primary" id="nextSeen">Visto</button><button type="button" class="btn" id="nextOpen">Apri</button></div></div>`;
+}
+document.addEventListener("click", e => {
+  if (e.target.closest("#nextSeen")) {
+    const nx = nextUp(); if (!nx) return;
+    const { item, ep } = nx;
+    last = item.id; savePrefs();
+    if (ep) withUndo("Segnato: " + item.title + ", " + epLabel(ep.x, ep.n), () => { epsDone.add(ep.k); afterEpChange(item); });
+    else withUndo("Segnato: " + item.title, () => setItemWatched(item, true));
+  } else if (e.target.closest("#nextOpen")) {
+    const nx = nextUp(); if (!nx) return;
+    if (!document.querySelector(`.item[data-item="${nx.item.id}"]`)) { toast("Il titolo è nascosto dai filtri"); return; }
+    if (nx.item.slices) { openEps.add(nx.item.id); replaceItem(nx.item); }
+    jumpTo(nx.item.id);
+  }
+});
+
+/* --- lista --- */
+const epsBtn = (i, open) => {
+  const seen = epsSeen(i);
+  return `<button type="button" class="eps-btn${seen && seen < i.epsTotal ? " part" : ""}" data-eps="${i.id}" aria-expanded="${open}">Episodi ${seen}/${i.epsTotal}</button>`;
+};
+function epsPanel(i) {
+  const nx = firstUnseen(i);
+  return `<div class="eps"><p class="eps-hint">Tieni premuto un episodio per segnare anche quelli prima.</p>` + i.slices.map((x, s) => {
+    const keys = sliceKeys(i, x), seen = keys.filter(k => epsDone.has(k)).length;
+    return `<div class="season${x.x ? " cross" : ""}"><div class="season-h"><span>${x.h ? esc(x.h) + ", " : ""}${seen} di ${keys.length}</span>` +
+      `<button type="button" class="btn" data-season="${i.id}" data-s="${s}">${seen === keys.length ? "Azzera" : "Segna tutta"}</button></div>` +
+      `<div class="ep-grid">` + keys.map((k, e) =>
+        `<button type="button" class="ep${nx && nx.k === k ? " next" : ""}" data-ep="${k}" aria-pressed="${epsDone.has(k)}" aria-label="Episodio ${x.from + e}">${x.from + e}</button>`).join("") + `</div></div>`;
+  }).join("") + `</div>`;
+}
+function itemHTML(i) {
+  const ign = ignored.has(i.id), on = watched.has(i.id) && !ign, t = TYPES[i.type];
+  const checked = selectMode ? selected.has(i.id) : on;
+  const disabled = selectMode ? false : (i.soon || ign);
+  const hasEps = i.slices && !i.soon && !ign && !selectMode;
+  const open = hasEps && openEps.has(i.id);
+  const seen = i.slices ? epsSeen(i) : 0;
+  const pct = i.slices && !on && seen ? Math.max(3, Math.round(seen / i.epsTotal * 100)) : 0;
+  return `<div class="item" data-item="${i.id}" style="--c:${t.color}"><label class="row ${on ? "done" : ""} ${i.soon ? "soon" : ""} ${ign ? "ign" : ""}">
+    <input type="checkbox" data-id="${i.id}" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""}>
+    <span class="box" aria-hidden="true">${CHECK}</span>
+    <span>
+      <span class="name">${esc(i.title)}</span>
+      <span class="meta"><span>${fmt(i.date, i.tbd)}</span><span>${fmtDur(i.min, i.approx)}</span>${hasEps ? epsBtn(i, open) : ""}</span>
+      <span class="meta chips2"><span class="tag">${esc(t.label.split(" e ")[0].split(" (")[0])}</span>${t.label.split(" e ")[0].split(" (")[0] === i.group ? "" : `<span class="grp">${esc(i.group)}</span>`}${i.note ? `<span>${esc(i.note)}</span>` : ""}${i.soon ? '<span class="badge">In arrivo</span>' : ""}${ign ? '<span class="badge">Ignorato</span>' : ""}${selectMode && watched.has(i.id) && !ign ? '<span class="badge">Visto</span>' : ""}</span>
+      <span class="prog"${pct ? "" : " hidden"}><i style="width:${pct}%"></i></span>
+    </span>
+    <button type="button" class="ign-btn" data-ign="${i.id}" title="${ign ? "Rimetti questo titolo nella lista" : "Toglilo dalla lista e dal conteggio"}">${ign ? "Ripristina" : "Ignora"}</button>
+  </label>${open ? epsPanel(i) : ""}</div>`;
+}
+function replaceItem(i) {
+  const el = document.querySelector(`.item[data-item="${i.id}"]`);
+  if (!el) return;
+  el.outerHTML = itemHTML(i);
+  updateYear(document.querySelector(`.item[data-item="${i.id}"]`).closest("section"));
+}
+function updateYear(sec) {
+  const real = [...sec.querySelectorAll("input:not(:disabled)")];
+  const tot = sumMin(real.map(c => BYID.get(c.dataset.id)));
+  sec.querySelector("h2 span").textContent = `${real.filter(c => c.checked).length} di ${real.length}, ${fmtHours(tot)}`;
+}
+function renderList() {
+  updateCount(); updateBar();
+  const vis = visibleItems(), list = $("list");
+  if (!vis.length) {
+    list.innerHTML = `<div class="empty">Nessun titolo con questi filtri.${filtersActive() || query ? '<br><button type="button" class="btn" id="clearFilters">Azzera filtri e ricerca</button>' : ""}</div>`;
+    return;
+  }
+  const byYear = {};
+  vis.forEach(i => (byYear[i.year] = byYear[i.year] || []).push(i));
+  list.innerHTML = Object.keys(byYear).sort().map(y => {
+    const arr = byYear[y];
+    const real = arr.filter(i => !i.soon && !ignored.has(i.id));
+    const n = real.filter(i => watched.has(i.id)).length;
+    const counter = real.length ? `${n} di ${real.length}, ${fmtHours(sumMin(real))}` : (arr.some(i => !ignored.has(i.id)) ? "in arrivo" : "ignorati");
+    return `<section><h2 class="year">${y}<span>${counter}</span></h2>${arr.map(itemHTML).join("")}</section>`;
+  }).join("");
+}
+function refresh() { renderReel(); renderNext(); renderList(); syncHeader(); }
+function syncAfter(i, flash) {            // aggiorna solo ciò che è cambiato, senza ridisegnare tutta la lista
+  if (hideDone && watched.has(i.id)) { refresh(); return; }
+  replaceItem(i); updateReel(flash); renderNext(); updateCount();
+}
+
+/* --- selezione multipla --- */
+const selVisible = () => visibleItems().filter(i => selected.has(i.id));
+function updateBar() {
+  const vis = visibleItems();
+  if (!selectMode) return;
+  const n = selVisible().length;
+  $("selN").textContent = n === 1 ? "1 selezionato" : `${n} selezionati`;
+  ["selWatch", "selUnwatch", "selIgn", "selRestore"].forEach(id => $(id).disabled = !n);
+  $("selAll").textContent = vis.length > 0 && vis.every(i => selected.has(i.id)) ? "Deseleziona tutto" : "Seleziona tutto";
+}
+function setSelectMode(on) {
+  selectMode = on; selected.clear();
+  document.body.classList.toggle("selmode", on);
+  $("selMode").setAttribute("aria-pressed", on);
+  renderList();
+}
+function applySel(msg, fn) {
+  const t = selVisible();
+  if (!t.length) return;
+  selected.clear();
+  withUndo(msg(t.length), () => fn(t));
+}
+
+/* --- filtri --- */
+function statsBy(pred) {
+  const c = counted().filter(pred);
+  return `${c.filter(i => watched.has(i.id)).length}/${c.length}`;
+}
+function filtersHTML() {
+  return `<h2>Filtri</h2><h3>Tipo</h3><div class="chips" id="chips">` +
+    Object.entries(TYPES).map(([k, t]) => `<button type="button" class="chip" data-t="${k}" aria-pressed="${activeTypes.has(k)}" style="--c:${t.color}">${esc(t.label)} <small>${statsBy(i => i.type === k)}</small></button>`).join("") +
+    `</div><h3>${CFG.groupLabel}</h3><div class="chips" id="groups">` +
+    GROUP_LABELS.map(n => `<button type="button" class="chip grp-chip" data-g="${esc(n)}" aria-pressed="${activeGroups.has(n)}">${esc(n)} <small>${statsBy(i => i.group === n)}</small></button>`).join("") +
+    `</div><label class="switch"><span>Nascondi i titoli già visti</span><input type="checkbox" id="fHide" ${hideDone ? "checked" : ""}></label>` +
+    `<label class="switch"><span>Mostra i titoli ignorati (${ignored.size})</span><input type="checkbox" id="fIgn" ${showIgn ? "checked" : ""}></label>` +
+    `<div class="sheet-actions"><button type="button" class="btn" id="fReset">Azzera filtri</button><button type="button" class="btn primary" id="fDone"></button></div>`;
+}
+function syncFilterSheet() {
+  $("fDone").textContent = `Mostra ${visibleItems().length} titoli`;
+  sheet.querySelectorAll("[data-t]").forEach(b => b.setAttribute("aria-pressed", activeTypes.has(b.dataset.t)));
+  sheet.querySelectorAll("[data-g]").forEach(b => b.setAttribute("aria-pressed", activeGroups.has(b.dataset.g)));
+}
+function openFilters() {
+  openSheet(filtersHTML(), () => { savePrefs(); renderReel(); renderNext(); }, "Filtri");
+  syncFilterSheet();
+}
+sheet.addEventListener("click", e => {
+  const t = e.target.closest("[data-t]"), g = e.target.closest("[data-g]");
+  if (t) { const k = t.dataset.t; activeTypes.has(k) ? activeTypes.delete(k) : activeTypes.add(k); if (!activeTypes.size) activeTypes = new Set(ALL_TYPES); }
+  else if (g) { const k = g.dataset.g; activeGroups.has(k) ? activeGroups.delete(k) : activeGroups.add(k); if (!activeGroups.size) activeGroups = new Set(GROUP_LABELS); }
+  else if (e.target.closest("#fReset")) { activeTypes = new Set(ALL_TYPES); activeGroups = new Set(GROUP_LABELS); hideDone = false; showIgn = false; sheet.querySelector("#fHide").checked = false; sheet.querySelector("#fIgn").checked = false; }
+  else if (e.target.closest("#fDone")) { closeSheet(); return; }
+  else return;
+  syncFilterSheet(); renderList();
+});
+sheet.addEventListener("change", e => {
+  if (e.target.id === "fHide") hideDone = e.target.checked;
+  else if (e.target.id === "fIgn") showIgn = e.target.checked;
+  else return;
+  syncFilterSheet(); renderList();
+});
+$("filterBtn").addEventListener("click", openFilters);
+
+/* --- gestori della lista --- */
+let pressTimer = null, pressed = false;
+function markUpTo(key) {
+  const i = BYID.get(key.split("#")[0]);
+  const keys = epKeys(i), idx = keys.indexOf(key);
+  if (idx < 0) return;
+  const n = idx + 1;
+  last = i.id; savePrefs();
+  withUndo(`Segnati i primi ${n} episodi di ${i.title}`, () => { keys.slice(0, n).forEach(k => epsDone.add(k)); afterEpChange(i); });
+}
+const listEl = $("list");
+listEl.addEventListener("pointerdown", e => {
+  const ep = e.target.closest(".ep"); if (!ep) return;
+  pressed = false;
+  clearTimeout(pressTimer);
+  pressTimer = setTimeout(() => { pressed = true; if (navigator.vibrate) navigator.vibrate(15); markUpTo(ep.dataset.ep); }, 480);
+});
+["pointerup", "pointercancel", "pointerleave", "pointermove"].forEach(t => listEl.addEventListener(t, e => { if (t !== "pointermove" || Math.abs(e.movementX) + Math.abs(e.movementY) > 3) clearTimeout(pressTimer); }));
+listEl.addEventListener("contextmenu", e => { if (e.target.closest(".ep")) e.preventDefault(); });
+listEl.addEventListener("click", e => {
+  const cf = e.target.closest("#clearFilters");
+  if (cf) { activeTypes = new Set(ALL_TYPES); activeGroups = new Set(GROUP_LABELS); hideDone = false; showIgn = false; query = ""; $("q").value = ""; savePrefs(); renderList(); return; }
+  const eb = e.target.closest(".eps-btn");
+  if (eb) {
+    e.preventDefault();
+    const i = BYID.get(eb.dataset.eps);
+    openEps.has(i.id) ? openEps.delete(i.id) : openEps.add(i.id);
+    replaceItem(i);
+    return;
+  }
+  const ep = e.target.closest(".ep");
+  if (ep) {
+    if (pressed) { pressed = false; return; }
+    const k = ep.dataset.ep, i = BYID.get(k.split("#")[0]);
+    epsDone.has(k) ? epsDone.delete(k) : epsDone.add(k);
+    afterEpChange(i); last = i.id; savePrefs(); save(); syncAfter(i, i.id);
+    return;
+  }
+  const sb = e.target.closest("[data-season]");
+  if (sb) {
+    const i = BYID.get(sb.dataset.season), keys = sliceKeys(i, i.slices[+sb.dataset.s]);
+    const all = keys.every(k => epsDone.has(k));
+    keys.forEach(k => all ? epsDone.delete(k) : epsDone.add(k));
+    afterEpChange(i); last = i.id; savePrefs(); save(); syncAfter(i, i.id);
+    return;
+  }
+  const b = e.target.closest(".ign-btn"); if (!b) return;
+  e.preventDefault();
+  const id = b.dataset.ign, was = ignored.has(id);
+  withUndo(was ? "Titolo ripristinato" : "Titolo ignorato", () => was ? ignored.delete(id) : ignored.add(id));
+});
+listEl.addEventListener("change", e => {
+  const id = e.target.dataset.id;
+  if (!id) return;
+  if (selectMode) { e.target.checked ? selected.add(id) : selected.delete(id); updateBar(); return; }
+  const i = BYID.get(id);
+  setItemWatched(i, e.target.checked);
+  if (e.target.checked) { last = id; savePrefs(); }
+  save();
+  syncAfter(i, id);
+});
+$("selMode").addEventListener("click", () => setSelectMode(!selectMode));
+$("selDone").addEventListener("click", () => setSelectMode(false));
+$("selAll").addEventListener("click", () => {
+  const vis = visibleItems(), all = vis.length > 0 && vis.every(i => selected.has(i.id));
+  vis.forEach(i => all ? selected.delete(i.id) : selected.add(i.id));
+  renderList();
+});
+$("selNone").addEventListener("click", () => { selected.clear(); renderList(); });
+$("selWatch").addEventListener("click", () => applySel(n => `${n} titoli segnati come visti`, t => t.filter(i => !i.soon && !ignored.has(i.id)).forEach(i => setItemWatched(i, true))));
+$("selUnwatch").addEventListener("click", () => applySel(n => `${n} titoli segnati come non visti`, t => t.forEach(i => setItemWatched(i, false))));
+$("selIgn").addEventListener("click", () => applySel(n => `${n} titoli ignorati`, t => t.forEach(i => ignored.add(i.id))));
+$("selRestore").addEventListener("click", () => applySel(n => `${n} titoli ripristinati`, t => t.forEach(i => ignored.delete(i.id))));
+let qTimer;
+$("q").addEventListener("input", e => { query = e.target.value; clearTimeout(qTimer); qTimer = setTimeout(renderList, 120); });
+
+/* --- dati --- */
+$("ignVisible").addEventListener("click", () => {
+  const targets = visibleItems().filter(i => !ignored.has(i.id));
+  if (!targets.length) { toast("Nessun titolo da ignorare"); return; }
+  withUndo(`${targets.length} titoli ignorati`, () => targets.forEach(i => ignored.add(i.id)));
+});
+$("unIgnAll").addEventListener("click", async () => {
+  if (!ignored.size) { toast("Non ci sono titoli ignorati"); return; }
+  if (await askConfirm("Rimettere nella lista tutti i titoli ignorati?", "Ripristina")) withUndo("Titoli ripristinati", () => ignored.clear());
+});
+$("markAll").addEventListener("click", async () => {
+  if (await askConfirm("Segnare come visti tutti i titoli già usciti, esclusi gli ignorati?", "Segna tutto")) withUndo("Tutto segnato come visto", () => counted().forEach(i => setItemWatched(i, true)));
+});
+$("reset").addEventListener("click", async () => {
+  if (await askConfirm("Cancellare tutte le spunte e gli episodi visti? I titoli ignorati restano tali.", "Azzera")) withUndo("Spunte azzerate", () => { watched.clear(); epsDone.clear(); });
+});
+function exportBackup() {
+  const data = JSON.stringify({ app: CFG.appName, watched: [...watched], ignored: [...ignored], eps: [...epsDone] }, null, 1);
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([data], { type: "application/json" }));
+  a.download = CFG.appName + "-backup.json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function importBackup(file) {
+  const r = new FileReader();
+  r.onload = async () => {
+    try {
+      const d = JSON.parse(r.result);
+      if (!Array.isArray(d.watched) || !Array.isArray(d.ignored)) throw new Error("formato");
+      const known = new Set(ITEMS.map(i => i.id)), knownEp = new Set(ITEMS.flatMap(epKeys));
+      watched = new Set(d.watched.map(migrateId).filter(id => known.has(id)));
+      ignored = new Set(d.ignored.map(migrateId).filter(id => known.has(id)));
+      epsDone = new Set((Array.isArray(d.eps) ? d.eps : []).filter(k => knownEp.has(k)));
+      normalizeEps(); refresh();
+      await save();
+      setStatus("Backup importato e salvato.");
+    } catch (e) { setStatus("File di backup non valido.", true); }
+  };
+  r.readAsText(file);
+}
+$("exportBk").addEventListener("click", exportBackup);
+$("importBk").addEventListener("click", () => $("importFile").click());
+$("importFile").addEventListener("change", e => { if (e.target.files[0]) importBackup(e.target.files[0]); e.target.value = ""; });
+
+/* --- icona per la schermata Home e altezza della testata --- */
+function makeIcon() {
+  try {
+    const c = document.createElement("canvas"); c.width = c.height = 180;
+    const g = c.getContext("2d");
+    g.fillStyle = CFG.icon.bg; g.fillRect(0, 0, 180, 180);
+    g.fillStyle = "rgba(255,255,255,.22)";
+    for (let x = 8; x < 180; x += 20) { g.fillRect(x, 10, 10, 8); g.fillRect(x, 162, 10, 8); }
+    g.fillStyle = "#fff"; g.textAlign = "center"; g.textBaseline = "middle";
+    g.font = `800 ${CFG.icon.letter.length > 1 ? 84 : 110}px "Arial Narrow", Arial, sans-serif`;
+    g.fillText(CFG.icon.letter, 90, 94);
+    $("touchIcon").href = c.toDataURL("image/png");
+  } catch (e) { /* senza icona personalizzata */ }
+}
+const syncHeader = () => document.documentElement.style.setProperty("--hh", $("top").getBoundingClientRect().height + "px");
+function trackHeader() {
+  syncHeader();
+  if (window.ResizeObserver) new ResizeObserver(syncHeader).observe($("top")); else window.addEventListener("resize", syncHeader);
+}
+
+(async function init() {
+  makeIcon(); trackHeader();
+  watched = await loadKey(KEY); ignored = await loadKey(KEY_IGN); epsDone = await loadKey(KEY_EPS);
+  normalizeEps();
+  await loadPrefs();
+  refresh();
+  try { await store.set(CFG.prefix + "-test", "1"); setStatus("Salvataggio automatico attivo."); }
+  catch (e) { setStatus("Attenzione: qui il salvataggio automatico non è disponibile. Usa «Esporta backup» prima di chiudere.", true); }
+})();
+</script>
+</body>
+</html>
