@@ -27,6 +27,7 @@
     --tv: #6b45b8;
     --sony: #b01f78;
     --fox: #8a6500;
+    --altri: #3f5a8a;
     --reel: #14171f;
     --frame: #4a5268;
     --hole: #7d869b;
@@ -51,6 +52,7 @@
       --tv: #ab92f0;
       --sony: #f574bd;
       --fox: #f2c744;
+      --altri: #9fb4d8;
       --reel: #07090f;
       --frame: #3a4258;
       --hole: #5a627a;
@@ -310,7 +312,7 @@
 
   <footer>
     <p id="saveStatus"></p>
-    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni è la durata complessiva stimata della stagione (o dell'intera serie, per quelle di Marvel Television). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 18 novembre 2026. I film e le serie Fox (X-Men, Deadpool, Fantastici 4) sono in ordine di uscita: i due mondi si uniscono con <i>Deadpool &amp; Wolverine</i>. <i>VisionQuest</i> si è concluso l'11 novembre, <i>Avengers: Doomsday</i> esce il 18 dicembre 2026 e <i>Beyond the Spider-Verse</i> il 25 giugno 2027.</p>
+    <p>Le durate dei film sono quelle indicative della versione al cinema. Per serie e animazioni è la durata complessiva stimata della stagione (o dell'intera serie, per quelle di Marvel Television). Ordine di uscita originale (data USA/mondiale). Lista aggiornata al 18 novembre 2026. I film e le serie degli altri studi (Fox con X-Men, Deadpool, Fantastici 4, Daredevil ed Elektra; poi Blade, Hulk e Punisher) sono in ordine di uscita: i mondi si uniscono con <i>Deadpool &amp; Wolverine</i>. <i>VisionQuest</i> si è concluso l'11 novembre, <i>Avengers: Doomsday</i> esce il 18 dicembre 2026 e <i>Beyond the Spider-Verse</i> il 25 giugno 2027.</p>
     <p>Con «Ignora» togli un titolo dalla lista e dal conteggio: non lo vedrai più, ma puoi ripristinarlo quando vuoi. Spunte, episodi e filtri vengono salvati in automatico su questo dispositivo.</p>
     <p>Per le serie con episodi tocca «Episodi» sotto il titolo e spunta quelli che hai visto. Tieni premuto un episodio per segnare anche tutti quelli che lo precedono. Il titolo risulta visto quando hai spuntato tutti gli episodi e le ore viste contano in proporzione.</p>
     <h3>Dati</h3>
@@ -352,13 +354,22 @@ const TYPES = {
   special: { label: "Speciali",              color: "var(--special)" },
   tv:      { label: "Marvel Television (Netflix, ABC…)", color: "var(--tv)" },
   sony:    { label: "Film Sony (Spider-Man, Venom…)", color: "var(--sony)" },
-  fox:     { label: "Fox (X-Men, Deadpool, Legion…)", color: "var(--fox)" }
+  fox:     { label: "Fox (X-Men, Deadpool, Legion…)", color: "var(--fox)" },
+  altri:   { label: "Altri studi (Blade, Hulk, Punisher…)", color: "var(--altri)" }
 };
 
 // [data, titolo, tipo, nota, stato]
 const RAW = [
   ["1992-10-31","X-Men: The Animated Series","anim","5 stagioni, 1992–1997. Prosegue in X-Men '97"],
   ["2000-07-14","X-Men","fox"],
+  ["1998-08-21","Blade","altri","New Line Cinema"],
+  ["2002-03-22","Blade II","altri","New Line Cinema"],
+  ["2003-02-14","Daredevil","fox","Ben Affleck, versione al cinema"],
+  ["2003-06-20","Hulk","altri","Ang Lee, Universal"],
+  ["2004-04-16","The Punisher (2004)","altri","Lionsgate"],
+  ["2004-12-08","Blade: Trinity","altri","New Line Cinema"],
+  ["2005-01-14","Elektra","fox","Spin-off di Daredevil"],
+  ["2008-12-05","Punisher: War Zone","altri","Lionsgate"],
   ["2003-05-02","X2","fox"],
   ["2005-07-08","I Fantastici 4","fox","Fantastici Quattro"],
   ["2006-05-26","X-Men – Conflitto finale","fox"],
@@ -477,12 +488,13 @@ const RAW = [
   ["2026-12-31","Your Friendly Neighborhood Spider-Man – Stagione 2","anim","Data da confermare","soon"]
 ];
 
-const STUDIOS = ["Marvel Studios", "Sony / Marvel Studios", "Sony Pictures", "Marvel Television", "20th Century Fox"];
+const STUDIOS = ["Marvel Studios", "Sony / Marvel Studios", "Sony Pictures", "Marvel Television", "20th Century Fox", "Altri studi"];
 const FOX_TITLES = ["X-Men: The Animated Series"];
 const CO_PRODUCED = ["Spider-Man: Homecoming","Spider-Man: Far From Home","Spider-Man: No Way Home","Spider-Man: Brand New Day"];
 const studioOf = (title, type) =>
   CO_PRODUCED.includes(title) ? "Sony / Marvel Studios" :
   type === "fox" || FOX_TITLES.includes(title) ? "20th Century Fox" :
+  type === "altri" ? "Altri studi" :
   type === "sony" ? "Sony Pictures" :
   type === "tv" ? "Marvel Television" : "Marvel Studios";
 
@@ -585,6 +597,14 @@ const MINUTES = {
  "Helstrom": 450,
  "M.O.D.O.K.": 220,
  "Hit-Monkey": 500,
+ "Blade": 120,
+ "Blade II": 117,
+ "Daredevil": 103,
+ "Hulk": 138,
+ "The Punisher (2004)": 124,
+ "Blade: Trinity": 113,
+ "Elektra": 97,
+ "Punisher: War Zone": 103,
  "X-Men": 104,
  "X2": 134,
  "I Fantastici 4": 106,
